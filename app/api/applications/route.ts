@@ -1,20 +1,47 @@
 import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 import { Application } from "@/models/Application";
 import { NextResponse } from "next/server";
 
 export async function GET(){
+    try{
     await connectDB();
+    const user = await getUser();
 
-    const applications = await Application.find();
+    if(!user){
+        return NextResponse.json({
+            error: "Unauthorized"
+        },{
+            status: 401
+        });
+    }
+
+    const applications = await Application.find({userId:user.userId});
      
     return NextResponse.json(applications);
+}catch(error){
+    return NextResponse.json({ error: "Failed to fetch Applications"}, { status: 500 });
+}
 }
 
 
-export async function POST(req: Request){
-    await connectDB();
-    const body = await req.json();
-    const newApp = await Application.create(body);
 
-    return NextResponse.json(newApp);
+// Create Applications
+
+export async function POST(req: Request){
+    try{
+    await connectDB();
+    const user = await getUser();
+
+    if(!user){
+        return NextResponse.json({ error: "Unauthorized"}, { status: 401})
+    }
+
+    const body = await req.json();
+    const newApplication = await Application.create({...body, userId: user.userId});
+
+    return NextResponse.json(newApplication);
+    }catch(error){
+        return NextResponse.json({ error : "Failed to Create Application"}, { status: 500 });
+    }
 }
