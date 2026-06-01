@@ -1,11 +1,18 @@
 "use client"
 
+import { Application } from "@/types/application";
 import { useState } from "react";
 
-export default function ApplicationForm() {
+interface FormProps {
+    onAddSuccess : (newApp : Application)=> void;
+  }
+
+
+export default function ApplicationForm({ onAddSuccess } : FormProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
 
+  
 
   const handleSubmit =async(e: React.SubmitEvent<HTMLFormElement>) =>{
     e.preventDefault();
@@ -22,6 +29,8 @@ export default function ApplicationForm() {
     });
 
     if(response.ok){
+      const savedApplication  = await response.json();
+      onAddSuccess(savedApplication);
       setCompany("");
       setRole("");
     }

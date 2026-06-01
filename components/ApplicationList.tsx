@@ -1,19 +1,32 @@
-import { Application } from "@/types/application"
+import { Application } from "@/types/application";
+import ApplicationCard from "./ApplicationCard";
 
-interface Props{
-    applications: Application[];
+interface ListProps {
+  applications: Application[];
+  onDelete: (id: string)=> void;
+  onStatusChange: (
+    id: string,
+    status: string,
+  )=> void;
 }
 
-export default function ApplicationList({applications}:Props) {
+export default function ApplicationList({ applications,onDelete, onStatusChange }: ListProps) {
+  if (applications.length === 0)
+    return (
+      <div className="border rounded-lg p-6 bg-white">
+        <p>No Application added yet.</p>;
+      </div>
+    );
   return (
     <div className="space-y-4">
-      {applications.map((app)=>(
-        <div key={app._id} className="border p-4">
-            <h3 className="font-bold">{app.company}</h3>
-            <p>{app.role}</p>
-            <p>{app.status}</p>
-        </div>
+      {applications.map((app) => (
+        <ApplicationCard key={app._id}
+        application={app}
+        onDelete={onDelete}
+        onStatusChange={onStatusChange}
+        
+        />
       ))}
     </div>
-  )
+  );
 }
