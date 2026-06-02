@@ -1,4 +1,5 @@
 import ApplicationList from "@/components/ApplicationList";
+import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
 import { Application } from "@/types/application";
 import { useEffect, useState } from "react";
@@ -79,6 +80,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
+      <DashboardStats applications={applications}/>
       <ApplicationForm onAddSuccess={handleAddApplication}/>
       <ApplicationList applications={applications} onDelete={deleteApplication} onStatusChange={updateStatus}/>
     </div>
