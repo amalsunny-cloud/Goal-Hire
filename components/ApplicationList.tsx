@@ -14,7 +14,7 @@ export default function ApplicationList({ applications,onDelete, onStatusChange 
   if (applications.length === 0)
     return (
       <div className="border rounded-lg p-6 bg-white">
-        <p>No Application added yet.</p>;
+        <p>No matching application found.</p>;
       </div>
     );
   return (

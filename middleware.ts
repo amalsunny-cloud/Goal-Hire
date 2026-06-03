@@ -1,28 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "./lib/auth";
+import { verifyTokenEdge } from "./lib/auth"; // Make sure to export this from your auth library
 
-export function middleware(req: NextRequest) {
-  console.log("req is:", req);
-
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  
   const token = req.cookies.get("token")?.value;
 
-  // Protected routes
-  const protectedPaths = ["/dashboard"];
 
-  const isProtected = protectedPaths.some((path) =>
-    req.nextUrl.pathname.startsWith(path),
-  );
+  if (
+    pathname.startsWith("/auth") || 
+    pathname.startsWith("/api") ||
+    pathname.includes(".") // skips static assets like images, favicon, and globals.css
+  ) {
+    return NextResponse.next();
+  }
 
-  if (isProtected) {
+  
+  if (pathname.startsWith("/dashboard")) {
     if (!token) {
+      console.log("🚫 MIDDLEWARE: Access Denied. No token found.");
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
 
-    const decoded = verifyToken(token);
+  
+    const decoded = await verifyTokenEdge(token);
+    console.log("🔍 MIDDLEWARE VERIFICATION RESULT:", decoded);
+
+   
     if (!decoded) {
+      console.log("🚫 MIDDLEWARE: Access Denied. Token is invalid or expired.");
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   }
 
-return NextResponse.next();
+ 
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};

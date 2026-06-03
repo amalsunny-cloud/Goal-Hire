@@ -43,6 +43,8 @@ export async function POST(req :Request){
         );
 
 
+        console.log("token is in login route.ts:", token);
+        
         const response = NextResponse.json(
             {success: true}
         );
