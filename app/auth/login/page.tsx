@@ -95,7 +95,7 @@ console.log("after router push");
               e.target.value
             )
           }
-          className="border p-2 w-full"
+          className="border p-2 w-full rounded-lg"
           required
         />
 
@@ -108,7 +108,7 @@ console.log("after router push");
               e.target.value
             )
           }
-          className="border p-2 w-full"
+          className="border p-2 w-full rounded-lg"
           required
         />
 

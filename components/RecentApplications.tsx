@@ -12,10 +12,10 @@ export default function RecentApplications({ applications }: Props) {
     .slice(0, 5);
   return (
     <div className="bg-white border rounded-lg p-5">
-      <h2 className="font-bold text-lg mb-4">Recent Applications</h2>
+      <h2 className="font-bold text-lg mb-4 text-gray-600">Recent Applications</h2>
 
       {recent.map((app) => (
-        <div key={app._id} className="py-2 border-b">
+        <div key={app._id} className="py-2 border-b text-gray-600">
           {app.company}
         </div>
       ))}

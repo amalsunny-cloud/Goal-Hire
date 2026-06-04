@@ -26,6 +26,19 @@ const ApplicationSchema = new Schema(
         },
         notes: {
             type: String,
+            default: "",
+        },
+        followUpDate: {
+            type: Date,
+        },
+        jobUrl: {
+            type: String,
+        },
+        location: {
+            type: String,
+        },
+        salary: {
+            type: String
         },
     },
     {timestamps: true}

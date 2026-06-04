@@ -3,6 +3,7 @@
 import ApplicationList from "@/components/ApplicationList";
 import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
+import LogoutButton from "@/components/LogoutButton";
 import RecentApplications from "@/components/RecentApplications";
 import { Application } from "@/types/application";
 import { useEffect, useState } from "react";
@@ -100,8 +101,11 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-between">
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
+      <LogoutButton/>
+      </div>
       <DashboardStats applications={applications} />
       <ApplicationForm onAddSuccess={handleAddApplication} />
 
@@ -110,7 +114,7 @@ export default function Dashboard() {
         placeholder="Search company or role..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 rounded w-full"
+        className="border p-2 w-full rounded-lg"
       />
 
       <select value={statusFilter} onChange={(e)=>setStatusFilter(e.target.value)}className="border p-2 rounded">

@@ -13,8 +13,8 @@ interface ListProps {
 export default function ApplicationList({ applications,onDelete, onStatusChange }: ListProps) {
   if (applications.length === 0)
     return (
-      <div className="border rounded-lg p-6 bg-white">
-        <p>No matching application found.</p>;
+      <div className="text-center flex justify-center items-center border rounded-lg p-6 bg-white">
+        <p className="text-red-600">No matching application found.</p>;
       </div>
     );
   return (

@@ -1,4 +1,5 @@
 import { Application } from "@/types/application";
+import Link from "next/link";
 
 interface ApplicationCardProps {
   application: Application;
@@ -10,10 +11,10 @@ const statusColor: Record<
   "Applied" | "Interview" | "Offer" | "Rejected",
   string
 > = {
-  Applied: "bg-blue-100",
-  Interview: "bg-yellow-100",
-  Offer: "bg-green-100",
-  Rejected: "bg-red-100",
+  Applied: "bg-blue-300",
+  Interview: "bg-yellow-300",
+  Offer: "bg-green-300",
+  Rejected: "bg-red-300",
 };
 
 export default function ApplicationCard({
@@ -25,7 +26,7 @@ export default function ApplicationCard({
     <div className="border rounded-lg p-4 bg-white">
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="font-bold text-lg">{application.company}</h3>
+          <h3 className="font-bold text-lg text-gray-800">{application.company}</h3>
 
           <p className="text-gray-600">{application.role}</p>
 
@@ -46,7 +47,7 @@ export default function ApplicationCard({
 
       <div className="mt-4">
         <select
-          className="border p-2 rounded"
+          className="border p-2 rounded text-gray-700"
           value={application.status}
           onChange={(e) => onStatusChange(application._id, e.target.value)}
         >
@@ -56,6 +57,8 @@ export default function ApplicationCard({
           <option value="Rejected">Rejected</option>
         </select>
       </div>
+
+      <Link href={`/dashboard/applications/${application._id}`}>View Details</Link>
     </div>
   );
 }

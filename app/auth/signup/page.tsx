@@ -86,7 +86,7 @@ export default function SignUpPage() {
               e.target.value
             )
           }
-          className="border p-2 w-full"
+          className="border p-2 w-full rounded-lg"
           required
         />
 
@@ -99,7 +99,7 @@ export default function SignUpPage() {
               e.target.value
             )
           }
-          className="border p-2 w-full"
+          className="border p-2 w-full rounded-lg"
           required
         />
 
@@ -112,7 +112,7 @@ export default function SignUpPage() {
               e.target.value
             )
           }
-          className="border p-2 w-full"
+          className="border p-2 w-full rounded-lg"
           required
         />
 
