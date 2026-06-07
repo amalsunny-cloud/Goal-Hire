@@ -58,7 +58,7 @@ export default function ApplicationCard({
         </select>
       </div>
 
-      <Link href={`/dashboard/applications/${application._id}`}>View Details</Link>
+      <Link href={`/dashboard/applications/${application._id}`} className="bg-gray-900">View Details</Link>
     </div>
   );
 }

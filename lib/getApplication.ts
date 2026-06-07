@@ -1,3 +1,5 @@
+// getApplication.ts
+
 import { Application } from "@/models/Application";
 import { connectDB } from "./db";
 

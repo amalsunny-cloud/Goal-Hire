@@ -1,6 +1,7 @@
 import { connectDB } from "@/lib/db";
 import { getApplication } from "@/lib/getApplication";
 import { getUser } from "@/lib/getUser";
+import Link from "next/link";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -91,6 +92,8 @@ export default async function ApplicationDetailsPage({ params }: Props) {
 
         <p>{new Date(application.updatedAt).toLocaleDateString()}</p>
       </div>
+
+      <Link href={`/dashboard/applications/${application._id}/edit`} className="bg-black text-white px-4 py-2 rounded border">Edit Application</Link>
     </div>
   );
 }
