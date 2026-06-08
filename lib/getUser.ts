@@ -5,6 +5,8 @@ export const getUser = async()=>{
     const cookieStore = await cookies();
 
     const token = cookieStore.get("token")?.value;
+    console.log("Token in getUserr:",token);
+    
 
     if(!token) return null;
 

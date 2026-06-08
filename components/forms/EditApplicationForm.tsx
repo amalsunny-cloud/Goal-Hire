@@ -8,6 +8,13 @@ export default function EditApplicationForm({ application }: any) {
   const [role, setRole] = useState(application?.role || "");
   const [status, setStatus] = useState(application?.status || "Applied");
   const [notes, setNotes] = useState(application?.notes || "");
+  const [salary, setSalary] = useState(application?.salary || "");
+  const [followUpDate, setFollowUpDate] = useState(
+    application?.followUpDate || "",
+  );
+  const [jobUrl, setJobUrl] = useState(application?.jobUrl || "");
+  const [location, setLocation] = useState(application?.location || "");
+
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -15,7 +22,11 @@ export default function EditApplicationForm({ application }: any) {
     company.trim() === (application?.company || "") &&
     role.trim() === (application?.role || "") &&
     status === (application?.status || "Applied") &&
-    notes.trim() === (application?.notes || "");
+    notes.trim() === (application?.notes || "") &&
+    salary.trim() === (application?.salary || "") &&
+    jobUrl.trim() === (application?.jobUrl || "") &&
+    location.trim() === (application?.location || "") &&
+    followUpDate.trim() === (application?.followUpDate || "");
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +48,10 @@ export default function EditApplicationForm({ application }: any) {
           role,
           status,
           notes,
+          followUpDate,
+          jobUrl,
+          location,
+          salary,
         }),
       });
 
@@ -65,7 +80,6 @@ export default function EditApplicationForm({ application }: any) {
         </div>
       )}
 
-
       <input
         type="text"
         className="border p-2 w-full"
@@ -87,17 +101,52 @@ export default function EditApplicationForm({ application }: any) {
         value={notes}
       ></textarea>
       <select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value="">Applied</option>
-        <option value="">Interview</option>
-        <option value="">Offer</option>
-        <option value="">Rejected</option>
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Offer">Offer</option>
+        <option value="Rejected">Rejected</option>
       </select>
 
-      <button type="submit" disabled={isUnchanged} className={`px-4 py-2 rounded font-medium w-full transition-all duration-200 ${
-          isUnchanged 
+      <div className="flex justify-between">
+        <input
+          type="date"
+          placeholder="Follow Up Date"
+          value={followUpDate}
+          className="border rounded-lg px-3"
+          onChange={(e) => setFollowUpDate(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Job Posting"
+          value={jobUrl}
+          className="border rounded-lg px-3"
+          onChange={(e) => setJobUrl(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          className="border rounded-lg px-3"
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Salary"
+          value={salary}
+          className="border rounded-lg px-3"
+          onChange={(e) => setSalary(e.target.value)}
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={isUnchanged}
+        className={`px-4 py-2 rounded font-medium w-full transition-all duration-200 ${
+          isUnchanged
             ? "bg-gray-300 text-gray-500 cursor-not-allowed opacity-60" // 🎨 Faded Styles
-            : "bg-black text-white hover:bg-gray-800 cursor-pointer"   // 🔥 Active Styles
-        }`}>
+            : "bg-black text-white hover:bg-gray-800 cursor-pointer" // 🔥 Active Styles
+        }`}
+      >
         Save Changes
       </button>
     </form>
