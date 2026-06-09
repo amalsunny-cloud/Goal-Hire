@@ -26,39 +26,48 @@ export default async function ApplicationDetailsPage({ params }: Props) {
     return <div>Application not found</div>;
   }
 
-  const interviews = await getInterviews(application._id.toString());
+  const rawInterviews = await getInterviews(application._id.toString());
+
+  const interviews = rawInterviews.map((interview) => ({
+    _id: interview._id.toString(),
+    applicationId: interview.applicationId.toString(),
+    round: interview.round,
+    date: interview.date ? new Date(interview.date).toISOString() : undefined,
+    outcome: interview.outcome as "Pending" | "Passed" | "Failed",
+    notes: interview.notes || "",
+    createdAt: new Date(interview.createdAt).toISOString(),
+    updatedAt: new Date(interview.updatedAt).toISOString(),
+  }));
+
+  
+
   return (
+    <>
+      <Link href={'/dashboard'} className="text-red-400">← Back to Dashboard</Link>
     <div className="p-6 space-y-4">
-      <h1 className="text-3xl font-bold">{application.company}</h1>
-      <p>
-        Role:
-        {application.role}
-      </p>
+      <h1 className="text-3xl font-bold mt-2">{application.company}</h1>
+      <h2 className="font-semibold">
+        Role : {application.role}
+      </h2>
 
-      <p>
-        Status:
-        {application.status}
-      </p>
+      <h2 className="font-semibold">
+        Status : {application.status}
+      </h2>
 
       <div>
-        <h2 className="font-semibold">Notes :</h2>
-
-        <p>{application.notes || "No notes added"}</p>
+        <h2 className="font-semibold">Notes : {application.notes || "No notes added"}</h2>
+ 
       </div>
 
       <div>
-        <h2 className="font-semibold">Follow Up Date :</h2>
-        <p>
-          {application.followUpDate
+        <h2 className="font-semibold">Follow Up Date : {application.followUpDate
             ? new Date(application.followUpDate).toLocaleDateString()
-            : "Not Set"}
-        </p>
+            : "Not Set"}</h2>
+
       </div>
 
       <div>
-        <h2 className="font-semibold">Job Posting :</h2>
-
-        {application.jobUrl ? (
+        <h2 className="font-semibold">Job Posting : {application.jobUrl ? (
           <a
             href={application.jobUrl}
             target="_blank"
@@ -71,36 +80,34 @@ export default async function ApplicationDetailsPage({ params }: Props) {
           </a>
         ) : (
           <p>No URL</p>
-        )}
+        )}</h2>
+
+        
       </div>
 
       <div>
-        <h2 className="font-semibold">Location :</h2>
+        <h2 className="font-semibold">Location : {application.location || "Not specified"}</h2>
 
-        <p>{application.location || "Not specified"}</p>
       </div>
 
       <div>
-        <h2 className="font-semibold">Salary :</h2>
-
-        <p>{application.salary || "Not specified"}</p>
+        <h2 className="font-semibold">Salary : {application.salary || "Not specified"}</h2>
       </div>
 
       <div>
-        <h2 className="font-semibold">Created :</h2>
+        <h2 className="font-semibold">Created : {new Date(application.createdAt).toLocaleDateString()}</h2>
 
-        <p>{new Date(application.createdAt).toLocaleDateString()}</p>
+        
       </div>
 
       <div>
-        <h2 className="font-semibold">Last Updated :</h2>
+        <h2 className="font-semibold">Last Updated : {new Date(application.updatedAt).toLocaleDateString()}</h2>
 
-        <p>{new Date(application.updatedAt).toLocaleDateString()}</p>
       </div>
 
       <Link
         href={`/dashboard/applications/${application._id}/edit`}
-        className="bg-black text-white px-4 py-2 rounded border"
+        className="bg-gray-500 text-white px-4 py-2 rounded"
       >
         Edit Application
       </Link>
@@ -109,5 +116,6 @@ export default async function ApplicationDetailsPage({ params }: Props) {
 
       <InterviewList interviews={interviews} />
     </div>
+    </>
   );
 }

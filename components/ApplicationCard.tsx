@@ -46,7 +46,7 @@ export default function ApplicationCard({
       </div>
 
       <div className="mt-4">
-        <select
+        {/* <select
           className="border p-2 rounded text-gray-700"
           value={application.status}
           onChange={(e) => onStatusChange(application._id, e.target.value)}
@@ -55,10 +55,10 @@ export default function ApplicationCard({
           <option value="Interview">Interview</option>
           <option value="Offer">Offer</option>
           <option value="Rejected">Rejected</option>
-        </select>
+        </select> */}
       </div>
 
-      <Link href={`/dashboard/applications/${application._id}`} className="bg-gray-900">View Details</Link>
+      <Link href={`/dashboard/applications/${application._id}`} className="text-gray-800 text-bold text-sm">View Details</Link>
     </div>
   );
 }

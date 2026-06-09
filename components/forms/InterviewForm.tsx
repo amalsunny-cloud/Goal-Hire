@@ -54,8 +54,8 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
         }
     }
   return (
-    <form  onSubmit={handleSubmit}
-      className="space-y-4 border p-4 rounded">
+    <form onSubmit={handleSubmit}
+      className="space-y-4 border p-4 rounded mt-4">
       <h2 className="text-xl font-semibold">Add Interview</h2>
       <input type="text" placeholder="Technical Round" className="border p-2 w-full rounded" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
@@ -67,7 +67,7 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
             <p className="text-red-500">{error}</p>
         )}
 
-      <button type="submit" disabled={loading} className="bg-black text-white px-4 py-2 rounded">{loading?"Adding":"Add Interview"}</button>
+      <button type="submit" disabled={loading} className="bg-gray-500 text-white px-4 py-2 rounded">{loading?"Adding":"Add Interview"}</button>
     </form>
   )
 }

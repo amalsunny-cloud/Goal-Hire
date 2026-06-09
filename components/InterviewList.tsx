@@ -41,7 +41,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
   if (interviews.length === 0) {
     return (
       <div className="border rounded p-4">
-        <p>No interviews added yet.</p>
+        <p className="text-red-600">No interviews added yet.</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
 
   const updateOutcome = async (interviewId: string, outcome: string)=>{
     try{
-      const response = await fetch(`api/interviews/${interviewId}`,{
+      const response = await fetch(`/api/interviews/${interviewId}`,{
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

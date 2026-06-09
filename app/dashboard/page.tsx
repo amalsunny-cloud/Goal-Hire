@@ -1,6 +1,7 @@
 
 "use client"
 import ApplicationList from "@/components/ApplicationList";
+import FollowUpList from "@/components/dashboard/FollowUpList";
 import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
 import LogoutButton from "@/components/LogoutButton";
@@ -143,6 +144,7 @@ export default function Dashboard() {
         onStatusChange={updateStatus}
       />
 
+      <FollowUpList applications={applications}/>
       <RecentApplications applications={applications} />
     </div>
   );
