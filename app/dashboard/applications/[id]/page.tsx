@@ -1,5 +1,8 @@
+import InterviewForm from "@/components/forms/InterviewForm";
+import InterviewList from "@/components/InterviewList";
 import { connectDB } from "@/lib/db";
 import { getApplication } from "@/lib/getApplication";
+import { getInterviews } from "@/lib/getInterviews";
 import { getUser } from "@/lib/getUser";
 import Link from "next/link";
 
@@ -22,6 +25,8 @@ export default async function ApplicationDetailsPage({ params }: Props) {
   if (!application) {
     return <div>Application not found</div>;
   }
+
+  const interviews = await getInterviews(application._id.toString());
   return (
     <div className="p-6 space-y-4">
       <h1 className="text-3xl font-bold">{application.company}</h1>
@@ -93,7 +98,16 @@ export default async function ApplicationDetailsPage({ params }: Props) {
         <p>{new Date(application.updatedAt).toLocaleDateString()}</p>
       </div>
 
-      <Link href={`/dashboard/applications/${application._id}/edit`} className="bg-black text-white px-4 py-2 rounded border">Edit Application</Link>
+      <Link
+        href={`/dashboard/applications/${application._id}/edit`}
+        className="bg-black text-white px-4 py-2 rounded border"
+      >
+        Edit Application
+      </Link>
+
+      <InterviewForm applicationId={application._id.toString()} />
+
+      <InterviewList interviews={interviews} />
     </div>
   );
 }
