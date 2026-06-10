@@ -5,6 +5,7 @@ import { getApplication } from "@/lib/getApplication";
 import { getInterviews } from "@/lib/getInterviews";
 import { getUser } from "@/lib/getUser";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -115,6 +116,8 @@ export default async function ApplicationDetailsPage({ params }: Props) {
       >
         Edit Application
       </Link>
+
+      
 
       <InterviewForm applicationId={application._id.toString()} />
 

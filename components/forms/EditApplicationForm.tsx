@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function EditApplicationForm({ application }: any) {
   const [company, setCompany] = useState(application?.company || "");
@@ -34,6 +35,13 @@ export default function EditApplicationForm({ application }: any) {
 
     if (!company.trim() || !role.trim()) {
       setError("Please fill out the fields");
+      toast("Please fill out the fields!", {
+  icon: "⚠️",
+  style: {
+    background: "#facc15", // Tailwind yellow-400
+    color: "#000",
+  },
+});
       return;
     }
 
@@ -56,23 +64,31 @@ export default function EditApplicationForm({ application }: any) {
       });
 
       if (response.ok) {
-        router.refresh();
-        router.push(`/dashboard/applications/${application._id}`);
+        toast.success("Application edited")
+        
+        setTimeout(()=>{
+          router.refresh();
+          router.push(`/dashboard/applications/${application._id}`);
+
+        },2000)
+
       } else {
         const data = await response.json();
         setError(data.error || "Something went wrong");
+        toast.error("Something went wrong")
       }
     } catch (error) {
       setError("Failed to communicate with server");
+      toast.error("Failed to communicate with server")
     }
   };
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      {error && (
+      {/* {error && (
         <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg">
           {error}
         </div>
-      )}
+      )} */}
 
       {isUnchanged && (
         <div className="p-2 text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded text-center">

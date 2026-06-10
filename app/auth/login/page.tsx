@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -60,7 +61,11 @@ export default function LoginPage() {
 
       console.log("before router push");
 
-router.push("/dashboard")
+      toast.success("Login successful")
+      
+      setTimeout(()=>{
+        router.push("/dashboard")
+      },2000)
 
 console.log("after router push");
 
@@ -70,6 +75,8 @@ console.log("after router push");
           ? err.message
           : "Login failed"
       );
+
+      toast.error("Login failed")
 
     } finally {
       setLoading(false);

@@ -8,6 +8,7 @@ import LogoutButton from "@/components/LogoutButton";
 import RecentApplications from "@/components/RecentApplications";
 import { Application } from "@/types/application";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -83,10 +84,16 @@ console.error(
       });
 
       if (!response.ok) {
+        toast.error("Failed to delete the application")
         throw new Error();
       }
 
-      fetchApplications();
+      toast.success("Application deleted")
+
+      setTimeout(()=>{
+        fetchApplications();
+      },1000)
+
     } catch (error) {
       console.error(error);
     }
@@ -105,10 +112,17 @@ console.error(
       });
 
       if (!response.ok) {
+        toast.error("Failed to update status")
         throw new Error();
       }
 
-      fetchApplications();
+      toast.success("Status updated");
+      
+      setTimeout(()=>{
+        fetchApplications();
+      },1000)
+
+
     } catch (error) {
       console.error(error);
     }

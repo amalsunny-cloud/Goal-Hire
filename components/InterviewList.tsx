@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import DeleteModal from "./modals/DeleteModal";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Interview {
   _id: string;
@@ -39,10 +40,16 @@ export default function InterviewList({ interviews }: InterviewListProps) {
       });
 
       if (!response.ok) {
+        toast.error("Failed to delete the interview");
         throw new Error("Failed to delete interview");
       }
 
-      router.refresh();
+      toast.success("Interview deleted");
+
+      setTimeout(() => {
+        router.refresh();
+      }, 2000);
+
       setShowModal(false);
 
       setSelectedId(null);
@@ -74,10 +81,16 @@ export default function InterviewList({ interviews }: InterviewListProps) {
       });
 
       if (!response.ok) {
+        toast.error("Failed to update outcome");
+
         throw new Error("Failed to update outcome");
       }
 
-      router.refresh();
+      toast.success("Outcome updated");
+
+      setTimeout(() => {
+        router.refresh();
+      }, 2000);
     } catch (error) {
       console.error("Update Error:", error);
     }
@@ -127,13 +140,16 @@ export default function InterviewList({ interviews }: InterviewListProps) {
           </div>
         </div>
       ))}
-      <DeleteModal isOpen = {showModal} title="Delete Interview" message="Are you sure you want to delete this interview?" 
-      onConfirm={deleteInterview}
-      onCancel={()=>{
-        setShowModal(false);
-        setSelectedId(null);
-      }}
-      loading={loading}
+      <DeleteModal
+        isOpen={showModal}
+        title="Delete Interview"
+        message="Are you sure you want to delete this interview?"
+        onConfirm={deleteInterview}
+        onCancel={() => {
+          setShowModal(false);
+          setSelectedId(null);
+        }}
+        loading={loading}
       />
     </div>
   );

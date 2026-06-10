@@ -3,6 +3,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -48,12 +49,17 @@ export default function SignUpPage() {
         await response.json();
 
       if (!response.ok) {
+        toast.error("Signup failed")
         throw new Error(
           data.error
         );
       }
 
-      router.push("/auth/login");
+      toast.success("Signup successful");
+
+      setTimeout(()=>{
+        router.push("/auth/login");
+      },2000)
 
     } catch (err) {
       setError(
@@ -61,6 +67,8 @@ export default function SignUpPage() {
           ? err.message
           : "Signup failed"
       );
+
+      toast.error("Signup failed")
 
     } finally {
       setLoading(false);

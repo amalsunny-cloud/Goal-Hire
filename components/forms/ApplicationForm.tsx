@@ -2,6 +2,7 @@
 
 import { Application } from "@/types/application";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface FormProps {
     onAddSuccess : (newApp : Application)=> void;
@@ -38,9 +39,14 @@ export default function ApplicationForm({ onAddSuccess } : FormProps) {
       }),
     });
 
-    if(response.ok){
+    if(!response.ok){
+      toast.error("Error adding application")
+      throw new Error("Error adding application")
+    }
+    
       const savedApplication  = await response.json();
       onAddSuccess(savedApplication);
+      toast.success("Application added")
       setCompany("");
       setRole("");
       setNote("");
@@ -48,9 +54,7 @@ export default function ApplicationForm({ onAddSuccess } : FormProps) {
       setJobUrl("");
       setLocation("");
       setSalary("");
-
-
-    }
+    
   }
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react"
+import toast from "react-hot-toast";
 
 interface InterviewFormProps{
     applicationId: string;
@@ -39,16 +40,23 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
 
             const data = await response.json();
             if(!response.ok){
+                toast.error("Failed to create interview")
                 throw new Error(data.error || "Failed to create interview");
             }
-
+            
+            toast.success("Interview added")
+            setTimeout(()=>{
+                router.refresh();
+            },2000)
+            
             setRound("");
             setDate("");
             setNotes("");
 
-            router.refresh();
         }catch(error){
             setError(error instanceof Error ?error.message : "Something went wrong")
+
+            toast.error("Something went wrong")
         }finally{
             setLoading(false);
         }
@@ -68,6 +76,9 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
         )}
 <br />
       <button type="submit" disabled={loading} className="bg-gray-500 text-white px-4 py-2 rounded">{loading?"Adding":"Add Interview"}</button>
+
+
     </form>
+    
   )
 }

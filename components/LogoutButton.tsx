@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function LogoutButton() {
 const router = useRouter();
@@ -12,13 +13,18 @@ const router = useRouter();
             })
 
             if(!response.ok){
+                toast.error("Logout Failed")
                 throw new Error("Logout Failed");
             }
 
-            router.replace("/auth/login")
+            toast.success("Logout successful")
+            setTimeout(()=>{
+                router.replace("/auth/login")
+            },2000)
+            
         }catch(error){
             console.error("Logout Error",error);
-            
+            toast.error("Logout error")
         }
     }
   return (
