@@ -55,18 +55,18 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
     }
   return (
     <form onSubmit={handleSubmit}
-      className="space-y-4 border p-4 rounded mt-4">
+      className="space-y-4 bg-white p-4 rounded-lg mt-4">
       <h2 className="text-xl font-semibold">Add Interview</h2>
-      <input type="text" placeholder="Technical Round" className="border p-2 w-full rounded" value={round} onChange={(e)=>setRound(e.target.value)} required/>
+      <input type="text" placeholder="Technical Round" className="border p-2 w-[75%] rounded" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
-      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="border p-2 w-full rounded"/>
-      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="border p-2 w-full rounded"
-        rows={4}/>
+      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="border p-2 w-[75%] rounded"/>
+      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="border p-2 w-[75%] rounded"
+        rows={3}/>
 
         {error && (
             <p className="text-red-500">{error}</p>
         )}
-
+<br />
       <button type="submit" disabled={loading} className="bg-gray-500 text-white px-4 py-2 rounded">{loading?"Adding":"Add Interview"}</button>
     </form>
   )

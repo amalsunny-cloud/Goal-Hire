@@ -77,7 +77,7 @@ console.log("after router push");
   };
 
   return (
-    <main className="max-w-md mx-auto p-6">
+    <main className="max-w-md mx-auto p-6 rounded-lg bg-white">
       <h1 className="text-3xl font-bold mb-6">
         Login
       </h1>

@@ -14,7 +14,7 @@ export default function ApplicationList({ applications,onDelete, onStatusChange 
   if (applications.length === 0)
     return (
       <div className="text-center flex justify-center items-center border rounded-lg p-6 bg-white">
-        <p className="text-red-600">No matching application found.</p>;
+        <p className="text-red-600 font-semibold">No matching application found.</p>
       </div>
     );
   return (

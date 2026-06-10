@@ -1,7 +1,7 @@
-
-"use client"
+"use client";
 import ApplicationList from "@/components/ApplicationList";
 import FollowUpList from "@/components/dashboard/FollowUpList";
+import UpcomingInterviews from "@/components/dashboard/UpcomingInterviews";
 import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
 import LogoutButton from "@/components/LogoutButton";
@@ -17,26 +17,60 @@ export default function Dashboard() {
   const [statusFilter, setStatusFilter] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
 
+  const [upcomingInterviews, setUpcomingInterviews] = useState([]);
+
   const handleAddApplication = (newApp: Application) => {
     setApplications((prev) => [newApp, ...prev]);
   };
 
-  useEffect(() => {
-    fetchApplications();
-  }, []);
+ 
+   const fetchUpcomingInterviews = async() => {
+    try {
+      const response = await fetch("/api/interviews/upcoming");
+
+      const data = await response.json();
+
+      setUpcomingInterviews(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const fetchApplications = async () => {
     try {
+      console.log(
+      "Fetching applications..."
+    );
+
       const response = await fetch("/api/applications");
+ console.log(
+      "Response:",
+      response.status
+    );
 
       const data = await response.json();
+      console.log(
+      "Data:",
+      data
+    );
+
+
       setApplications(data);
     } catch (error) {
-      console.error(error);
+console.error(
+      "FETCH ERROR:",
+      error
+    );
     } finally {
       setLoading(false);
     }
   };
+
+     useEffect(() => {
+    fetchApplications();
+    fetchUpcomingInterviews();
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -60,7 +94,7 @@ export default function Dashboard() {
 
   const updateStatus = async (id: string, status: string) => {
     try {
-      const response = await fetch(`/api/application/${id}`, {
+      const response = await fetch(`/api/applications/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -100,26 +134,36 @@ export default function Dashboard() {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
 
+
+    
+  
+
+
+
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between">
-      <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-bold">Dashboard</h1>
 
-      <LogoutButton/>
+        <LogoutButton />
       </div>
       <DashboardStats applications={applications} />
-      <ApplicationForm onAddSuccess={handleAddApplication} />
 
       <input
         type="text"
         placeholder="Search company or role..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 w-full rounded-lg"
+        className="border p-2 w-[75%] rounded-lg"
       />
+      <br />
 
-      <select value={statusFilter} onChange={(e)=>setStatusFilter(e.target.value)}className="border p-2 rounded">
-
+      <select
+        value={statusFilter}
+        onChange={(e) => setStatusFilter(e.target.value)}
+        className="border p-2 rounded"
+      >
         <option value="All">All</option>
         <option value="Applied">Applied</option>
         <option value="Interview">Interview</option>
@@ -127,24 +171,23 @@ export default function Dashboard() {
         <option value="Rejected">Rejected</option>
       </select>
 
-      <select>
+      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="newest">Newest</option>
         <option value="oldest">Oldest</option>
       </select>
 
-<p>Showing {" "}
-  {
-    filteredApplications.length
-  }{" "}
-  applications
-</p>
+      <p>Showing {filteredApplications.length} applications</p>
       <ApplicationList
         applications={filteredApplications}
         onDelete={deleteApplication}
         onStatusChange={updateStatus}
       />
 
-      <FollowUpList applications={applications}/>
+      <ApplicationForm onAddSuccess={handleAddApplication} />
+
+      <FollowUpList applications={applications} />
+
+      <UpcomingInterviews interviews={upcomingInterviews}/>
       <RecentApplications applications={applications} />
     </div>
   );

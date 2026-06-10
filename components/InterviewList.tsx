@@ -87,7 +87,11 @@ export default function InterviewList({ interviews }: InterviewListProps) {
           <p>
             Date:{" "}
             {interview.date
-              ? new Date(interview.date).toLocaleDateString()
+              ? new Date(interview.date).toLocaleDateString("en-GB",{
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+              })
               : "Not Set"}
           </p>
 

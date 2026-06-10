@@ -39,7 +39,9 @@ export default async function ApplicationDetailsPage({ params }: Props) {
     updatedAt: new Date(interview.updatedAt).toISOString(),
   }));
 
-  
+
+          console.log("Application in 71:",application)
+
 
   return (
     <>
@@ -67,10 +69,12 @@ export default async function ApplicationDetailsPage({ params }: Props) {
       </div>
 
       <div>
+
         <h2 className="font-semibold">Job Posting : {application.jobUrl ? (
           <a
-            href={application.jobUrl}
+            href={application.jobUrl.startsWith("http") ? application.jobUrl : `https://${application.jobUrl}`}
             target="_blank"
+            rel="noopener noreferrer"
             className="
           text-blue-500
           underline

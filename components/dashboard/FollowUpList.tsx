@@ -52,7 +52,7 @@ export default function FollowUpList({
                     <p>{app.role}</p>
                     <p>Follow Up:
                         {" "}
-                        {new Date(app.followUpDate!).toLocaleDateString()}
+                        {new Date(app.followUpDate!).toLocaleDateString("en-GB")}
                     </p>
                 </div>
             ))}
