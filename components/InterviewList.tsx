@@ -1,5 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
+import DeleteModal from "./modals/DeleteModal";
+import { useState } from "react";
 
 interface Interview {
   _id: string;
@@ -16,15 +18,23 @@ interface InterviewListProps {
   interviews: Interview[];
 }
 export default function InterviewList({ interviews }: InterviewListProps) {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  const deleteInterview = async (interviewId: string) => {
-    const confirmed = window.confirm("Delete this interview?");
-    if (!confirmed) {
-      return;
-    }
+  const deleteInterview = async () => {
+    // const confirmed = window.confirm("Delete this interview?");
+    // if (!confirmed) {
+    //   return;
+    // }
+
+    if (!selectedId) return;
+
     try {
-      const response = await fetch(`/api/interviews/${interviewId}`, {
+      setLoading(true);
+      const response = await fetch(`/api/interviews/${selectedId}`, {
         method: "DELETE",
       });
 
@@ -33,8 +43,13 @@ export default function InterviewList({ interviews }: InterviewListProps) {
       }
 
       router.refresh();
+      setShowModal(false);
+
+      setSelectedId(null);
     } catch (error) {
       console.error("Delete Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,10 +61,9 @@ export default function InterviewList({ interviews }: InterviewListProps) {
     );
   }
 
-
-  const updateOutcome = async (interviewId: string, outcome: string)=>{
-    try{
-      const response = await fetch(`/api/interviews/${interviewId}`,{
+  const updateOutcome = async (interviewId: string, outcome: string) => {
+    try {
+      const response = await fetch(`/api/interviews/${interviewId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -57,18 +71,17 @@ export default function InterviewList({ interviews }: InterviewListProps) {
         body: JSON.stringify({
           outcome,
         }),
-      })
+      });
 
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error("Failed to update outcome");
       }
 
       router.refresh();
-    }catch(error){
-      console.error("Update Error:",error);
-      
+    } catch (error) {
+      console.error("Update Error:", error);
     }
-  }
+  };
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Interviews</h2>
@@ -77,7 +90,10 @@ export default function InterviewList({ interviews }: InterviewListProps) {
           <div className="flex justify-between">
             <h3 className="font-bold">{interview.round}</h3>
             <button
-              onClick={() => deleteInterview(interview._id)}
+              onClick={() => {
+                setSelectedId(interview._id);
+                setShowModal(true);
+              }}
               className="bg-red-500 text-white px-3 py-1 rounded"
             >
               Delete
@@ -87,11 +103,11 @@ export default function InterviewList({ interviews }: InterviewListProps) {
           <p>
             Date:{" "}
             {interview.date
-              ? new Date(interview.date).toLocaleDateString("en-GB",{
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-              })
+              ? new Date(interview.date).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })
               : "Not Set"}
           </p>
 
@@ -99,7 +115,11 @@ export default function InterviewList({ interviews }: InterviewListProps) {
 
           <div>
             <label>Outcome:</label>
-            <select value={interview.outcome} onChange={(e)=>updateOutcome(interview._id, e.target.value)} className="border p-2 rounded">
+            <select
+              value={interview.outcome}
+              onChange={(e) => updateOutcome(interview._id, e.target.value)}
+              className="border p-2 rounded"
+            >
               <option value="Pending">Pending</option>
               <option value="Passed">Passed</option>
               <option value="Failed">Failed</option>
@@ -107,6 +127,14 @@ export default function InterviewList({ interviews }: InterviewListProps) {
           </div>
         </div>
       ))}
+      <DeleteModal isOpen = {showModal} title="Delete Interview" message="Are you sure you want to delete this interview?" 
+      onConfirm={deleteInterview}
+      onCancel={()=>{
+        setShowModal(false);
+        setSelectedId(null);
+      }}
+      loading={loading}
+      />
     </div>
   );
 }

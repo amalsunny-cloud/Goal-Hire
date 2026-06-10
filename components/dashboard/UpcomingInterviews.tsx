@@ -40,12 +40,12 @@ export default function UpcomingInterviews({
         <div className="space-y-3">
             {upcomingInterviews.map((interview)=>(
                 <div key={interview._id} className="border rounded p-3">
-                    <h3 className="font-semibold">
+                    <h3 className="font-semibold text-orange-400">
                         {interview.round}
                     </h3>
                     <p>Date:
                         {" "}
-                        {new Date(interview.date!).toLocaleDateString()}
+                        {new Date(interview.date!).toLocaleDateString("en-GB")}
                     </p>
 
                     <p>Outcome:
