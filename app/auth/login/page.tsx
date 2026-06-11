@@ -7,17 +7,13 @@ import toast from "react-hot-toast";
 export default function LoginPage() {
   const router = useRouter();
 
-  const [email, setEmail] =
-    useState("");
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,58 +22,43 @@ export default function LoginPage() {
       setLoading(true);
 
       console.log("before the fetch of login");
-      
-      const response = await fetch(
-        "/api/auth/login",
-        {
-          method: "POST",
 
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
 
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      console.log("response is:",response);
-      
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-      const data =
-        await response.json();
+      console.log("response is:", response);
 
-        console.log("data is:",data);
-        
+      const data = await response.json();
+
+      console.log("data is:", data);
 
       if (!response.ok) {
-        throw new Error(
-          data.error
-        );
+        throw new Error(data.error);
       }
 
       console.log("before router push");
 
-      toast.success("Login successful")
-      
-      setTimeout(()=>{
-        router.push("/dashboard")
-      },2000)
+      toast.success("Login successful");
 
-console.log("after router push");
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
 
+      console.log("after router push");
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Login failed"
-      );
+      setError(err instanceof Error ? err.message : "Login failed");
 
-      toast.error("Login failed")
-
+      toast.error("Login failed");
     } finally {
       setLoading(false);
     }
@@ -85,23 +66,14 @@ console.log("after router push");
 
   return (
     <main className="max-w-md mx-auto p-6 rounded-lg bg-white">
-      <h1 className="text-3xl font-bold mb-6">
-        Login
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">Login</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4"
-      >
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) =>
-            setEmail(
-              e.target.value
-            )
-          }
+          onChange={(e) => setEmail(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
@@ -110,29 +82,19 @@ console.log("after router push");
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) =>
-            setPassword(
-              e.target.value
-            )
-          }
+          onChange={(e) => setPassword(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
 
-        {error && (
-          <p className="text-red-500">
-            {error}
-          </p>
-        )}
+        {error && <p className="text-red-500">{error}</p>}
 
         <button
           type="submit"
           disabled={loading}
           className="bg-black text-white px-4 py-2 rounded"
         >
-          {loading
-            ? "Logging in..."
-            : "Login"}
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
     </main>

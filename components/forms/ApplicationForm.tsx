@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
 import { Application } from "@/types/application";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 interface FormProps {
-    onAddSuccess : (newApp : Application)=> void;
-  }
+  onAddSuccess: (newApp: Application) => void;
+}
 
-
-export default function ApplicationForm({ onAddSuccess } : FormProps) {
+export default function ApplicationForm({ onAddSuccess }: FormProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [note, setNote] = useState("");
@@ -18,35 +17,37 @@ export default function ApplicationForm({ onAddSuccess } : FormProps) {
   const [location, setLocation] = useState("");
   const [salary, setSalary] = useState("");
 
-  
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit =async(e: React.SubmitEvent<HTMLFormElement>) =>{
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch("api/applications",{
-      method: "POST",
-      headers: {
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify({
-        company,
-        role,
-        note,
-        followUpDate,
-        jobUrl,
-        location,
-        salary,
-      }),
-    });
+    try {
+      setLoading(true);
+      const response = await fetch("api/applications", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          company,
+          role,
+          note,
+          followUpDate,
+          jobUrl,
+          location,
+          salary,
+        }),
+      });
 
-    if(!response.ok){
-      toast.error("Error adding application")
-      throw new Error("Error adding application")
-    }
-    
-      const savedApplication  = await response.json();
+      if (!response.ok) {
+        toast.error("Error adding application");
+        throw new Error("Error adding application");
+      }
+
+      const savedApplication = await response.json();
       onAddSuccess(savedApplication);
-      toast.success("Application added")
+      toast.success("Application added");
       setCompany("");
       setRole("");
       setNote("");
@@ -54,8 +55,12 @@ export default function ApplicationForm({ onAddSuccess } : FormProps) {
       setJobUrl("");
       setLocation("");
       setSalary("");
-    
-  }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input
@@ -107,8 +112,12 @@ export default function ApplicationForm({ onAddSuccess } : FormProps) {
         value={salary}
         onChange={(e) => setSalary(e.target.value)}
       />
-      <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-lg">
-        Add Application
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-green-600 text-white px-4 py-2 rounded-lg disabled:opacity-50"
+      >
+        {loading ? "Adding..." : "Add Application"}
       </button>
     </form>
   );

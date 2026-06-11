@@ -26,42 +26,42 @@ export default function UpcomingInterviews({
   if (upcomingInterviews.length === 0) {
     return (
       <div className="border rounded-lg p-4">
-        <h2 className="text-xl font-semibold mb-2">Upcoming Interviews</h2>
-        <p className="text-red-500 font-semibold">No upcoming interviews.</p>
+        <h2
+          className="
+      text-xl
+      font-semibold
+      mb-2
+    "
+        >
+          Upcoming Interviews
+        </h2>
+
+        <p
+          className="
+      text-gray-500
+    "
+        >
+          No upcoming interviews scheduled.
+        </p>
       </div>
     );
   }
-  return(
+  return (
     <div className="border rounded-lg p-4">
-        <h2 className="text-xl font-semibold mb-4">
-            Upcoming Interviews
-        </h2>
+      <h2 className="text-xl font-semibold mb-4">Upcoming Interviews</h2>
 
-        <div className="space-y-3">
-            {upcomingInterviews.map((interview)=>(
-                <div key={interview._id} className="border rounded p-3">
-                    <h3 className="font-semibold text-orange-400">
-                        {interview.round}
-                    </h3>
-                    <p>Date:
-                        {" "}
-                        {new Date(interview.date!).toLocaleDateString("en-GB")}
-                    </p>
+      <div className="space-y-3">
+        {upcomingInterviews.map((interview) => (
+          <div key={interview._id} className="border rounded p-3">
+            <h3 className="font-semibold text-orange-400">{interview.round}</h3>
+            <p>Date: {new Date(interview.date!).toLocaleDateString("en-GB")}</p>
 
-                    <p>Outcome:
-                        {" "}
-                        {interview.outcome}
-                    </p>
+            <p>Outcome: {interview.outcome}</p>
 
-                    {interview.notes && (
-                        <p>Notes:
-                            {" "}
-                            {interview.notes}
-                        </p>
-                    )}
-                </div>
-            ))}
-        </div>
+            {interview.notes && <p>Notes: {interview.notes}</p>}
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }

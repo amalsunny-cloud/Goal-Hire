@@ -63,7 +63,23 @@ export default function InterviewList({ interviews }: InterviewListProps) {
   if (interviews.length === 0) {
     return (
       <div className="border rounded p-4">
-        <p className="text-red-600">No interviews added yet.</p>
+        <h2
+          className="
+          text-xl
+          font-semibold
+          mb-2
+        "
+        >
+          No Interviews Yet
+        </h2>
+
+        <p
+          className="
+          text-gray-500
+        "
+        >
+          Add your first interview round above.
+        </p>
       </div>
     );
   }
