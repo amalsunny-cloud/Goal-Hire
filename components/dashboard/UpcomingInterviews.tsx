@@ -38,7 +38,7 @@ export default function UpcomingInterviews({
 
         <p
           className="
-      text-gray-500
+      text-red-500 font-semibold
     "
         >
           No upcoming interviews scheduled.

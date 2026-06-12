@@ -26,7 +26,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
   if (upcomingFollowUps.length === 0) {
     return (
-      <div>
+      <div className="border rounded-lg py-3">
         <h2
           className="
       text-xl
@@ -39,7 +39,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
         <p
           className="
-      text-gray-500
+      text-red-500 font-semibold
     "
         >
           No follow-ups due this week.

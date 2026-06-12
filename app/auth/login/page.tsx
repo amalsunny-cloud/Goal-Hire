@@ -52,7 +52,7 @@ export default function LoginPage() {
 
       setTimeout(() => {
         router.push("/dashboard");
-      }, 2000);
+      }, 1000);
 
       console.log("after router push");
     } catch (err) {

@@ -5,6 +5,8 @@ interface Props {
     applications: Application[];
 }
 export default function DashboardStats({ applications }:Props) {
+
+  console.log("Application in dashboardStats is:",applications)
     const total = applications.length;
     const applied = applications.filter((app)=>app.status === "Applied").length;
     const interview = applications.filter((app)=>app.status === "Interview").length;

@@ -1,5 +1,6 @@
 "use client";
 import ApplicationList from "@/components/ApplicationList";
+import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import FollowUpList from "@/components/dashboard/FollowUpList";
 import UpcomingInterviews from "@/components/dashboard/UpcomingInterviews";
 import DashboardStats from "@/components/DashboardStats";
@@ -24,8 +25,7 @@ export default function Dashboard() {
     setApplications((prev) => [newApp, ...prev]);
   };
 
- 
-   const fetchUpcomingInterviews = async() => {
+  const fetchUpcomingInterviews = async () => {
     try {
       const response = await fetch("/api/interviews/upcoming");
 
@@ -37,38 +37,25 @@ export default function Dashboard() {
     }
   };
 
-
   const fetchApplications = async () => {
     try {
-      console.log(
-      "Fetching applications..."
-    );
+      console.log("Fetching applications...");
 
       const response = await fetch("/api/applications");
- console.log(
-      "Response:",
-      response.status
-    );
+      console.log("Response:", response.status);
 
       const data = await response.json();
-      console.log(
-      "Data:",
-      data
-    );
-
+      console.log("Data:", data);
 
       setApplications(data);
     } catch (error) {
-console.error(
-      "FETCH ERROR:",
-      error
-    );
+      console.error("FETCH ERROR:", error);
     } finally {
       setLoading(false);
     }
   };
 
-     useEffect(() => {
+  useEffect(() => {
     fetchApplications();
     fetchUpcomingInterviews();
   }, []);
@@ -84,16 +71,15 @@ console.error(
       });
 
       if (!response.ok) {
-        toast.error("Failed to delete the application")
+        toast.error("Failed to delete the application");
         throw new Error();
       }
 
-      toast.success("Application deleted")
+      toast.success("Application deleted");
 
-      setTimeout(()=>{
+      setTimeout(() => {
         fetchApplications();
-      },1000)
-
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -112,17 +98,15 @@ console.error(
       });
 
       if (!response.ok) {
-        toast.error("Failed to update status")
+        toast.error("Failed to update status");
         throw new Error();
       }
 
       toast.success("Status updated");
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         fetchApplications();
-      },1000)
-
-
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -148,15 +132,29 @@ console.error(
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     });
 
+  const applicationCount = applications.length;
+  const offerCount = applications.filter(
+    (app) => app.status === "Offer",
+  ).length;
+
+
+  console.log("applications in 141:",applications)
+  const interviewCount = upcomingInterviews.length;
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+      <div className="flex justify-between items-start">
+        <DashboardHeader
+          applicationCount={applicationCount}
+          interviewCount={interviewCount}
+          offerCount={offerCount}
+        />
 
-        <LogoutButton />
+        <div className="flex justify-end">
+          <LogoutButton />
+        </div>
       </div>
-      <DashboardStats applications={applications} />
+      <DashboardStats applications={applications}/>
 
       <input
         type="text"
@@ -195,7 +193,7 @@ console.error(
 
       <FollowUpList applications={applications} />
 
-      <UpcomingInterviews interviews={upcomingInterviews}/>
+      <UpcomingInterviews interviews={upcomingInterviews} />
       <RecentApplications applications={applications} />
     </div>
   );
