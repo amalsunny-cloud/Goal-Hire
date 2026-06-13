@@ -1,7 +1,9 @@
 "use client";
 import ApplicationList from "@/components/ApplicationList";
+import AnalyticsSection from "@/components/dashboard/AnalyticsSection";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import FollowUpList from "@/components/dashboard/FollowUpList";
+import RecentActivity from "@/components/dashboard/RecentActivity";
 import UpcomingInterviews from "@/components/dashboard/UpcomingInterviews";
 import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
@@ -21,6 +23,7 @@ export default function Dashboard() {
 
   const [upcomingInterviews, setUpcomingInterviews] = useState([]);
 
+  // throw new Error("Testing error Page...")
   const handleAddApplication = (newApp: Application) => {
     setApplications((prev) => [newApp, ...prev]);
   };
@@ -155,6 +158,7 @@ export default function Dashboard() {
         </div>
       </div>
       <DashboardStats applications={applications}/>
+      <AnalyticsSection applications={applications}/>
 
       <input
         type="text"
@@ -194,6 +198,7 @@ export default function Dashboard() {
       <FollowUpList applications={applications} />
 
       <UpcomingInterviews interviews={upcomingInterviews} />
+      <RecentActivity applications={applications}/>
       <RecentApplications applications={applications} />
     </div>
   );
