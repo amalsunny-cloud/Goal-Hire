@@ -13,6 +13,14 @@ import { Application } from "@/types/application";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
+import ApplicationsChart from "@/components/dashboard/ApplicationsChart";
+import { getApplicationsPerMonth } from "@/lib/dashboard/getApplicationsPerMonth";
+import { getFunnelData } from "@/lib/dashboard/getFunnelData";
+import ApplicationFunnel from "@/components/dashboard/ApplicationFunnel";
+import InterviewAnalytics from "@/components/dashboard/InterviewAnalytics";
+import ExportCSVButton from "@/components/dashboard/ExportCSVButton";
+
+
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,11 +30,25 @@ export default function Dashboard() {
   const [sortBy, setSortBy] = useState("newest");
 
   const [upcomingInterviews, setUpcomingInterviews] = useState([]);
+  const [interviews, setInterviews] = useState([]);
 
   // throw new Error("Testing error Page...")
   const handleAddApplication = (newApp: Application) => {
     setApplications((prev) => [newApp, ...prev]);
   };
+
+  const fetchInterviews = async()=>{
+    try{
+      const response = await fetch("/api/interviews/all");
+
+      const data= await response.json();
+
+      setInterviews(data);
+    }catch(error){
+      console.error(error);
+      
+    }
+  }
 
   const fetchUpcomingInterviews = async () => {
     try {
@@ -61,6 +83,7 @@ export default function Dashboard() {
   useEffect(() => {
     fetchApplications();
     fetchUpcomingInterviews();
+    fetchInterviews();
   }, []);
 
   if (loading) {
@@ -144,6 +167,10 @@ export default function Dashboard() {
   console.log("applications in 141:",applications)
   const interviewCount = upcomingInterviews.length;
 
+
+  const chartData = getApplicationsPerMonth(applications);
+  const funnelData = getFunnelData(applications)
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-start">
@@ -154,11 +181,15 @@ export default function Dashboard() {
         />
 
         <div className="flex justify-end">
+          <ExportCSVButton applications={applications}/>
           <LogoutButton />
         </div>
       </div>
       <DashboardStats applications={applications}/>
       <AnalyticsSection applications={applications}/>
+      <ApplicationsChart data={chartData}/>
+      <ApplicationFunnel data={funnelData}/>
+      <InterviewAnalytics interviews={interviews} />
 
       <input
         type="text"
