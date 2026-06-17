@@ -1,13 +1,18 @@
+import { getReminderCount } from "@/lib/dashboard/getReminderCount";
+import { Application } from "@/types/application";
+
 interface DashboardHeaderProps {
   applicationCount: number;
   interviewCount: number;
   offerCount: number;
+  applications: Application[];
 }
 
 export default function DashboardHeader({
   applicationCount,
   interviewCount,
   offerCount,
+  applications
 }: DashboardHeaderProps) {
   console.log("Interview count in dashboardheaer is:", interviewCount);
   const hour = new Date().getHours();
@@ -21,6 +26,8 @@ export default function DashboardHeader({
   } else {
     greeting = "Good Evening";
   }
+
+  const reminders = getReminderCount(applications)
   return (
     <div className="bg-white border rounded-lg p-6 shadow-sm">
       <h1 className="text-3xl font-bold mb-2">{greeting} 👋</h1>
@@ -43,6 +50,10 @@ export default function DashboardHeader({
         <div>
           <p className="text-gray-500">Offers</p>
           <p className="text-2xl font-bold">{offerCount}</p>
+        </div>
+        <div>
+          <p className="text-gray-500">Reminders</p>
+          <p className="text-2xl font-bold">🔔 {reminders}</p>
         </div>
       </div>
     </div>

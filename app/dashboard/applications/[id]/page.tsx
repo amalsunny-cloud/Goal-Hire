@@ -1,3 +1,4 @@
+import ApplicationTimeline from "@/components/application/ApplicationTimeline";
 import InterviewForm from "@/components/forms/InterviewForm";
 import InterviewList from "@/components/InterviewList";
 import { connectDB } from "@/lib/db";
@@ -122,6 +123,8 @@ export default async function ApplicationDetailsPage({ params }: Props) {
       <InterviewForm applicationId={application._id.toString()} />
 
       <InterviewList interviews={interviews} />
+
+      <ApplicationTimeline applicationId={application._id.toString()}/>
     </div>
     </>
   );

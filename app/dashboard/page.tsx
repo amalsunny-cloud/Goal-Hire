@@ -19,6 +19,7 @@ import { getFunnelData } from "@/lib/dashboard/getFunnelData";
 import ApplicationFunnel from "@/components/dashboard/ApplicationFunnel";
 import InterviewAnalytics from "@/components/dashboard/InterviewAnalytics";
 import ExportCSVButton from "@/components/dashboard/ExportCSVButton";
+import ReminderWidget from "@/components/dashboard/ReminderWidget";
 
 
 export default function Dashboard() {
@@ -178,6 +179,7 @@ export default function Dashboard() {
           applicationCount={applicationCount}
           interviewCount={interviewCount}
           offerCount={offerCount}
+          applications={applications}
         />
 
         <div className="flex justify-end">
@@ -190,6 +192,7 @@ export default function Dashboard() {
       <ApplicationsChart data={chartData}/>
       <ApplicationFunnel data={funnelData}/>
       <InterviewAnalytics interviews={interviews} />
+      <ReminderWidget applications={applications}/>
 
       <input
         type="text"
