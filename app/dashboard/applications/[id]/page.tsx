@@ -1,4 +1,6 @@
+import ApplicationNotes from "@/components/application/ApplicationNotes";
 import ApplicationTimeline from "@/components/application/ApplicationTimeline";
+import FileUpload from "@/components/application/FileUpload";
 import InterviewForm from "@/components/forms/InterviewForm";
 import InterviewList from "@/components/InterviewList";
 import { connectDB } from "@/lib/db";
@@ -59,9 +61,11 @@ export default async function ApplicationDetailsPage({ params }: Props) {
       </h2>
 
       <div>
-        <h2 className="font-semibold">Notes : {application.notes || "No notes added"}</h2>
- 
+        
+      <ApplicationNotes applicationId={application._id.toString()} initialNotes={application.notes || ""}/>
       </div>
+
+      <FileUpload applicationId={application._id.toString()}/>
 
       <div>
         <h2 className="font-semibold">Follow Up Date : {application.followUpDate

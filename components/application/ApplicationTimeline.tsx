@@ -19,7 +19,13 @@ export default function ApplicationTimeline({
   useEffect(() => {
     const fetchTimeline = async () => {
       try {
+        console.log("before the fetch in ApplcationTimeline");
+        
         const response = await fetch(`/api/timeline/${applicationId}`);
+        console.log("After the response in ApplicationTimeline");
+        console.log("Resopnse is :",response);
+        
+        
 
         const data = await response.json();
         setEvents(data);
@@ -67,7 +73,7 @@ export default function ApplicationTimeline({
             </p>
 
             <p className="text-sm text-gray-500">
-              {new Date(event.createdAt).toLocaleString()}
+              {new Date(event.createdAt).toLocaleString("en-GB")}
             </p>
           </div>
         ))}

@@ -62,6 +62,15 @@ export async function PATCH(
         `Status changed from ${oldStatus} to ${body.status}`,
       );
     }
+
+    if (updated && "notes" in body) {
+      await createTimelineEvent(
+        updated._id.toString(),
+        "notes_updated",
+        "Notes updated",
+      );
+    }
+
     return NextResponse.json(updated);
   } catch (error) {
     return NextResponse.json(
