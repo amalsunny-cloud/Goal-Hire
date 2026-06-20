@@ -1,5 +1,6 @@
 import ApplicationNotes from "@/components/application/ApplicationNotes";
 import ApplicationTimeline from "@/components/application/ApplicationTimeline";
+import AttachmentList from "@/components/application/AttachmentList";
 import FileUpload from "@/components/application/FileUpload";
 import InterviewForm from "@/components/forms/InterviewForm";
 import InterviewList from "@/components/InterviewList";
@@ -66,6 +67,7 @@ export default async function ApplicationDetailsPage({ params }: Props) {
       </div>
 
       <FileUpload applicationId={application._id.toString()}/>
+      <AttachmentList applicationId={application._id.toString()}/>
 
       <div>
         <h2 className="font-semibold">Follow Up Date : {application.followUpDate

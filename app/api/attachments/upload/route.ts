@@ -1,9 +1,56 @@
+import { NextResponse } from "next/server";
+import cloudinary from "@/lib/cloudinary";
 
+export async function POST(req: Request) {
+  try {
+    const formData = await req.formData();
+    console.log("formData in cloudinary:",formData);
+    
+    const file = formData.get("file") as File;
+    console.log("file in cloudinary:",file);
 
-export async function POST(req: Request){
-    try{
-        
-    }catch(error){
-
+    if (!file) {
+      return NextResponse.json(
+        {error: "No file uploaded"},
+        {status: 400},
+      );
     }
+
+    const bytes = await file.arrayBuffer();
+    console.log("bytes in cloudinary:",bytes);
+
+    const buffer = Buffer.from(bytes);
+    console.log("buffer in cloudinary:",buffer);
+
+
+    const result = await new Promise<any>((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: "goal-hire",
+            resource_type: "auto",
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          },
+        )
+        .end(buffer);
+    });
+
+        console.log("result in cloudinary:",result);
+
+    return NextResponse.json({
+        url: result.secure_url,
+        originalName: file.name,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      {error: "Upload failed"},
+      {status: 500},
+    );
+  }
 }

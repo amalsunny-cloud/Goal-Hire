@@ -6,7 +6,7 @@ const Attachmentschema = new mongoose.Schema({
         ref: "Application",
         required: true,
     },
-    filename: {
+    fileName: {
         type: String,
         required: true,
     },
@@ -19,4 +19,4 @@ const Attachmentschema = new mongoose.Schema({
     timestamps: true,
 });
 
-export const Attachment = mongoose.models.Attachment || mongoose.model("Attachement",Attachmentschema)
+export const Attachment = mongoose.models.Attachment || mongoose.model("Attachment",Attachmentschema)
