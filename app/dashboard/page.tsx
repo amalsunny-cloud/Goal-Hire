@@ -20,6 +20,8 @@ import ApplicationFunnel from "@/components/dashboard/ApplicationFunnel";
 import InterviewAnalytics from "@/components/dashboard/InterviewAnalytics";
 import ExportCSVButton from "@/components/dashboard/ExportCSVButton";
 import ReminderWidget from "@/components/dashboard/ReminderWidget";
+import { Interview } from "@/types/interview";
+import KanbanBoard from "@/components/dashboard/KanbanBoard";
 
 
 export default function Dashboard() {
@@ -31,7 +33,7 @@ export default function Dashboard() {
   const [sortBy, setSortBy] = useState("newest");
 
   const [upcomingInterviews, setUpcomingInterviews] = useState([]);
-  const [interviews, setInterviews] = useState([]);
+  const [interviews, setInterviews] = useState<Interview[]>([]);
 
   // throw new Error("Testing error Page...")
   const handleAddApplication = (newApp: Application) => {
@@ -43,6 +45,7 @@ export default function Dashboard() {
       const response = await fetch("/api/interviews/all");
 
       const data= await response.json();
+      console.log("Interview API Data:", data);
 
       setInterviews(data);
     }catch(error){
@@ -191,8 +194,9 @@ export default function Dashboard() {
       <AnalyticsSection applications={applications}/>
       <ApplicationsChart data={chartData}/>
       <ApplicationFunnel data={funnelData}/>
+      <KanbanBoard applications={applications} onRefresh={fetchApplications}/>
       <InterviewAnalytics interviews={interviews} />
-      <ReminderWidget applications={applications}/>
+      <ReminderWidget applications={applications} interviews={interviews}/>
 
       <input
         type="text"
