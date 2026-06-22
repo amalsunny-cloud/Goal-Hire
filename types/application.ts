@@ -12,6 +12,7 @@ export interface Application {
     jobUrl?: string;
     location?: string;
     salary?: string;
+    source?: string;
     createdAt: string;
     updatedAt: string;
 }

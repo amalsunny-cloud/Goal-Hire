@@ -17,6 +17,8 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
   const [location, setLocation] = useState("");
   const [salary, setSalary] = useState("");
 
+  const [source, setSource] = useState("LinkedIn");
+
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -112,6 +114,33 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
         value={salary}
         onChange={(e) => setSalary(e.target.value)}
       />
+
+      <div>
+        <label>Job Source</label>
+
+        <select
+          value={source}
+          onChange={(e) => setSource(e.target.value)}
+          className="
+      border
+      p-2
+      rounded
+      w-full
+    "
+        >
+          <option>LinkedIn</option>
+
+          <option>Indeed</option>
+
+          <option>Naukri</option>
+
+          <option>Company Website</option>
+
+          <option>Referral</option>
+
+          <option>Other</option>
+        </select>
+      </div>
       <button
         type="submit"
         disabled={loading}

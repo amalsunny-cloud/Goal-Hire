@@ -24,6 +24,8 @@ import { Interview } from "@/types/interview";
 import KanbanBoard from "@/components/dashboard/KanbanBoard";
 import ApplicationAnalytics from "@/components/dashboard/ApplicationAnalytics";
 import CompanyInsights from "@/components/dashboard/CompanyInsights";
+import ApplicationCalendar from "@/components/dashboard/ApplicationCalendar";
+import SourceAnalytics from "@/components/dashboard/SourceAnalytics";
 
 
 export default function Dashboard() {
@@ -199,9 +201,12 @@ export default function Dashboard() {
       <ApplicationAnalytics applications={applications}/>
 
       <CompanyInsights applications={applications}/>
+      <SourceAnalytics applications={applications}/>
       <KanbanBoard applications={applications} onRefresh={fetchApplications}/>
       <InterviewAnalytics interviews={interviews} />
       <ReminderWidget applications={applications} interviews={interviews}/>
+
+      <ApplicationCalendar applications={applications} interviews={interviews}/>
 
       <input
         type="text"
