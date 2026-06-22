@@ -1,5 +1,5 @@
-"use client"
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 
 interface Attachment {
   _id: string;
@@ -13,6 +13,10 @@ export default function AttachmentList({ applicationId }: Props) {
   const [attachments, setAttachments] = useState<Attachment[]>([]);
 
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchAttachments();
+  }, []);
 
   const fetchAttachments = async () => {
     try {
@@ -36,6 +40,33 @@ export default function AttachmentList({ applicationId }: Props) {
   if (loading) {
     return <p>Loading attachments...</p>;
   }
+
+  const deleteAttachment = async (attachmentId: string) => {
+    try {
+      if (
+  !confirm(
+    "Delete this attachment?"
+  )
+) {
+  return;
+}
+      const response = await fetch(`/api/attachments/${attachmentId}`, {
+        method: "DELETE",
+      });
+
+      console.log("attachment deleted..");
+      
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      setAttachments(
+        attachments.filter((attachment) => attachment._id !== attachmentId),
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="border rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Uploaded Files</h2>
@@ -44,21 +75,21 @@ export default function AttachmentList({ applicationId }: Props) {
       ) : (
         <div className="space-y-3">
           {attachments.map((attachment) => (
-            <a
+            <div
               key={attachment._id}
-              href={attachment.fileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                  block
-                  border
-                  rounded
-                  p-3
-                  hover:bg-gray-50
-                "
+              className="border rounded p-3 flex justify-between items-center"
             >
-              📄 {attachment.fileName}
-            </a>
+              <a
+                href={attachment.fileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                📄 {attachment.fileName}
+              </a>
+
+              <button onClick={() =>deleteAttachment(attachment._id)}className="text-red-500 font-medium">Delete</button>
+            </div>
           ))}
         </div>
       )}
