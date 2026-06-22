@@ -22,6 +22,8 @@ import ExportCSVButton from "@/components/dashboard/ExportCSVButton";
 import ReminderWidget from "@/components/dashboard/ReminderWidget";
 import { Interview } from "@/types/interview";
 import KanbanBoard from "@/components/dashboard/KanbanBoard";
+import ApplicationAnalytics from "@/components/dashboard/ApplicationAnalytics";
+import CompanyInsights from "@/components/dashboard/CompanyInsights";
 
 
 export default function Dashboard() {
@@ -194,6 +196,9 @@ export default function Dashboard() {
       <AnalyticsSection applications={applications}/>
       <ApplicationsChart data={chartData}/>
       <ApplicationFunnel data={funnelData}/>
+      <ApplicationAnalytics applications={applications}/>
+
+      <CompanyInsights applications={applications}/>
       <KanbanBoard applications={applications} onRefresh={fetchApplications}/>
       <InterviewAnalytics interviews={interviews} />
       <ReminderWidget applications={applications} interviews={interviews}/>
