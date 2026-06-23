@@ -26,7 +26,10 @@ import ApplicationAnalytics from "@/components/dashboard/ApplicationAnalytics";
 import CompanyInsights from "@/components/dashboard/CompanyInsights";
 import ApplicationCalendar from "@/components/dashboard/ApplicationCalendar";
 import SourceAnalytics from "@/components/dashboard/SourceAnalytics";
-
+import SourceSuccessAnalytics from "@/components/dashboard/SourceSuccessAnalytics";
+import GoalTracker from "@/components/dashboard/GoalTracker";
+import { Goal } from "@/types/goal";
+import GoalSettings from "@/components/dashboard/GoalSettings";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -39,24 +42,25 @@ export default function Dashboard() {
   const [upcomingInterviews, setUpcomingInterviews] = useState([]);
   const [interviews, setInterviews] = useState<Interview[]>([]);
 
+  const [goal, setGoal] = useState<Goal | null>(null);
+
   // throw new Error("Testing error Page...")
   const handleAddApplication = (newApp: Application) => {
     setApplications((prev) => [newApp, ...prev]);
   };
 
-  const fetchInterviews = async()=>{
-    try{
+  const fetchInterviews = async () => {
+    try {
       const response = await fetch("/api/interviews/all");
 
-      const data= await response.json();
+      const data = await response.json();
       console.log("Interview API Data:", data);
 
       setInterviews(data);
-    }catch(error){
+    } catch (error) {
       console.error(error);
-      
     }
-  }
+  };
 
   const fetchUpcomingInterviews = async () => {
     try {
@@ -68,6 +72,14 @@ export default function Dashboard() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const fetchGoal = async () => {
+    const response = await fetch("/api/goals");
+
+    const data = await response.json();
+
+    setGoal(data);
   };
 
   const fetchApplications = async () => {
@@ -92,6 +104,7 @@ export default function Dashboard() {
     fetchApplications();
     fetchUpcomingInterviews();
     fetchInterviews();
+    fetchGoal();
   }, []);
 
   if (loading) {
@@ -171,13 +184,11 @@ export default function Dashboard() {
     (app) => app.status === "Offer",
   ).length;
 
-
-  console.log("applications in 141:",applications)
+  console.log("applications in 141:", applications);
   const interviewCount = upcomingInterviews.length;
 
-
   const chartData = getApplicationsPerMonth(applications);
-  const funnelData = getFunnelData(applications)
+  const funnelData = getFunnelData(applications);
 
   return (
     <div className="space-y-6">
@@ -190,23 +201,35 @@ export default function Dashboard() {
         />
 
         <div className="flex justify-end">
-          <ExportCSVButton applications={applications}/>
+          <ExportCSVButton applications={applications} />
           <LogoutButton />
         </div>
       </div>
-      <DashboardStats applications={applications}/>
-      <AnalyticsSection applications={applications}/>
-      <ApplicationsChart data={chartData}/>
-      <ApplicationFunnel data={funnelData}/>
-      <ApplicationAnalytics applications={applications}/>
+      <DashboardStats applications={applications} />
+      <AnalyticsSection applications={applications} />
+      <ApplicationsChart data={chartData} />
+      <ApplicationFunnel data={funnelData} />
+      <ApplicationAnalytics applications={applications} />
 
-      <CompanyInsights applications={applications}/>
-      <SourceAnalytics applications={applications}/>
-      <KanbanBoard applications={applications} onRefresh={fetchApplications}/>
+      {goal && (
+        <>
+          <GoalTracker applications={applications} goal={goal} />
+
+          <GoalSettings goal={goal} onGoalUpdated={setGoal} />
+        </>
+      )}
+
+      <CompanyInsights applications={applications} />
+      <SourceAnalytics applications={applications} />
+      <SourceSuccessAnalytics applications={applications} />
+      <KanbanBoard applications={applications} onRefresh={fetchApplications} />
       <InterviewAnalytics interviews={interviews} />
-      <ReminderWidget applications={applications} interviews={interviews}/>
+      <ReminderWidget applications={applications} interviews={interviews} />
 
-      <ApplicationCalendar applications={applications} interviews={interviews}/>
+      <ApplicationCalendar
+        applications={applications}
+        interviews={interviews}
+      />
 
       <input
         type="text"
@@ -246,7 +269,7 @@ export default function Dashboard() {
       <FollowUpList applications={applications} />
 
       <UpcomingInterviews interviews={upcomingInterviews} />
-      <RecentActivity applications={applications}/>
+      <RecentActivity applications={applications} />
       <RecentApplications applications={applications} />
     </div>
   );
