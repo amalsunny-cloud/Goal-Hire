@@ -30,6 +30,7 @@ import SourceSuccessAnalytics from "@/components/dashboard/SourceSuccessAnalytic
 import GoalTracker from "@/components/dashboard/GoalTracker";
 import { Goal } from "@/types/goal";
 import GoalSettings from "@/components/dashboard/GoalSettings";
+import StreakTracker from "@/components/dashboard/StreakTracker";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -218,6 +219,8 @@ export default function Dashboard() {
           <GoalSettings goal={goal} onGoalUpdated={setGoal} />
         </>
       )}
+
+      <StreakTracker applications={applications}/>
 
       <CompanyInsights applications={applications} />
       <SourceAnalytics applications={applications} />

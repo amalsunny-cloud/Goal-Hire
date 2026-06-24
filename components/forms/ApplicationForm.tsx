@@ -1,7 +1,8 @@
 "use client";
 
 import { Application } from "@/types/application";
-import { useState } from "react";
+import { Profile } from "@/types/profile";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 interface FormProps {
@@ -21,12 +22,61 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
 
   const [loading, setLoading] = useState(false);
 
+  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [selectedProfile, setSelectedProfile] = useState("");
+
+  const fetchProfiles = async () => {
+    try {
+      const response = await fetch("/api/profiles");
+
+      const data = await response.json();
+
+      setProfiles(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
+  const handleProfileChange = (profileId: string) => {
+    setSelectedProfile(profileId);
+
+    const profile = profiles.find((p) => p._id === profileId);
+
+    if (!profile) {
+      return;
+    }
+
+    setNote((prev) => {
+  if (prev.trim()) {
+    return prev;
+  }
+
+  return `
+Portfolio:
+${profile.portfolioUrl || ""}
+
+GitHub:
+${profile.githubUrl || ""}
+
+LinkedIn:
+${profile.linkedinUrl || ""}
+
+Skills:
+${profile.skills || ""}
+`;
+});
+  }
+
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       setLoading(true);
-      const response = await fetch("api/applications", {
+      const response = await fetch("/api/applications", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,6 +89,7 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
           jobUrl,
           location,
           salary,
+          source,
         }),
       });
 
@@ -57,14 +108,42 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
       setJobUrl("");
       setLocation("");
       setSalary("");
+      setSource("LinkedIn");
+      setSelectedProfile("");
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
+
+  console.log("Profiles are:", profiles);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label>Application Profile</label>
+
+        <select
+          value={selectedProfile}
+          onChange={(e) => handleProfileChange(e.target.value)}
+          className="
+      border
+      p-2
+      rounded
+      w-full
+    "
+        >
+          <option value="">Select Profile</option>
+
+          {profiles.map((profile) => (
+            <option key={profile._id} value={profile._id}>
+              {profile.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <input
         type="text"
         placeholder="Company"
@@ -79,8 +158,8 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
         value={role}
         onChange={(e) => setRole(e.target.value)}
       />
-      <input
-        type="text"
+      <textarea
+        rows={6}
         placeholder="Notes"
         className="border p-2 w-full rounded-lg"
         value={note}
@@ -128,17 +207,17 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
       w-full
     "
         >
-          <option>LinkedIn</option>
+          <option value="LinkedIn">LinkedIn</option>
 
-          <option>Indeed</option>
+          <option value="Indeed">Indeed</option>
 
-          <option>Naukri</option>
+          <option value="Naukri">Naukri</option>
 
-          <option>Company Website</option>
+          <option value="Company Website">Company Website</option>
 
-          <option>Referral</option>
+          <option value="Referral">Referral</option>
 
-          <option>Other</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <button
@@ -150,4 +229,4 @@ export default function ApplicationForm({ onAddSuccess }: FormProps) {
       </button>
     </form>
   );
-}
+  }
