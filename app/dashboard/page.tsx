@@ -31,6 +31,7 @@ import GoalTracker from "@/components/dashboard/GoalTracker";
 import { Goal } from "@/types/goal";
 import GoalSettings from "@/components/dashboard/GoalSettings";
 import StreakTracker from "@/components/dashboard/StreakTracker";
+import PredictionAnalytics from "@/components/dashboard/PredictionAnalytics";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -211,6 +212,8 @@ export default function Dashboard() {
       <ApplicationsChart data={chartData} />
       <ApplicationFunnel data={funnelData} />
       <ApplicationAnalytics applications={applications} />
+
+      <PredictionAnalytics applications={applications}/>
 
       {goal && (
         <>
