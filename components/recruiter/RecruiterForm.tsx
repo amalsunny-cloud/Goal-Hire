@@ -47,6 +47,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
       if (!response.ok) {
         throw new Error();
       }
+      console.log("response is:",response);
 
       toast.success("Recruiter added");
 

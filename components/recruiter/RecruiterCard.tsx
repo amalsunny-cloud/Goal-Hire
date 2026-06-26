@@ -1,66 +1,277 @@
+"use client";
+
 import { Recruiter } from "@/types/recruiter";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
   recruiter: Recruiter;
+  onDelete: () => void;
+  onUpdated: () => void;
 }
 
-export default function RecruiterCard({ recruiter }: Props) {
+export default function RecruiterCard({
+  recruiter,
+  onDelete,
+  onUpdated,
+}: Props) {
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(recruiter.name);
+  const [email, setEmail] = useState(recruiter.email || "");
+  const [phone, setPhone] = useState(recruiter.phone || "");
+  const [linkedin, setLinkedin] = useState(recruiter.linkedin || "");
+  const [notes, setNotes] = useState(recruiter.notes || "");
+  const [loading, setLoading] = useState(false);
+
+  const [lastContact, setLastContact] = useState(
+    recruiter.lastContact ? recruiter.lastContact.split("T")[0] : "",
+  );
+
+  const [nextFollowUp, setNextFollowUp] = useState(
+    recruiter.nextFollowUp ? recruiter.nextFollowUp.split("T")[0] : "",
+  );
+
+  const saveChanges = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/recruiters/${recruiter._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          linkedin,
+          notes,
+          lastContact,
+          nextFollowUp,
+        }),
+      });
+
+      console.log("response is:", response);
+
+      if (!response.ok) {
+        throw new Error();
+      }
+      toast.success("Recruiter Updated");
+      setEditing(false);
+      onUpdated();
+    } catch (error) {
+      console.error(error);
+      toast.error("Update failed");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="border rounded-lg p-5 bg-white shadow-sm">
-      <h2 className="text-lg font-semibold mb-4">
-        {recruiter.name}
-      </h2>
+      {editing ? (
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="border p-2 rounded w-full"
+        />
+      ) : (
+        <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
+      )}
 
       <div className="space-y-2">
-        {recruiter.email && (
-          <p>
-            <strong>Email:</strong> {recruiter.email}
-          </p>
-        )}
+        <div className="space-y-1">
+          <strong>Email</strong>
 
-        {recruiter.phone && (
-          <p>
-            <strong>Phone:</strong> {recruiter.phone}
-          </p>
-        )}
+          {editing ? (
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="
+        border
+        p-2
+        rounded
+        w-full
+      "
+            />
+          ) : (
+            <p>{recruiter.email || "No email"}</p>
+          )}
+        </div>
 
-        {recruiter.linkedin && (
-          <p>
-            <strong>LinkedIn:</strong>{" "}
+        <div className="space-y-1">
+          <strong>Phone</strong>
+
+          {editing ? (
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="
+        border
+        p-2
+        rounded
+        w-full
+      "
+            />
+          ) : (
+            <p>{recruiter.phone || "No phone number"}</p>
+          )}
+        </div>
+
+        <div className="space-y-1">
+          <strong>LinkedIn</strong>
+
+          {editing ? (
+            <input
+              type="url"
+              value={linkedin}
+              onChange={(e) => setLinkedin(e.target.value)}
+              className="
+        border
+        p-2
+        rounded
+        w-full
+      "
+            />
+          ) : recruiter.linkedin ? (
             <a
               href={recruiter.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline"
+              className="
+        text-blue-600
+        underline
+      "
             >
               View Profile
             </a>
-          </p>
-        )}
+          ) : (
+            <p>No LinkedIn profile</p>
+          )}
+        </div>
 
-        {recruiter.lastContact && (
-          <p>
-            <strong>Last Contact:</strong>{" "}
-            {new Date(recruiter.lastContact).toLocaleDateString()}
-          </p>
-        )}
+        <div className="space-y-1">
+          <strong>Last Contact</strong>
 
-        {recruiter.nextFollowUp && (
-          <p>
-            <strong>Next Follow-up:</strong>{" "}
-            {new Date(recruiter.nextFollowUp).toLocaleDateString()}
-          </p>
-        )}
-
-        {recruiter.notes && (
-          <div className="mt-3">
-            <strong>Notes</strong>
-
-            <p className="whitespace-pre-wrap text-gray-700">
-              {recruiter.notes}
+          {editing ? (
+            <input
+              type="date"
+              value={lastContact}
+              onChange={(e) => setLastContact(e.target.value)}
+              className="
+        border
+        p-2
+        rounded
+        w-full
+      "
+            />
+          ) : (
+            <p>
+              {recruiter.lastContact
+                ? new Date(recruiter.lastContact).toLocaleDateString()
+                : "Not set"}
             </p>
-          </div>
+          )}
+        </div>
+
+        <div className="space-y-1">
+          <strong>Next Follow-up</strong>
+
+          {editing ? (
+            <input
+              type="date"
+              value={nextFollowUp}
+              onChange={(e) => setNextFollowUp(e.target.value)}
+              className="
+        border
+        p-2
+        rounded
+        w-full
+      "
+            />
+          ) : (
+            <p>
+              {recruiter.nextFollowUp
+                ? new Date(recruiter.nextFollowUp).toLocaleDateString()
+                : "Not set"}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-1">
+          <strong>Notes</strong>
+
+          {editing ? (
+            <textarea
+              rows={5}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="border p-2 rounded w-full"/>
+          ) : (
+            <p className="whitespace-pre-wrap text-gray-700">
+              {recruiter.notes || "No notes"}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="flex gap-3 mt-5">
+        {editing ? (
+          <>
+            <button
+              onClick={saveChanges}
+              disabled={loading}
+              className="
+          bg-green-600
+          text-white
+          px-4
+          py-2
+          rounded
+        "
+            >
+              {loading ? "Saving..." : "Save"}
+            </button>
+
+            <button
+              onClick={() => setEditing(false)}
+              className="
+          bg-gray-500
+          text-white
+          px-4
+          py-2
+          rounded
+        "
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setEditing(true)}
+            className="
+        bg-blue-600
+        text-white
+        px-4
+        py-2
+        rounded
+      "
+          >
+            Edit
+          </button>
         )}
+
+        <button
+          onClick={onDelete}
+          className="
+      bg-red-500
+      text-white
+      px-4
+      py-2
+      rounded
+    "
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

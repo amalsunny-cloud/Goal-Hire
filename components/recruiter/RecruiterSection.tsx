@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import RecruiterForm from "./RecruiterForm";
 import RecruiterCard from "./RecruiterCard";
 import { Recruiter } from "@/types/recruiter";
+import toast from "react-hot-toast";
 
 interface Props {
   applicationId: string;
@@ -11,7 +12,6 @@ interface Props {
 
 export default function RecruiterSection({ applicationId }: Props) {
   const [recruiters, setRecruiters] = useState<Recruiter[]>([]);
-
   const [loading, setLoading] = useState(true);
 
   const fetchRecruiters = async () => {
@@ -24,8 +24,8 @@ export default function RecruiterSection({ applicationId }: Props) {
         throw new Error("Failed to fetch recruiters");
       }
 
+      console.log("response is:",response);
       const data = await response.json();
-
       setRecruiters(data);
     } catch (error) {
       console.error(error);
@@ -63,7 +63,32 @@ export default function RecruiterSection({ applicationId }: Props) {
         ) : (
           <div className="space-y-4">
             {recruiters.map((recruiter) => (
-              <RecruiterCard key={recruiter._id} recruiter={recruiter} />
+              <RecruiterCard
+                key={recruiter._id}
+                recruiter={recruiter}
+                onDelete={async () => {
+                  try {
+                    const response = await fetch(
+                      `/api/recruiters/${recruiter._id}`,
+                      {
+                        method: "DELETE",
+                      }
+                    );
+
+                    if (!response.ok) {
+                      throw new Error();
+                    }
+                    console.log("response is:", response);
+                    console.log("Deleted Recruiter successfully");
+
+                    toast.success("Deleted Recruiter successfully");
+
+                    fetchRecruiters();
+
+                  } catch (error) {
+                    console.error(error);
+                  }
+                } } onUpdated={fetchRecruiters}/>
             ))}
           </div>
         )}
