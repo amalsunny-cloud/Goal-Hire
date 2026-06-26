@@ -65,6 +65,29 @@ export default function RecruiterCard({
       setLoading(false);
     }
   };
+
+  const markContactedToday = async () => {
+    try {
+      const response = await fetch(`/api/recruiters/${recruiter._id}/contact`, {
+        method: "PATCH",
+      });
+
+      console.log("Response is:",response);
+      
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      toast.success("Recruiter updated");
+
+      onUpdated();
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Update failed");
+    }
+  };
+
   return (
     <div className="border rounded-lg p-5 bg-white shadow-sm">
       {editing ? (
@@ -119,7 +142,7 @@ export default function RecruiterCard({
         </div>
 
         <div className="space-y-1">
-          <strong>LinkedIn</strong>
+          <strong>LinkedIn :</strong>
 
           {editing ? (
             <input
@@ -206,7 +229,8 @@ export default function RecruiterCard({
               rows={5}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="border p-2 rounded w-full"/>
+              className="border p-2 rounded w-full"
+            />
           ) : (
             <p className="whitespace-pre-wrap text-gray-700">
               {recruiter.notes || "No notes"}
@@ -216,6 +240,15 @@ export default function RecruiterCard({
       </div>
 
       <div className="flex gap-3 mt-5">
+        {!editing && (
+        <button
+          onClick={markContactedToday}
+          className="bg-green-600 text-white px-4 py-2 rounded"
+        >
+          Contacted Today
+        </button>
+
+        )}
         {editing ? (
           <>
             <button
