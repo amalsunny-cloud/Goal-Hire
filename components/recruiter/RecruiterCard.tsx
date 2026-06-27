@@ -3,6 +3,7 @@
 import { Recruiter } from "@/types/recruiter";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import RecruiterStatusBadge from "./RecruiterStatusBadge";
 
 interface Props {
   recruiter: Recruiter;
@@ -30,6 +31,8 @@ export default function RecruiterCard({
   const [nextFollowUp, setNextFollowUp] = useState(
     recruiter.nextFollowUp ? recruiter.nextFollowUp.split("T")[0] : "",
   );
+
+  const [contacting, setContacting] = useState(false);
 
   const saveChanges = async () => {
     try {
@@ -68,6 +71,7 @@ export default function RecruiterCard({
 
   const markContactedToday = async () => {
     try {
+      setContacting(true);
       const response = await fetch(`/api/recruiters/${recruiter._id}/contact`, {
         method: "PATCH",
       });
@@ -85,6 +89,8 @@ export default function RecruiterCard({
       console.error(error);
 
       toast.error("Update failed");
+    } finally{
+      setContacting(false);
     }
   };
 
@@ -100,6 +106,8 @@ export default function RecruiterCard({
         <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
       )}
 
+      <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp}/>
+
       <div className="space-y-2">
         <div className="space-y-1">
           <strong>Email</strong>
@@ -109,12 +117,7 @@ export default function RecruiterCard({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="
-        border
-        p-2
-        rounded
-        w-full
-      "
+              className="border p-2 rounded w-full"
             />
           ) : (
             <p>{recruiter.email || "No email"}</p>
@@ -129,12 +132,7 @@ export default function RecruiterCard({
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="
-        border
-        p-2
-        rounded
-        w-full
-      "
+              className="border p-2 rounded w-full"
             />
           ) : (
             <p>{recruiter.phone || "No phone number"}</p>
@@ -149,22 +147,14 @@ export default function RecruiterCard({
               type="url"
               value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
-              className="
-        border
-        p-2
-        rounded
-        w-full
-      "
+              className="border p-2 rounded w-full"
             />
           ) : recruiter.linkedin ? (
             <a
               href={recruiter.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-        text-blue-600
-        underline
-      "
+              className="text-blue-600 underline"
             >
               View Profile
             </a>
@@ -181,17 +171,12 @@ export default function RecruiterCard({
               type="date"
               value={lastContact}
               onChange={(e) => setLastContact(e.target.value)}
-              className="
-        border
-        p-2
-        rounded
-        w-full
-      "
+              className="border p-2 rounded w-full"
             />
           ) : (
             <p>
               {recruiter.lastContact
-                ? new Date(recruiter.lastContact).toLocaleDateString()
+                ? new Date(recruiter.lastContact).toLocaleDateString("en-GB")
                 : "Not set"}
             </p>
           )}
@@ -205,17 +190,12 @@ export default function RecruiterCard({
               type="date"
               value={nextFollowUp}
               onChange={(e) => setNextFollowUp(e.target.value)}
-              className="
-        border
-        p-2
-        rounded
-        w-full
-      "
+              className="border p-2 rounded w-full"
             />
           ) : (
             <p>
               {recruiter.nextFollowUp
-                ? new Date(recruiter.nextFollowUp).toLocaleDateString()
+                ? new Date(recruiter.nextFollowUp).toLocaleDateString("en-GB")
                 : "Not set"}
             </p>
           )}
@@ -243,9 +223,10 @@ export default function RecruiterCard({
         {!editing && (
         <button
           onClick={markContactedToday}
-          className="bg-green-600 text-white px-4 py-2 rounded"
+          disabled={contacting}
+          className="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50"
         >
-          Contacted Today
+          {contacting ? "Updating..." : "Contacted Today"}
         </button>
 
         )}
@@ -254,13 +235,7 @@ export default function RecruiterCard({
             <button
               onClick={saveChanges}
               disabled={loading}
-              className="
-          bg-green-600
-          text-white
-          px-4
-          py-2
-          rounded
-        "
+              className="bg-green-600 text-white px-4 py-2 rounded"
             >
               {loading ? "Saving..." : "Save"}
             </button>
@@ -281,13 +256,7 @@ export default function RecruiterCard({
         ) : (
           <button
             onClick={() => setEditing(true)}
-            className="
-        bg-blue-600
-        text-white
-        px-4
-        py-2
-        rounded
-      "
+            className="bg-blue-600 text-white px-4 py-2 rounded"
           >
             Edit
           </button>
@@ -295,13 +264,7 @@ export default function RecruiterCard({
 
         <button
           onClick={onDelete}
-          className="
-      bg-red-500
-      text-white
-      px-4
-      py-2
-      rounded
-    "
+          className="bg-red-500 text-white px-4 py-2 rounded"
         >
           Delete
         </button>

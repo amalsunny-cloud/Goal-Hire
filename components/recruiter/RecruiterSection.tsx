@@ -5,6 +5,7 @@ import RecruiterForm from "./RecruiterForm";
 import RecruiterCard from "./RecruiterCard";
 import { Recruiter } from "@/types/recruiter";
 import toast from "react-hot-toast";
+import RecruiterAnalytics from "./RecruiterAnalytics";
 
 interface Props {
   applicationId: string;
@@ -44,6 +45,8 @@ export default function RecruiterSection({ applicationId }: Props) {
         applicationId={applicationId}
         onSuccess={fetchRecruiters}
       />
+
+      <RecruiterAnalytics recruiters={recruiters}/>
 
       <div>
         <h2
