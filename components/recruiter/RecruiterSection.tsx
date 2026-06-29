@@ -14,6 +14,8 @@ interface Props {
 export default function RecruiterSection({ applicationId }: Props) {
   const [recruiters, setRecruiters] = useState<Recruiter[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("All")
 
   const fetchRecruiters = async () => {
     try {
@@ -39,6 +41,36 @@ export default function RecruiterSection({ applicationId }: Props) {
     fetchRecruiters();
   }, []);
 
+  const filteredRecruiters = recruiters.filter((recruiter)=>{
+    const searchMatch = recruiter.name?.toLowerCase().includes(search.toLowerCase()) || recruiter.email?.toLowerCase().includes(search.toLowerCase());
+
+    if(!searchMatch){
+      return false;
+    }
+    if(filter === "All"){
+      return true;
+    }
+
+    if(!recruiter.nextFollowUp){
+      return false;
+    }
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    const followUp = new Date(recruiter.nextFollowUp);
+    followUp.setHours(0,0,0,0);
+
+    if(filter === "Upcoming"){
+      return followUp > today;
+    }
+    if(filter === "Overdue"){
+      return followUp < today;
+    }
+
+    return true;
+  })
+
   return (
     <div className="space-y-6">
       <RecruiterForm
@@ -59,13 +91,24 @@ export default function RecruiterSection({ applicationId }: Props) {
           Recruiters
         </h2>
 
+      <div>
+        <input type="text" placeholder="Search recruiter..."  value={search} onChange={(e)=>setSearch(e.target.value)} className="border p-2 rounded w-full"/>
+
+        <label className="font-bold">Filter by :</label>
+        <select value={filter} onChange={(e)=>setFilter(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Upcoming">Upcoming</option>
+          <option value="Today">Follow-up Today</option>
+          <option value="Overdue">Overdue</option>
+        </select>
+      </div>
         {loading ? (
           <p>Loading...</p>
-        ) : recruiters.length === 0 ? (
+        ) : filteredRecruiters.length === 0 ? (
           <p>No recruiters added.</p>
         ) : (
           <div className="space-y-4">
-            {recruiters.map((recruiter) => (
+            {filteredRecruiters.map((recruiter) => (
               <RecruiterCard
                 key={recruiter._id}
                 recruiter={recruiter}
