@@ -1,5 +1,6 @@
 "use client";
 
+import { CommunicationType } from "@/types/recruiterCommunication";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -14,21 +15,29 @@ export default function CommunicationForm({
   applicationId,
   onSuccess,
 }: Props) {
-  const [type, setType] = useState("Email");
+  const [type, setType] = useState<CommunicationType>("Email");
   const [date, setDate] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
   const [loading, setLoading] = useState(false);
 
-  const saveCommunication = async (e:React.SubmitEvent<HTMLFormElement>) => {
+  const saveCommunication = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      console.log("applicationId etc:",applicationId,recruiterId,type,date,subject,message);
-      
+      console.log(
+        "applicationId etc:",
+        applicationId,
+        recruiterId,
+        type,
+        date,
+        subject,
+        message,
+      );
+
       const response = await fetch("/api/recruiter-communications", {
         method: "POST",
 
@@ -88,7 +97,7 @@ export default function CommunicationForm({
 
       <select
         value={type}
-        onChange={(e) => setType(e.target.value)}
+        onChange={(e) => setType(e.target.value as CommunicationType)}
         className="
           border
           p-2
@@ -96,17 +105,17 @@ export default function CommunicationForm({
           w-full
         "
       >
-        <option>Email</option>
+        <option value="Email">Email</option>
 
-        <option>Phone</option>
+        <option value="Phone">Phone</option>
 
-        <option>LinkedIn</option>
+        <option value="LinkedIn">LinkedIn</option>
 
-        <option>WhatsApp</option>
+        <option value="WhatsApp">WhatsApp</option>
 
-        <option>Meeting</option>
+        <option value="Meeting">Meeting</option>
 
-        <option>Other</option>
+        <option value="Other">Other</option>
       </select>
 
       <input

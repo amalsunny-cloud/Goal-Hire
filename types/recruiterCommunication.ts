@@ -1,8 +1,16 @@
+export type CommunicationType = | "Email"
+  | "Phone"
+  | "LinkedIn"
+  | "WhatsApp"
+  | "Meeting"
+  | "Other";
+
+
 export interface RecruiterCommunication {
   _id: string;
   recruiterId: string;
   applicationId: string;
-  type: "Email" | "Phone" | "Linkedin" | "WhatsApp" | "Meeting" | "Other";
+  type: CommunicationType;
   date: string;
   subject?: string;
   message?: string;

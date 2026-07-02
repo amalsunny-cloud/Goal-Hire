@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import RecruiterStatusBadge from "./RecruiterStatusBadge";
 import CommunicationForm from "./CommunicationForm";
+import CommunicationList from "./CommunicationList";
 
 interface Props {
   recruiter: Recruiter;
@@ -287,7 +288,9 @@ export default function RecruiterCard({
             onUpdated();
           }}
         />
+
       )}
+      <CommunicationList recruiterId={recruiter._id}/>
     </div>
   );
 }
