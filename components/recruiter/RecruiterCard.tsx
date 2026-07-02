@@ -4,6 +4,7 @@ import { Recruiter } from "@/types/recruiter";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import RecruiterStatusBadge from "./RecruiterStatusBadge";
+import CommunicationForm from "./CommunicationForm";
 
 interface Props {
   recruiter: Recruiter;
@@ -33,6 +34,7 @@ export default function RecruiterCard({
   );
 
   const [contacting, setContacting] = useState(false);
+  const [showCommunicationForm, setShowCommunicationForm] = useState(false);
 
   const saveChanges = async () => {
     try {
@@ -76,8 +78,8 @@ export default function RecruiterCard({
         method: "PATCH",
       });
 
-      console.log("Response is:",response);
-      
+      console.log("Response is:", response);
+
       if (!response.ok) {
         throw new Error();
       }
@@ -89,7 +91,7 @@ export default function RecruiterCard({
       console.error(error);
 
       toast.error("Update failed");
-    } finally{
+    } finally {
       setContacting(false);
     }
   };
@@ -106,7 +108,7 @@ export default function RecruiterCard({
         <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
       )}
 
-      <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp}/>
+      <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp} />
 
       <div className="space-y-2">
         <div className="space-y-1">
@@ -221,14 +223,13 @@ export default function RecruiterCard({
 
       <div className="flex gap-3 mt-5">
         {!editing && (
-        <button
-          onClick={markContactedToday}
-          disabled={contacting}
-          className="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50"
-        >
-          {contacting ? "Updating..." : "Contacted Today"}
-        </button>
-
+          <button
+            onClick={markContactedToday}
+            disabled={contacting}
+            className="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50"
+          >
+            {contacting ? "Updating..." : "Contacted Today"}
+          </button>
         )}
         {editing ? (
           <>
@@ -263,12 +264,30 @@ export default function RecruiterCard({
         )}
 
         <button
+          onClick={() => setShowCommunicationForm(!showCommunicationForm)}
+          className="bg-purple-600 text-white px-4 py-2 rounded"
+        >
+          {showCommunicationForm ? "Cancel Communication" : "Add Communication"}
+        </button>
+
+        <button
           onClick={onDelete}
           className="bg-red-500 text-white px-4 py-2 rounded"
         >
           Delete
         </button>
       </div>
+
+      {showCommunicationForm && (
+        <CommunicationForm
+          recruiterId={recruiter._id}
+          applicationId={recruiter.applicationId}
+          onSuccess={() => {
+            setShowCommunicationForm(false);
+            onUpdated();
+          }}
+        />
+      )}
     </div>
   );
 }
