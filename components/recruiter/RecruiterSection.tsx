@@ -7,6 +7,7 @@ import { Recruiter } from "@/types/recruiter";
 import toast from "react-hot-toast";
 import RecruiterAnalytics from "./RecruiterAnalytics";
 import { RecruiterCommunication } from "@/types/recruiterCommunication";
+import CommunicationMethodChart from "./CommunicationMethodChart";
 
 interface Props {
   applicationId: string;
@@ -80,6 +81,8 @@ export default function RecruiterSection({ applicationId }: Props) {
 
   const fetchCommunications = async () => {
   try {
+    console.log("inside fetchCommunications try block");
+    
     const response = await fetch(
       `/api/recruiter-communications?applicationId=${applicationId}`
     );
@@ -110,7 +113,7 @@ export default function RecruiterSection({ applicationId }: Props) {
       />
 
       <RecruiterAnalytics recruiters={recruiters} communications={communications}/>
-
+      <CommunicationMethodChart communications={communications}/>
       <div>
         <h2
           className="
@@ -173,6 +176,6 @@ export default function RecruiterSection({ applicationId }: Props) {
           </div>
         )}
       </div>
-    </div>
+    </div> 
   );
 }
