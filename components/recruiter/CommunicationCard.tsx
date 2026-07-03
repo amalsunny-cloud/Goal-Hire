@@ -119,15 +119,26 @@ export default function CommunicationCard({
         <>
           <div className="flex justify-between items-center">
             <span
-              className="
-                bg-blue-100
-                text-blue-700
-                px-3
-                py-1
-                rounded-full
-                text-sm
-                font-medium
-              "
+              className={`
+    px-3
+    py-1
+    rounded-full
+    text-sm
+    font-medium
+    ${
+      communication.type === "Email"
+        ? "bg-blue-100 text-blue-700"
+        : communication.type === "Phone"
+          ? "bg-green-100 text-green-700"
+          : communication.type === "LinkedIn"
+            ? "bg-cyan-100 text-cyan-700"
+            : communication.type === "Meeting"
+              ? "bg-purple-100 text-purple-700"
+              : communication.type === "WhatsApp"
+                ? "bg-emerald-100 text-emerald-700"
+                : "bg-gray-100 text-gray-700"
+    }
+  `}
             >
               {communication.type}
             </span>
