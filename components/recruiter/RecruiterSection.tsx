@@ -6,6 +6,7 @@ import RecruiterCard from "./RecruiterCard";
 import { Recruiter } from "@/types/recruiter";
 import toast from "react-hot-toast";
 import RecruiterAnalytics from "./RecruiterAnalytics";
+import { RecruiterCommunication } from "@/types/recruiterCommunication";
 
 interface Props {
   applicationId: string;
@@ -16,6 +17,9 @@ export default function RecruiterSection({ applicationId }: Props) {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All")
+  const [communications, setCommunications] = useState<
+  RecruiterCommunication[]
+>([]);
 
   const fetchRecruiters = async () => {
     try {
@@ -39,6 +43,7 @@ export default function RecruiterSection({ applicationId }: Props) {
 
   useEffect(() => {
     fetchRecruiters();
+    fetchCommunications();
   }, []);
 
   const filteredRecruiters = recruiters.filter((recruiter)=>{
@@ -71,14 +76,40 @@ export default function RecruiterSection({ applicationId }: Props) {
     return true;
   })
 
+
+
+  const fetchCommunications = async () => {
+  try {
+    const response = await fetch(
+      `/api/recruiter-communications?applicationId=${applicationId}`
+    );
+
+    console.log("Response of fetchCommunications:",response);
+    
+    if (!response.ok) {
+      throw new Error("Failed to fetch communications");
+    }
+
+    const data = await response.json();
+    console.log("Data in fetchCommunications:",data);
+    
+
+    setCommunications(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
   return (
     <div className="space-y-6">
       <RecruiterForm
         applicationId={applicationId}
-        onSuccess={fetchRecruiters}
+        onSuccess={()=>{
+          fetchRecruiters();
+          fetchCommunications();
+        }}
       />
 
-      <RecruiterAnalytics recruiters={recruiters}/>
+      <RecruiterAnalytics recruiters={recruiters} communications={communications}/>
 
       <div>
         <h2
@@ -134,7 +165,10 @@ export default function RecruiterSection({ applicationId }: Props) {
                   } catch (error) {
                     console.error(error);
                   }
-                } } onUpdated={fetchRecruiters}/>
+                } } onUpdated={()=>{
+                  fetchRecruiters();
+                  fetchCommunications();
+                }}/>
             ))}
           </div>
         )}
