@@ -10,6 +10,7 @@ import { RecruiterCommunication } from "@/types/recruiterCommunication";
 import CommunicationMethodChart from "./CommunicationMethodChart";
 import MonthlyCommunicationChart from "./MonthlyCommunicationChart";
 import FollowUpStatusChart from "./FollowUpStatusChart";
+import CommunicationTrendChart from "./CommunicationTrendChart";
 
 interface Props {
   applicationId: string;
@@ -118,6 +119,7 @@ export default function RecruiterSection({ applicationId }: Props) {
       <CommunicationMethodChart communications={communications}/>
       <MonthlyCommunicationChart communications={communications}/>
       <FollowUpStatusChart recruiters={recruiters}/>
+      <CommunicationTrendChart communications={communications}/>
       <div>
         <h2
           className="
