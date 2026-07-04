@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import RecruiterAnalytics from "./RecruiterAnalytics";
 import { RecruiterCommunication } from "@/types/recruiterCommunication";
 import CommunicationMethodChart from "./CommunicationMethodChart";
+import MonthlyCommunicationChart from "./MonthlyCommunicationChart";
+import FollowUpStatusChart from "./FollowUpStatusChart";
 
 interface Props {
   applicationId: string;
@@ -114,6 +116,8 @@ export default function RecruiterSection({ applicationId }: Props) {
 
       <RecruiterAnalytics recruiters={recruiters} communications={communications}/>
       <CommunicationMethodChart communications={communications}/>
+      <MonthlyCommunicationChart communications={communications}/>
+      <FollowUpStatusChart recruiters={recruiters}/>
       <div>
         <h2
           className="
