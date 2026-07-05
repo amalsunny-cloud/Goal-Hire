@@ -33,6 +33,20 @@ const RecruiterCommunicationSchema = new mongoose.Schema({
     message: {
         type: String,
     },
+    responded: {
+        type: Boolean,
+        default: false
+    },
+    responseDate: Date,
+    responseType: {
+        type: String,
+        enum: [
+            "Positive",
+            "Negative",
+            "Rejected"
+        ]
+    },
+    responseNotes: String
 },{
     timestamps: true,
 });

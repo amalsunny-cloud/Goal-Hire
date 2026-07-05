@@ -6,6 +6,7 @@ import {
   RecruiterCommunication,
   CommunicationType,
 } from "@/types/recruiterCommunication";
+import ResponseForm from "./ResponseForm";
 
 interface Props {
   communication: RecruiterCommunication;
@@ -31,6 +32,7 @@ export default function CommunicationCard({
   const [message, setMessage] = useState(communication.message);
 
   const [loading, setLoading] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
 
   const saveChanges = async () => {
     try {
@@ -213,6 +215,15 @@ export default function CommunicationCard({
         >
           Delete
         </button>
+
+        <button className="bg-purple-600 text-white px-4 py-2 rounded" onClick={()=>setShowResponse(!showResponse)}>Add Response</button>
+
+        {showResponse && (
+          <ResponseForm communicationId={communication._id} onSuccess={()=>{
+            setShowResponse(false);
+            onUpdated();
+          } }/>
+        )}
       </div>
     </div>
   );

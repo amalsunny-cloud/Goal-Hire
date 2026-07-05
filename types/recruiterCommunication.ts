@@ -14,6 +14,9 @@ export interface RecruiterCommunication {
   date: string;
   subject?: string;
   message?: string;
+  responded: boolean;
+  responseDate?:string;
+  responseType?: |"Positive" | "Neutral" | "Rejected";
   createdAt: string;
   updatedAt: string;
 }
