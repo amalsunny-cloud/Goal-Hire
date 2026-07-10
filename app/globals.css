@@ -24,3 +24,18 @@ body {
   color: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.calendar-overdue {
+  background: #fee2e2 !important;
+  border-radius: 50%;
+}
+
+.calendar-today {
+  background: #bbf7d0 !important;
+  border-radius: 50%;
+}
+
+.calendar-upcoming {
+  background: #bfdbfe !important;
+  border-radius: 50%;
+}

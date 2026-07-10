@@ -13,6 +13,7 @@ import FollowUpStatusChart from "./FollowUpStatusChart";
 import CommunicationTrendChart from "./CommunicationTrendChart";
 import ResponseAnalytics from "./ResponseAnalytics";
 import RecruiterActivityTimeline from "./RecruiterActivityTimeline";
+import RecruiterCalendar from "./RecruiterCalendar";
 
 interface Props {
   applicationId: string;
@@ -118,6 +119,7 @@ export default function RecruiterSection({ applicationId }: Props) {
       />
 
       <RecruiterAnalytics recruiters={recruiters} communications={communications}/>
+      <RecruiterCalendar recruiters={recruiters}/>
       <ResponseAnalytics communications={communications}/>
       <CommunicationMethodChart communications={communications}/>
       <MonthlyCommunicationChart communications={communications}/>
