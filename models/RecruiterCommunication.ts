@@ -43,7 +43,8 @@ const RecruiterCommunicationSchema = new mongoose.Schema({
         enum: [
             "Positive",
             "Negative",
-            "Rejected"
+            "Rejected",
+            "No Response",
         ]
     },
     responseNotes: String

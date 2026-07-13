@@ -46,15 +46,16 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
     <div className="border rounded-lg p-5 mt-5 space-y-4">
       <h3 className="font-semibold">Recruiter Response</h3>
 
-      <select value={responseType} onChange={(e)=>setResponseType(e.target.value as "Positive" | "Neutral" | "Rejected")}>
+      <select value={responseType} onChange={(e)=>setResponseType(e.target.value)}>
         <option>Positive</option>
         <option>Neutral</option>
         <option>Rejected</option>
+        <option>No Response</option>
       </select>
 
-      <input type="date" value={responseDate} onChange={(e)=>setResponseDate(e.target.value)} className="bordedr rounded p-2 w-full"/>
+      <input type="date" value={responseDate} onChange={(e)=>setResponseDate(e.target.value)} className="border rounded p-2 w-full"/>
 
-      <textarea rows={4} placeholder="Response notes" value={responseNotes} onChange={(e)=>setResponseNotes(e.target.value)} className="border rounded p-2 w-full"></textarea>
+      <textarea rows={5} placeholder="Recruiter reply..." value={responseNotes} onChange={(e)=>setResponseNotes(e.target.value)} className="border rounded p-2 w-full"></textarea>
 
       <button disabled={loading} onClick={saveResponse} className="bg-green-600 text-white rounded px-4 py-2">{loading?"Saving...":"Save Response"}</button>
     </div>

@@ -1,10 +1,12 @@
-export type CommunicationType = | "Email"
+export type CommunicationType =
+  | "Email"
   | "Phone"
   | "LinkedIn"
   | "WhatsApp"
   | "Meeting"
   | "Other";
 
+export type ResponseType = "Positive" | "Neutral" | "Rejected" | "No Response";
 
 export interface RecruiterCommunication {
   _id: string;
@@ -15,8 +17,9 @@ export interface RecruiterCommunication {
   subject?: string;
   message?: string;
   responded: boolean;
-  responseDate?:string;
-  responseType?: |"Positive" | "Neutral" | "Rejected";
+  responseDate?: string;
+  responseType?: ResponseType;
+  responseNotes?: string;
   createdAt: string;
   updatedAt: string;
 }

@@ -7,6 +7,7 @@ import {
   CommunicationType,
 } from "@/types/recruiterCommunication";
 import ResponseForm from "./ResponseForm";
+import ResponseBadge from "./ResponseBadge";
 
 interface Props {
   communication: RecruiterCommunication;
@@ -33,6 +34,7 @@ export default function CommunicationCard({
 
   const [loading, setLoading] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [showResponseForm, setShowResponseForm] = useState(false);
 
   const saveChanges = async () => {
     try {
@@ -158,6 +160,38 @@ export default function CommunicationCard({
         </>
       )}
 
+      <ResponseBadge
+        responded={communication.responded}
+        responseType={communication.responseType}
+      />
+
+
+      {communication.responded && (
+  <div className="mt-5 border-t pt-4">
+    <h3 className="font-semibold mb-3">
+      Recruiter Response
+    </h3>
+
+    <p>
+      <strong>Date:</strong>{" "}
+      {communication.responseDate
+        ? new Date(communication.responseDate).toLocaleDateString("en-GB")
+        : "Not set"}
+    </p>
+
+    <p className="mt-2">
+      <strong>Response:</strong>{" "}
+      {communication.responseType}
+    </p>
+
+    <p className="mt-3 whitespace-pre-wrap text-gray-700">
+      {communication.responseNotes || "No notes"}
+    </p>
+  </div>
+)}
+
+
+
       <div className="flex gap-3 mt-5">
         {editing ? (
           <>
@@ -216,13 +250,21 @@ export default function CommunicationCard({
           Delete
         </button>
 
-        <button className="bg-purple-600 text-white px-4 py-2 rounded" onClick={()=>setShowResponse(!showResponse)}>Add Response</button>
+        <button
+          className="bg-purple-600 text-white px-4 py-2 rounded"
+          onClick={() => setShowResponseForm(!showResponseForm)}
+        >
+          {communication.responded ? "Edit Response" : "Add Response"}
+        </button>
 
-        {showResponse && (
-          <ResponseForm communicationId={communication._id} onSuccess={()=>{
-            setShowResponse(false);
-            onUpdated();
-          } }/>
+        {showResponseForm && (
+          <ResponseForm
+            communicationId={communication._id}
+            onSuccess={() => {
+              setShowResponseForm(false);
+              onUpdated();
+            }}
+          />
         )}
       </div>
     </div>
