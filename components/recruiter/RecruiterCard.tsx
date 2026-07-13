@@ -6,15 +6,18 @@ import toast from "react-hot-toast";
 import RecruiterStatusBadge from "./RecruiterStatusBadge";
 import CommunicationForm from "./CommunicationForm";
 import CommunicationList from "./CommunicationList";
+import EmailTemplates from "./EmailTemplates";
 
 interface Props {
   recruiter: Recruiter;
+  company:string;
   onDelete: () => void;
   onUpdated: () => void;
 }
 
 export default function RecruiterCard({
   recruiter,
+  company,
   onDelete,
   onUpdated,
 }: Props) {
@@ -291,6 +294,7 @@ export default function RecruiterCard({
 
       )}
       <CommunicationList recruiterId={recruiter._id}/>
+      <EmailTemplates recruiterName={recruiter.name ||"Recruiter"} company={company}/>
     </div>
   );
 }

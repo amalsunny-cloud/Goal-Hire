@@ -1,4 +1,5 @@
 export interface Recruiter{
+    company: string;
     _id: string;
     applicationId: string;
     name?:string;

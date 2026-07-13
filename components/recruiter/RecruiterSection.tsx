@@ -160,6 +160,7 @@ export default function RecruiterSection({ applicationId }: Props) {
               <RecruiterCard
                 key={recruiter._id}
                 recruiter={recruiter}
+                company={recruiter.company}
                 onDelete={async () => {
                   try {
                     const response = await fetch(
