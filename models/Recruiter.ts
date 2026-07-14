@@ -26,7 +26,12 @@ const RecruiterSchema = new mongoose.Schema({
     },
     notes: {
         type: String,
-    }
+    },
+    tags: [
+        {
+            type: String,
+        }
+    ]
 },{
     timestamps: true,
 })

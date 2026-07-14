@@ -9,6 +9,7 @@ export interface Recruiter{
     lastContact?:string;
     nextFollowUp?:string;
     notes?:string;
+    tags?:string[];
     createdAt:string;
     updatedAt:string;
 }

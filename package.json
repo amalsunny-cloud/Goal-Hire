@@ -15,6 +15,8 @@
     "cloudinary": "^2.10.0",
     "jose": "^6.2.3",
     "jsonwebtoken": "^9.0.3",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "lucide-react": "^1.23.0",
     "moment": "^2.30.1",
     "mongoose": "^9.6.2",

@@ -7,10 +7,12 @@ import RecruiterStatusBadge from "./RecruiterStatusBadge";
 import CommunicationForm from "./CommunicationForm";
 import CommunicationList from "./CommunicationList";
 import EmailTemplates from "./EmailTemplates";
+import RecruiterTags from "./RecruiterTags";
+import RecruiterTagSelector from "./RecruiterTagSelector";
 
 interface Props {
   recruiter: Recruiter;
-  company:string;
+  company: string;
   onDelete: () => void;
   onUpdated: () => void;
 }
@@ -27,6 +29,7 @@ export default function RecruiterCard({
   const [phone, setPhone] = useState(recruiter.phone || "");
   const [linkedin, setLinkedin] = useState(recruiter.linkedin || "");
   const [notes, setNotes] = useState(recruiter.notes || "");
+  const [tags, setTags] = useState<string[]>(recruiter.tags || []);
   const [loading, setLoading] = useState(false);
 
   const [lastContact, setLastContact] = useState(
@@ -54,6 +57,7 @@ export default function RecruiterCard({
           phone,
           linkedin,
           notes,
+          tags,
           lastContact,
           nextFollowUp,
         }),
@@ -111,7 +115,11 @@ export default function RecruiterCard({
       ) : (
         <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
       )}
-
+      {editing ? (
+        <RecruiterTagSelector selected={tags} onChange={setTags} />
+      ) : (
+        <RecruiterTags tags={recruiter.tags} />
+      )}
       <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp} />
 
       <div className="space-y-2">
@@ -291,10 +299,12 @@ export default function RecruiterCard({
             onUpdated();
           }}
         />
-
       )}
-      <CommunicationList recruiterId={recruiter._id}/>
-      <EmailTemplates recruiterName={recruiter.name ||"Recruiter"} company={company}/>
+      <CommunicationList recruiterId={recruiter._id} />
+      <EmailTemplates
+        recruiterName={recruiter.name || "Recruiter"}
+        company={company}
+      />
     </div>
   );
 }

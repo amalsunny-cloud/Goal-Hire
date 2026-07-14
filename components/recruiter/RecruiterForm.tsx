@@ -16,6 +16,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
   const [lastContact, setLastContact] = useState("");
   const [nextFollowUp, setNextFollowUp] = useState("");
   const [notes, setNotes] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
 
@@ -41,6 +42,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           lastContact,
           nextFollowUp,
           notes,
+          tags,
         }),
       });
 

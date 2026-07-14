@@ -18,6 +18,7 @@ import RecruiterReminderPanel from "./RecruiterReminderPanel";
 import ResponsePieChart from "./ResponsePieChart";
 import RecruiterConversionFunnel from "./RecruiterConversionFunnel";
 import RecruiterLeaderboard from "./RecruiterLeaderboard";
+import RecruiterExport from "./RecruiterExport";
 
 interface Props {
   applicationId: string;
@@ -128,7 +129,9 @@ export default function RecruiterSection({ applicationId }: Props) {
       <ResponseAnalytics communications={communications}/>
       <ResponsePieChart communications={communications}/>
       <RecruiterConversionFunnel recruiters={recruiters} communications={communications}/>   
-      <RecruiterLeaderboard recruiters={recruiters} communications={communications}/>   
+      <RecruiterLeaderboard recruiters={recruiters} communications={communications}/>  
+
+      <RecruiterExport recruiters={recruiters} communications={communications}/> 
     <CommunicationMethodChart communications={communications}/>
       <MonthlyCommunicationChart communications={communications}/>
       <FollowUpStatusChart recruiters={recruiters}/>
