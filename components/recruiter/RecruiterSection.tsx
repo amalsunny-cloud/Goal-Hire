@@ -28,10 +28,11 @@ export default function RecruiterSection({ applicationId }: Props) {
   const [recruiters, setRecruiters] = useState<Recruiter[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("All")
+  const [filter, setFilter] = useState("All");
+  const [tagFilter, setTagFilter] = useState("All");
   const [communications, setCommunications] = useState<
-  RecruiterCommunication[]
->([]);
+    RecruiterCommunication[]
+  >([]);
 
   const fetchRecruiters = async () => {
     try {
@@ -43,7 +44,7 @@ export default function RecruiterSection({ applicationId }: Props) {
         throw new Error("Failed to fetch recruiters");
       }
 
-      console.log("response is:",response);
+      console.log("response is:", response);
       const data = await response.json();
       setRecruiters(data);
     } catch (error) {
@@ -58,85 +59,123 @@ export default function RecruiterSection({ applicationId }: Props) {
     fetchCommunications();
   }, []);
 
-  const filteredRecruiters = recruiters.filter((recruiter)=>{
-    const searchMatch = recruiter.name?.toLowerCase().includes(search.toLowerCase()) || recruiter.email?.toLowerCase().includes(search.toLowerCase());
 
-    if(!searchMatch){
-      return false;
-    }
-    if(filter === "All"){
-      return true;
-    }
+  const allTags = [
+  ...new Set(
+    recruiters.flatMap(
+      (recruiter) => recruiter.tags || []
+    )
+  ),
+];
 
-    if(!recruiter.nextFollowUp){
+  const filteredRecruiters = recruiters.filter((recruiter) => {
+  const searchMatch =
+    recruiter.name
+      ?.toLowerCase()
+      .includes(search.toLowerCase()) ||
+    recruiter.email
+      ?.toLowerCase()
+      .includes(search.toLowerCase());
+
+  if (!searchMatch) {
+    return false;
+  }
+
+  if (
+    tagFilter !== "All" &&
+    !recruiter.tags?.includes(tagFilter)
+  ) {
+    return false;
+  }
+
+  if (filter !== "All") {
+    if (!recruiter.nextFollowUp) {
       return false;
     }
 
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
 
     const followUp = new Date(recruiter.nextFollowUp);
-    followUp.setHours(0,0,0,0);
+    followUp.setHours(0, 0, 0, 0);
 
-    if(filter === "Upcoming"){
-      return followUp > today;
-    }
-    if(filter === "Overdue"){
-      return followUp < today;
+    if (filter === "Upcoming" && !(followUp > today)) {
+      return false;
     }
 
-    return true;
-  })
+    if (filter === "Today" && followUp.getTime() !== today.getTime()) {
+      return false;
+    }
 
+    if (filter === "Overdue" && !(followUp < today)) {
+      return false;
+    }
+  }
 
+  return true;
+});
 
   const fetchCommunications = async () => {
-  try {
-    console.log("inside fetchCommunications try block");
-    
-    const response = await fetch(
-      `/api/recruiter-communications?applicationId=${applicationId}`
-    );
+    try {
+      console.log("inside fetchCommunications try block");
 
-    console.log("Response of fetchCommunications:",response);
-    
-    if (!response.ok) {
-      throw new Error("Failed to fetch communications");
+      const response = await fetch(
+        `/api/recruiter-communications?applicationId=${applicationId}`,
+      );
+
+      console.log("Response of fetchCommunications:", response);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch communications");
+      }
+
+      const data = await response.json();
+      console.log("Data in fetchCommunications:", data);
+
+      setCommunications(data);
+    } catch (error) {
+      console.error(error);
     }
-
-    const data = await response.json();
-    console.log("Data in fetchCommunications:",data);
-    
-
-    setCommunications(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
   return (
     <div className="space-y-6">
       <RecruiterForm
         applicationId={applicationId}
-        onSuccess={()=>{
+        onSuccess={() => {
           fetchRecruiters();
           fetchCommunications();
         }}
       />
 
-      <RecruiterAnalytics recruiters={recruiters} communications={communications}/>
-      <RecruiterCalendar recruiters={recruiters}/>
-      <RecruiterReminderPanel recruiters={recruiters}/>
-      <ResponseAnalytics communications={communications}/>
-      <ResponsePieChart communications={communications}/>
-      <RecruiterConversionFunnel recruiters={recruiters} communications={communications}/>   
-      <RecruiterLeaderboard recruiters={recruiters} communications={communications}/>  
+      <RecruiterAnalytics
+        recruiters={recruiters}
+        communications={communications}
+      />
+      <RecruiterCalendar recruiters={recruiters} />
+      <RecruiterReminderPanel recruiters={recruiters} />
+      <ResponseAnalytics communications={communications} />
+      <ResponsePieChart communications={communications} />
+      <RecruiterConversionFunnel
+        recruiters={recruiters}
+        communications={communications}
+      />
+      <RecruiterLeaderboard
+        recruiters={recruiters}
+        communications={communications}
+      />
 
-      <RecruiterExport recruiters={recruiters} communications={communications}/> 
-    <CommunicationMethodChart communications={communications}/>
-      <MonthlyCommunicationChart communications={communications}/>
-      <FollowUpStatusChart recruiters={recruiters}/>
-      <CommunicationTrendChart communications={communications}/>
-      <RecruiterActivityTimeline recruiters={recruiters} communications={communications}/>
+      <RecruiterExport
+        recruiters={recruiters}
+        communications={communications}
+      />
+      <CommunicationMethodChart communications={communications} />
+      <MonthlyCommunicationChart communications={communications} />
+      <FollowUpStatusChart recruiters={recruiters} />
+      <CommunicationTrendChart communications={communications} />
+      <RecruiterActivityTimeline
+        recruiters={recruiters}
+        communications={communications}
+      />
       <div>
         <h2
           className="
@@ -148,17 +187,45 @@ export default function RecruiterSection({ applicationId }: Props) {
           Recruiters
         </h2>
 
-      <div>
-        <input type="text" placeholder="Search recruiter..."  value={search} onChange={(e)=>setSearch(e.target.value)} className="border p-2 rounded w-full"/>
+        <div className="flex flex-wrap gap-4 items-center mb-4">
+  <input
+    type="text"
+    placeholder="Search recruiter..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="border p-2 rounded flex-1 min-w-[250px]"
+  />
 
-        <label className="font-bold">Filter by :</label>
-        <select value={filter} onChange={(e)=>setFilter(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Upcoming">Upcoming</option>
-          <option value="Today">Follow-up Today</option>
-          <option value="Overdue">Overdue</option>
-        </select>
-      </div>
+  <select
+    value={filter}
+    onChange={(e) => setFilter(e.target.value)}
+    className="border rounded p-2"
+  >
+    <option value="All">All Status</option>
+    <option value="Upcoming">Upcoming</option>
+    <option value="Today">Today</option>
+    <option value="Overdue">Overdue</option>
+  </select>
+
+  <select
+    value={tagFilter}
+    onChange={(e) => setTagFilter(e.target.value)}
+    className="border rounded p-2"
+  >
+    <option value="All">All Tags</option>
+
+    {allTags.map((tag) => (
+      <option
+        key={tag}
+        value={tag}
+      >
+        {tag}
+      </option>
+    ))}
+  </select>
+</div>
+
+
         {loading ? (
           <p>Loading...</p>
         ) : filteredRecruiters.length === 0 ? (
@@ -176,7 +243,7 @@ export default function RecruiterSection({ applicationId }: Props) {
                       `/api/recruiters/${recruiter._id}`,
                       {
                         method: "DELETE",
-                      }
+                      },
                     );
 
                     if (!response.ok) {
@@ -188,18 +255,19 @@ export default function RecruiterSection({ applicationId }: Props) {
                     toast.success("Deleted Recruiter successfully");
 
                     fetchRecruiters();
-
                   } catch (error) {
                     console.error(error);
                   }
-                } } onUpdated={()=>{
+                }}
+                onUpdated={() => {
                   fetchRecruiters();
                   fetchCommunications();
-                }}/>
+                }}
+              />
             ))}
           </div>
         )}
       </div>
-    </div> 
+    </div>
   );
 }

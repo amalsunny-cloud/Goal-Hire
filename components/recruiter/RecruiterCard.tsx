@@ -63,7 +63,17 @@ export default function RecruiterCard({
         }),
       });
 
-      console.log("response is:", response);
+      console.log("response is then:", response);
+      console.log({
+  name,
+  email,
+  phone,
+  linkedin,
+  notes,
+  tags,
+  lastContact,
+  nextFollowUp,
+});
 
       if (!response.ok) {
         throw new Error();
