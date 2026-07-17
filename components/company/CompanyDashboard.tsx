@@ -7,6 +7,8 @@ import { RecruiterCommunication } from "@/types/recruiterCommunication";
 import { CompanyInsight } from "@/types/companyInsight";
 import CompanyAnalytics from "./CompanyAnalytics";
 import CompanyCard from "./CompanyCard";
+import CompanyBarChart from "./CompanyBarChart";
+import CompanyLeaderboard from "./CompanyLeaderboard";
 
 interface Props {
   recruiters: Recruiter[];
@@ -119,6 +121,8 @@ export default function CompanyDashboard({
   return (
     <div className="space-y-6">
         <CompanyAnalytics companies={companies}/>
+        <CompanyBarChart companies={companies}/>
+        <CompanyLeaderboard companies={companies}/>
       <div className="flex flex-wrap gap-4">
         <input
           type="text"
