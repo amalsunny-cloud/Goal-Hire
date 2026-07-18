@@ -6,6 +6,7 @@ import CompanyDashboard from "@/components/company/CompanyDashboard";
 
 import { Recruiter } from "@/types/recruiter";
 import { RecruiterCommunication } from "@/types/recruiterCommunication";
+import { Application } from "@/types/application";
 
 export default function CompanyDashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,10 @@ export default function CompanyDashboardPage() {
 
   const [communications, setCommunications] =
     useState<RecruiterCommunication[]>([]);
+
+  const [applications, setApplications] =
+    useState<Application[]>([]);
+
 
   useEffect(() => {
     fetchData();
@@ -31,6 +36,9 @@ export default function CompanyDashboardPage() {
           "/api/company-dashboard/communications"
         );
 
+      const applicationResponse =
+    await fetch("/api/applications");
+
       if (
         !recruiterResponse.ok ||
         !communicationResponse.ok
@@ -44,11 +52,16 @@ export default function CompanyDashboardPage() {
       const communicationData =
         await communicationResponse.json();
 
+      const applicationData =
+    await applicationResponse.json();
+
       setRecruiters(recruiterData);
 
       setCommunications(
         communicationData
       );
+
+      setApplications(applicationData);
     } catch (error) {
       console.error(error);
     } finally {
@@ -77,6 +90,7 @@ export default function CompanyDashboardPage() {
       </h1>
 
       <CompanyDashboard
+        applications={applications}
         recruiters={recruiters}
         communications={
           communications

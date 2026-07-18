@@ -4,6 +4,8 @@ import { Recruiter } from "@/types/recruiter";
 import { RecruiterCommunication } from "@/types/recruiterCommunication";
 import CompanyRecruiterList from "./CompanyRecruiterList";
 import CompanyStats from "./CompanyStats";
+import CompanyCommunicationList from "./CompanyCommunicationList";
+import CompanyTimeline from "./CompanyTimeline";
 
 interface Props{
     company: string;
@@ -17,6 +19,9 @@ export default function CompanyDetails({company,recruiters,communications}:Props
 
       <CompanyStats recruiters={recruiters} communications={communications}/>
       <CompanyRecruiterList recruiters={recruiters}/>
+      <CompanyCommunicationList recruiters={recruiters} communications={communications}/>
+
+      <CompanyTimeline recruiters={recruiters} communications={communications}/>
     </div>
   )
 }

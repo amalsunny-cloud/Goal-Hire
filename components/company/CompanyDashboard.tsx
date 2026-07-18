@@ -9,13 +9,16 @@ import CompanyAnalytics from "./CompanyAnalytics";
 import CompanyCard from "./CompanyCard";
 import CompanyBarChart from "./CompanyBarChart";
 import CompanyLeaderboard from "./CompanyLeaderboard";
+import { Application } from "@/types/application";
 
 interface Props {
+  applications: Application[];
   recruiters: Recruiter[];
   communications: RecruiterCommunication[];
 }
 
 export default function CompanyDashboard({
+  applications,
   recruiters,
   communications,
 }: Props) {
@@ -25,38 +28,54 @@ export default function CompanyDashboard({
     "alphabetical" | "recruiters" | "communications" | "responses"
   >("communications");
 
+
+  console.log("recruiters in company Dashboard is:",recruiters);
+  
   const companies = useMemo(() => {
     const map = new Map<string, CompanyInsight>();
 
-    recruiters.forEach((recruiter) => {
-      const company = recruiter.company || "Unknown Company";
+    applications.forEach((application) => {
+  const company = application.company;
 
-      if (!map.has(company)) {
-        map.set(company, {
-          company,
-          recruiterCount: 0,
-          communicationCount: 0,
-          responseCount: 0,
-          responseRate: 0,
-          lastContact: recruiter.lastContact,
-          recruiters: [],
-        });
-      }
+  map.set(company, {
+    company,
+    recruiterCount: 0,
+    communicationCount: 0,
+    responseCount: 0,
+    responseRate: 0,
+    lastContact: undefined,
+    recruiters: [],
+  });
+});
 
-      const item = map.get(company)!;
 
-      item.recruiterCount++;
 
-      item.recruiters.push(recruiter._id);
+recruiters.forEach((recruiter) => {
+  const application = applications.find(
+    (app) => app._id === recruiter.applicationId
+  );
 
-      if (
-        recruiter.lastContact &&
-        (!item.lastContact ||
-          new Date(recruiter.lastContact) > new Date(item.lastContact))
-      ) {
-        item.lastContact = recruiter.lastContact;
-      }
-    });
+  if (!application) return;
+
+  const item = map.get(application.company);
+
+  if (!item) return;
+
+  item.recruiterCount++;
+
+  item.recruiters.push(recruiter._id);
+
+  if (
+    recruiter.lastContact &&
+    (!item.lastContact ||
+      new Date(recruiter.lastContact) >
+        new Date(item.lastContact))
+  ) {
+    item.lastContact = recruiter.lastContact;
+  }
+});
+
+
 
     communications.forEach((communication) => {
       const recruiter = recruiters.find(
@@ -67,13 +86,16 @@ export default function CompanyDashboard({
         return;
       }
 
-      const company = recruiter.company || "Unknown Company";
+      const application = applications.find(
+    (app) => app._id === recruiter.applicationId
+);
 
-      const item = map.get(company);
+if (!application) return;
 
-      if (!item) {
-        return;
-      }
+const item = map.get(application.company);
+
+if (!item) return;
+
 
       item.communicationCount++;
 
@@ -163,10 +185,14 @@ export default function CompanyDashboard({
         </select>
       </div>
 
+
+
+          
       {companies.length === 0 ? (
         <p>No companies found.</p>
       ) : (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          
           {companies.map((company) => (
             <CompanyCard
               key={company.company}
