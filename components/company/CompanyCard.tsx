@@ -8,6 +8,7 @@ import {
   MessageCircle,
   Calendar,
 } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   company: CompanyInsight;
@@ -21,6 +22,7 @@ export default function CompanyCard({ company }: Props) {
   };
 
   return (
+    <Link href={`/dashboard/company/${encodeURIComponent(company.company)}`}>
     <div
       className="
         bg-white
@@ -152,5 +154,6 @@ export default function CompanyCard({ company }: Props) {
         </span>
       </div>
     </div>
+    </Link>
   );
 }

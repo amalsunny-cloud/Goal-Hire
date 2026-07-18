@@ -32,6 +32,7 @@ import { Goal } from "@/types/goal";
 import GoalSettings from "@/components/dashboard/GoalSettings";
 import StreakTracker from "@/components/dashboard/StreakTracker";
 import PredictionAnalytics from "@/components/dashboard/PredictionAnalytics";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -201,6 +202,23 @@ export default function Dashboard() {
           offerCount={offerCount}
           applications={applications}
         />
+
+        <div className="flex gap-4 mb-8">
+  <Link
+    href="/dashboard/company"
+    className="
+      bg-blue-600
+      text-white
+      px-5
+      py-3
+      rounded-lg
+      hover:bg-blue-700
+      transition
+    "
+  >
+    Company Dashboard
+  </Link>
+</div>
 
         <div className="flex justify-end">
           <ExportCSVButton applications={applications} />
