@@ -7,7 +7,24 @@ interface Props{
 }
 export default function ApplicationFunnel({data}:Props) {
 
-    const maxValue = Math.max(...data.map(item=>item.value),1)
+    const values = data.map(item => item.value);
+    const maxValue = Math.max(...values, 1);
+    
+
+    if (data.length === 0) {
+  return (
+    <div className="border rounded-lg p-6 bg-white">
+      <h2 className="text-xl font-semibold mb-6">
+        Application Funnel
+      </h2>
+
+      <p className="text-gray-500">
+        No application data available.
+      </p>
+    </div>
+  );
+}
+
   return (
     <div className="border rounded-lg p-6 bg-white">
       <h2 className="text-xl font-semibold mb-6">Application Funnel</h2>
@@ -24,7 +41,8 @@ export default function ApplicationFunnel({data}:Props) {
                     </div>
 
                     <div className="w-full h-4 bg-gray-200 rounded">
-                        <div className="h-4 bg-black rounded" style={{width: `${width}%`}}></div>
+                        <div className="h-4 bg-green-600 rounded transition-all duration-500"
+                           style={{ width: `${width}%` }}></div>
                     </div>
                 </div>
             )

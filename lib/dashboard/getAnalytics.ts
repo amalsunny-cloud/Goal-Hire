@@ -1,52 +1,48 @@
 import { Application } from "@/types/application";
 
 export function getAnalytics(
-    applications : Application[]
-){
-    const totalApplications =
-    applications.length;
+  applications: Application[]
+) {
+  const analytics = {
+    totalApplications: applications.length,
+    interviews: 0,
+    offers: 0,
+    rejected: 0,
+  };
 
-  const interviews =
-    applications.filter(
-      (app) =>
-        app.status === "Interview"
-    ).length;
+  for (const application of applications) {
+    switch (application.status) {
+      case "Interview":
+        analytics.interviews++;
+        break;
 
-  const offers =
-    applications.filter(
-      (app) =>
-        app.status === "Offer"
-    ).length;
+      case "Offer":
+        analytics.offers++;
+        break;
 
-  const rejected =
-    applications.filter(
-      (app) =>
-        app.status === "Rejected"
-    ).length;
+      case "Rejected":
+        analytics.rejected++;
+        break;
+    }
+  }
 
   const interviewRate =
-    totalApplications
-      ? (
-          interviews /
-          totalApplications
-        ) * 100
-      : 0;
+    analytics.totalApplications === 0
+      ? 0
+      : (analytics.interviews /
+          analytics.totalApplications) *
+        100;
 
   const offerRate =
-    totalApplications
-      ? (
-          offers /
-          totalApplications
-        ) * 100
-      : 0;
+    analytics.totalApplications === 0
+      ? 0
+      : (analytics.offers /
+          analytics.totalApplications) *
+        100;
 
   return {
-    totalApplications,
-    interviews,
-    offers,
-    rejected,
+    ...analytics,
     interviewRate,
     offerRate,
   };
-    
 }

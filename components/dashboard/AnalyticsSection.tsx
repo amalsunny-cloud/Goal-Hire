@@ -5,6 +5,7 @@ import { Application } from "@/types/application";
 import { getAnalytics }
 from "@/lib/dashboard/getAnalytics";
 import getMonthlyApplications from "@/lib/dashboard/getMonthlyApplications";
+import { useMemo } from "react";
 
 interface Props {
   applications: Application[];
@@ -14,13 +15,13 @@ export default function AnalyticsSection({
   applications,
 }: Props) {
 
-  const analytics =
-    getAnalytics(
-      applications
-    );
+  const { analytics, monthlyApplications } = useMemo(() => {
+  return {
+    analytics: getAnalytics(applications),
+    monthlyApplications: getMonthlyApplications(applications),
+  };
+}, [applications]);
 
-
-    const monthlyApplications = getMonthlyApplications(applications)
   return (
     <div
       className="

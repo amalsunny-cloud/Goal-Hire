@@ -1,5 +1,6 @@
 import { Application } from "@/types/application";
 import StatsCard from "./StatsCard";
+import { useMemo } from "react";
 
 interface Props {
     applications: Application[];
@@ -7,19 +8,46 @@ interface Props {
 export default function DashboardStats({ applications }:Props) {
 
   console.log("Application in dashboardStats is:",applications)
-    const total = applications.length;
-    const applied = applications.filter((app)=>app.status === "Applied").length;
-    const interview = applications.filter((app)=>app.status === "Interview").length;
-    const offer = applications.filter((app)=>app.status === "Offer").length;
-    const rejected = applications.filter((app)=>app.status === "Rejected").length;
-    
+
+    const stats = useMemo(() => {
+  const result = {
+    total: applications.length,
+    applied: 0,
+    interview: 0,
+    offer: 0,
+    rejected: 0,
+  };
+
+  for (const application of applications) {
+    switch (application.status) {
+      case "Applied":
+        result.applied++;
+        break;
+
+      case "Interview":
+        result.interview++;
+        break;
+
+      case "Offer":
+        result.offer++;
+        break;
+
+      case "Rejected":
+        result.rejected++;
+        break;
+    }
+  }
+
+  return result;
+}, [applications]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-      <StatsCard title="Total" value={total}/>
-      <StatsCard title="Applied" value={applied}/>
-      <StatsCard title="Interview" value={interview}/>
-      <StatsCard title="Offer" value={offer}/>
-      <StatsCard title="Rejected" value={rejected}/>
+      <StatsCard title="Total" value={stats.total}/>
+      <StatsCard title="Applied" value={stats.applied}/>
+      <StatsCard title="Interview" value={stats.interview}/>
+      <StatsCard title="Offer" value={stats.offer}/>
+      <StatsCard title="Rejected" value={stats.rejected}/>
     </div>
   )
 }

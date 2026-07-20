@@ -3,14 +3,20 @@ import { Application } from "@/types/application";
 export default function getMonthlyApplications(applications: Application[]) {
   
 const currentMonth = new Date().getMonth();
-const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
-return applications.filter((app)=>{
-    const date = new Date(app.createdAt);
+  let count = 0;
 
-    return(
-        date.getMonth() === currentMonth && date.getFullYear() === currentYear
-    );
-}).length;
+  for (const application of applications) {
+    const createdDate = new Date(application.createdAt);
 
+    if (
+      createdDate.getMonth() === currentMonth &&
+      createdDate.getFullYear() === currentYear
+    ) {
+      count++;
+    }
+  }
+
+  return count;
 }
