@@ -28,74 +28,76 @@ export default function CompanyDashboard({
     "alphabetical" | "recruiters" | "communications" | "responses"
   >("communications");
 
+  console.log("recruiters in company Dashboard is:", recruiters);
 
-  console.log("recruiters in company Dashboard is:",recruiters);
-  
   const companies = useMemo(() => {
+    const applicationMap = new Map(
+      applications.map((application) => [
+        application._id.toString(),
+        application,
+      ]),
+    );
+
+    const recruiterMap = new Map(
+      recruiters.map((recruiter) => [recruiter._id.toString(), recruiter]),
+    );
+
     const map = new Map<string, CompanyInsight>();
 
+    
     applications.forEach((application) => {
-  const company = application.company;
+      const companyName = application.company.trim();
 
-  map.set(company, {
-    company,
-    recruiterCount: 0,
-    communicationCount: 0,
-    responseCount: 0,
-    responseRate: 0,
-    lastContact: undefined,
-    recruiters: [],
-  });
-});
+      if (!map.has(companyName)) {
+        map.set(companyName, {
+          company: companyName,
+          recruiterCount: 0,
+          communicationCount: 0,
+          responseCount: 0,
+          responseRate: 0,
+          lastContact: undefined,
+          recruiters: [],
+        });
+      }
+    });
 
+    recruiters.forEach((recruiter) => {
+      const application = applicationMap.get(recruiter.applicationId.toString());
 
+      if (!application) return;
 
-recruiters.forEach((recruiter) => {
-  const application = applications.find(
-    (app) => app._id === recruiter.applicationId
-  );
+      const company = application.company.trim();
+      const item = map.get(company);
 
-  if (!application) return;
+      if (!item) return;
 
-  const item = map.get(application.company);
+      item.recruiterCount++;
 
-  if (!item) return;
+      item.recruiters.push(recruiter._id);
 
-  item.recruiterCount++;
-
-  item.recruiters.push(recruiter._id);
-
-  if (
-    recruiter.lastContact &&
-    (!item.lastContact ||
-      new Date(recruiter.lastContact) >
-        new Date(item.lastContact))
-  ) {
-    item.lastContact = recruiter.lastContact;
-  }
-});
-
-
+      if (
+        recruiter.lastContact &&
+        (!item.lastContact ||
+          new Date(recruiter.lastContact) > new Date(item.lastContact))
+      ) {
+        item.lastContact = recruiter.lastContact;
+      }
+    });
 
     communications.forEach((communication) => {
-      const recruiter = recruiters.find(
-        (r) => r._id === communication.recruiterId,
-      );
+      const recruiter = recruiterMap.get(communication.recruiterId.toString());
 
       if (!recruiter) {
         return;
       }
 
-      const application = applications.find(
-    (app) => app._id === recruiter.applicationId
-);
+      const application = applicationMap.get(recruiter.applicationId.toString());
 
-if (!application) return;
+      if (!application) return;
 
-const item = map.get(application.company);
+      const item = map.get(application.company.trim());
 
-if (!item) return;
-
+      if (!item) return;
 
       item.communicationCount++;
 
@@ -119,32 +121,34 @@ if (!item) return;
       company.company.toLowerCase().includes(search.toLowerCase()),
     );
 
+    const sortedCompanies = [...result];
+
     switch (sortBy) {
       case "alphabetical":
-        result.sort((a, b) => a.company.localeCompare(b.company));
+        sortedCompanies.sort((a, b) => a.company.localeCompare(b.company));
         break;
 
       case "recruiters":
-        result.sort((a, b) => b.recruiterCount - a.recruiterCount);
+        sortedCompanies.sort((a, b) => b.recruiterCount - a.recruiterCount);
         break;
 
       case "communications":
-        result.sort((a, b) => b.communicationCount - a.communicationCount);
+        sortedCompanies.sort((a, b) => b.communicationCount - a.communicationCount);
         break;
 
       case "responses":
-        result.sort((a, b) => b.responseRate - a.responseRate);
+        sortedCompanies.sort((a, b) => b.responseRate - a.responseRate);
         break;
     }
 
-    return result;
-  }, [recruiters, communications, search, sortBy]);
+    return sortedCompanies;
+  }, [applications, recruiters, communications, search, sortBy]);
 
   return (
     <div className="space-y-6">
-        <CompanyAnalytics companies={companies}/>
-        <CompanyBarChart companies={companies}/>
-        <CompanyLeaderboard companies={companies}/>
+      <CompanyAnalytics companies={companies} />
+      <CompanyBarChart companies={companies} />
+      <CompanyLeaderboard companies={companies} />
       <div className="flex flex-wrap gap-4">
         <input
           type="text"
@@ -167,37 +171,22 @@ if (!item) return;
           }
           className="border rounded p-2"
         >
-          <option value="communications">
-            Most Communications
-          </option>
+          <option value="communications">Most Communications</option>
 
-          <option value="responses">
-            Highest Response Rate
-          </option>
+          <option value="responses">Highest Response Rate</option>
 
-          <option value="recruiters">
-            Most Recruiters
-          </option>
+          <option value="recruiters">Most Recruiters</option>
 
-          <option value="alphabetical">
-            Alphabetical
-          </option>
+          <option value="alphabetical">Alphabetical</option>
         </select>
       </div>
 
-
-
-          
       {companies.length === 0 ? (
         <p>No companies found.</p>
       ) : (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-          
           {companies.map((company) => (
-            <CompanyCard
-              key={company.company}
-              company={company}
-            />
+            <CompanyCard key={company.company} company={company} />
           ))}
         </div>
       )}
