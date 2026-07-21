@@ -11,9 +11,19 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { name,email,password } = body;
 
+        if(!name || !email || !password){
+            return NextResponse.json({
+                error: "All fields are required"
+            },{
+                status: 400
+            })
+        }
+
         // check exising user
 
-        const existingUser = await User.findOne({email});
+        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedName = name.trim();
+        const existingUser = await User.findOne({email:normalizedEmail});
         if(existingUser){
             return NextResponse.json(
                 {error: "User already exists"},
@@ -24,14 +34,18 @@ export async function POST(req: Request) {
         // Hash Password
         const hashedPassword = await bcrypt.hash(password, 10)
         const user = await User.create({
-            name,
-            email,
+            name:normalizedName,
+            email:normalizedEmail,
             password: hashedPassword,
         })
 
         return NextResponse.json( {
             success : true,
-            user
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            }
         })
    }catch(error){
     console.error(error);

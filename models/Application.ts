@@ -10,6 +10,7 @@ const ApplicationSchema = new Schema(
     company: {
       type: String,
       required: true,
+      trim: true,
     },
     role: {
       type: String,
@@ -50,7 +51,7 @@ const ApplicationSchema = new Schema(
         "Referral",
         "Other",
       ],
-      default: "Linkedin",
+      default: "LinkedIn",
     },
   },
   { timestamps: true },

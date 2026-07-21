@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const RecruiterSchema = new mongoose.Schema({
     applicationId: {
@@ -8,15 +8,24 @@ const RecruiterSchema = new mongoose.Schema({
     },
     name:{
         type: String,
+        trim:true,
     },
     email: {
         type: String,
+        trim:true,
+        lowercase: true,
+        match:[
+           /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Please enter a valid email address",
+        ],
     },
     phone:{
         type: String,
+        trim:true,
     },
     linkedin: {
         type: String,
+        trim:true,
     },
     lastContact: {
         type: Date,
@@ -26,6 +35,7 @@ const RecruiterSchema = new mongoose.Schema({
     },
     notes: {
         type: String,
+        trim:true,
     },
     tags: [
         {

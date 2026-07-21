@@ -11,6 +11,13 @@ export async function POST(req :Request){
         const body = await req.json();
         const { email, password } = body;
 
+        if(!email || !password){
+            return NextResponse.json({
+                error:"Email and passwords are required"},
+                {status:400}
+            )
+        }
+
         // Find user
         const user = await User.findOne({email});
         if(!user){
@@ -62,6 +69,11 @@ export async function POST(req :Request){
     }catch(error){
         console.error(error);
         
+        return NextResponse.json({
+            error:"Internal Server Error",
+        },{
+            status: 500
+        })
     }
 
 }

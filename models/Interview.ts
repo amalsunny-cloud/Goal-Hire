@@ -9,6 +9,7 @@ const InterviewSchema = new mongoose.Schema({
     round: {
         type: String,
         required: true,
+        trim: true,
     },
     date: {
         type: Date,
@@ -25,6 +26,7 @@ const InterviewSchema = new mongoose.Schema({
     },
     notes: {
         type: String,
+        trim: true,
     },
 },{
     timestamps: true,

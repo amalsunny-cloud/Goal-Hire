@@ -16,7 +16,7 @@ const RecruiterCommunicationSchema = new mongoose.Schema({
         enum:[
             "Email",
             "Phone",
-            "Linkedin",
+            "LinkedIn",
             "WhatsApp",
             "Meeting",
             "Other"
@@ -28,10 +28,12 @@ const RecruiterCommunicationSchema = new mongoose.Schema({
         required: true,
     },
     subject: {
-        type: String
+        type: String,
+        trim: true,
     },
     message: {
         type: String,
+        trim: true,
     },
     responded: {
         type: Boolean,
@@ -47,7 +49,7 @@ const RecruiterCommunicationSchema = new mongoose.Schema({
             "No Response",
         ]
     },
-    responseNotes: String
+    responseNotes: String,
 },{
     timestamps: true,
 });

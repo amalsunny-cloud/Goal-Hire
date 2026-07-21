@@ -17,7 +17,7 @@ export async function GET(){
         });
     }
 
-    const applications = await Application.find({userId:user.userId});
+    const applications = await Application.find({userId:user.userId}).sort({createdAt: -1});
      
     return NextResponse.json(applications);
 }catch(error){
@@ -39,12 +39,26 @@ export async function POST(req: Request){
     }
 
     const body = await req.json();
+    const {company,role} = body;
+
+    if(!company || !role){
+        return NextResponse.json({
+            error:"Company and role are required"
+        },{
+            status: 400
+        })
+    }
     const newApplication = await Application.create({...body, userId: user.userId});
 
     await createTimelineEvent(newApplication._id.toString(),"application_created","Application created")
 
-    return NextResponse.json(newApplication);
+    return NextResponse.json(newApplication,{
+        status: 201
+    });
+
     }catch(error){
+        console.error(error);
+        
         return NextResponse.json({ error : "Failed to Create Application"}, { status: 500 });
     }
 }
