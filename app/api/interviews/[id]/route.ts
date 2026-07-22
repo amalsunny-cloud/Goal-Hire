@@ -2,7 +2,6 @@ import { connectDB } from "@/lib/db";
 import { getUser } from "@/lib/getUser";
 import { Application } from "@/models/Application";
 import { Interview } from "@/models/Interview";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Props {
@@ -40,6 +39,7 @@ export async function PATCH(req: NextRequest, { params }: Props) {
 
     const updatedInterview = await Interview.findByIdAndUpdate(id, body, {
       new: true,
+      runValidators: true,
     });
 
     return NextResponse.json(updatedInterview);
@@ -66,6 +66,7 @@ export async function DELETE(req:NextRequest,{params}:Props){
         const {id} = await params;
 
         const interview = await Interview.findByIdAndDelete(id);
+
         if(!interview){
             return NextResponse.json({error:"Interview not found"},{status:404})
         }
@@ -79,7 +80,6 @@ export async function DELETE(req:NextRequest,{params}:Props){
             return NextResponse.json({error:"Unauthorized"},{status:401})
         }
 
-        await Interview.findByIdAndDelete(id);
 
         return NextResponse.json({
             message: "Interview deleted",

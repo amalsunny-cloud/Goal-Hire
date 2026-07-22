@@ -1,10 +1,21 @@
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
+import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 
 export async function POST(req: Request) {
   try {
+    await connectDB();
+    const user = await getUser();
+
+  if (!user) {
+    return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+    );
+  }
+
     const formData = await req.formData();
-    console.log("formData in cloudinary:",formData);
     
     const file = formData.get("file") as File;
     console.log("file in cloudinary:",file);

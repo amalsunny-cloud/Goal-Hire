@@ -125,8 +125,12 @@ export async function DELETE(
       success: true,
     });
   } catch (error) {
+    console.error(error);
+    
     return NextResponse.json({
       error: "Failed to Delete",
+    },{
+      status:500,
     });
   }
 }
@@ -157,5 +161,12 @@ export async function GET(
     userId: user.userId,
   });
 
+  if(!application){
+    return NextResponse.json({
+      error: "Application not found"
+    },{
+      status:404
+    })
+  }
   return NextResponse.json(application);
 }

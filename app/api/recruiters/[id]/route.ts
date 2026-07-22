@@ -126,6 +126,7 @@ export async function PATCH(
 
     const updated = await Recruiter.findByIdAndUpdate(id, body, {
       new: true,
+  
     });
 
     return NextResponse.json(updated);

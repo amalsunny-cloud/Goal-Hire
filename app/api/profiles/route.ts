@@ -18,14 +18,11 @@ export async function GET(re: Request) {
         },
       );
     }
-        console.log("BEFORE in the GET profile find");
-
-
+    
     const profiles = await Profile.find({
       userId: user.userId,
     });
 
-            console.log("Profile in the POST profile",profiles);
 
     return NextResponse.json(profiles);
   } catch (error) {
@@ -58,14 +55,12 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    console.log("Body in the POST profile");
     
-
     const profile = await Profile.create({
       ...body,
       userId: user.userId,
     });
-        console.log("Profile in the POST profile",profile);
+    
 
 
     return NextResponse.json(profile);

@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 import { Attachment } from "@/models/Attachment";
 import { NextResponse } from "next/server";
 
@@ -8,6 +9,17 @@ export async function DELETE(
 ) {
   try {
     await connectDB();
+
+    const user = await getUser();
+
+    if(!user){
+      return NextResponse.json({
+        error: "Unauthorized"
+      },{
+        status: 401
+      })
+    }
+
     const { id } = await params;
     const deleted = await Attachment.findByIdAndDelete(id);
 
@@ -26,6 +38,8 @@ export async function DELETE(
       success: true,
     });
   } catch (error) {
+    console.error(error);
+    
     return NextResponse.json(
       {
         error: "Failed to delete attachment",

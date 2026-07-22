@@ -21,7 +21,7 @@ export async function GET(req: Request) {
     }
 
     const { searchParams } = new URL(req.url);
-    console.log("searchParams is:", searchParams);
+    
 
     const applicationId = searchParams.get("applicationId");
 

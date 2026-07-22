@@ -45,7 +45,7 @@ export async function GET() {
     return NextResponse.json({
         error: "Failed to fetch interviews"
     },{
-        status:500
+        status: 500
     })
   }
 }

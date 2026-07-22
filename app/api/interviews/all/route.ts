@@ -13,7 +13,7 @@ export async function GET(){
 
         if(!user){
             return NextResponse.json({
-                error: "unauthorized",
+                error: "Unauthorized",
             },{
                 status: 401
             })
@@ -24,6 +24,7 @@ export async function GET(){
         })
 
         const ids = applications.map(app=>app._id);
+
         const interviews = await Interview.find({
             applicationId: {
                 $in: ids,

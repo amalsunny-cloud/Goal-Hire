@@ -1,10 +1,20 @@
 import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 import { RecruiterCommunication } from "@/models/RecruiterCommunication";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     await connectDB();
+    const user = await getUser();
+
+if (!user) {
+    return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 },
+    );
+}
+
     const body = await req.json();
     const communication = await RecruiterCommunication.create(body);
 
@@ -26,16 +36,21 @@ export async function GET(req: Request) {
   try {
     await connectDB();
 
-    const { searchParams } = new URL(req.url);
-    console.log("searchParams in GET:",searchParams);
-    
+    const user = await getUser();
 
+    if (!user) {
+        return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
+    const { searchParams } = new URL(req.url);
+  
     const recruiterId = searchParams.get("recruiterId");
-    console.log("recruiterId is:",recruiterId);
     
     const applicationId = searchParams.get("applicationId");
-    console.log("applicationId is:",applicationId);
-
+    
 
     // Fetch communications for a single recruiter
     if (recruiterId) {

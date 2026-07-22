@@ -69,11 +69,14 @@ export async function PATCH(req: Request) {
       {
         new: true,
         upsert: true,
+        runValidators: true,
       },
     );
 
     return NextResponse.json(goal);
   } catch (error) {
+    console.error(error);
+    
     return NextResponse.json(
       {
         error: "Failed to update goals",
