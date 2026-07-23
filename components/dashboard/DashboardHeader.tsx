@@ -14,7 +14,7 @@ export default function DashboardHeader({
   offerCount,
   applications
 }: DashboardHeaderProps) {
-  console.log("Interview count in dashboardheaer is:", interviewCount);
+  console.log("Interview count in dashboardheader is:", interviewCount);
   const hour = new Date().getHours();
 
   let greeting = "Hello";

@@ -18,8 +18,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    
     try {
       setLoading(true);
+      setError("");
 
       console.log("before the fetch of login");
 
@@ -31,7 +33,7 @@ export default function LoginPage() {
         },
 
         body: JSON.stringify({
-          email,
+          email: email.trim(),
           password,
         }),
       });
@@ -56,7 +58,8 @@ export default function LoginPage() {
 
       console.log("after router push");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      const message = err instanceof Error ? err.message : "Login failed";
+      setError(message);
 
       toast.error("Login failed");
     } finally {
@@ -69,18 +72,24 @@ export default function LoginPage() {
       <h1 className="text-3xl font-bold mb-6">Login</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+      <label htmlFor="email">Email :</label>
         <input
           type="email"
+          id="email"
           placeholder="Email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
 
+          <label htmlFor="password">Password :</label>
+
         <input
           type="password"
           placeholder="Password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="border p-2 w-full rounded-lg"
@@ -92,7 +101,11 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-black text-white px-4 py-2 rounded"
+          className={`px-4 py-2 rounded text-white ${
+            loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-black hover:bg-gray-800"
+          }`}
         >
           {loading ? "Logging in..." : "Login"}
         </button>

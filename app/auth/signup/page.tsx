@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,15 +9,12 @@ export default function SignUpPage() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
-
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,49 +23,42 @@ export default function SignUpPage() {
       setLoading(true);
       setError("");
 
-      const response = await fetch(
-        "/api/auth/signup",
-        {
-          method: "POST",
+      if (password !== confirmPassword) {
+        setError("Passwords do not match");
+        toast.error("Passwords do not match");
+        return;
+      }
 
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
 
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        }
-      );
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-      const data =
-        await response.json();
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          password,
+        }),
+      });
+
+      const data = await response.json();
 
       if (!response.ok) {
-        toast.error("Signup failed")
-        throw new Error(
-          data.error
-        );
+        throw new Error(data.error);
       }
 
       toast.success("Signup successful");
 
-      setTimeout(()=>{
+      setTimeout(() => {
         router.push("/auth/login");
-      },2000)
-
+      }, 2000);
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Signup failed"
-      );
+      const message = err instanceof Error ? err.message : "Signup failed";
+      setError(message);
 
-      toast.error("Signup failed")
-
+      toast.error("Signup failed");
     } finally {
       setLoading(false);
     }
@@ -77,69 +66,66 @@ export default function SignUpPage() {
 
   return (
     <main className="max-w-md mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        Signup
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">Signup</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4"
-      >
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <label htmlFor="name">Name :</label>
         <input
           type="text"
           placeholder="Name"
+          autoComplete="name"
           value={name}
-          onChange={(e) =>
-            setName(
-              e.target.value
-            )
-          }
+          onChange={(e) => setName(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
 
+        <label htmlFor="email">Email :</label>
         <input
           type="email"
           placeholder="Email"
+          autoComplete="email"
           value={email}
-          onChange={(e) =>
-            setEmail(
-              e.target.value
-            )
-          }
+          onChange={(e) => setEmail(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
-
+        <label htmlFor="password">Password :</label>
         <input
           type="password"
           placeholder="Password"
+          autoComplete="new-password"
           value={password}
-          onChange={(e) =>
-            setPassword(
-              e.target.value
-            )
-          }
+          onChange={(e) => setPassword(e.target.value)}
           className="border p-2 w-full rounded-lg"
           required
         />
+        <label htmlFor="confirm-password">Confirm Password :</label>
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="border p-2 w-full rounded-lg"
 
-        {error && (
-          <p className="text-red-500">
-            {error}
-          </p>
-        )}
+          autoComplete="new-password"
+          required
+        />
+
+        {error && <p className="text-red-500">{error}</p>}
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-black text-white px-4 py-2 rounded"
+          className={`px-4 py-2 rounded text-white ${
+            loading
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-black hover:bg-gray-800"
+          }`}
         >
-          {loading
-            ? "Creating..."
-            : "Create Account"}
+          {loading ? "Creating..." : "Create Account"}
         </button>
       </form>
     </main>
-  )
+  );
 }

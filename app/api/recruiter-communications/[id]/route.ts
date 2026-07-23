@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 import { RecruiterCommunication } from "@/models/RecruiterCommunication";
 import { NextResponse } from "next/server";
 
@@ -8,6 +9,15 @@ interface Props {
 export async function PATCH(req: Request, { params }: Props) {
   try {
     await connectDB();
+    const user = await getUser();
+
+if (!user) {
+  return NextResponse.json(
+    { error: "Unauthorized" },
+    { status: 401 },
+  );
+}
+
     const { id } = await params;
     const body = await req.json();
 
@@ -16,6 +26,7 @@ export async function PATCH(req: Request, { params }: Props) {
       body,
       {
         new: true,
+        runValidators: true,
       },
     );
 
@@ -47,6 +58,17 @@ export async function PATCH(req: Request, { params }: Props) {
 export async function DELETE(req: Request, { params }: Props) {
   try {
     await connectDB();
+
+    const user = await getUser();
+
+if (!user) {
+  return NextResponse.json(
+    { error: "Unauthorized" },
+    { status: 401 },
+  );
+}
+
+
     const { id } = await params;
     const communication = await RecruiterCommunication.findByIdAndDelete(id);
 
@@ -62,7 +84,7 @@ export async function DELETE(req: Request, { params }: Props) {
     }
 
     return NextResponse.json({
-      message: "Communication deletd",
+      message: "Communication deleted",
     });
   } catch (error) {
     console.error(error);

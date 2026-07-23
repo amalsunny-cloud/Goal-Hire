@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/db";
+import { getUser } from "@/lib/getUser";
 import { TimelineEvent } from "@/models/TimelineEvent";
 import { NextResponse } from "next/server";
 
@@ -8,6 +9,16 @@ export async function GET(
 ) {
     try{
       await connectDB();
+
+      const user = await getUser();
+
+if (!user) {
+  return NextResponse.json(
+    { error: "Unauthorized" },
+    { status: 401 },
+  );
+}
+
       const {applicationId} = await params;
 
       const events = await TimelineEvent.find({

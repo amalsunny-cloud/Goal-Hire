@@ -23,6 +23,12 @@ export async function GET() {
     const next7Days = new Date();
     next7Days.setDate(today.getDate() + 7);
 
+    const applications = await Application.find({
+      userId: user.userId,
+    }).select("_id");
+
+    const applicationIds = applications.map((app) => app._id);
+
     const followUps = await Application.find({
       userId: user.userId,
       followUpDate: {
@@ -32,6 +38,9 @@ export async function GET() {
     });
 
     const interviews = await Interview.find({
+      applicationId: {
+        $in: applicationIds,
+      },
       date: {
         $gte: today,
         $lte: next7Days,
@@ -43,6 +52,8 @@ export async function GET() {
       interviews,
     });
   } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
         error: "Failed to fetch reminders",
