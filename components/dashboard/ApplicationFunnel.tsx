@@ -2,10 +2,10 @@ interface FunnelItem {
     stage: string;
     value: number;
 }
-interface Props{
+interface ApplicationFunnelProps{
     data: FunnelItem[];
 }
-export default function ApplicationFunnel({data}:Props) {
+export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
 
     const values = data.map(item => item.value);
     const maxValue = Math.max(...values, 1);
@@ -40,7 +40,7 @@ export default function ApplicationFunnel({data}:Props) {
                         <span>{item.value}</span>
                     </div>
 
-                    <div className="w-full h-4 bg-gray-200 rounded">
+                    <div className="w-full h-4 bg-gray-200 rounded" role="progressbar" aria-valuenow={item.value} aria-valuemin={0} aria-valuemax={maxValue}>
                         <div className="h-4 bg-green-600 rounded transition-all duration-500"
                            style={{ width: `${width}%` }}></div>
                     </div>

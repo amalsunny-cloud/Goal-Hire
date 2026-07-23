@@ -36,7 +36,7 @@ export default function DashboardHeader({
         role.
       </p>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <p className="text-gray-500">Applications</p>
           <p className="text-2xl font-bold">{applicationCount}</p>

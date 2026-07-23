@@ -2,18 +2,17 @@ import AnalyticsCard from "./AnalyticsCard";
 
 import { Application } from "@/types/application";
 
-import { getAnalytics }
-from "@/lib/dashboard/getAnalytics";
+import { getAnalytics } from "@/lib/dashboard/getAnalytics";
 import getMonthlyApplications from "@/lib/dashboard/getMonthlyApplications";
 import { useMemo } from "react";
 
-interface Props {
+interface AnalyticsSectionProps {
   applications: Application[];
 }
 
 export default function AnalyticsSection({
   applications,
-}: Props) {
+}: AnalyticsSectionProps) {
 
   const { analytics, monthlyApplications } = useMemo(() => {
   return {
@@ -23,17 +22,10 @@ export default function AnalyticsSection({
 }, [applications]);
 
   return (
-    <div
-      className="
-        grid
-        md:grid-cols-3
-        gap-4
-      "
-    >
-
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <AnalyticsCard
-        title="Offer Rate"
-        value={`${analytics.offerRate.toFixed(1)}%`}
+        title="This Month"
+        value={monthlyApplications}
       />
 
       <AnalyticsCard
@@ -42,17 +34,15 @@ export default function AnalyticsSection({
       />
 
       <AnalyticsCard
+        title="Offer Rate"
+        value={`${analytics.offerRate.toFixed(1)}%`}
+      />
+
+      <AnalyticsCard
         title="Rejected"
         value={analytics.rejected}
       />
       
-      <AnalyticsCard
-  title="This Month"
-  value={
-    monthlyApplications
-  }
-/>
-
     </div>
   );
 }

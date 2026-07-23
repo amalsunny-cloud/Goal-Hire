@@ -2,35 +2,24 @@ import getApplicationAnalytics from "@/lib/dashboard/getApplicationAnalytics";
 import { getAverageInterviewTime } from "@/lib/dashboard/getAverageInterviewTime";
 import { Application } from "@/types/application";
 
-interface Props {
+interface ApplicationAnalyticsProps {
   applications: Application[];
 }
-export default function ApplicationAnalytics({ applications }: Props) {
+export default function ApplicationAnalytics({ applications }: ApplicationAnalyticsProps) {
+
   const analytics = getApplicationAnalytics(applications);
 
   const avgInterviewTime = getAverageInterviewTime(applications);
   return (
     <div className="border rounded-lg p-6 bg-white">
       <h2
-        className="
-          text-xl
-          font-semibold
-          mb-6
-        "
-      >
+        className="text-xl font-semibold mb-6">
         Application Analytics
       </h2>
 
-      <div
-        className="
-          grid
-          md:grid-cols-3
-          gap-4
-        "
-      >
+      <div className="grid md:grid-cols-3 gap-4">
         <div>
           <p className="text-gray-500">Interview Rate</p>
-
           <h3 className="text-2xl font-bold">
             {analytics.interviewRate.toFixed(1)}%
           </h3>

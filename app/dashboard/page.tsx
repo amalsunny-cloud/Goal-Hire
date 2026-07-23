@@ -56,6 +56,9 @@ export default function Dashboard() {
     try {
       const response = await fetch("/api/interviews/all");
 
+      if (!response.ok) {
+    throw new Error("Failed to fetch interviews");
+}
       const data = await response.json();
       console.log("Interview API Data:", data);
 
@@ -68,6 +71,9 @@ export default function Dashboard() {
   const fetchUpcomingInterviews = async () => {
     try {
       const response = await fetch("/api/interviews/upcoming");
+      if (!response.ok) {
+    throw new Error("Failed to fetch upcoming interviews");
+}
 
       const data = await response.json();
 
@@ -80,6 +86,9 @@ export default function Dashboard() {
   const fetchGoal = async () => {
     const response = await fetch("/api/goals");
 
+    if (!response.ok) {
+    throw new Error("Failed to fetch goals");
+}
     const data = await response.json();
 
     setGoal(data);
@@ -98,17 +107,30 @@ export default function Dashboard() {
       setApplications(data);
     } catch (error) {
       console.error("FETCH ERROR:", error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
-  useEffect(() => {
-    fetchApplications();
-    fetchUpcomingInterviews();
-    fetchInterviews();
-    fetchGoal();
-  }, []);
+
+  useEffect(()=>{
+    const loadDashboard = async()=>{
+      try{
+        setLoading(true);
+
+        await Promise.all([
+          fetchApplications(),
+          fetchUpcomingInterviews(),
+          fetchInterviews(),
+          fetchGoal(),
+        ])
+      } catch(error){
+        console.error(error);
+        toast.error("Failed to load dashboard");
+      } finally{
+        setLoading(false);
+      }
+    }
+    loadDashboard();
+  },[])
 
   if (loading) {
     return <p>Loading...</p>;
@@ -126,10 +148,8 @@ export default function Dashboard() {
       }
 
       toast.success("Application deleted");
-
-      setTimeout(() => {
-        fetchApplications();
-      }, 1000);
+      await fetchApplications();
+      
     } catch (error) {
       console.error(error);
     }

@@ -2,10 +2,10 @@ import { Application } from "@/types/application";
 import StatsCard from "./StatsCard";
 import { useMemo } from "react";
 
-interface Props {
+interface DashboardStatsProps {
     applications: Application[];
 }
-export default function DashboardStats({ applications }:Props) {
+export default function DashboardStats({ applications }:DashboardStatsProps) {
 
   console.log("Application in dashboardStats is:",applications)
 
