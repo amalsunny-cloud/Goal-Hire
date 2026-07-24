@@ -1,11 +1,13 @@
 import { getApplicationStreak } from "@/lib/dashboard/getApplicationStreak";
 import { Application } from "@/types/application";
+import { useMemo } from "react";
 
-interface Props {
+interface StreakTrackerProps {
   applications: Application[];
 }
-export default function StreakTracker({ applications }: Props) {
-  const streak = getApplicationStreak(applications);
+
+export default function StreakTracker({ applications }: StreakTrackerProps) {
+  const streak = useMemo(()=> getApplicationStreak(applications),[applications])
 
   return (
     <div className="border rounded-lg p-6 bg-white">
@@ -31,9 +33,9 @@ export default function StreakTracker({ applications }: Props) {
         <div>
           <p className="text-gray-500">Applied Today</p>
 
-          <h3 className="text-3xl font-bold">
+          <span role="img" aria-label={streak.appliedToday ? "Applied today" : "Did not apply today"}>
             {streak.appliedToday ? "✅" : "❌"}
-          </h3>
+          </span>
         </div>
       </div>
     </div>

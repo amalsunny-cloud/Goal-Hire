@@ -1,16 +1,19 @@
 import { getPredictionAnalytics } from "@/lib/dashboard/getPredictionAnalytics";
 import { Application } from "@/types/application";
+import { useMemo } from "react";
 
-interface Props {
+interface PredictionAnalyticsProps {
   applications: Application[];
 }
-export default function PredictionAnalytics({ applications }: Props) {
-  const analytics = getPredictionAnalytics(applications);
+export default function PredictionAnalytics({ applications }: PredictionAnalyticsProps) {
+
+  const analytics = useMemo(()=> getPredictionAnalytics(applications),[applications]);
+
   return (
     <div className="border rounded-lg p-6 bg-white">
       <h2 className="text-xl font-semibold mb-6">Prediction Dashboard</h2>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div>
           <p className="text-gray-500">Total Applications</p>
 
