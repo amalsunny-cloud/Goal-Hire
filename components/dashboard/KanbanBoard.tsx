@@ -6,8 +6,10 @@ import {
   DragDropContext,
   DropResult,
 } from "@hello-pangea/dnd";
+import toast from "react-hot-toast";
+import { useMemo } from "react";
 
-interface Props {
+interface KanbanBoardProps {
     applications: Application[];
     onRefresh: ()=> Promise<void>;
 }
@@ -15,31 +17,16 @@ interface Props {
 export default function KanbanBoard({
   applications,
   onRefresh,
-}: Props) {
+}: KanbanBoardProps) {
 
-  const applied =
-    applications.filter(
-      (app) =>
-        app.status === "Applied"
-    );
+  const applied = applications.filter((app) =>app.status === "Applied");
 
-  const interview =
-    applications.filter(
-      (app) =>
-        app.status === "Interview"
-    );
+  const interview = applications.filter((app) => app.status === "Interview");
 
-  const offer =
-    applications.filter(
-      (app) =>
-        app.status === "Offer"
-    );
+  const offer = applications.filter((app) => app.status === "Offer");
 
-  const rejected =
-    applications.filter(
-      (app) =>
-        app.status === "Rejected"
-    );
+  const rejected = applications.filter((app) => app.status === "Rejected");
+
 
   const onDragEnd =
     async (
@@ -104,6 +91,8 @@ export default function KanbanBoard({
           "Drag update failed:",
           error
         );
+
+        toast.error("Failed to update application status")
 
       }
     };

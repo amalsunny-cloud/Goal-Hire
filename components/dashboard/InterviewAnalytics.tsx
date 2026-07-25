@@ -1,12 +1,15 @@
 import { getInterviewAnalytics } from "@/lib/dashboard/getInterviewAnalytics";
 import { Interview } from "@/types/interview"
+import { useMemo } from "react";
 
-interface Props{
+interface InterviewAnalyticsProps{
     interviews: Interview[];
 }
-export default function InterviewAnalytics({interviews}:Props) {
+export default function InterviewAnalytics({interviews}:InterviewAnalyticsProps) {
 
-    const analytics = getInterviewAnalytics(interviews);
+  const analytics = useMemo(() => getInterviewAnalytics(interviews),
+    [interviews]
+);
 
   return (
     <div className="border rounded-lg p-6 bg-white">
@@ -14,7 +17,7 @@ export default function InterviewAnalytics({interviews}:Props) {
         Interview Analytics
       </h2>
 
-      <div className="grid md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
         <div>
             <p className="text-gray-500">Total</p>
             <h3 className="text-2xl font-bold">{analytics.total}</h3>
@@ -27,7 +30,7 @@ export default function InterviewAnalytics({interviews}:Props) {
 
         <div>
             <p className="text-gray-500">Failed</p>
-            <h3 className="text-2xl fonr-bold">{analytics.failed}</h3>
+            <h3 className="text-2xl font-bold">{analytics.failed}</h3>
         </div>
 
         <div>

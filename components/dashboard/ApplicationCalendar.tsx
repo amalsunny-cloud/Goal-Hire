@@ -1,88 +1,98 @@
-"use client"
-import { Application } from "@/types/application";
-import { Interview } from "@/types/interview";
+"use client";
+
+import { useMemo } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
+import { Application } from "@/types/application";
+import { Interview } from "@/types/interview";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const localizer = momentLocalizer(moment)
+const localizer = momentLocalizer(moment);
 
-interface Props {
+interface ApplicationCalendarProps {
   applications: Application[];
   interviews: Interview[];
 }
+
+interface CalendarEvent {
+  title: string;
+  start: Date;
+  end: Date;
+  type: "interview" | "followUp";
+}
+
 export default function ApplicationCalendar({
   applications,
   interviews,
-}: Props) {
-  const interviewEvents = interviews
-    .filter((interview) => interview.date)
-    .map((interview) => ({
-      title: `${interview.round}`,
-      start: new Date(interview.date!),
-      end: new Date(interview.date!),
-    }));
+}: ApplicationCalendarProps) {
+  const events = useMemo<CalendarEvent[]>(() => {
+    const interviewEvents = interviews
+      .filter((interview) => interview.date)
+      .map((interview) => {
+        const date = new Date(interview.date!);
 
-    const followUpEvents =
-    applications
-      .filter(
-        (app) =>
-          app.followUpDate
-      )
-      .map(
-        (app) => ({
-          title:
-            `📧 ${app.company}`,
+        return {
+          title: `🎤 ${interview.round}`,
+          start: date,
+          end: date,
+          type: "interview" as const,
+        };
+      });
 
-          start:
-            new Date(
-              app.followUpDate!
-            ),
+    const followUpEvents = applications
+      .filter((app) => app.followUpDate)
+      .map((app) => {
+        const date = new Date(app.followUpDate!);
 
-          end:
-            new Date(
-              app.followUpDate!
-            ),
-        })
-      );
+        return {
+          title: `📧 ${app.company}`,
+          start: date,
+          end: date,
+          type: "followUp" as const,
+        };
+      });
 
-  const events = [
-    ...interviewEvents,
-    ...followUpEvents,
-  ];
+    return [...interviewEvents, ...followUpEvents];
+  }, [applications, interviews]);
+
+  if (events.length === 0) {
+    return (
+      <div className="border rounded-lg p-6 bg-white">
+        <h2 className="text-xl font-semibold mb-6">
+          Calendar View
+        </h2>
+
+        <p className="text-gray-500">
+          No interviews or follow-ups scheduled.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="
-        border
-        rounded-lg
-        p-6
-        bg-white
-      "
-    >
-      <h2
-        className="
-          text-xl
-          font-semibold
-          mb-6
-        "
-      >
+    <div className="border rounded-lg p-6 bg-white">
+      <h2 className="text-xl font-semibold mb-6">
         Calendar View
       </h2>
 
-      <div
-        style={{
-          height: 600,
-        }}
-      >
+      <div className="h-150">
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
+          defaultView="month"
+          popup
+          eventPropGetter={(event) => ({
+            style: {
+              backgroundColor:
+                event.type === "interview"
+                  ? "#2563eb"
+                  : "#ca8a04",
+            },
+          })}
         />
       </div>
     </div>
   );
 }
-

@@ -5,11 +5,11 @@ import { Profile } from "@/types/profile";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-interface FormProps {
+interface ApplicationFormProps {
   onAddSuccess: (newApp: Application) => void;
 }
 
-export default function ApplicationForm({ onAddSuccess }: FormProps) {
+export default function ApplicationForm({ onAddSuccess }: ApplicationFormProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [note, setNote] = useState("");
@@ -112,6 +112,7 @@ ${profile.skills || ""}
       setSelectedProfile("");
     } catch (error) {
       console.error(error);
+      toast.error("Failed to load profiles.")
     } finally {
       setLoading(false);
     }
@@ -127,13 +128,7 @@ ${profile.skills || ""}
         <select
           value={selectedProfile}
           onChange={(e) => handleProfileChange(e.target.value)}
-          className="
-      border
-      p-2
-      rounded
-      w-full
-    "
-        >
+          className="border p-2 rounded w-full">
           <option value="">Select Profile</option>
 
           {profiles.map((profile) => (
@@ -144,49 +139,68 @@ ${profile.skills || ""}
         </select>
       </div>
 
+<label htmlFor="company">Company</label>
       <input
+      id="company"
         type="text"
         placeholder="Company"
         className="border p-2 w-full rounded-lg"
         value={company}
         onChange={(e) => setCompany(e.target.value)}
       />
+
+      <label htmlFor="role">Role</label>
       <input
+      id="role"
         type="text"
         placeholder="Role"
         className="border p-2 w-full rounded-lg"
         value={role}
         onChange={(e) => setRole(e.target.value)}
       />
+
+      <label htmlFor="notes">Notes</label>
       <textarea
+      id="notes"
         rows={6}
         placeholder="Notes"
         className="border p-2 w-full rounded-lg"
         value={note}
         onChange={(e) => setNote(e.target.value)}
       />
+      <label htmlFor="followupdate">FollowUp Date</label>
       <input
+      id="followupdate"
         type="date"
         placeholder="Follow Up Date"
         className="border p-2 w-full rounded-lg"
         value={followUpDate}
         onChange={(e) => setFollowUpDate(e.target.value)}
       />
+
+      <label htmlFor="joburl">Job Url</label>
       <input
+      id="joburl"
         type="text"
         placeholder="Job URL"
         className="border p-2 w-full rounded-lg"
         value={jobUrl}
         onChange={(e) => setJobUrl(e.target.value)}
       />
+
+      <label htmlFor="location">Location</label>
       <input
+      id="location"
         type="text"
         placeholder="Location"
         className="border p-2 w-full rounded-lg"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
+
+      <label htmlFor="salary">Salary</label>
       <input
+      id="salary"
         type="text"
         placeholder="Salary"
         className="border p-2 w-full rounded-lg"
@@ -200,13 +214,7 @@ ${profile.skills || ""}
         <select
           value={source}
           onChange={(e) => setSource(e.target.value)}
-          className="
-      border
-      p-2
-      rounded
-      w-full
-    "
-        >
+          className="border p-2 rounded w-full">
           <option value="LinkedIn">LinkedIn</option>
 
           <option value="Indeed">Indeed</option>

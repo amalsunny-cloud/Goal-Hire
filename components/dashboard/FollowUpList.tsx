@@ -28,20 +28,11 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
     return (
       <div className="border rounded-lg py-3">
         <h2
-          className="
-      text-xl
-      font-semibold
-      mb-2
-    "
-        >
+          className="text-xl font-semibold mb-2">
           Follow Ups
         </h2>
 
-        <p
-          className="
-      text-red-500 font-semibold
-    "
-        >
+        <p className="text-red-500 font-semibold">
           No follow-ups due this week.
         </p>
       </div>
@@ -54,7 +45,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
       <div className="space-y-3">
         {upcomingFollowUps.map((app) => (
-          <div key={app._id} className="border rouded p-3">
+          <div key={app._id} className="border rounded p-3">
             <h3 className="font-semibold">{app.company}</h3>
             <p>{app.role}</p>
             <p>
