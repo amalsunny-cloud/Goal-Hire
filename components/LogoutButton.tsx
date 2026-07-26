@@ -1,46 +1,63 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function LogoutButton() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     try {
+      setLoading(true);
+
       const response = await fetch("/api/auth/logout", {
         method: "POST",
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        toast.error("Logout Failed");
-        throw new Error("Logout Failed");
+        throw new Error(
+          data.message ?? "Logout failed."
+        );
       }
 
-      toast.success("Logout successful");
-      setTimeout(() => {
-        router.replace("/auth/login");
-      }, 1000);
+      toast.success("Logged out successfully.");
+
+      router.replace("/auth/login");
+      router.refresh();
     } catch (error) {
-      console.error("Logout Error", error);
-      toast.error("Logout error");
+      console.error(error);
+
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong."
+      );
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [router]);
+
   return (
     <button
+      type="button"
       onClick={handleLogout}
+      disabled={loading}
+      aria-label="Log out"
       className="
         bg-red-500
         text-white
         px-4
         py-2
         rounded
+        disabled:opacity-50
+        disabled:cursor-not-allowed
       "
     >
-      Logout
+      {loading ? "Logging out..." : "Logout"}
     </button>
   );
-}
-function usseRouter() {
-  throw new Error("Function not implemented.");
 }

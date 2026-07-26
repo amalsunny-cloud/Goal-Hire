@@ -1,67 +1,96 @@
-interface Interview {
-  _id: string;
-  applicationId: string;
-  round: string;
-  date?: string;
-  outcome: "Pending" | "Passed" | "Failed";
-  notes?: string;
-}
+"use client";
 
-interface UpcomingInterviewProps {
+import { useMemo } from "react";
+import { Interview } from "@/types/interview";
+
+interface UpcomingInterviewsProps {
   interviews: Interview[];
 }
+
 export default function UpcomingInterviews({
   interviews,
-}: UpcomingInterviewProps) {
-  const today = new Date();
+}: UpcomingInterviewsProps) {
+  const upcomingInterviews = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  const upcomingInterviews = interviews
-    .filter((interview) => {
-      if (!interview.date) return false;
+    return interviews
+      .filter((interview) => {
+        if (!interview.date) {
+          return false;
+        }
 
-      return new Date(interview.date) >= today;
-    })
-    .sort((a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime());
+        return new Date(interview.date) >= today;
+      })
+      .sort(
+        (a, b) =>
+          new Date(a.date as string).getTime() -
+          new Date(b.date as string).getTime()
+      );
+  }, [interviews]);
 
   if (upcomingInterviews.length === 0) {
     return (
-      <div className="border rounded-lg p-4">
-        <h2
-          className="
-      text-xl
-      font-semibold
-      mb-2
-    "
-        >
+      <div className="border rounded-lg p-4 bg-white">
+        <h2 className="text-xl font-semibold mb-2">
           Upcoming Interviews
         </h2>
 
-        <p
-          className="
-      text-red-500 font-semibold
-    "
-        >
-          No upcoming interviews scheduled.
+        <p className="text-green-600 font-medium">
+          🎉 No upcoming interviews scheduled.
         </p>
       </div>
     );
   }
+
   return (
-    <div className="border rounded-lg p-4">
-      <h2 className="text-xl font-semibold mb-4">Upcoming Interviews</h2>
+    <div className="border rounded-lg p-4 bg-white">
+      <h2 className="text-xl font-semibold mb-4">
+        Upcoming Interviews
+      </h2>
 
-      <div className="space-y-3">
-        {upcomingInterviews.map((interview) => (
-          <div key={interview._id} className="border rounded p-3">
-            <h3 className="font-semibold text-orange-400">{interview.round}</h3>
-            <p>Date: {new Date(interview.date!).toLocaleDateString("en-GB")}</p>
+      <ul className="space-y-3">
+        {upcomingInterviews.map((interview) => {
+          const interviewDate = new Date(
+            interview.date as string
+          );
 
-            <p>Outcome: {interview.outcome}</p>
+          return (
+            <li
+              key={interview._id}
+              className="border rounded p-3"
+            >
+              <h3 className="font-semibold text-orange-500">
+                {interview.round}
+              </h3>
 
-            {interview.notes && <p>Notes: {interview.notes}</p>}
-          </div>
-        ))}
-      </div>
+              <p className="text-gray-500 text-sm mt-2">
+                Interview Date
+              </p>
+
+              <p className="font-medium">
+                {interviewDate.toLocaleDateString("en-GB")}
+              </p>
+
+              <p className="text-gray-500 text-sm mt-2">
+                Outcome
+              </p>
+
+              <p>{interview.outcome}</p>
+
+              {interview.notes && (
+                <>
+                  <p className="text-gray-500 text-sm mt-2">
+                    Notes
+                  </p>
+
+                  <p>{interview.notes}</p>
+                </>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

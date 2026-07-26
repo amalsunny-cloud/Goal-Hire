@@ -1,11 +1,12 @@
 "use client";
 
 import { Application } from "@/types/application";
+import toast from "react-hot-toast";
 
-interface Props {
+interface ExportCSVButtonProps {
   applications: Application[];
 }
-export default function ExportCSVButton({ applications }: Props) {
+export default function ExportCSVButton({ applications }: ExportCSVButtonProps) {
   const exportCSV = () => {
     const headers = [
       "Company",
@@ -41,6 +42,7 @@ export default function ExportCSVButton({ applications }: Props) {
     link.click();
 
     window.URL.revokeObjectURL(url);
+    toast.success("CSV exported successfully.")
   };
 
   return (
