@@ -3,7 +3,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-interface Props {
+interface ApplicationNotesProps {
   applicationId: string;
   initialNotes: string;
 }
@@ -11,22 +11,17 @@ interface Props {
 export default function ApplicationNotes({
   applicationId,
   initialNotes,
-}: Props) {
+}: ApplicationNotesProps) {
 
-  const [notes, setNotes] =
-    useState(initialNotes);
+  const [notes, setNotes] = useState(initialNotes);
 
-  const [editing, setEditing] =
-    useState(false);
+  const [editing, setEditing] = useState(false);
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
   const saveNotes =
     async () => {
-
       try {
-
         setLoading(true);
 
         const response =
@@ -50,41 +45,22 @@ export default function ApplicationNotes({
           throw new Error();
         }
 
-        toast.success(
-          "Notes saved"
-        );
-
+        toast.success("Notes saved");
         setEditing(false);
 
       } catch (error) {
-
-        toast.error(
-          "Failed to save notes"
-        );
+        toast.error("Failed to save notes");
 
       } finally {
-
         setLoading(false);
-
       }
     };
 
   return (
-    <div
-      className="
-        border
-        rounded-lg
-        p-6
-      "
-    >
+    <div className="border border-gray-200 rounded-lg p-6">
 
       <h2
-        className="
-          text-xl
-          font-semibold
-          mb-4
-        "
-      >
+        className="text-xl font-semibold mb-4">
         Notes
       </h2>
 
@@ -98,21 +74,10 @@ export default function ApplicationNotes({
               )
             }
             rows={6}
-            className="
-              border
-              w-full
-              p-2
-              rounded
-            "
-          />
+            autoFocus
+            className="border border-gray-200 w-full p-2 rounded" aria-label="Application notes"/>
 
-          <div
-            className="
-              mt-3
-              flex
-              gap-2
-            "
-          >
+          <div className="mt-3 flex gap-2">
 
             <button
               onClick={saveNotes}
@@ -125,19 +90,15 @@ export default function ApplicationNotes({
                 rounded
               "
             >
-              Save
+              {loading ? "Saving..." : "Save"}
             </button>
 
             <button
               onClick={() =>
                 setEditing(false)
               }
-              className="
-                border
-                px-4
-                py-2
-                rounded
-              "
+              className="border border-gray-200 px-4 py-2 rounded"
+              disabled={loading}
             >
               Cancel
             </button>
@@ -161,7 +122,7 @@ export default function ApplicationNotes({
               setEditing(true)
             }
             className="
-              border
+              border border-gray-200
               px-4
               py-2
               rounded

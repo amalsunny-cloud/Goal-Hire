@@ -12,17 +12,17 @@ import { getInterviews } from "@/lib/getInterviews";
 import { getUser } from "@/lib/getUser";
 import Link from "next/link";
 
-interface Props {
+interface ApplicationDetailsPageProps {
   params: Promise<{ id: string }>;
 }
-export default async function ApplicationDetailsPage({ params }: Props) {
+export default async function ApplicationDetailsPage({ params }: ApplicationDetailsPageProps) {
 
   await connectDB();
 
   const user = await getUser();
 
   if (!user) {
-    return <div>Unauthorized</div>;
+    return <div>Unauthorized, Please login</div>;
   }
 
   const { id } = await params;
@@ -33,7 +33,9 @@ export default async function ApplicationDetailsPage({ params }: Props) {
     return <div>Application not found</div>;
   }
 
-  const rawInterviews = await getInterviews(application._id.toString());
+  const [rawInterviews] = await Promise.all([
+    getInterviews(application._id.toString())
+]);
 
   const interviews = rawInterviews.map((interview) => ({
     _id: interview._id.toString(),
@@ -48,7 +50,7 @@ export default async function ApplicationDetailsPage({ params }: Props) {
   
   return (
     <>
-      <Link href={"/dashboard"} className="text-red-400">
+      <Link href={"/dashboard"} className="text-red-400 hover:underline">
         ← Back to Dashboard
       </Link>
       <div className="p-6 space-y-4">
@@ -71,7 +73,7 @@ export default async function ApplicationDetailsPage({ params }: Props) {
           <h2 className="font-semibold">
             Follow Up Date :{" "}
             {application.followUpDate
-              ? new Date(application.followUpDate).toLocaleDateString()
+              ? new Date(application.followUpDate).toLocaleDateString("en-GB")
               : "Not Set"}
           </h2>
         </div>
@@ -88,10 +90,7 @@ export default async function ApplicationDetailsPage({ params }: Props) {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
-          text-blue-500
-          underline
-        "
+                className="text-blue-500 underline"
               >
                 Open Job Posting
               </a>
@@ -115,14 +114,14 @@ export default async function ApplicationDetailsPage({ params }: Props) {
 
         <div>
           <h2 className="font-semibold">
-            Created : {new Date(application.createdAt).toLocaleDateString()}
+            Created : {new Date(application.createdAt).toLocaleDateString("en-GB")}
           </h2>
         </div>
 
         <div>
           <h2 className="font-semibold">
             Last Updated :{" "}
-            {new Date(application.updatedAt).toLocaleDateString()}
+            {new Date(application.updatedAt).toLocaleDateString("en-GB")}
           </h2>
         </div>
 
