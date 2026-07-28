@@ -11,7 +11,7 @@ import CompanyBarChart from "./CompanyBarChart";
 import CompanyLeaderboard from "./CompanyLeaderboard";
 import { Application } from "@/types/application";
 
-interface Props {
+interface CompanyDashboardProps {
   applications: Application[];
   recruiters: Recruiter[];
   communications: RecruiterCommunication[];
@@ -21,14 +21,13 @@ export default function CompanyDashboard({
   applications,
   recruiters,
   communications,
-}: Props) {
+}: CompanyDashboardProps) {
   const [search, setSearch] = useState("");
 
   const [sortBy, setSortBy] = useState<
     "alphabetical" | "recruiters" | "communications" | "responses"
   >("communications");
 
-  console.log("recruiters in company Dashboard is:", recruiters);
 
   const companies = useMemo(() => {
     const applicationMap = new Map(
@@ -118,7 +117,7 @@ export default function CompanyDashboard({
     let result = [...map.values()];
 
     result = result.filter((company) =>
-      company.company.toLowerCase().includes(search.toLowerCase()),
+      company.company.toLowerCase().includes(search.trim().toLowerCase()),
     );
 
     const sortedCompanies = [...result];
@@ -153,6 +152,7 @@ export default function CompanyDashboard({
         <input
           type="text"
           placeholder="Search company..."
+          aria-label="Search companies"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="border rounded p-2 flex-1"
@@ -182,7 +182,7 @@ export default function CompanyDashboard({
       </div>
 
       {companies.length === 0 ? (
-        <p>No companies found.</p>
+        <p>No companies match your search.</p>
       ) : (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {companies.map((company) => (

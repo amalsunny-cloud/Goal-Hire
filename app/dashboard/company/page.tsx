@@ -11,15 +11,14 @@ import { Application } from "@/types/application";
 export default function CompanyDashboardPage() {
   const [loading, setLoading] = useState(true);
 
-  const [recruiters, setRecruiters] =
-    useState<Recruiter[]>([]);
+  const [recruiters, setRecruiters] = useState<Recruiter[]>([]);
+  const [error, setError] = useState("");
 
-  const [communications, setCommunications] =
-    useState<RecruiterCommunication[]>([]);
+  const [communications, setCommunications] = useState<
+    RecruiterCommunication[]
+  >([]);
 
-  const [applications, setApplications] =
-    useState<Application[]>([]);
-
+  const [applications, setApplications] = useState<Application[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -27,41 +26,48 @@ export default function CompanyDashboardPage() {
 
   async function fetchData() {
     try {
-      const recruiterResponse = await fetch(
-        "/api/company-dashboard/recruiters"
-      );
+      // const recruiterResponse = await fetch(
+      //   "/api/company-dashboard/recruiters"
+      // );
 
-      const communicationResponse =
-        await fetch(
-          "/api/company-dashboard/communications"
-        );
+      // const communicationResponse = await fetch(
+      //     "/api/company-dashboard/communications"
+      //   );
 
-      const applicationResponse =
-    await fetch("/api/applications");
+      // const applicationResponse = await fetch("/api/applications");
+
+      const [recruiterResponse, communicationResponse, applicationResponse] =
+        await Promise.all([
+          fetch("/api/company-dashboard/recruiters"),
+          fetch("/api/company-dashboard/communications"),
+          fetch("/api/applications"),
+        ]);
 
       if (
         !recruiterResponse.ok ||
-        !communicationResponse.ok
+        !communicationResponse.ok ||
+        !applicationResponse.ok
       ) {
-        throw new Error();
+        throw new Error("Failed to load company dashboard.");
       }
 
-      const recruiterData =
-        await recruiterResponse.json();
+      // const recruiterData = await recruiterResponse.json();
 
-      const communicationData =
-        await communicationResponse.json();
+      // const communicationData = await communicationResponse.json();
 
-      const applicationData =
-    await applicationResponse.json();
+      // const applicationData = await applicationResponse.json();
+
+      const [recruiterData, communicationData, applicationData] =
+        await Promise.all([
+          recruiterResponse.json(),
+          communicationResponse.json(),
+          applicationResponse.json(),
+        ]);
 
       setRecruiters(recruiterData);
-
-      setCommunications(
-        communicationData
-      );
-
+      setCommunications(communicationData);
       setApplications(applicationData);
+      
     } catch (error) {
       console.error(error);
     } finally {
@@ -69,12 +75,12 @@ export default function CompanyDashboardPage() {
     }
   }
 
+  if (error) {
+    return <p>Failed to load dashboard.</p>;
+  }
+
   if (loading) {
-    return (
-      <p className="p-8">
-        Loading...
-      </p>
-    );
+    return <p className="p-8">Loading company dashboard...</p>;
   }
 
   return (
@@ -92,9 +98,7 @@ export default function CompanyDashboardPage() {
       <CompanyDashboard
         applications={applications}
         recruiters={recruiters}
-        communications={
-          communications
-        }
+        communications={communications}
       />
     </div>
   );
