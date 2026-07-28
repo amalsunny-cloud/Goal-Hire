@@ -2,10 +2,10 @@ import EditApplicationForm from '@/components/forms/EditApplicationForm'
 import { getApplication } from '@/lib/getApplication';
 import { getUser } from '@/lib/getUser'
 
-interface Props{
+interface EditApplicationPageProps{
     params: Promise<{id:string}>
 }
-export default async function Editpage({params}:Props) {
+export default async function Editpage({params}:EditApplicationPageProps) {
 
     const user = await getUser();
     if(!user){

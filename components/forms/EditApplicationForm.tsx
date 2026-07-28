@@ -17,6 +17,7 @@ export default function EditApplicationForm({ application }: any) {
   const [location, setLocation] = useState(application?.location || "");
 
   const [error, setError] = useState("");
+  
   const router = useRouter();
 
   const isUnchanged =
@@ -36,12 +37,12 @@ export default function EditApplicationForm({ application }: any) {
     if (!company.trim() || !role.trim()) {
       setError("Please fill out the fields");
       toast("Please fill out the fields!", {
-  icon: "⚠️",
-  style: {
-    background: "#facc15", // Tailwind yellow-400
-    color: "#000",
-  },
-});
+        icon: "⚠️",
+        style: {
+          background: "#facc15", // Tailwind yellow-400
+          color: "#000",
+        },
+      });
       return;
     }
 
@@ -64,32 +65,25 @@ export default function EditApplicationForm({ application }: any) {
       });
 
       if (response.ok) {
-        toast.success("Application edited")
-        
-        setTimeout(()=>{
+        toast.success("Application edited");
+
+        setTimeout(() => {
           router.refresh();
           router.push(`/dashboard/applications/${application._id}`);
-
-        },2000)
-
+        }, 1000);
       } else {
         const data = await response.json();
         setError(data.error || "Something went wrong");
-        toast.error("Something went wrong")
+        toast.error("Something went wrong");
       }
     } catch (error) {
       setError("Failed to communicate with server");
-      toast.error("Failed to communicate with server")
+      toast.error("Failed to communicate with server");
     }
   };
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-      {/* {error && (
-        <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg">
-          {error}
-        </div>
-      )} */}
-
+      
       {isUnchanged && (
         <div className="p-2 text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded text-center">
           You haven't made any edits to this application yet.

@@ -1,22 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface Attachment {
   _id: string;
   fileName: string;
   fileUrl: string;
 }
-interface Props {
+interface AttachmentListProps {
   applicationId: string;
 }
-export default function AttachmentList({ applicationId }: Props) {
+export default function AttachmentList({ applicationId }: AttachmentListProps) {
   const [attachments, setAttachments] = useState<Attachment[]>([]);
 
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAttachments();
-  }, []);
+  }, [applicationId]);
 
   const fetchAttachments = async () => {
     try {
@@ -24,14 +26,16 @@ export default function AttachmentList({ applicationId }: Props) {
         `/api/attachments?applicationId=${applicationId}`,
       );
 
-      console.log("response in fetchAttachments is:", response);
+      if (!response.ok) {
+          throw new Error("Failed to load attachments.");
+      }
 
       const data = await response.json();
-      console.log("data in fetchAttachments is:", data);
-
       setAttachments(data);
+
     } catch (error) {
       console.error(error);
+
     } finally {
       setLoading(false);
     }
@@ -43,10 +47,7 @@ export default function AttachmentList({ applicationId }: Props) {
 
   const deleteAttachment = async (attachmentId: string) => {
     try {
-      if (
-  !confirm(
-    "Delete this attachment?"
-  )
+      if (!confirm("Delete this attachment?")
 ) {
   return;
 }
@@ -55,16 +56,18 @@ export default function AttachmentList({ applicationId }: Props) {
       });
 
       console.log("attachment deleted..");
+      toast.success("Attachment deleted.");
       
       if (!response.ok) {
-        throw new Error();
+        throw new Error("Failed to delete attachment.");
       }
 
-      setAttachments(
-        attachments.filter((attachment) => attachment._id !== attachmentId),
+      setAttachments((prev)=>
+        prev.filter((attachment) => attachment._id !== attachmentId),
       );
     } catch (error) {
       console.error(error);
+      toast.error("Failed to delete attachment.");
     }
   };
   return (
@@ -77,7 +80,7 @@ export default function AttachmentList({ applicationId }: Props) {
           {attachments.map((attachment) => (
             <div
               key={attachment._id}
-              className="border rounded p-3 flex justify-between items-center"
+              className="border border-gray-200 rounded p-3 flex justify-between items-center"
             >
               <a
                 href={attachment.fileUrl}
@@ -88,7 +91,7 @@ export default function AttachmentList({ applicationId }: Props) {
                 📄 {attachment.fileName}
               </a>
 
-              <button onClick={() =>deleteAttachment(attachment._id)}className="text-red-500 font-medium">Delete</button>
+              <button type="button" aria-label={`Delete ${attachment.fileName}`} disabled={deletingId===attachment._id}  onClick={() =>deleteAttachment(attachment._id)}className="text-red-500 font-medium">Delete</button>
             </div>
           ))}
         </div>
