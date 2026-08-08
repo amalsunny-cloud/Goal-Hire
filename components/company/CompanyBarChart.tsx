@@ -29,10 +29,9 @@ export default function CompanyBarChart({
   return (
     <div
       className="
-        bg-white
+        bg-slate-400/10
         rounded-xl
-        border
-        shadow
+        shadow-sm
         p-5
       "
     >

@@ -55,7 +55,7 @@ export default function CompanyLeaderboard({
   };
 
   return (
-    <div className="bg-white border rounded-xl shadow p-5">
+    <div className="bg-slate-400/10 rounded-xl shadow-sm p-5">
       <h2 className="text-xl font-semibold mb-5">
         🏆 Company Leaderboard
       </h2>
@@ -67,15 +67,7 @@ export default function CompanyLeaderboard({
           rankedCompanies.map((company, index) => (
             <div
               key={company.company}
-              className="
-                flex
-                items-center
-                justify-between
-                border
-                rounded-lg
-                p-4
-              "
-            >
+              className="flex items-center justify-between border-b border-gray-500/30 rounded-lg p-4">
               <div className="flex items-center gap-4">
                 {getIcon(index)}
 

@@ -27,11 +27,11 @@ export default function RecentApplications({ applications }: RecentApplicationsP
     )
   }
   return (
-    <div className="bg-white border rounded-lg p-5">
+    <div className="bg-slate-400/10 rounded-lg p-5">
       <h2 className="font-bold text-lg mb-4 text-gray-600">Recent Applications</h2>
 
       {recent.map((app) => (
-        <div key={app._id} className="py-2 border-b last:border-b-0 text-gray-600">
+        <div key={app._id} className="py-2 border-b last:border-b-0 border-gray-500/30 text-gray-600">
           {app.company}
         </div>
       ))}

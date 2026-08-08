@@ -37,6 +37,9 @@ import Link from "next/link";
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<
+    "overview" | "analytics" | "workflow" | "applications"
+  >("overview");
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -57,8 +60,8 @@ export default function Dashboard() {
       const response = await fetch("/api/interviews/all");
 
       if (!response.ok) {
-    throw new Error("Failed to fetch interviews");
-}
+        throw new Error("Failed to fetch interviews");
+      }
       const data = await response.json();
       console.log("Interview API Data:", data);
 
@@ -72,8 +75,8 @@ export default function Dashboard() {
     try {
       const response = await fetch("/api/interviews/upcoming");
       if (!response.ok) {
-    throw new Error("Failed to fetch upcoming interviews");
-}
+        throw new Error("Failed to fetch upcoming interviews");
+      }
 
       const data = await response.json();
 
@@ -87,8 +90,8 @@ export default function Dashboard() {
     const response = await fetch("/api/goals");
 
     if (!response.ok) {
-    throw new Error("Failed to fetch goals");
-}
+      throw new Error("Failed to fetch goals");
+    }
     const data = await response.json();
 
     setGoal(data);
@@ -107,13 +110,12 @@ export default function Dashboard() {
       setApplications(data);
     } catch (error) {
       console.error("FETCH ERROR:", error);
-    } 
+    }
   };
 
-
-  useEffect(()=>{
-    const loadDashboard = async()=>{
-      try{
+  useEffect(() => {
+    const loadDashboard = async () => {
+      try {
         setLoading(true);
 
         await Promise.all([
@@ -121,16 +123,16 @@ export default function Dashboard() {
           fetchUpcomingInterviews(),
           fetchInterviews(),
           fetchGoal(),
-        ])
-      } catch(error){
+        ]);
+      } catch (error) {
         console.error(error);
         toast.error("Failed to load dashboard");
-      } finally{
+      } finally {
         setLoading(false);
       }
-    }
+    };
     loadDashboard();
-  },[])
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -149,7 +151,6 @@ export default function Dashboard() {
 
       toast.success("Application deleted");
       await fetchApplications();
-      
     } catch (error) {
       console.error(error);
     }
@@ -214,8 +215,9 @@ export default function Dashboard() {
   const funnelData = getFunnelData(applications);
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-start">
+    <div className="min-h-screen bg-white text-slate-800 p-4 sm:p-8 space-y-8">
+      {/* Top Navigation & Action Header */}
+      <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-slate-400/10 p-6 rounded-2xl backdrop-blur-md">
         <DashboardHeader
           applicationCount={applicationCount}
           interviewCount={interviewCount}
@@ -223,98 +225,182 @@ export default function Dashboard() {
           applications={applications}
         />
 
-        <div className="flex gap-4 mb-8">
-  <Link
-    href="/dashboard/company"
-    className="
-      bg-blue-600
-      text-white
-      px-5
-      py-3
-      rounded-lg
-      hover:bg-blue-700
-      transition
-    "
-  >
-    Company Dashboard
-  </Link>
-</div>
-
-        <div className="flex justify-end">
+        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
+          <Link
+            href="/dashboard/company"
+            className="px-4 py-2.5 text-white bg-slate-600 hover:bg-blue-500 rounded-xl transition-all shadow-md shadow-blue-600/20"
+          >
+            Company Insights
+          </Link>
           <ExportCSVButton applications={applications} />
           <LogoutButton />
         </div>
-      </div>
+      </header>
+
+      {/* Main KPI Stats Row */}
       <DashboardStats applications={applications} />
-      <AnalyticsSection applications={applications} />
-      <ApplicationsChart data={chartData} />
-      <ApplicationFunnel data={funnelData} />
-      <ApplicationAnalytics applications={applications} />
 
-      <PredictionAnalytics applications={applications}/>
+      {/* Tab Controls Bar */}
+      <div className="flex border-b border-slate-800/20 space-x-2 sm:space-x-6 overflow-x-auto pb-1 bg-slate-300/60">
+        {[
+          { id: "overview", label: "Overview & Streak" },
+          { id: "analytics", label: "Analytics & Insights" },
+          { id: "workflow", label: "Kanban & Calendar" },
+          { id: "applications", label: "Manage Applications" },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id as typeof activeTab)}
+            className={`py-2.5 px-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              activeTab === tab.id
+                ? "border-slate-500/30 text-slate-500"
+                : "border-transparent text-slate-400 hover:text-slate-800/70"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-      {goal && (
-        <>
-          <GoalTracker applications={applications} goal={goal} />
-
-          <GoalSettings goal={goal} onGoalUpdated={setGoal} />
-        </>
+      {/* TAB 1: OVERVIEW */}
+      {activeTab === "overview" && (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 space-y-6">
+              <StreakTracker applications={applications} />
+              <ApplicationsChart data={chartData} />
+              <RecentApplications applications={applications} />
+            </div>
+            <div className="space-y-6">
+              <ReminderWidget
+                applications={applications}
+                interviews={interviews}
+              />
+              <UpcomingInterviews interviews={upcomingInterviews} />
+              <RecentActivity applications={applications} />
+            </div>
+          </div>
+        </div>
       )}
 
-      <StreakTracker applications={applications}/>
+      {/* TAB 2: ANALYTICS & GOALS */}
+      {activeTab === "analytics" && (
+        <div className="space-y-8">
+          <AnalyticsSection applications={applications} />
 
-      <CompanyInsights applications={applications} />
-      <SourceAnalytics applications={applications} />
-      <SourceSuccessAnalytics applications={applications} />
-      <KanbanBoard applications={applications} onRefresh={fetchApplications} />
-      <InterviewAnalytics interviews={interviews} />
-      <ReminderWidget applications={applications} interviews={interviews} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ApplicationFunnel data={funnelData} />
+            <PredictionAnalytics applications={applications} />
+          </div>
 
-      <ApplicationCalendar
-        applications={applications}
-        interviews={interviews}
-      />
+          {goal && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
+                <GoalTracker applications={applications} goal={goal} />
+              </div>
+              <div>
+                <GoalSettings goal={goal} onGoalUpdated={setGoal} />
+              </div>
+            </div>
+          )}
 
-      <input
-        type="text"
-        placeholder="Search company or role..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="border p-2 w-[75%] rounded-lg"
-      />
-      <br />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <SourceAnalytics applications={applications} />
+            <SourceSuccessAnalytics applications={applications} />
+          </div>
 
-      <select
-        value={statusFilter}
-        onChange={(e) => setStatusFilter(e.target.value)}
-        className="border p-2 rounded"
-      >
-        <option value="All">All</option>
-        <option value="Applied">Applied</option>
-        <option value="Interview">Interview</option>
-        <option value="Offer">Offer</option>
-        <option value="Rejected">Rejected</option>
-      </select>
+          <CompanyInsights applications={applications} />
+          <InterviewAnalytics interviews={interviews} />
+          <ApplicationAnalytics applications={applications} />
+        </div>
+      )}
 
-      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-      </select>
+      {/* TAB 3: WORKFLOW, KANBAN & CALENDAR */}
+      {activeTab === "workflow" && (
+        <div className="space-y-8">
+          <KanbanBoard
+            applications={applications}
+            onRefresh={fetchApplications}
+          />
+          <ApplicationCalendar
+            applications={applications}
+            interviews={interviews}
+          />
+          <FollowUpList applications={applications} />
+        </div>
+      )}
 
-      <p>Showing {filteredApplications.length} applications</p>
-      <ApplicationList
-        applications={filteredApplications}
-        onDelete={deleteApplication}
-        onStatusChange={updateStatus}
-      />
+      {/* TAB 4: APPLICATIONS MANAGEMENT */}
+      {activeTab === "applications" && (
+        <div className="space-y-8">
+          {/* Add New Application Form Container */}
+          <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+            <h2 className="text-lg font-bold text-white mb-4">
+              Add New Application
+            </h2>
+            <ApplicationForm onAddSuccess={handleAddApplication} />
+          </div>
 
-      <ApplicationForm onAddSuccess={handleAddApplication} />
+          {/* Filter, Search & Sorting Panel */}
+          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-4">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              <input
+                type="text"
+                placeholder="Search by company or role..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full md:w-1/2 px-4 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
 
-      <FollowUpList applications={applications} />
+              <div className="flex w-full md:w-auto items-center gap-3">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full md:w-auto px-3.5 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="All">All Statuses</option>
+                  <option value="Applied">Applied</option>
+                  <option value="Interview">Interview</option>
+                  <option value="Offer">Offer</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
 
-      <UpcomingInterviews interviews={upcomingInterviews} />
-      <RecentActivity applications={applications} />
-      <RecentApplications applications={applications} />
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full md:w-auto px-3.5 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="newest">Sort: Newest</option>
+                  <option value="oldest">Sort: Oldest</option>
+                </select>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-400 pt-1">
+              Showing{" "}
+              <span className="text-slate-200 font-semibold">
+                {filteredApplications.length}
+              </span>{" "}
+              of {applications.length} applications
+            </p>
+          </div>
+
+          {/* Application Data Table / List */}
+          <ApplicationList
+            applications={filteredApplications}
+            onDelete={deleteApplication}
+            onStatusChange={updateStatus}
+          />
+
+          <ApplicationForm onAddSuccess={handleAddApplication} />
+
+          <FollowUpList applications={applications} />
+
+          <UpcomingInterviews interviews={upcomingInterviews} />
+          <RecentActivity applications={applications} />
+          <RecentApplications applications={applications} />
+        </div>
+      )}
     </div>
   );
 }

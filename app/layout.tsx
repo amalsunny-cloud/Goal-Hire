@@ -6,9 +6,9 @@ import { Toaster } from "react-hot-toast";
 export default function RootLayout({children,}: {children: React.ReactNode;}) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 text-gray-900">
+      <body>
         <Navbar/>
-        <div className="max-w-6xl mx-auto min-h-screen text-center">
+        <div className="mx-auto text-center">
           {children}
 
           <Toaster position="top-right"/>

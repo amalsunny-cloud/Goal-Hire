@@ -29,14 +29,14 @@ export default function DashboardHeader({
 
   const reminders = getReminderCount(applications)
   return (
-    <div className="bg-white border rounded-lg p-6 shadow-sm">
+    <div className="bg-slate-400/10 rounded-lg p-6">
       <h1 className="text-3xl font-bold mb-2">{greeting} 👋</h1>
-      <p className="text-gray-500">
+      <p className="text-gray-600">
         Keep pushing forward. Every application is a step closer to your next
         role.
       </p>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <p className="text-gray-500">Applications</p>
           <p className="text-2xl font-bold">{applicationCount}</p>
@@ -55,7 +55,7 @@ export default function DashboardHeader({
           <p className="text-gray-500">Reminders</p>
           <p className="text-2xl font-bold">🔔 {reminders}</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function RecentActivity({ applications }: RecentActivityProps) {
     ).slice(0, 5);
 
   return (
-    <div className="border rounded-lg p-6">
+    <div className="bg-slate-400/10 shadow-md rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
 
       {recentApplications.length === 0 ? (
@@ -24,7 +24,7 @@ export default function RecentActivity({ applications }: RecentActivityProps) {
       ) : (
         <div className="space-y-3">
           {recentApplications.map((app) => (
-            <div key={app._id} className="border-b pb-2">
+            <div key={app._id} className="border-b border-gray-500/30 pb-2">
               <p className="font-medium">{app.company}</p>
               <p className="text-sm text-gray-500">{app.role}</p>
               <p className="text-sm">

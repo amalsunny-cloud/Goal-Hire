@@ -84,12 +84,13 @@ export default function CompanyDashboardPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-white">
       <h1
         className="
           text-3xl
           font-bold
           mb-8
+          
         "
       >
         Company Dashboard

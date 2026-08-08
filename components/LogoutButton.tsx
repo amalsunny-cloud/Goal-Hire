@@ -48,11 +48,12 @@ export default function LogoutButton() {
       disabled={loading}
       aria-label="Log out"
       className="
-        bg-red-500
+        bg-slate-600
         text-white
+        cursor-pointer
         px-4
         py-2
-        rounded
+        rounded-xl
         disabled:opacity-50
         disabled:cursor-not-allowed
       "

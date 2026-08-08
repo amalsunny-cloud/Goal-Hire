@@ -26,7 +26,7 @@ function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <div className="bg-white rounded-xl border shadow p-5">
+    <div className="bg-slate-400/10 rounded-xl shadow-md p-5">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-gray-500 text-sm font-medium">
           {title}
@@ -145,7 +145,7 @@ export default function CompanyAnalytics({
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl border shadow p-5">
+        <div className="bg-slate-400/10 rounded-xl shadow-sm p-5">
           <h2 className="font-semibold text-lg mb-4">
             🏆 Best Response Rate
           </h2>
@@ -169,7 +169,7 @@ export default function CompanyAnalytics({
           )}
         </div>
 
-        <div className="bg-white rounded-xl border shadow p-5">
+        <div className="bg-slate-400/10 rounded-xl shadow-sm p-5">
           <h2 className="font-semibold text-lg mb-4">
             📨 Most Active Company
           </h2>

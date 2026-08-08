@@ -31,7 +31,7 @@ export default function UpcomingInterviews({
 
   if (upcomingInterviews.length === 0) {
     return (
-      <div className="border rounded-lg p-4 bg-white">
+      <div className="shadow-md rounded-lg p-4 bg-white">
         <h2 className="text-xl font-semibold mb-2">
           Upcoming Interviews
         </h2>
@@ -44,7 +44,7 @@ export default function UpcomingInterviews({
   }
 
   return (
-    <div className="border rounded-lg p-4 bg-white">
+    <div className="rounded-lg p-4 bg-slate-400/10 shadow-md">
       <h2 className="text-xl font-semibold mb-4">
         Upcoming Interviews
       </h2>
@@ -58,7 +58,7 @@ export default function UpcomingInterviews({
           return (
             <li
               key={interview._id}
-              className="border rounded p-3"
+              className="rounded p-3"
             >
               <h3 className="font-semibold text-orange-500">
                 {interview.round}
