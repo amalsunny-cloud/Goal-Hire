@@ -52,14 +52,14 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-slate-950 px-4 py-12">
-      <div className="w-full max-w-md space-y-8 bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <main className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-white px-4 py-12">
+      <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md backdrop-blur-sm">
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="inline-flex w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 items-center justify-center text-blue-400 font-bold text-xl mb-2">
             G
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-white">Welcome back</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-700">Welcome back</h1>
           <p className="text-sm text-slate-400">
             Sign in to access your job applications dashboard
           </p>
@@ -75,7 +75,7 @@ export default function LoginPage() {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label htmlFor="email" className="block text-xs font-semibold text-slate-300">
+            <label htmlFor="email" className="block text-start text-xs  text-gray-400">
               Email Address
             </label>
             <input
@@ -85,14 +85,14 @@ export default function LoginPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-800/50 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-gray-700 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               required
             />
           </div>
 
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-xs font-semibold text-slate-300">
+              <label htmlFor="password" className="block text-xs text-gray-400">
                 Password
               </label>
               <Link
@@ -109,7 +109,7 @@ export default function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-800/50 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-3.5 py-2.5 border-b border-gray-500/30 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               required
             />
           </div>
