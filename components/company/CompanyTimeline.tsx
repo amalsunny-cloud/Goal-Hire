@@ -137,7 +137,7 @@ export default function CompanyTimeline({
       {events.map((event) => (
         <div
           key={event.id}
-          className="flex gap-4 bg-white rounded-xl border shadow p-5"
+          className="flex gap-4 bg-slate-400/10 rounded-xl shadow-md p-5"
         >
           <div>{getIcon(event.type)}</div>
 
@@ -152,7 +152,7 @@ export default function CompanyTimeline({
               <span className="text-sm text-gray-500">
                 {new Date(
                   event.date
-                ).toLocaleDateString()}
+                ).toLocaleDateString("en-GB")}
               </span>
 
             </div>

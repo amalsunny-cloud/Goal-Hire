@@ -24,17 +24,7 @@ export default function CompanyCard({ company }: Props) {
   return (
     <Link href={`/dashboard/company/${encodeURIComponent(company.company)}`}>
     <div
-      className="
-        bg-white
-        rounded-xl
-        shadow
-        border
-        p-5
-        space-y-5
-        hover:shadow-lg
-        transition
-      "
-    >
+      className="bg-slate-400/10 rounded-xl shadow-md  p-5 space-y-5 hover:shadow-lg transition">
       {/* Header */}
 
       <div className="flex items-center gap-3">
@@ -56,7 +46,7 @@ export default function CompanyCard({ company }: Props) {
       {/* Statistics */}
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="border rounded-lg p-3">
+        <div className="border-b border-slate-700/30 p-3">
           <div className="flex items-center gap-2 mb-1">
             <Users className="w-4 h-4 text-blue-600" />
             <span className="text-sm text-gray-500">
@@ -69,7 +59,7 @@ export default function CompanyCard({ company }: Props) {
           </p>
         </div>
 
-        <div className="border rounded-lg p-3">
+        <div className="border-b border-slate-700/30 p-3">
           <div className="flex items-center gap-2 mb-1">
             <Mail className="w-4 h-4 text-green-600" />
             <span className="text-sm text-gray-500">
@@ -82,7 +72,7 @@ export default function CompanyCard({ company }: Props) {
           </p>
         </div>
 
-        <div className="border rounded-lg p-3">
+        <div className="border-b border-slate-700/30 p-3">
           <div className="flex items-center gap-2 mb-1">
             <MessageCircle className="w-4 h-4 text-purple-600" />
             <span className="text-sm text-gray-500">
@@ -95,7 +85,7 @@ export default function CompanyCard({ company }: Props) {
           </p>
         </div>
 
-        <div className="border rounded-lg p-3">
+        <div className="border-b border-slate-700/30 p-3">
           <div className="flex items-center gap-2 mb-1">
             <Calendar className="w-4 h-4 text-orange-600" />
             <span className="text-sm text-gray-500">
@@ -140,7 +130,7 @@ export default function CompanyCard({ company }: Props) {
 
       {/* Footer */}
 
-      <div className="border-t pt-3 flex justify-between text-sm">
+      <div className="border-t border-slate-700/30 pt-3 flex justify-between text-sm">
         <span className="text-gray-500">
           Company Score
         </span>

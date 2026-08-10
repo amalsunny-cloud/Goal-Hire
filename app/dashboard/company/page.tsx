@@ -67,7 +67,6 @@ export default function CompanyDashboardPage() {
       setRecruiters(recruiterData);
       setCommunications(communicationData);
       setApplications(applicationData);
-      
     } catch (error) {
       console.error(error);
     } finally {
@@ -80,7 +79,11 @@ export default function CompanyDashboardPage() {
   }
 
   if (loading) {
-    return <p className="p-8">Loading company dashboard...</p>;
+    return (
+      <div className="flex justify-center items-center">
+        <p className="p-8">Loading company dashboard...</p>
+      </div>
+    );
   }
 
   return (

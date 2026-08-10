@@ -27,7 +27,7 @@ function StatCard({
   icon,
 }: StatCardProps) {
   return (
-    <div className="bg-white rounded-xl border shadow p-5">
+    <div className="bg-slate-400/10 rounded-xl shadow-md p-5">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-gray-500 text-sm font-medium">
           {title}

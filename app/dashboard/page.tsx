@@ -251,7 +251,7 @@ export default function Dashboard() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className={`py-2.5 px-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+            className={`py-2.5 px-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
               activeTab === tab.id
                 ? "border-slate-500/30 text-slate-500"
                 : "border-transparent text-slate-400 hover:text-slate-800/70"

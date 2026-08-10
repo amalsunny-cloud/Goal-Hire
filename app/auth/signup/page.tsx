@@ -62,8 +62,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 text-slate-800">
-      <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-2xl shadow-sm p-8 space-y-6">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 text-slate-800">
+      <div className="w-full max-w-md bg-slate-400/10 border border-slate-200/80 rounded-2xl shadow-sm p-8 space-y-6">
         {/* Header Header */}
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
@@ -86,7 +86,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="name"
-              className="block text-xs font-semibold text-slate-700"
+              className="block text-xs text-gray-400 text-start"
             >
               Full Name
             </label>
@@ -97,7 +97,7 @@ export default function SignUpPage() {
               autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
               required
             />
           </div>
@@ -105,7 +105,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-xs font-semibold text-slate-700"
+              className="block text-xs text-gray-400 text-start"
             >
               Email Address
             </label>
@@ -116,7 +116,7 @@ export default function SignUpPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
               required
             />
           </div>
@@ -124,7 +124,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="password"
-              className="block text-xs font-semibold text-slate-700"
+              className="block text-xs text-gray-400 text-start"
             >
               Password
             </label>
@@ -135,7 +135,7 @@ export default function SignUpPage() {
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
               required
             />
           </div>
@@ -143,7 +143,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="confirm-password"
-              className="block text-xs font-semibold text-slate-700"
+              className="block text-xs text-gray-400 text-start"
             >
               Confirm Password
             </label>
@@ -154,7 +154,7 @@ export default function SignUpPage() {
               autoComplete="new-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
               required
             />
           </div>

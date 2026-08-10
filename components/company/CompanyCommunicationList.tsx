@@ -109,7 +109,7 @@ export default function CompanyCommunicationList({
           return (
             <div
               key={communication._id}
-              className="bg-white rounded-xl border shadow p-6"
+              className="bg-slate-400/10 rounded-xl shadow-md p-6"
             >
               <div className="flex justify-between items-start">
 

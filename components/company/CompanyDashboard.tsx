@@ -155,7 +155,7 @@ export default function CompanyDashboard({
           aria-label="Search companies"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border rounded p-2 flex-1"
+          className="p-2 flex-1 w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
         />
 
         <select
@@ -169,7 +169,7 @@ export default function CompanyDashboard({
                 | "responses",
             )
           }
-          className="border rounded p-2"
+          className="p-2 px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
         >
           <option value="communications">Most Communications</option>
 

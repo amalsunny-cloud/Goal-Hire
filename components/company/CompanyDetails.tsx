@@ -14,7 +14,7 @@ interface Props{
 }
 export default function CompanyDetails({company,recruiters,communications}:Props) {
   return (
-    <div className="space-y-8 p-8">
+    <div className="space-y-8 p-8 bg-white">
       <h1 className="text-3xl font-bold"></h1>
 
       <CompanyStats recruiters={recruiters} communications={communications}/>

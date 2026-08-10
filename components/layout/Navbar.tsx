@@ -25,12 +25,6 @@ export default function Navbar() {
             <Link href="/dashboard" className="hover:text-blue-400 transition-colors">
               Dashboard
             </Link>
-            <Link href="/applications" className="hover:text-blue-400 transition-colors">
-              Applications
-            </Link>
-            <Link href="/analytics" className="hover:text-blue-400 transition-colors">
-              Analytics
-            </Link>
           </div>
 
           {/* Action Buttons */}

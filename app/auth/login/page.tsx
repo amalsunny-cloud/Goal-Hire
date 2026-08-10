@@ -52,14 +52,16 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-white px-4 py-12">
+    <main className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md backdrop-blur-sm">
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="inline-flex w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 items-center justify-center text-blue-400 font-bold text-xl mb-2">
             G
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-700">Welcome back</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-700">
+            Welcome back
+          </h1>
           <p className="text-sm text-slate-400">
             Sign in to access your job applications dashboard
           </p>
@@ -75,7 +77,10 @@ export default function LoginPage() {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-1.5">
-            <label htmlFor="email" className="block text-start text-xs  text-gray-400">
+            <label
+              htmlFor="email"
+              className="block text-start text-xs  text-gray-400"
+            >
               Email Address
             </label>
             <input
@@ -85,7 +90,7 @@ export default function LoginPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-gray-700 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
               required
             />
           </div>
@@ -97,7 +102,7 @@ export default function LoginPage() {
               </label>
               <Link
                 href="/auth/forgot-password"
-                className="text-xs text-blue-400 hover:underline"
+                className="text-xs text-blue-400"
               >
                 Forgot password?
               </Link>
@@ -109,7 +114,7 @@ export default function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 border-b border-gray-500/30 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-3.5 py-2.5 border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
               required
             />
           </div>
@@ -121,9 +126,24 @@ export default function LoginPage() {
           >
             {loading ? (
               <>
-                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  ></path>
                 </svg>
                 Logging in...
               </>
@@ -136,7 +156,7 @@ export default function LoginPage() {
         {/* Footer Toggle */}
         <p className="text-center text-xs text-slate-400 pt-2">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="font-semibold text-blue-400 hover:underline">
+          <Link href="/auth/signup" className="font-semibold text-blue-400">
             Register now
           </Link>
         </p>
