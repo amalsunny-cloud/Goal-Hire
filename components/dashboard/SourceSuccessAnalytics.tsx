@@ -16,7 +16,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
 
   if (sources.length === 0) {
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-6">
         Source Success Analytics
       </h2>
@@ -30,7 +30,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
 
 
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-6">Source Success Analytics</h2>
 
       <div className="space-y-4">
@@ -44,14 +44,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
             data.applications > 0 ? (data.offers / data.applications) * 100 : 0;
 
           return (
-            <div
-              key={source}
-              className="
-                  border
-                  rounded-lg
-                  p-4
-                "
-            >
+            <div key={source} className="shadow-md rounded-lg p-6 bg-slate-400/10">
               <h3 className="font-bold text-lg mb-3">{source}</h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

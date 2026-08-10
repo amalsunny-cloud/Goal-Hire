@@ -1,3 +1,4 @@
+import Navbar2 from "@/components/layout/Navbar2";
 import Link from "next/link";
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
       
-
+      <Navbar2/>
       <main className="flex-1">
         {/* Hero Section */}
         <section className="max-w-full mx-auto px-6 pt-20 pb-16 text-center lg:pt-28">
