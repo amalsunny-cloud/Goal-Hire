@@ -11,7 +11,7 @@ export default function ApplicationAnalytics({ applications }: ApplicationAnalyt
 
   const avgInterviewTime = getAverageInterviewTime(applications);
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2
         className="text-xl font-semibold mb-6">
         Application Analytics

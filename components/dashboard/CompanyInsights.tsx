@@ -18,7 +18,7 @@ export default function CompanyInsights({
   );
 
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-6">Company Insights</h2>
 
       <div className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

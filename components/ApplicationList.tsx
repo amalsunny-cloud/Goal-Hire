@@ -14,7 +14,7 @@ export default function ApplicationList({ applications,onDelete, onStatusChange 
   
   if (applications.length === 0)
     return (
-      <div className="text-center flex justify-center items-center border rounded-lg p-6 bg-white">
+      <div className="text-center flex justify-center items-center rounded-lg p-6 bg-slate-400/10">
         <p className="text-red-600 font-semibold">No applications match your filters.</p>
       </div>
     );

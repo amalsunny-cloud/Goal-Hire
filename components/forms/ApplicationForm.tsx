@@ -128,7 +128,7 @@ ${profile.skills || ""}
         <select
           value={selectedProfile}
           onChange={(e) => handleProfileChange(e.target.value)}
-          className="border p-2 rounded w-full">
+          className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all">
           <option value="">Select Profile</option>
 
           {profiles.map((profile) => (
@@ -144,7 +144,7 @@ ${profile.skills || ""}
       id="company"
         type="text"
         placeholder="Company"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={company}
         onChange={(e) => setCompany(e.target.value)}
       />
@@ -154,7 +154,7 @@ ${profile.skills || ""}
       id="role"
         type="text"
         placeholder="Role"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={role}
         onChange={(e) => setRole(e.target.value)}
       />
@@ -164,7 +164,7 @@ ${profile.skills || ""}
       id="notes"
         rows={6}
         placeholder="Notes"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={note}
         onChange={(e) => setNote(e.target.value)}
       />
@@ -173,7 +173,7 @@ ${profile.skills || ""}
       id="followupdate"
         type="date"
         placeholder="Follow Up Date"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={followUpDate}
         onChange={(e) => setFollowUpDate(e.target.value)}
       />
@@ -183,7 +183,7 @@ ${profile.skills || ""}
       id="joburl"
         type="text"
         placeholder="Job URL"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={jobUrl}
         onChange={(e) => setJobUrl(e.target.value)}
       />
@@ -193,7 +193,7 @@ ${profile.skills || ""}
       id="location"
         type="text"
         placeholder="Location"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
@@ -203,7 +203,7 @@ ${profile.skills || ""}
       id="salary"
         type="text"
         placeholder="Salary"
-        className="border p-2 w-full rounded-lg"
+        className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
         value={salary}
         onChange={(e) => setSalary(e.target.value)}
       />
@@ -214,7 +214,7 @@ ${profile.skills || ""}
         <select
           value={source}
           onChange={(e) => setSource(e.target.value)}
-          className="border p-2 rounded w-full">
+          className="p-2 w-full border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all">
           <option value="LinkedIn">LinkedIn</option>
 
           <option value="Indeed">Indeed</option>

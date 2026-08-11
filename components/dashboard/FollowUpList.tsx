@@ -26,7 +26,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
   if (upcomingFollowUps.length === 0) {
     return (
-      <div className="border rounded-lg py-3">
+      <div className="shadow-md rounded-lg p-6 bg-slate-400/10 py-3">
         <h2
           className="text-xl font-semibold mb-2">
           Follow Ups
@@ -40,7 +40,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
   }
 
   return (
-    <div className="border rounded-lg p-4">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-4">Follow Ups</h2>
 
       <div className="space-y-3">

@@ -12,7 +12,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
 
   if (sources.length === 0) {
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-6">
         Job Sources
       </h2>
@@ -25,7 +25,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
 }
 
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-6">
         Job Sources
       </h2>

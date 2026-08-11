@@ -23,10 +23,12 @@ export default function ApplicationCard({
   onStatusChange,
 }: ApplicationCardProps) {
   return (
-    <div className="border rounded-lg p-4 bg-white">
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="font-bold text-lg text-gray-800">{application.company}</h3>
+    <div className="shadow-md rounded-lg p-4 bg-slate-400/10">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col justify-center">
+          <h3 className="font-bold text-lg text-gray-800">
+            {application.company}
+          </h3>
 
           <p className="text-gray-600">{application.role}</p>
 
@@ -35,7 +37,14 @@ export default function ApplicationCard({
           >
             {application.status}
           </span>
+
         </div>
+          <Link
+        href={`/dashboard/applications/${application._id}`}
+        className="text-gray-800 text-bold text-sm"
+      >
+        View Details
+      </Link>
 
         <button
           onClick={() => onDelete(application._id)}
@@ -45,20 +54,7 @@ export default function ApplicationCard({
         </button>
       </div>
 
-      <div className="mt-4">
-        {/* <select
-          className="border p-2 rounded text-gray-700"
-          value={application.status}
-          onChange={(e) => onStatusChange(application._id, e.target.value)}
-        >
-          <option value="Applied">Applied</option>
-          <option value="Interview">Interview</option>
-          <option value="Offer">Offer</option>
-          <option value="Rejected">Rejected</option>
-        </select> */}
-      </div>
-
-      <Link href={`/dashboard/applications/${application._id}`} className="text-gray-800 text-bold text-sm">View Details</Link>
+      
     </div>
   );
 }

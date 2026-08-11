@@ -338,7 +338,7 @@ export default function Dashboard() {
       {activeTab === "applications" && (
         <div className="space-y-8">
           {/* Add New Application Form Container */}
-          <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+          <div className="bg-slate-400/10 p-6 rounded-2xl">
             <h2 className="text-lg font-bold text-white mb-4">
               Add New Application
             </h2>
