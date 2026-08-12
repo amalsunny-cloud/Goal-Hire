@@ -121,9 +121,9 @@ ${profile.skills || ""}
   console.log("Profiles are:", profiles);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 text-start">
       <div>
-        <label>Application Profile</label>
+        <label className="">Application Profile</label>
 
         <select
           value={selectedProfile}

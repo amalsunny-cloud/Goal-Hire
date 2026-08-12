@@ -245,7 +245,7 @@ export default function Dashboard() {
       <DashboardStats applications={applications} />
 
       {/* Tab Controls Bar */}
-      <div className="flex border-b border-slate-800/20 space-x-2 sm:space-x-6 overflow-x-auto pb-1 bg-slate-300/60">
+      <div className="flex justify-center border-b border-slate-800/20 space-x-2 sm:space-x-6 overflow-x-auto pb-1 bg-slate-300/60">
         {[
           { id: "overview", label: "Overview & Streak" },
           { id: "analytics", label: "Analytics & Insights" },
@@ -338,12 +338,16 @@ export default function Dashboard() {
       {activeTab === "applications" && (
         <div className="space-y-8">
           {/* Add New Application Form Container */}
-          <div className="bg-slate-400/10 p-6 rounded-2xl">
-            <h2 className="text-lg font-bold text-white mb-4">
+
+          <div className="flex flex-col justify-center items-center">
+          <div className="bg-slate-400/10 p-6 rounded-2xl w-[50%]">
+            <h2 className="text-lg font-bold text-gray-700 mb-4">
               Add New Application
             </h2>
             <ApplicationForm onAddSuccess={handleAddApplication} />
           </div>
+          </div>
+          
 
           {/* Filter, Search & Sorting Panel */}
           <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-4">
@@ -396,7 +400,6 @@ export default function Dashboard() {
             onStatusChange={updateStatus}
           />
 
-          <ApplicationForm onAddSuccess={handleAddApplication} />
 
           <FollowUpList applications={applications} />
 
