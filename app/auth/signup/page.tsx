@@ -86,7 +86,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="name"
-              className="block text-xs text-gray-400 text-start"
+              className="block text-xs text-gray-500 text-start"
             >
               Full Name
             </label>
@@ -97,7 +97,7 @@ export default function SignUpPage() {
               autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -105,7 +105,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-xs text-gray-400 text-start"
+              className="block text-xs text-gray-500 text-start"
             >
               Email Address
             </label>
@@ -116,7 +116,7 @@ export default function SignUpPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -124,7 +124,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="password"
-              className="block text-xs text-gray-400 text-start"
+              className="block text-xs text-gray-500 text-start"
             >
               Password
             </label>
@@ -135,7 +135,7 @@ export default function SignUpPage() {
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -143,7 +143,7 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="confirm-password"
-              className="block text-xs text-gray-400 text-start"
+              className="block text-xs text-gray-500 text-start"
             >
               Confirm Password
             </label>
@@ -154,7 +154,7 @@ export default function SignUpPage() {
               autoComplete="new-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -162,7 +162,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 px-4 mt-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2"
+            className="w-full mt-5 px-2 py-2.5 text-base font-semibold text-gray-700 bg-transparent hover:bg-gray-500/20 shadow-sm border border-slate-200 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -180,7 +180,7 @@ export default function SignUpPage() {
           Already have an account?{" "}
           <Link
             href="/auth/login"
-            className="font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            className="font-semibold text-slate-600"
           >
             Sign in
           </Link>

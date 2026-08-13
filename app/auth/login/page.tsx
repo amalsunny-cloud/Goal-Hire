@@ -56,7 +56,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md backdrop-blur-sm">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 items-center justify-center text-blue-400 font-bold text-xl mb-2">
+          <div className="inline-flex w-12 h-12 rounded-xl bg-gray-600/10 border border-gray-500/20 items-center justify-center text-gray-400 font-bold text-xl mb-2">
             G
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-gray-700">
@@ -79,7 +79,7 @@ export default function LoginPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-start text-xs  text-gray-400"
+              className="block text-start text-xs  text-gray-500"
             >
               Email Address
             </label>
@@ -90,19 +90,19 @@ export default function LoginPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
               required
             />
           </div>
 
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-xs text-gray-400">
+              <label htmlFor="password" className="block text-xs text-gray-500">
                 Password
               </label>
               <Link
                 href="/auth/forgot-password"
-                className="text-xs text-blue-400"
+                className="text-xs text-slate-600"
               >
                 Forgot password?
               </Link>
@@ -114,7 +114,7 @@ export default function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all"
+              className="w-full px-3.5 py-2.5 border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -122,7 +122,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700 rounded-xl shadow-lg shadow-blue-600/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+            className="w-full mt-5 px-2 py-2.5 text-base font-semibold text-gray-700 bg-transparent hover:bg-gray-500/20 shadow-sm border border-slate-200 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -154,9 +154,9 @@ export default function LoginPage() {
         </form>
 
         {/* Footer Toggle */}
-        <p className="text-center text-xs text-slate-400 pt-2">
+        <p className="text-center text-xs text-slate-600 pt-2">
           Don't have an account?{" "}
-          <Link href="/auth/signup" className="font-semibold text-blue-400">
+          <Link href="/auth/signup" className="font-semibold text-slate-600">
             Register now
           </Link>
         </p>

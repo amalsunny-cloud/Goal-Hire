@@ -232,7 +232,7 @@ export default function Dashboard() {
         <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
           <Link
             href="/dashboard/company"
-            className="px-4 py-2.5 text-white bg-slate-600 hover:bg-blue-500 rounded-xl transition-all shadow-md shadow-blue-600/20"
+            className="px-4 py-2.5 text-white bg-slate-600 rounded-xl transition-all shadow-md"
           >
             Company Insights
           </Link>

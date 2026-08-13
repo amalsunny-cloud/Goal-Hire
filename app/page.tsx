@@ -52,13 +52,13 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/auth/signup"
-              className="w-full sm:w-auto px-8 py-3.5 text-base  font-semibold text-gray-700 bg-white hover:bg-slate-800/10 border border-slate-200 rounded-xl transition-all text-center"
+              className="w-full sm:w-auto px-8 py-3.5 text-base  font-semibold text-gray-700 bg-white hover:bg-gray-500/20 shadow-sm border border-slate-200 rounded-xl transition-all text-center"
             >
               Start Tracking For Free
             </Link>
             <Link
               href="/auth/login"
-              className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold text-slate-700 bg-white hover:bg-slate-800/10 border border-slate-200 rounded-xl transition-all text-center"
+              className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold text-gray-700 bg-white hover:bg-gray-500/20 shadow-sm border border-slate-200 rounded-xl transition-all text-center"
             >
               Log In to Account
             </Link>
