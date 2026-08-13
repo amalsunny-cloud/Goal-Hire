@@ -71,7 +71,7 @@ export default function AttachmentList({ applicationId }: AttachmentListProps) {
     }
   };
   return (
-    <div className="border rounded-lg p-6">
+    <div className="bg-slate-400/10 rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Uploaded Files</h2>
       {attachments.length === 0 ? (
         <p className="text-red-500">No attachments yet.</p>
@@ -80,7 +80,7 @@ export default function AttachmentList({ applicationId }: AttachmentListProps) {
           {attachments.map((attachment) => (
             <div
               key={attachment._id}
-              className="border border-gray-200 rounded p-3 flex justify-between items-center"
+              className="bg-slate-600 rounded p-3 flex justify-between items-center"
             >
               <a
                 href={attachment.fileUrl}

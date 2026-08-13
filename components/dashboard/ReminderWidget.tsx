@@ -176,7 +176,7 @@ export default function ReminderWidget({
 
           <div className="mt-8">
             <h3 className="text-lg font-semibold mb-4">
-              Upcoming Reminders (
+              Upcoming Reminder(s) (
               {totalReminders})
             </h3>
 

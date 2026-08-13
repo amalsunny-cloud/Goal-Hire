@@ -53,7 +53,7 @@ export default async function ApplicationDetailsPage({ params }: ApplicationDeta
       <Link href={"/dashboard"} className="text-red-400 hover:underline">
         ← Back to Dashboard
       </Link>
-      <div className="p-6 space-y-4">
+      <div className="p-6 space-y-4 bg-slate-400/10">
         <h1 className="text-3xl font-bold mt-2">{application.company}</h1>
         <h2 className="font-semibold">Role : {application.role}</h2>
 

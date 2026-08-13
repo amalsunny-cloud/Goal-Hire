@@ -65,10 +65,11 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
     <form onSubmit={handleSubmit}
       className="space-y-4 bg-white p-4 rounded-lg mt-4">
       <h2 className="text-xl font-semibold">Add Interview</h2>
-      <input type="text" placeholder="Technical Round" className="border p-2 w-[75%] rounded" value={round} onChange={(e)=>setRound(e.target.value)} required/>
+      <input type="text" placeholder="Technical Round" className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
-      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="border p-2 w-[75%] rounded"/>
-      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="border p-2 w-[75%] rounded"
+      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]"/>
+
+      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]"
         rows={3}/>
 
         {error && (

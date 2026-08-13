@@ -57,7 +57,7 @@ export default function ApplicationNotes({
     };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-6">
+    <div className="bg-slate-400 rounded-lg p-6">
 
       <h2
         className="text-xl font-semibold mb-4">

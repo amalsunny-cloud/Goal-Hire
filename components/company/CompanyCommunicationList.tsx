@@ -78,7 +78,7 @@ export default function CompanyCommunicationList({
 }: Props) {
   if (communications.length === 0) {
     return (
-      <div className="bg-white rounded-xl border shadow p-6">
+      <div className="bg-white rounded-xl border-gray-500/30 shadow p-6">
         <p className="text-gray-500">
           No communications found.
         </p>
@@ -179,7 +179,7 @@ export default function CompanyCommunicationList({
                 </div>
               )}
 
-              <div className="mt-6 border-t pt-5">
+              <div className="mt-6 border-t border-gray-500/30 pt-5">
 
                 <div className="flex items-center gap-2">
 

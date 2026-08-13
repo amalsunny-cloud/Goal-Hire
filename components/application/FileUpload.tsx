@@ -53,7 +53,7 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
   };
 
   return (
-    <div className="border rounded-lg p-6">
+    <div className="bg-slate-400 rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Attachments</h2>
 
       <input

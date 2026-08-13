@@ -21,7 +21,7 @@ export default function CompanyRecruiterList({
 }: Props) {
   if (recruiters.length === 0) {
     return (
-      <div className="bg-white rounded-xl shadow border p-6">
+      <div className="bg-slate-400/10 rounded-xl shadow border-gray-500/30 p-6">
         <p className="text-gray-500">
           No recruiters found for this company.
         </p>
@@ -58,19 +58,19 @@ export default function CompanyRecruiterList({
           {/* Contact */}
           <div className="grid md:grid-cols-2 gap-4 mt-6">
 
-            <div className="flex items-center gap-3 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <Mail className="w-5 h-5 text-gray-500" />
 
               <span>{recruiter.email}</span>
             </div>
 
-            <div className="flex items-center gap-3 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <Phone className="w-5 h-5 text-gray-500" />
 
               <span>{recruiter.phone || "-"}</span>
             </div>
 
-            <div className="flex items-center gap-3 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <Link className="w-5 h-5 text-gray-500" />
 
               {recruiter.linkedin ? (
@@ -86,7 +86,7 @@ export default function CompanyRecruiterList({
               )}
             </div>
 
-            <div className="flex items-center gap-3 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <Calendar className="w-5 h-5 text-gray-500" />
 
               <span>
@@ -98,7 +98,7 @@ export default function CompanyRecruiterList({
               </span>
             </div>
             
-            <div className="flex items-center gap-3 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
   <Clock className="w-5 h-5 text-gray-500" />
 
   <span>
@@ -115,7 +115,7 @@ export default function CompanyRecruiterList({
           {/* Tags */}
 
           <div className="mt-6">
-            <div className="flex items-center gap-2 mb-2 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <Tag className="w-5 h-5 text-gray-500" />
 
               <span className="font-medium">
@@ -123,7 +123,7 @@ export default function CompanyRecruiterList({
               </span>
             </div>
 
-            <div className="flex flex-wrap gap-2 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               {recruiter.tags?.length ? (
                 recruiter.tags.map((tag) => (
                   <span
@@ -144,7 +144,7 @@ export default function CompanyRecruiterList({
           {/* Notes */}
 
           <div className="mt-6">
-            <div className="flex items-center gap-2 mb-2 border-b">
+            <div className="flex items-center py-2 gap-3 border-b border-gray-500/30 w-[25%]">
               <FileText className="w-5 h-5 text-gray-500" />
 
               <span className="font-medium">

@@ -308,8 +308,8 @@ export default function Dashboard() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <SourceAnalytics applications={applications} />
+          <div className="">
             <SourceSuccessAnalytics applications={applications} />
           </div>
 
@@ -350,21 +350,21 @@ export default function Dashboard() {
           
 
           {/* Filter, Search & Sorting Panel */}
-          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-4">
+          <div className="bg-slate-400/10 border-slate-800 p-5 rounded-2xl space-y-4">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               <input
                 type="text"
                 placeholder="Search by company or role..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full md:w-1/2 px-4 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full md:w-1/2 px-4 py-2.5 border-b border-gray-500/30 text-gray-700 placeholder-slate-500 text-xs focus:outline-none "
               />
 
               <div className="flex w-full md:w-auto items-center gap-3">
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full md:w-auto px-3.5 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full md:w-auto px-3.5 py-2.5 border-b border-gray-500/30 text-gray-700 text-xs focus:outline-none"
                 >
                   <option value="All">All Statuses</option>
                   <option value="Applied">Applied</option>
@@ -376,7 +376,7 @@ export default function Dashboard() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full md:w-auto px-3.5 py-2.5 bg-slate-800/60 border border-slate-700/60 rounded-xl text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full md:w-auto px-3.5 py-2.5 border-b border-gray-500/30 text-gray-700 text-xs focus:outline-none"
                 >
                   <option value="newest">Sort: Newest</option>
                   <option value="oldest">Sort: Oldest</option>
@@ -405,7 +405,6 @@ export default function Dashboard() {
 
           <UpcomingInterviews interviews={upcomingInterviews} />
           <RecentActivity applications={applications} />
-          <RecentApplications applications={applications} />
         </div>
       )}
     </div>

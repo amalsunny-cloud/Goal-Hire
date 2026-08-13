@@ -14,26 +14,26 @@ export default function StreakTracker({ applications }: StreakTrackerProps) {
       <h2 className="text-xl font-semibold mb-6">Job Search Streak</h2>
 
       <div className="grid md:grid-cols-3 gap-4">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <p className="text-gray-500">Current Streak</p>
 
-          <h3 className="text-3xl font-bold">{streak.currentStreak}</h3>
+          <h3 className="text-3xl font-bold">{streak.currentStreak || "0"}</h3>
 
-          <p>Days</p>
+          <p>Day(s)</p>
         </div>
 
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <p className="text-gray-500">Longest Streak</p>
 
           <h3 className="text-3xl font-bold">{streak.longestStreak}</h3>
 
-          <p>Days</p>
+          <p>Day(s)</p>
         </div>
 
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <p className="text-gray-500">Applied Today</p>
 
-          <span role="img" aria-label={streak.appliedToday ? "Applied today" : "Did not apply today"}>
+          <span role="img" aria-label={streak.appliedToday ? "Applied today" : "Did not apply today"} className="mt-4">
             {streak.appliedToday ? "✅" : "❌"}
           </span>
         </div>

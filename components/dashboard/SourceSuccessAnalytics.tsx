@@ -67,7 +67,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
                 </div>
               </div>
 
-              <div className="mt-4 border-t pt-3 space-y-1">
+              <div className="mt-4 border-t border-gray-500/30 pt-3 space-y-1">
                 <p>
                   Interview Rate:{" "}
                   <span className="font-semibold">

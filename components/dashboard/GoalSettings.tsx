@@ -65,14 +65,14 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
     <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2 className="text-xl font-semibold mb-4">Goal Settings</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-6 mt-2">
         <label htmlFor="applicationGoal">Application Goal :</label>
         <input id="applicationGoal"
           type="number"
           value={applicationGoal}
           min={1}
           onChange={(e) => setApplicationGoal(Number(e.target.value))}
-          className="border p-2 rounded w-full"
+          className=" px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
           placeholder="Application Goal"
         />
 
@@ -83,7 +83,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
           value={interviewGoal}
           min={1}
           onChange={(e) => setInterviewGoal(Number(e.target.value))}
-          className="border p-2 rounded w-full"
+          className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
           placeholder="Interview Goal"
         />
 
@@ -94,14 +94,14 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
           value={offerGoal}
           min={1}
           onChange={(e) => setOfferGoal(Number(e.target.value))}
-          className="border p-2 rounded w-full"
+          className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
           placeholder="Offer Goal"
         />
 
         <button
           onClick={saveGoals}
           disabled={loading}
-          className="bg-black text-white px-4 py-2 rounded">
+          className="bg-black text-white px-4 py-2.5 rounded">
           {loading ? "Saving..." : "Save Goals"}
         </button>
       </div>

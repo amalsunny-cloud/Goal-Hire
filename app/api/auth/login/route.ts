@@ -19,7 +19,7 @@ export async function POST(req :Request){
         }
 
         // Find user
-        const user = await User.findOne({email});
+        const user = await User.findOne({email}).lean();
         if(!user){
             return NextResponse.json(
                 {error: "Invalid Credentials"},
@@ -32,7 +32,7 @@ export async function POST(req :Request){
 
         if(!isMatch){
             return NextResponse.json(
-                { error: "Password not matches" },
+                { error: "Invalid Credentials" },
                 { status: 400 },
             )
         }
@@ -60,7 +60,7 @@ export async function POST(req :Request){
         response.cookies.set("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "lax",
             maxAge: 60*60*24*7,
             path:"/",
         });

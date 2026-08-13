@@ -193,7 +193,7 @@ export default function RecruiterSection({ applicationId }: Props) {
     placeholder="Search recruiter..."
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="border p-2 rounded flex-1 min-w-[250px]"
+    className="border p-2 rounded flex-1 min-w-62.5"
   />
 
   <select

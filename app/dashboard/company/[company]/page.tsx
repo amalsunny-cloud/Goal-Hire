@@ -3,6 +3,7 @@ import CompanyDetails from "@/components/company/CompanyDetails";
 import { Application } from "@/types/application";
 import { Recruiter } from "@/types/recruiter";
 import { RecruiterCommunication } from "@/types/recruiterCommunication";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -95,10 +96,15 @@ export default function CompanyDetailsPage() {
 }
 
   return (
+    <>
+    <div className="text-start bg-white text-gray-900">
+    <Link href={'/dashboard/company'} className="text-blue-800 hover:text-blue-600">← back</Link>
+    </div>
     <CompanyDetails
       company={company}
       recruiters={recruiters}
       communications={communications}
     />
+    </>
   );
 }
