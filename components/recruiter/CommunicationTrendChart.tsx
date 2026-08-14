@@ -35,7 +35,7 @@ export default function CommunicationTrendChart({
   const data = getMonthlyCommunicationData(communications)
 
   return (
-    <div className="border rounded-lg bg-white p-6 shadow-sm">
+    <div className="rounded-lg bg-slate-400/10 p-6 shadow-sm">
       <h2 className="text-xl font-semibold mb-6">
         Communication Trend
       </h2>

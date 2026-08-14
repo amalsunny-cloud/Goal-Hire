@@ -115,12 +115,12 @@ export default function RecruiterCard({
   };
 
   return (
-    <div className="border rounded-lg p-5 bg-white shadow-sm">
+    <div className="rounded-lg p-5 bg-slate-400/10 shadow-sm">
       {editing ? (
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border p-2 rounded w-full"
+          className="border-b border-gray-500/30 p-2 w-full"
         />
       ) : (
         <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
@@ -141,7 +141,7 @@ export default function RecruiterCard({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b border-gray-500/30 p-2 w-full"
             />
           ) : (
             <p>{recruiter.email || "No email"}</p>
@@ -156,7 +156,7 @@ export default function RecruiterCard({
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b border-gray-500/30 p-2 w-full"
             />
           ) : (
             <p>{recruiter.phone || "No phone number"}</p>
@@ -171,7 +171,7 @@ export default function RecruiterCard({
               type="url"
               value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b border-gray-500/30 p-2 w-full"
             />
           ) : recruiter.linkedin ? (
             <a
@@ -195,7 +195,7 @@ export default function RecruiterCard({
               type="date"
               value={lastContact}
               onChange={(e) => setLastContact(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b border-gray-500/30 p-2 w-full"
             />
           ) : (
             <p>
@@ -214,7 +214,7 @@ export default function RecruiterCard({
               type="date"
               value={nextFollowUp}
               onChange={(e) => setNextFollowUp(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b border-gray-500/30 p-2 w-full"
             />
           ) : (
             <p>

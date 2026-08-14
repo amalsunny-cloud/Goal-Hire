@@ -77,13 +77,13 @@ export default function CommunicationCard({
   };
 
   return (
-    <div className="border rounded-lg p-5 bg-gray-50 shadow-sm">
+    <div className="rounded-lg p-5 bg-slate-400/10 shadow-sm">
       {editing ? (
         <>
           <select
             value={type}
             onChange={(e) => setType(e.target.value as CommunicationType)}
-            className="border p-2 rounded w-full mb-3"
+            className="p-2 w-full mb-3"
           >
             <option value="Email">Email</option>
 
@@ -102,21 +102,21 @@ export default function CommunicationCard({
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="border p-2 rounded w-full mb-3"
+            className="border-b border-gray-500/30 p-2 w-full mb-3"
           />
 
           <input
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            className="border p-2 rounded w-full mb-3"
+            className="border-b border-gray-500/30 p-2 w-full mb-3"
           />
 
           <textarea
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="border p-2 rounded w-full"
+            className="border-b border-gray-500/30 p-2 w-full"
           />
         </>
       ) : (

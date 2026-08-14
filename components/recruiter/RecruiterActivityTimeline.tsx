@@ -237,7 +237,7 @@ export default function RecruiterActivityTimeline({
 
 
   return (
-    <div className="border rounded-lg bg-white p-6 shadow-sm">
+    <div className="rounded-lg bg-slate-400/10 p-6 shadow-sm">
       <h2 className="text-xl font-semibold mb-8">Activity Timeline</h2>
 
       {events.length === 0 ? (
@@ -260,7 +260,7 @@ export default function RecruiterActivityTimeline({
                     <div
                       className={`
                       absolute
-                      -left-[44px]
+                      -left-11
                       top-0
                       bg-white
                       p-1

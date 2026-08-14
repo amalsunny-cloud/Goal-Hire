@@ -193,13 +193,13 @@ export default function RecruiterSection({ applicationId }: Props) {
     placeholder="Search recruiter..."
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="border p-2 rounded flex-1 min-w-62.5"
+    className="border-b border-gray-500/30 p-2 flex-1 min-w-62.5"
   />
 
   <select
     value={filter}
     onChange={(e) => setFilter(e.target.value)}
-    className="border rounded p-2"
+    className="border-b border-gray-500/30 p-2"
   >
     <option value="All">All Status</option>
     <option value="Upcoming">Upcoming</option>
@@ -210,7 +210,7 @@ export default function RecruiterSection({ applicationId }: Props) {
   <select
     value={tagFilter}
     onChange={(e) => setTagFilter(e.target.value)}
-    className="border rounded p-2"
+    className="border-b border-gray-500/30 p-2"
   >
     <option value="All">All Tags</option>
 

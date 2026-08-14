@@ -81,12 +81,12 @@ export default function EmailTemplates({recruiterName, company}:Props) {
 
 
   return (
-    <div className="border rounded-lg p-6 bg-white shadow-sm">
+    <div className="mt-5 rounded-lg p-6 bg-white shadow-sm">
        <h2 className="text-xl font-semibold mb-6">
         Email Templates
       </h2>
 
-      <select className="border rounded p-2 w-full mb-5" value={selected} onChange={(e)=>setSelected(e.target.value as keyof typeof templates)}>
+      <select className="border-b border-gray-500/30 p-2 w-full mb-5" value={selected} onChange={(e)=>setSelected(e.target.value as keyof typeof templates)}>
         <option value="application">Follow-up After Application</option>
         <option value="interview">Follow-up After Interview</option>
         <option value="thankyou">Thank You</option>
@@ -94,7 +94,7 @@ export default function EmailTemplates({recruiterName, company}:Props) {
         <option value="reconnect">Keep In Touch</option>
       </select>
 
-      <textarea readOnly value={email} rows={14} className="border rounded p-3 w-full"></textarea>
+      <textarea readOnly value={email} rows={14} className="bg-slate-400/10 rounded p-3 w-full"></textarea>
 
       <button onClick={copy} className="mt-5 bg-blue-600 text-white px-5 py-2 rounded">Copy Email</button>
     </div>

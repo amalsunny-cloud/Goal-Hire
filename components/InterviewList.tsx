@@ -62,7 +62,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
 
   if (interviews.length === 0) {
     return (
-      <div className="border rounded p-4">
+      <div className="bg-slate-400/10 rounded p-4">
         <h2
           className="
           text-xl
@@ -115,7 +115,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Interviews</h2>
       {interviews.map((interview) => (
-        <div key={interview._id} className="border rounded p-4 space-y-2">
+        <div key={interview._id} className="bg-slate-400/10 rounded p-4 space-y-2">
           <div className="flex justify-between">
             <h3 className="font-bold">{interview.round}</h3>
             <button

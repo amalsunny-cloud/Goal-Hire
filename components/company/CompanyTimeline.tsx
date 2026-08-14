@@ -116,7 +116,7 @@ export default function CompanyTimeline({
 
   if (events.length === 0) {
   return (
-    <div className="bg-white rounded-xl border shadow p-6">
+    <div className="bg-slate-400/10 rounded-xl shadow p-6">
       <p className="text-gray-500">
         No activity found.
       </p>
@@ -130,9 +130,6 @@ export default function CompanyTimeline({
       <h2 className="text-2xl font-semibold">
         Activity Timeline
       </h2>
-
-
-      
 
       {events.map((event) => (
         <div

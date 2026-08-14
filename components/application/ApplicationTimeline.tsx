@@ -73,7 +73,7 @@ export default function ApplicationTimeline({
     );
   }
   return (
-    <div className="border rounded-lg p-6">
+    <div className="bg-slate-400/10 rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Timeline</h2>
 
       <div className="space-y-4">
