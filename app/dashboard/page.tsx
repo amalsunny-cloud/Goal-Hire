@@ -9,7 +9,10 @@ import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
 import LogoutButton from "@/components/LogoutButton";
 import RecentApplications from "@/components/RecentApplications";
-import { Application } from "@/types/application";
+import {
+  Application,
+  ApplicationStatus,
+} from "@/types/application";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -160,32 +163,83 @@ export default function Dashboard() {
     }
   };
 
-  const updateStatus = async (id: string, status: string) => {
-    try {
-      const response = await fetch(`/api/applications/${id}`, {
+  const updateStatus = async (
+  id: string,
+  status: ApplicationStatus,
+): Promise<boolean> => {
+  // Find the current application
+  const currentApplication = applications.find(
+    (application) => application._id === id,
+  );
+
+  if (!currentApplication) {
+    return false;
+  }
+
+  const previousStatus =
+    currentApplication.status;
+
+  // Optimistic UI update
+  setApplications((prev) =>
+    prev.map((application) =>
+      application._id === id
+        ? {
+            ...application,
+            status,
+          }
+        : application,
+    ),
+  );
+
+  try {
+    const response = await fetch(
+      `/api/applications/${id}`,
+      {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":
+            "application/json",
         },
         body: JSON.stringify({
           status,
         }),
-      });
+      },
+    );
 
-      if (!response.ok) {
-        toast.error("Failed to update status");
-        throw new Error();
-      }
-
-      toast.success("Status updated");
-
-      setTimeout(() => {
-        fetchApplications();
-      }, 1000);
-    } catch (error) {
-      console.error(error);
+    if (!response.ok) {
+      throw new Error(
+        "Failed to update status",
+      );
     }
-  };
+
+    toast.success("Status updated");
+
+    return true;
+  } catch (error) {
+    console.error(
+      "Status update failed:",
+      error,
+    );
+
+    // Rollback optimistic update
+    setApplications((prev) =>
+      prev.map((application) =>
+        application._id === id
+          ? {
+              ...application,
+              status: previousStatus,
+            }
+          : application,
+      ),
+    );
+
+    toast.error(
+      "Failed to update status",
+    );
+
+    return false;
+  }
+};
 
   const filteredApplications = applications
     .filter((app) => {
@@ -323,9 +377,9 @@ export default function Dashboard() {
       {activeTab === "workflow" && (
         <div className="space-y-8">
           <KanbanBoard
-            applications={applications}
-            onRefresh={fetchApplications}
-          />
+  applications={applications}
+  onStatusChange={updateStatus}
+/>
           <ApplicationCalendar
             applications={applications}
             interviews={interviews}

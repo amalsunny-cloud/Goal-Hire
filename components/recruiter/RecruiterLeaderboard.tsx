@@ -100,7 +100,7 @@ export default function RecruiterLeaderboard({
   };
 
   return (
-    <div className="border rounded-lg p-6 bg-white shadow-sm">
+    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
       <h2 className="text-xl font-semibold mb-6">
         Recruiter Leaderboard
       </h2>
@@ -114,7 +114,7 @@ export default function RecruiterLeaderboard({
           {leaderboard.map((item, index) => (
             <div
               key={item.recruiter._id}
-              className="border rounded-lg p-5 bg-gray-50"
+              className="rounded-lg p-5 bg-gray-50"
             >
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
@@ -122,19 +122,7 @@ export default function RecruiterLeaderboard({
                     {medal(index)}
                   </div>
 
-                  <div
-                    className="
-                      w-12
-                      h-12
-                      rounded-full
-                      bg-blue-600
-                      text-white
-                      flex
-                      items-center
-                      justify-center
-                      font-bold
-                    "
-                  >
+                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
                     {(item.recruiter.name ?? "Unknnown")
                       .split(" ")
                       .map((word) => word[0])
@@ -225,7 +213,7 @@ function Stat({
   value,
 }: StatProps) {
   return (
-    <div className="border rounded p-3 bg-white">
+    <div className="rounded p-3 bg-slate-400/10">
       <p className="text-gray-500 text-sm">
         {label}
       </p>

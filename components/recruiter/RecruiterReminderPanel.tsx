@@ -89,7 +89,6 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
             <div
               key={recruiter._id}
               className="
-                border
                 rounded-lg
                 p-4
                 bg-gray-50
@@ -115,29 +114,29 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
   );
 
   return (
-    <div className="border rounded-lg p-6 bg-white shadow-sm">
+    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
       <h2 className="text-xl font-semibold mb-6">Recruiter Reminder Center</h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="border rounded-lg p-4 text-center bg-red-50">
+        <div className="rounded-lg p-4 text-center bg-red-50">
           <h3 className="text-red-600 font-semibold">Overdue</h3>
 
           <p className="text-3xl font-bold">{overdue.length}</p>
         </div>
 
-        <div className="border rounded-lg p-4 text-center bg-yellow-50">
+        <div className="rounded-lg p-4 text-center bg-yellow-50">
           <h3 className="text-yellow-600 font-semibold">Today</h3>
 
           <p className="text-3xl font-bold">{todayList.length}</p>
         </div>
 
-        <div className="border rounded-lg p-4 text-center bg-blue-50">
+        <div className="rounded-lg p-4 text-center bg-blue-50">
           <h3 className="text-blue-600 font-semibold">Tomorrow</h3>
 
           <p className="text-3xl font-bold">{tomorrowList.length}</p>
         </div>
 
-        <div className="border rounded-lg p-4 text-center bg-green-50">
+        <div className="rounded-lg p-4 text-center bg-green-50">
           <h3 className="text-green-600 font-semibold">Upcoming</h3>
 
           <p className="text-3xl font-bold">{upcoming.length}</p>

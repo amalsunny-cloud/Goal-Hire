@@ -19,29 +19,29 @@ export default function CompanyInsights({
 
   return (
     <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
-      <h2 className="text-xl font-semibold mb-6">Company Insights</h2>
+      <h2 className="text-2xl font-semibold mb-6">Company Insights</h2>
 
       <div className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div>
+        <div className="py-2">
           <p className="text-gray-500">Top Location</p>
 
-          <h3 className="text-xl font-bold">
+          <h4 className="text-xl font-bold">
             {insights.topLocation || "No data"}
-          </h3>
+          </h4>
         </div>
 
-        <div>
+        <div className="py-2">
           <p className="text-gray-500">Top Role</p>
 
-          <h3 className="text-xl font-bold">{insights.topRole || "No data"}</h3>
+          <h4 className="text-xl font-bold">{insights.topRole || "No data"}</h4>
         </div>
 
-        <div>
+        <div className="py-2">
           <p className="text-gray-500">Top Company</p>
 
-          <h3 className="text-xl font-bold">
+          <h4 className="text-xl font-bold">
             {insights.topCompany || "No data"}
-          </h3>
+          </h4>
         </div>
       </div>
 

@@ -73,19 +73,8 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
     <>
     <form
       onSubmit={handleSubmit}
-      className="
-        border
-        rounded-lg
-        p-6
-        space-y-4
-      "
-    >
-      <h2
-        className="
-          text-xl
-          font-semibold
-        "
-      >
+      className="bg-slate-400/10 rounded-lg p-6 space-y-4">
+      <h2 className="text-xl font-semibold">
         Recruiter Information
       </h2>
 
@@ -94,52 +83,28 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         placeholder="Recruiter Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      />
+        className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/> 
 
       <input
         type="email"
         placeholder="Recruiter Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      />
+        className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
 
       <input
         type="text"
         placeholder="Phone Number"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      />
+        className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
 
       <input
         type="url"
         placeholder="LinkedIn URL"
         value={linkedin}
         onChange={(e) => setLinkedin(e.target.value)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      />
+        className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
 
       <div>
         <label>Last Contact</label>
@@ -148,13 +113,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           type="date"
           value={lastContact}
           onChange={(e) => setLastContact(e.target.value)}
-          className="
-            border
-            p-2
-            rounded
-            w-full
-          "
-        />
+          className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
       </div>
 
       <div>
@@ -164,13 +123,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           type="date"
           value={nextFollowUp}
           onChange={(e) => setNextFollowUp(e.target.value)}
-          className="
-            border
-            p-2
-            rounded
-            w-full
-          "
-        />
+          className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
       </div>
 
       <textarea
@@ -178,26 +131,12 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         placeholder="Notes"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      />
+        className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
 
       <button
         type="submit"
         disabled={loading}
-        className="
-          bg-black
-          text-white
-          px-4
-          py-2
-          rounded
-          disabled:opacity-50
-        "
-      >
+        className="bg-black text-white px-4 py-2 rounded disabled:opacity-50">
         {loading ? "Saving..." : "Save Recruiter"}
       </button>
     </form>

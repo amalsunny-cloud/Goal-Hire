@@ -1,11 +1,14 @@
-import { Application } from "@/types/application";
+import {
+  Application,
+  ApplicationStatus,
+} from "@/types/application";
 import {
   Droppable,
   Draggable,
 } from "@hello-pangea/dnd";
 
 interface Props {
-  title: string;
+  title: ApplicationStatus;
   applications: Application[];
 }
 
@@ -37,38 +40,44 @@ export default function KanbanColumn({
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="space-y-3"
+            className="space-y-3 min-h-[200px]"
           >
             {applications.map(
-              (app, index) => (
+              (application, index) => (
                 <Draggable
-                  key={app._id}
-                  draggableId={app._id}
+                  key={application._id}
+                  draggableId={application._id}
                   index={index}
                 >
-                  {(provided) => (
+                  {(provided, snapshot) => (
                     <div
-                      ref={
-                        provided.innerRef
-                      }
+                      ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      className="
+                      className={`
                         bg-white
                         p-3
                         rounded-lg
                         shadow
-                      "
+                        transition-shadow
+                        ${
+                          snapshot.isDragging
+                            ? "shadow-xl"
+                            : ""
+                        }
+                      `}
                     >
                       <h3 className="font-semibold">
-                        {app.company}
+                        {application.company}
                       </h3>
 
-                      <p>{app.role}</p>
+                      <p className="text-sm text-gray-600">
+                        {application.role}
+                      </p>
                     </div>
                   )}
                 </Draggable>
-              )
+              ),
             )}
 
             {provided.placeholder}

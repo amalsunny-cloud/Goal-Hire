@@ -1,7 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { useMemo, useState } from "react";
+import {
+  Calendar,
+  momentLocalizer,
+  View,
+} from "react-big-calendar";
 import moment from "moment";
 import { Application } from "@/types/application";
 import { Interview } from "@/types/interview";
@@ -25,6 +29,11 @@ export default function ApplicationCalendar({
   applications,
   interviews,
 }: ApplicationCalendarProps) {
+ 
+  const [view, setView] = useState<View>("month");
+
+  const [date, setDate] = useState<Date>(new Date());
+
   const events = useMemo<CalendarEvent[]>(() => {
     const interviewEvents = interviews
       .filter((interview) => interview.date)
@@ -40,19 +49,22 @@ export default function ApplicationCalendar({
       });
 
     const followUpEvents = applications
-      .filter((app) => app.followUpDate)
-      .map((app) => {
-        const date = new Date(app.followUpDate!);
+      .filter((application) => application.followUpDate)
+      .map((application) => {
+        const date = new Date(application.followUpDate!);
 
         return {
-          title: `📧 ${app.company}`,
+          title: `📧 ${application.company}`,
           start: date,
           end: date,
           type: "followUp" as const,
         };
       });
 
-    return [...interviewEvents, ...followUpEvents];
+    return [
+      ...interviewEvents,
+      ...followUpEvents,
+    ];
   }, [applications, interviews]);
 
   if (events.length === 0) {
@@ -75,20 +87,47 @@ export default function ApplicationCalendar({
         Calendar View
       </h2>
 
-      <div className="h-150">
+      <div style={{ height: 600 }}>
         <Calendar
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
+
+          /* Controlled view */
+          view={view}
+          onView={(newView) => {
+            setView(newView);
+          }}
+
+          /* Controlled date */
+          date={date}
+          onNavigate={(newDate) => {
+            setDate(newDate);
+          }}
+
+          /* Initial view */
           defaultView="month"
+
+          /* Toolbar */
+          toolbar={true}
+
+          /*
+           * Show "more" popup when there are
+           * many events on one day.
+           */
           popup
+
           eventPropGetter={(event) => ({
             style: {
               backgroundColor:
                 event.type === "interview"
                   ? "#2563eb"
                   : "#ca8a04",
+
+              borderRadius: "6px",
+              border: "none",
+              color: "white",
             },
           })}
         />

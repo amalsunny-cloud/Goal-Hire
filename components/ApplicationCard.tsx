@@ -1,10 +1,10 @@
-import { Application } from "@/types/application";
+import { Application, ApplicationStatus } from "@/types/application";
 import Link from "next/link";
 
 interface ApplicationCardProps {
   application: Application;
   onDelete: (id: string) => void;
-  onStatusChange: (id: string, status: string) => void;
+  onStatusChange: (id: string, status: ApplicationStatus) => Promise<boolean>;
 }
 
 const statusColor: Record<

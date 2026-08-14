@@ -1,106 +1,107 @@
 "use client";
 
-import { Application } from "@/types/application";
+import { Application, ApplicationStatus } from "@/types/application";
 import KanbanColumn from "./KanbanColumn";
 import {
   DragDropContext,
   DropResult,
 } from "@hello-pangea/dnd";
 import toast from "react-hot-toast";
-import { useMemo } from "react";
 
 interface KanbanBoardProps {
-    applications: Application[];
-    onRefresh: ()=> Promise<void>;
+  applications: Application[];
+  onStatusChange: (
+    id: string,
+    status: ApplicationStatus,
+  ) => Promise<boolean>;
 }
+
+const statuses: ApplicationStatus[] = [
+  "Applied",
+  "Interview",
+  "Offer",
+  "Rejected",
+];
 
 export default function KanbanBoard({
   applications,
-  onRefresh,
+  onStatusChange,
 }: KanbanBoardProps) {
+  const applied = applications.filter(
+    (app) => app.status === "Applied",
+  );
 
-  const applied = applications.filter((app) =>app.status === "Applied");
+  const interview = applications.filter(
+    (app) => app.status === "Interview",
+  );
 
-  const interview = applications.filter((app) => app.status === "Interview");
+  const offer = applications.filter(
+    (app) => app.status === "Offer",
+  );
 
-  const offer = applications.filter((app) => app.status === "Offer");
+  const rejected = applications.filter(
+    (app) => app.status === "Rejected",
+  );
 
-  const rejected = applications.filter((app) => app.status === "Rejected");
+  const onDragEnd = async (result: DropResult) => {
+    const {
+      destination,
+      source,
+      draggableId,
+    } = result;
 
+    // User dropped outside a column
+    if (!destination) {
+      return;
+    }
 
-  const onDragEnd =
-    async (
-      result: DropResult
-    ) => {
+    // Nothing changed
+    if (
+      source.droppableId === destination.droppableId
+    ) {
+      return;
+    }
 
-      const {
-        destination,
-        source,
+    const newStatus =
+      destination.droppableId as ApplicationStatus;
+
+    // Make sure the destination is valid
+    if (!statuses.includes(newStatus)) {
+      console.error(
+        "Invalid Kanban destination:",
+        destination.droppableId,
+      );
+
+      toast.error("Invalid application status");
+
+      return;
+    }
+
+    try {
+      const success = await onStatusChange(
         draggableId,
-      } = result;
+        newStatus,
+      );
 
-      if (!destination) {
-        return;
-      }
-
-      if (
-        source.droppableId ===
-        destination.droppableId
-      ) {
-        return;
-      }
-
-      const newStatus =
-        destination.droppableId;
-
-      try {
-
-        const response =
-          await fetch(
-            `/api/applications/${draggableId}`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type":
-                  "application/json",
-              },
-              body: JSON.stringify({
-                status:
-                  newStatus,
-              }),
-            }
-          );
-
-        if (!response.ok) {
-          throw new Error(
-            "Failed to update status"
-          );
-        }
-
-        console.log(
-          "Status updated:",
-          newStatus
+      if (!success) {
+        toast.error(
+          "Failed to update application status",
         );
-
-        // window.location.reload();
-        await onRefresh();
-
-      } catch (error) {
-
-        console.error(
-          "Drag update failed:",
-          error
-        );
-
-        toast.error("Failed to update application status")
-
       }
-    };
+    } catch (error) {
+      console.error(
+        "Kanban status update failed:",
+        error,
+      );
+
+      toast.error(
+        "Failed to update application status",
+      );
+    }
+  };
 
   return (
-    <DragDropContext
-      onDragEnd={onDragEnd}
-    >
+    <DragDropContext onDragEnd={onDragEnd}>
       <div
         className="
           grid
@@ -110,7 +111,6 @@ export default function KanbanBoard({
           gap-4
         "
       >
-
         <KanbanColumn
           title="Applied"
           applications={applied}
@@ -130,7 +130,6 @@ export default function KanbanBoard({
           title="Rejected"
           applications={rejected}
         />
-
       </div>
     </DragDropContext>
   );

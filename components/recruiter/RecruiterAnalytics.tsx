@@ -76,14 +76,7 @@ export default function RecruiterAnalytics({
     sortedMethods.length > 0 ? sortedMethods[0][0] : "None";
 
   return (
-    <div
-      className="
-        border
-        rounded-lg
-        p-6
-        bg-white
-      "
-    >
+    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
       <h2
         className="
           text-xl
@@ -126,7 +119,7 @@ interface CardProps {
 
 function StatCard({ title, value }: CardProps) {
   return (
-    <div className="border rounded-lg p-5 text-center bg-gray-50">
+    <div className="rounded-lg p-5 text-center bg-gray-50">
       <h3 className="text-gray-500 text-sm">{title}</h3>
 
       <p className="text-3xl font-bold mt-2">{value}</p>

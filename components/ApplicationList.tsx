@@ -1,31 +1,43 @@
-import { Application } from "@/types/application";
+import {
+  Application,
+  ApplicationStatus,
+} from "@/types/application";
 import ApplicationCard from "./ApplicationCard";
 
-interface ApplicationListProps {
+interface ListProps {
   applications: Application[];
-  onDelete: (id: string)=> void;
+
+  onDelete: (id: string) => void;
+
   onStatusChange: (
     id: string,
-    status: string,
-  )=> void;
+    status: ApplicationStatus,
+  ) => Promise<boolean>;
 }
 
-export default function ApplicationList({ applications,onDelete, onStatusChange }: ApplicationListProps) {
-  
-  if (applications.length === 0)
+export default function ApplicationList({
+  applications,
+  onDelete,
+  onStatusChange,
+}: ListProps) {
+  if (applications.length === 0) {
     return (
-      <div className="text-center flex justify-center items-center rounded-lg p-6 bg-slate-400/10">
-        <p className="text-red-600 font-semibold">No applications match your filters.</p>
+      <div className="text-center flex justify-center items-center border rounded-lg p-6 bg-white">
+        <p className="text-red-600 font-semibold">
+          No matching application found.
+        </p>
       </div>
     );
+  }
+
   return (
     <div className="space-y-4">
-      {applications.map((app) => (
-        <ApplicationCard key={app._id}
-        application={app}
-        onDelete={onDelete}
-        onStatusChange={onStatusChange}
-        
+      {applications.map((application) => (
+        <ApplicationCard
+          key={application._id}
+          application={application}
+          onDelete={onDelete}
+          onStatusChange={onStatusChange}
         />
       ))}
     </div>

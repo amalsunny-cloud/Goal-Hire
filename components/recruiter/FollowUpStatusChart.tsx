@@ -71,7 +71,7 @@ export default function FollowUpStatusChart({
   ].filter((item) => item.value > 0);
 
   return (
-    <div className="border rounded-lg bg-white p-6 shadow-sm">
+    <div className="rounded-lg bg-slate-400/10 p-6 shadow-sm">
       <h2 className="text-xl font-semibold mb-6">
         Follow-up Status
       </h2>
