@@ -241,7 +241,7 @@ export default function RecruiterActivityTimeline({
       <h2 className="text-xl font-semibold mb-8">Activity Timeline</h2>
 
       {events.length === 0 ? (
-        <p>No activity yet.</p>
+        <p className="text-gray-500">No activity yet.</p>
       ) : (
         <>
           {Object.entries(groupedEvents).map(([label, items]) => (

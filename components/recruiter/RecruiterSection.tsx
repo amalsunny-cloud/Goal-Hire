@@ -193,13 +193,13 @@ export default function RecruiterSection({ applicationId }: Props) {
     placeholder="Search recruiter..."
     value={search}
     onChange={(e) => setSearch(e.target.value)}
-    className="border-b border-gray-500/30 p-2 flex-1 min-w-62.5"
+    className="border-b border-gray-500/30 p-2 flex-1 min-w-62.5 focus:outline-none"
   />
 
   <select
     value={filter}
     onChange={(e) => setFilter(e.target.value)}
-    className="border-b border-gray-500/30 p-2"
+    className="border-b border-gray-500/30 p-2 focus:outline-none"
   >
     <option value="All">All Status</option>
     <option value="Upcoming">Upcoming</option>
@@ -210,7 +210,7 @@ export default function RecruiterSection({ applicationId }: Props) {
   <select
     value={tagFilter}
     onChange={(e) => setTagFilter(e.target.value)}
-    className="border-b border-gray-500/30 p-2"
+    className="border-b border-gray-500/30 p-2 focus:outline-none"
   >
     <option value="All">All Tags</option>
 
@@ -229,7 +229,7 @@ export default function RecruiterSection({ applicationId }: Props) {
         {loading ? (
           <p>Loading...</p>
         ) : filteredRecruiters.length === 0 ? (
-          <p>No recruiters added.</p>
+          <p className="text-gray-500">No recruiters added.</p>
         ) : (
           <div className="space-y-4">
             {filteredRecruiters.map((recruiter) => (

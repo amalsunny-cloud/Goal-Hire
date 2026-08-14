@@ -106,17 +106,18 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         onChange={(e) => setLinkedin(e.target.value)}
         className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
 
-      <div>
+      <div className="text-start">
         <label>Last Contact</label>
 
         <input
           type="date"
           value={lastContact}
+          
           onChange={(e) => setLastContact(e.target.value)}
           className="border-b border-gray-200 p-2 shadow-md focus-outline-none w-full"/>
       </div>
 
-      <div>
+      <div className="text-start">
         <label>Next Follow-up</label>
 
         <input

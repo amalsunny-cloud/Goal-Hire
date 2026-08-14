@@ -61,13 +61,16 @@ export default function ResponsePieChart({
     },
   ].filter((item)=>item.value >0);
 
+  const hasData = data.length > 0;
+
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
       <h2 className="text-xl font-semibold mb-6">
         Recruiter Response Distribution
       </h2>
 
-      <div style={{ width: "100%", height: 350 }}>
+      {hasData ? (
+        <div style={{ width: "100%", height: 350 }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie
@@ -96,6 +99,12 @@ export default function ResponsePieChart({
           </PieChart>
         </ResponsiveContainer>
       </div>
+      ):(
+        <div>
+        <p>No data available</p>
+        </div>
+      )}
+      
     </div>
   );
 }

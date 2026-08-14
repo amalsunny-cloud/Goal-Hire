@@ -15,7 +15,10 @@ export default function RecruiterExport({
   communications,
 }: Props) {
 
+  const hasData = recruiters.length > 0;
+
   const exportCSV = () => {
+    if(!hasData) return;
     const rows = recruiters.map((recruiter) => {
       const communicationCount = communications.filter(
         (communication) =>
@@ -80,6 +83,8 @@ export default function RecruiterExport({
   };
 
   const exportPDF = () => {
+    if(!hasData) return;
+
     const doc = new jsPDF();
 
     doc.setFontSize(18);
@@ -140,7 +145,7 @@ export default function RecruiterExport({
   };
 
   return (
-    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
+    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm flex flex-col justify-center items-center">
 
       <h2 className="text-xl font-semibold mb-5">
         Export Recruiter Data
@@ -150,20 +155,34 @@ export default function RecruiterExport({
 
         <button
           onClick={exportCSV}
-          className="bg-green-600 text-white px-4 py-2 rounded"
+          disabled={!hasData}
+          className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+            hasData
+              ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+              : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
+          }`}
         >
           Export CSV
         </button>
 
         <button
           onClick={exportPDF}
-          className="bg-red-600 text-white px-4 py-2 rounded"
+          disabled={!hasData}
+          className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+            hasData
+              ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+              : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
+          }`}
         >
           Export PDF
         </button>
 
       </div>
-
+          {!hasData && (
+        <p className="text-xs text-slate-500 mt-4 py-1.5 px-3 rounded-full border border-slate-300/40">
+          💡 Add recruiter data to enable export options.
+        </p>
+      )}
     </div>
   );
 }
