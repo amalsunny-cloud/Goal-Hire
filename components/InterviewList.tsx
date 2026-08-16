@@ -147,7 +147,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
             <select
               value={interview.outcome}
               onChange={(e) => updateOutcome(interview._id, e.target.value)}
-              className="border p-2 rounded"
+              className="border-b border-gray-500/30 px-3 py-1.5 focus:outline-none"
             >
               <option value="Pending">Pending</option>
               <option value="Passed">Passed</option>
