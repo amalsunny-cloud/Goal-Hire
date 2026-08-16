@@ -63,23 +63,22 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
     }
   return (
     <form onSubmit={handleSubmit}
-      className="space-y-4 bg-white p-4 rounded-lg mt-4">
+      className="space-y-4 bg-white p-4 sm:p-5 rounded-lg mt-4 shadow-xs">
       <h2 className="text-xl font-semibold">Add Interview</h2>
-      <input type="text" placeholder="Technical Round" className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]" value={round} onChange={(e)=>setRound(e.target.value)} required/>
+      <input type="text" placeholder="Technical Round" className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all w-full" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
-      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]"/>
+      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all w-full"/>
 
-      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-[75%]"
+      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-500 transition-all w-full resize-y"
         rows={3}/>
 
         {error && (
-            <p className="text-red-500">{error}</p>
+            <p className="text-red-500 text-sm">{error}</p>
         )}
-<br />
-      <button type="submit" disabled={loading} className="bg-gray-500 text-white px-4 py-2 rounded">{loading?"Adding":"Add Interview"}</button>
 
-
+      <div>
+        <button type="submit" disabled={loading} className="bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full sm:w-auto disabled:opacity-50">{loading?"Adding...":"Add Interview"}</button>
+      </div>
     </form>
-    
   )
 }

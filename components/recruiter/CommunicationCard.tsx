@@ -192,7 +192,7 @@ export default function CommunicationCard({
 
 
 
-      <div className="flex gap-3 mt-5">
+      <div className="flex flex-wrap gap-2.5 sm:gap-3 mt-5">
         {editing ? (
           <>
             <button
@@ -200,10 +200,14 @@ export default function CommunicationCard({
               disabled={loading}
               className="
                 bg-green-600
+                hover:bg-green-700
                 text-white
                 px-4
                 py-2
                 rounded
+                text-sm
+                font-medium
+                transition-colors
               "
             >
               {loading ? "Saving..." : "Save"}
@@ -213,10 +217,14 @@ export default function CommunicationCard({
               onClick={() => setEditing(false)}
               className="
                 bg-gray-500
+                hover:bg-gray-600
                 text-white
                 px-4
                 py-2
                 rounded
+                text-sm
+                font-medium
+                transition-colors
               "
             >
               Cancel
@@ -227,10 +235,14 @@ export default function CommunicationCard({
             onClick={() => setEditing(true)}
             className="
               bg-blue-600
+              hover:bg-blue-700
               text-white
               px-4
               py-2
               rounded
+              text-sm
+              font-medium
+              transition-colors
             "
           >
             Edit
@@ -241,32 +253,36 @@ export default function CommunicationCard({
           onClick={onDelete}
           className="
             bg-red-600
+            hover:bg-red-700
             text-white
             px-4
             py-2
             rounded
+            text-sm
+            font-medium
+            transition-colors
           "
         >
           Delete
         </button>
 
         <button
-          className="bg-purple-600 text-white px-4 py-2 rounded"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
           onClick={() => setShowResponseForm(!showResponseForm)}
         >
           {communication.responded ? "Edit Response" : "Add Response"}
         </button>
-
-        {showResponseForm && (
-          <ResponseForm
-            communicationId={communication._id}
-            onSuccess={() => {
-              setShowResponseForm(false);
-              onUpdated();
-            }}
-          />
-        )}
       </div>
+
+      {showResponseForm && (
+        <ResponseForm
+          communicationId={communication._id}
+          onSuccess={() => {
+            setShowResponseForm(false);
+            onUpdated();
+          }}
+        />
+      )}
     </div>
   );
 }

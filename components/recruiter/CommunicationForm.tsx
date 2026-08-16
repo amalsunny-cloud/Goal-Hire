@@ -161,11 +161,14 @@ export default function CommunicationForm({
         disabled={loading}
         className="
           bg-black
+          hover:bg-slate-800
           text-white
           px-4
           py-2
           rounded
           disabled:opacity-50
+          transition-colors
+          w-full sm:w-auto
         "
       >
         {loading ? "Saving..." : "Save Communication"}

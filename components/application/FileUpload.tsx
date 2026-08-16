@@ -53,13 +53,13 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
   };
 
   return (
-    <div className="bg-slate-400 rounded-lg p-6">
+    <div className="p-6 flex flex-col justify-center items-center">
       <h2 className="text-xl font-semibold mb-4">Attachments</h2>
 
       <input
         type="file"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
-        className="w-full text-sm text-gray-500
+        className="w-full max-w-sm text-sm text-gray-500
     file:mr-4 file:py-2 file:px-4
     file:rounded-md file:border-0
     file:text-sm file:font-semibold
@@ -82,7 +82,7 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
 
       <button
         onClick={handleUpload} disabled={!file} type="button"
-        className="mt-4 bg-black text-white px-4 py-2 rounded disabled:opacity-50"
+        className="mt-4 bg-black hover:bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 transition-colors w-full sm:w-auto"
       >
         Upload
       </button>

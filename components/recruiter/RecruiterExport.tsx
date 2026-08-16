@@ -151,12 +151,11 @@ export default function RecruiterExport({
         Export Recruiter Data
       </h2>
 
-      <div className="flex gap-4">
-
+      <div className="flex flex-wrap gap-3 justify-center w-full">
         <button
           onClick={exportCSV}
           disabled={!hasData}
-          className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded text-sm font-medium transition-colors w-full sm:w-auto text-center ${
             hasData
               ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
               : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
@@ -168,7 +167,7 @@ export default function RecruiterExport({
         <button
           onClick={exportPDF}
           disabled={!hasData}
-          className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded text-sm font-medium transition-colors w-full sm:w-auto text-center ${
             hasData
               ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
               : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
@@ -176,7 +175,6 @@ export default function RecruiterExport({
         >
           Export PDF
         </button>
-
       </div>
           {!hasData && (
         <p className="text-xs text-slate-500 mt-4 py-1.5 px-3 rounded-full border border-slate-300/40">

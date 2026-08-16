@@ -393,13 +393,18 @@ export default function Dashboard() {
         <div className="space-y-8">
           {/* Add New Application Form Container */}
 
-          <div className="flex flex-col justify-center items-center">
-          <div className="bg-slate-400/10 p-6 rounded-2xl w-[50%]">
-            <h2 className="text-lg font-bold text-gray-700 mb-4">
-              Add New Application
-            </h2>
-            <ApplicationForm onAddSuccess={handleAddApplication} />
-          </div>
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl bg-slate-400/10 border border-slate-200/50 p-6 sm:p-8 rounded-2xl shadow-sm">
+              <div className="mb-6">
+                <h2 className="text-xl font-bold text-slate-800 tracking-tight">
+                  Add New Application
+                </h2>
+                <p className="text-xs text-slate-500 mt-1">
+                  Track a new job opportunity and automatically sync with your pipeline
+                </p>
+              </div>
+              <ApplicationForm onAddSuccess={handleAddApplication} />
+            </div>
           </div>
           
 

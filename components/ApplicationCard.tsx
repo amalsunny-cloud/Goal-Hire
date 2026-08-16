@@ -24,34 +24,36 @@ export default function ApplicationCard({
 }: ApplicationCardProps) {
   return (
     <div className="shadow-md rounded-lg p-4 bg-slate-400/10">
-      <div className="flex justify-between items-center">
-        <div className="flex flex-col justify-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <div className="flex flex-col justify-center space-y-1">
           <h3 className="font-bold text-lg text-gray-800">
             {application.company}
           </h3>
 
-          <p className="text-gray-600">{application.role}</p>
+          <p className="text-gray-600 text-sm">{application.role}</p>
 
           <span
-            className={`px-2 py-1 rounded ${statusColor[application.status as "Applied" | "Interview" | "Offer" | "Rejected"]}`}
+            className={`inline-block w-fit px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusColor[application.status as "Applied" | "Interview" | "Offer" | "Rejected"]}`}
           >
             {application.status}
           </span>
-
         </div>
-          <Link
-        href={`/dashboard/applications/${application._id}`}
-        className="text-gray-800 text-bold text-sm"
-      >
-        View Details
-      </Link>
 
-        <button
-          onClick={() => onDelete(application._id)}
-          className="text-red-500"
-        >
-          Delete
-        </button>
+        <div className="flex items-center gap-4 self-end sm:self-center">
+          <Link
+            href={`/dashboard/applications/${application._id}`}
+            className="text-slate-800 hover:text-slate-900 font-semibold text-sm hover:underline"
+          >
+            View Details
+          </Link>
+
+          <button
+            onClick={() => onDelete(application._id)}
+            className="text-red-500 hover:text-red-600 font-medium text-sm transition-colors cursor-pointer"
+          >
+            Delete
+          </button>
+        </div>
       </div>
 
       

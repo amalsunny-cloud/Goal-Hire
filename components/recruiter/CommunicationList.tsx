@@ -83,19 +83,19 @@ export default function CommunicationList({ recruiterId }: Props) {
   });
   return (
     <div className="mt-6">
-      <div className="flex gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
         <input
           type="text"
           placeholder="Search subject or message..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border-b border-gray-500/30 rounded p-2 flex-1"
+          className="border-b border-gray-500/30 rounded p-2 flex-1 focus:outline-none"
         />
 
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value as "All" | CommunicationType)}
-          className="border-b border-gray-500/30 p-2"
+          className="border-b border-gray-500/30 p-2 bg-transparent focus:outline-none"
         >
           <option value="All">All</option>
 
@@ -123,7 +123,7 @@ export default function CommunicationList({ recruiterId }: Props) {
               <div
                 className="
                 absolute
-                left-[-5.5%]
+                -left-[33px]
                 top-6
                 w-4
                 h-4

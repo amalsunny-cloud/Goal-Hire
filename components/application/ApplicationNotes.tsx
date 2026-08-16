@@ -57,7 +57,7 @@ export default function ApplicationNotes({
     };
 
   return (
-    <div className="bg-slate-400 rounded-lg p-6">
+    <div className="rounded-lg p-6">
 
       <h2
         className="text-xl font-semibold mb-4">
@@ -75,9 +75,9 @@ export default function ApplicationNotes({
             }
             rows={6}
             autoFocus
-            className="border border-gray-200 w-full p-2 rounded" aria-label="Application notes"/>
+            className="border-b border-gray-500/30 w-full p-2" aria-label="Application notes"/>
 
-          <div className="mt-3 flex gap-2">
+          <div className="mt-3 flex justify-center gap-2">
 
             <button
               onClick={saveNotes}

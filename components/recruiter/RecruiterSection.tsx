@@ -187,43 +187,43 @@ export default function RecruiterSection({ applicationId }: Props) {
           Recruiters
         </h2>
 
-        <div className="flex flex-wrap gap-4 items-center mb-4">
-  <input
-    type="text"
-    placeholder="Search recruiter..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    className="border-b border-gray-500/30 p-2 flex-1 min-w-62.5 focus:outline-none"
-  />
+        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+          <input
+            type="text"
+            placeholder="Search recruiter..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="border-b border-gray-500/30 p-2 flex-1 focus:outline-none bg-transparent"
+          />
 
-  <select
-    value={filter}
-    onChange={(e) => setFilter(e.target.value)}
-    className="border-b border-gray-500/30 p-2 focus:outline-none"
-  >
-    <option value="All">All Status</option>
-    <option value="Upcoming">Upcoming</option>
-    <option value="Today">Today</option>
-    <option value="Overdue">Overdue</option>
-  </select>
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="border-b border-gray-500/30 p-2 focus:outline-none bg-transparent"
+          >
+            <option value="All">All Status</option>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Today">Today</option>
+            <option value="Overdue">Overdue</option>
+          </select>
 
-  <select
-    value={tagFilter}
-    onChange={(e) => setTagFilter(e.target.value)}
-    className="border-b border-gray-500/30 p-2 focus:outline-none"
-  >
-    <option value="All">All Tags</option>
+          <select
+            value={tagFilter}
+            onChange={(e) => setTagFilter(e.target.value)}
+            className="border-b border-gray-500/30 p-2 focus:outline-none bg-transparent"
+          >
+            <option value="All">All Tags</option>
 
-    {allTags.map((tag) => (
-      <option
-        key={tag}
-        value={tag}
-      >
-        {tag}
-      </option>
-    ))}
-  </select>
-</div>
+            {allTags.map((tag) => (
+              <option
+                key={tag}
+                value={tag}
+              >
+                {tag}
+              </option>
+            ))}
+          </select>
+        </div>
 
 
         {loading ? (

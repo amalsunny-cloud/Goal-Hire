@@ -43,21 +43,42 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         }
     }
   return (
-    <div className="border rounded-lg p-5 mt-5 space-y-4">
-      <h3 className="font-semibold">Recruiter Response</h3>
+    <div className="border border-slate-300/60 rounded-lg p-4 sm:p-5 mt-4 space-y-4 bg-white/60">
+      <h3 className="font-semibold text-slate-800">Recruiter Response</h3>
 
-      <select value={responseType} onChange={(e)=>setResponseType(e.target.value)}>
+      <select
+        value={responseType}
+        onChange={(e) => setResponseType(e.target.value)}
+        className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900"
+      >
         <option>Positive</option>
         <option>Neutral</option>
         <option>Rejected</option>
         <option>No Response</option>
       </select>
 
-      <input type="date" value={responseDate} onChange={(e)=>setResponseDate(e.target.value)} className="border rounded p-2 w-full"/>
+      <input
+        type="date"
+        value={responseDate}
+        onChange={(e) => setResponseDate(e.target.value)}
+        className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900"
+      />
 
-      <textarea rows={5} placeholder="Recruiter reply..." value={responseNotes} onChange={(e)=>setResponseNotes(e.target.value)} className="border rounded p-2 w-full"></textarea>
+      <textarea
+        rows={4}
+        placeholder="Recruiter reply..."
+        value={responseNotes}
+        onChange={(e) => setResponseNotes(e.target.value)}
+        className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 resize-y"
+      />
 
-      <button disabled={loading} onClick={saveResponse} className="bg-green-600 text-white rounded px-4 py-2">{loading?"Saving...":"Save Response"}</button>
+      <button
+        disabled={loading}
+        onClick={saveResponse}
+        className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors w-full sm:w-auto disabled:opacity-50"
+      >
+        {loading ? "Saving..." : "Save Response"}
+      </button>
     </div>
-  )
+  );
 }

@@ -137,7 +137,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="bg-black text-white px-4 py-2 rounded disabled:opacity-50">
+        className="bg-black hover:bg-slate-800 text-white px-4 py-2 rounded disabled:opacity-50 transition-colors w-full sm:w-auto">
         {loading ? "Saving..." : "Save Recruiter"}
       </button>
     </form>
