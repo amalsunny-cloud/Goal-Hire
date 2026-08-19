@@ -53,7 +53,6 @@ export default function Dashboard() {
 
   const [goal, setGoal] = useState<Goal | null>(null);
 
-  // throw new Error("Testing error Page...")
   const handleAddApplication = (newApp: Application) => {
     setApplications((prev) => [newApp, ...prev]);
   };
@@ -61,13 +60,8 @@ export default function Dashboard() {
   const fetchInterviews = async () => {
     try {
       const response = await fetch("/api/interviews/all");
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch interviews");
-      }
+      if (!response.ok) throw new Error("Failed to fetch interviews");
       const data = await response.json();
-      console.log("Interview API Data:", data);
-
       setInterviews(data);
     } catch (error) {
       console.error(error);
@@ -77,12 +71,8 @@ export default function Dashboard() {
   const fetchUpcomingInterviews = async () => {
     try {
       const response = await fetch("/api/interviews/upcoming");
-      if (!response.ok) {
-        throw new Error("Failed to fetch upcoming interviews");
-      }
-
+      if (!response.ok) throw new Error("Failed to fetch upcoming interviews");
       const data = await response.json();
-
       setUpcomingInterviews(data);
     } catch (error) {
       console.error(error);
@@ -91,25 +81,15 @@ export default function Dashboard() {
 
   const fetchGoal = async () => {
     const response = await fetch("/api/goals");
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch goals");
-    }
+    if (!response.ok) return;
     const data = await response.json();
-
     setGoal(data);
   };
 
   const fetchApplications = async () => {
     try {
-      console.log("Fetching applications...");
-
       const response = await fetch("/api/applications");
-      console.log("Response:", response.status);
-
       const data = await response.json();
-      console.log("Data:", data);
-
       setApplications(data);
     } catch (error) {
       console.error("FETCH ERROR:", error);
@@ -120,7 +100,6 @@ export default function Dashboard() {
     const loadDashboard = async () => {
       try {
         setLoading(true);
-
         await Promise.all([
           fetchApplications(),
           fetchUpcomingInterviews(),
@@ -138,24 +117,23 @@ export default function Dashboard() {
   }, []);
 
   if (loading) {
-    return(
-    <div className="flex justify-center items-center">
-      <p>Loading...</p>
-    </div>
-    )
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-sm space-y-4">
+          <div className="h-8 bg-slate-200 rounded-lg animate-pulse w-3/4 mx-auto" />
+          <div className="h-64 bg-slate-200 rounded-2xl animate-pulse" />
+        </div>
+      </div>
+    );
   }
 
   const deleteApplication = async (id: string) => {
     try {
-      const response = await fetch(`/api/applications/${id}`, {
-        method: "DELETE",
-      });
-
+      const response = await fetch(`/api/applications/${id}`, { method: "DELETE" });
       if (!response.ok) {
         toast.error("Failed to delete the application");
         throw new Error();
       }
-
       toast.success("Application deleted");
       await fetchApplications();
     } catch (error) {
@@ -163,307 +141,146 @@ export default function Dashboard() {
     }
   };
 
-  const updateStatus = async (
-  id: string,
-  status: ApplicationStatus,
-): Promise<boolean> => {
-  // Find the current application
-  const currentApplication = applications.find(
-    (application) => application._id === id,
-  );
-
-  if (!currentApplication) {
-    return false;
-  }
-
-  const previousStatus =
-    currentApplication.status;
-
-  // Optimistic UI update
-  setApplications((prev) =>
-    prev.map((application) =>
-      application._id === id
-        ? {
-            ...application,
-            status,
-          }
-        : application,
-    ),
-  );
-
-  try {
-    const response = await fetch(
-      `/api/applications/${id}`,
-      {
+  const updateStatus = async (id: string, status: ApplicationStatus): Promise<boolean> => {
+    const currentApplication = applications.find((a) => a._id === id);
+    if (!currentApplication) return false;
+    const previousStatus = currentApplication.status;
+    setApplications((prev) => prev.map((a) => (a._id === id ? { ...a, status } : a)));
+    try {
+      const response = await fetch(`/api/applications/${id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body: JSON.stringify({
-          status,
-        }),
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(
-        "Failed to update status",
-      );
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+      if (!response.ok) throw new Error("Failed to update status");
+      toast.success("Status updated");
+      return true;
+    } catch (error) {
+      setApplications((prev) => prev.map((a) => (a._id === id ? { ...a, status: previousStatus } : a)));
+      toast.error("Failed to update status");
+      return false;
     }
-
-    toast.success("Status updated");
-
-    return true;
-  } catch (error) {
-    console.error(
-      "Status update failed:",
-      error,
-    );
-
-    // Rollback optimistic update
-    setApplications((prev) =>
-      prev.map((application) =>
-        application._id === id
-          ? {
-              ...application,
-              status: previousStatus,
-            }
-          : application,
-      ),
-    );
-
-    toast.error(
-      "Failed to update status",
-    );
-
-    return false;
-  }
-};
+  };
 
   const filteredApplications = applications
     .filter((app) => {
-      const searchMatch =
-        app.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.role.toLowerCase().includes(searchTerm.toLowerCase());
-
+      const searchMatch = app.company.toLowerCase().includes(searchTerm.toLowerCase()) || app.role.toLowerCase().includes(searchTerm.toLowerCase());
       const statusMatch = statusFilter === "All" || app.status === statusFilter;
-
       return searchMatch && statusMatch;
     })
-    .sort((a, b) => {
-      if (sortBy === "newest") {
-        return (
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-      }
-
-      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    });
+    .sort((a, b) => (sortBy === "newest" ? new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() : new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
 
   const applicationCount = applications.length;
-  const offerCount = applications.filter(
-    (app) => app.status === "Offer",
-  ).length;
-
-  console.log("applications in 141:", applications);
+  const offerCount = applications.filter((app) => app.status === "Offer").length;
   const interviewCount = upcomingInterviews.length;
-
   const chartData = getApplicationsPerMonth(applications);
   const funnelData = getFunnelData(applications);
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 p-4 sm:p-8 space-y-8">
-      {/* Top Navigation & Action Header */}
-      <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-slate-400/10 p-6 rounded-2xl backdrop-blur-md">
-        <DashboardHeader
-          applicationCount={applicationCount}
-          interviewCount={interviewCount}
-          offerCount={offerCount}
-          applications={applications}
-        />
-
-        <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end">
-          <Link
-            href="/dashboard/company"
-            className="px-4 py-2.5 text-white bg-slate-600 rounded-xl transition-all shadow-md"
-          >
-            Company Insights
-          </Link>
-          <ExportCSVButton applications={applications} />
-          <LogoutButton />
+    <div className="min-h-screen bg-slate-50 text-slate-800 p-4 md:p-8 space-y-8">
+      <header className="relative bg-white border border-slate-200 p-8 rounded-3xl shadow-sm overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-100 to-transparent opacity-50" />
+        <div className="relative flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+          <DashboardHeader applicationCount={applicationCount} interviewCount={interviewCount} offerCount={offerCount} applications={applications} />
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard/company" className="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all shadow-lg shadow-slate-200">Company Insights</Link>
+            <ExportCSVButton applications={applications} />
+            <LogoutButton />
+          </div>
         </div>
       </header>
 
-      {/* Main KPI Stats Row */}
       <DashboardStats applications={applications} />
 
-      {/* Tab Controls Bar */}
-      <div className="flex justify-center border-b border-slate-800/20 space-x-2 sm:space-x-6 overflow-x-auto pb-1 bg-slate-300/60">
+      <div className="flex bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-fit mx-auto">
         {[
-          { id: "overview", label: "Overview & Streak" },
-          { id: "analytics", label: "Analytics & Insights" },
-          { id: "workflow", label: "Kanban & Calendar" },
-          { id: "applications", label: "Manage Applications" },
+          { id: "overview", label: "Overview" },
+          { id: "analytics", label: "Analytics" },
+          { id: "workflow", label: "Workflow" },
+          { id: "applications", label: "Applications" },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className={`py-2.5 sm:px-1 md:px-2 lg:px-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
-              activeTab === tab.id
-                ? "border-slate-500/30 text-slate-500"
-                : "border-transparent text-slate-400 hover:text-slate-800/70"
-            }`}
+            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md" : "text-slate-500 hover:bg-slate-100"}`}
           >
             {tab.label}
           </button>
         ))}
       </div>
 
-      {/* TAB 1: OVERVIEW */}
       {activeTab === "overview" && (
-        <div className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-6">
-              <StreakTracker applications={applications} />
-              <ApplicationsChart data={chartData} />
-              <RecentApplications applications={applications} />
-            </div>
-            <div className="space-y-6">
-              <ReminderWidget
-                applications={applications}
-                interviews={interviews}
-              />
-              <UpcomingInterviews interviews={upcomingInterviews} />
-              <RecentActivity applications={applications} />
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><StreakTracker applications={applications} /></div>
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationsChart data={chartData} /></div>
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentApplications applications={applications} /></div>
+          </div>
+          <div className="space-y-8">
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ReminderWidget applications={applications} interviews={interviews} /></div>
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><UpcomingInterviews interviews={upcomingInterviews} /></div>
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentActivity applications={applications} /></div>
           </div>
         </div>
       )}
 
-      {/* TAB 2: ANALYTICS & GOALS */}
       {activeTab === "analytics" && (
         <div className="space-y-8">
-          <AnalyticsSection applications={applications} />
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <ApplicationFunnel data={funnelData} />
-            <PredictionAnalytics applications={applications} />
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><AnalyticsSection applications={applications} /></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationFunnel data={funnelData} /></div>
+            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><PredictionAnalytics applications={applications} /></div>
           </div>
-
           {goal && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <GoalTracker applications={applications} goal={goal} />
-              </div>
-              <div>
-                <GoalSettings goal={goal} onGoalUpdated={setGoal} />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><GoalTracker applications={applications} goal={goal} /></div>
+              <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><GoalSettings goal={goal} onGoalUpdated={setGoal} /></div>
             </div>
           )}
-
-            <SourceAnalytics applications={applications} />
-          <div className="">
-            <SourceSuccessAnalytics applications={applications} />
-          </div>
-
-          <CompanyInsights applications={applications} />
-          <InterviewAnalytics interviews={interviews} />
-          <ApplicationAnalytics applications={applications} />
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><SourceAnalytics applications={applications} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><SourceSuccessAnalytics applications={applications} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><CompanyInsights applications={applications} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><InterviewAnalytics interviews={interviews} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationAnalytics applications={applications} /></div>
         </div>
       )}
 
-      {/* TAB 3: WORKFLOW, KANBAN & CALENDAR */}
       {activeTab === "workflow" && (
         <div className="space-y-8">
-          <KanbanBoard
-  applications={applications}
-  onStatusChange={updateStatus}
-/>
-          <ApplicationCalendar
-            applications={applications}
-            interviews={interviews}
-          />
-          <FollowUpList applications={applications} />
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><KanbanBoard applications={applications} onStatusChange={updateStatus} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationCalendar applications={applications} interviews={interviews} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><FollowUpList applications={applications} /></div>
         </div>
       )}
 
-      {/* TAB 4: APPLICATIONS MANAGEMENT */}
       {activeTab === "applications" && (
         <div className="space-y-8">
-          {/* Add New Application Form Container */}
-
-          <div className="flex justify-center">
-            <div className="w-full max-w-4xl bg-slate-400/10 border border-slate-200/50 p-6 sm:p-8 rounded-2xl shadow-sm">
-              <div className="mb-6">
-                <h2 className="text-xl font-bold text-slate-800 tracking-tight">
-                  Add New Application
-                </h2>
-                <p className="text-xs text-slate-500 mt-1">
-                  Track a new job opportunity and automatically sync with your pipeline
-                </p>
-              </div>
-              <ApplicationForm onAddSuccess={handleAddApplication} />
-            </div>
+          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold mb-6">Add New Application</h2>
+            <ApplicationForm onAddSuccess={handleAddApplication} />
           </div>
-          
-
-          {/* Filter, Search & Sorting Panel */}
-          <div className="bg-slate-400/10 border-slate-800 p-5 rounded-2xl space-y-4">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              <input
-                type="text"
-                placeholder="Search by company or role..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full md:w-1/2 px-4 py-2.5 border-b border-gray-500/30 text-gray-700 placeholder-slate-500 text-xs focus:outline-none "
-              />
-
-              <div className="flex w-full md:w-auto items-center gap-3">
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full md:w-auto px-3.5 py-2.5 border-b border-gray-500/30 text-gray-700 text-xs focus:outline-none"
-                >
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+            <div className="flex flex-wrap gap-4 items-center justify-between mb-6">
+              <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 w-full md:w-64" />
+              <div className="flex gap-2">
+                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
                   <option value="All">All Statuses</option>
                   <option value="Applied">Applied</option>
                   <option value="Interview">Interview</option>
                   <option value="Offer">Offer</option>
                   <option value="Rejected">Rejected</option>
                 </select>
-
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full md:w-auto px-3.5 py-2.5 border-b border-gray-500/30 text-gray-700 text-xs focus:outline-none"
-                >
-                  <option value="newest">Sort: Newest</option>
-                  <option value="oldest">Sort: Oldest</option>
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
                 </select>
               </div>
             </div>
-
-            <p className="text-xs text-slate-400 pt-1">
-              Showing{" "}
-              <span className="text-slate-200 font-semibold">
-                {filteredApplications.length}
-              </span>{" "}
-              of {applications.length} applications
-            </p>
+            <ApplicationList applications={filteredApplications} onDelete={deleteApplication} onStatusChange={updateStatus} />
           </div>
-
-          {/* Application Data Table / List */}
-          <ApplicationList
-            applications={filteredApplications}
-            onDelete={deleteApplication}
-            onStatusChange={updateStatus}
-          />
-
-
-          <FollowUpList applications={applications} />
-
-          <UpcomingInterviews interviews={upcomingInterviews} />
-          <RecentActivity applications={applications} />
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><FollowUpList applications={applications} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><UpcomingInterviews interviews={upcomingInterviews} /></div>
+          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentActivity applications={applications} /></div>
         </div>
       )}
     </div>
