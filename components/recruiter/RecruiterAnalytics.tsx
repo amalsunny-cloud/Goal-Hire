@@ -77,36 +77,18 @@ export default function RecruiterAnalytics({
 
   return (
     <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
-      <h2
-        className="
-          text-xl
-          font-semibold
-          mb-6
-        "
-      >
+      <h2 className="text-xl font-semibold mb-6">
         Recruiter Analytics
       </h2>
 
-      <div
-        className="
-          grid
-          grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-6
-          gap-4
-        "
-      >
+      <div className="space-y-3">
         <StatsCard title="Total Recruiters" value={totalRecruiters} />
-
-        <StatCard title="Communications" value={totalCommunications} />
+        <StatsCard title="Communications" value={totalCommunications} />
         <StatsCard title="Contacted Today" value={contactedToday} />
-
         <StatsCard title="Follow-up Today" value={followUpToday} />
-
         <StatsCard title="Overdue" value={overdue} />
-
         <StatsCard title="Contacted This Week" value={contactedThisWeek} />
-        <StatCard title="Top Method" value={mostUsedMethod} />
+        <StatsCard title="Top Method" value={mostUsedMethod} />
       </div>
     </div>
   );
@@ -119,7 +101,7 @@ interface CardProps {
 
 function StatCard({ title, value }: CardProps) {
   return (
-    <div className="rounded-lg p-5 text-center bg-gray-50">
+    <div className="rounded-lg p-5 text-center bg-white shadow-sm shadow-slate-200/30 transition hover:-translate-y-0.5 hover:shadow-md">
       <h3 className="text-gray-500 text-sm">{title}</h3>
 
       <p className="text-3xl font-bold mt-2">{value}</p>

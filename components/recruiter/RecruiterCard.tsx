@@ -112,10 +112,10 @@ export default function RecruiterCard({
     } finally {
       setContacting(false);
     }
-  };
+  };  
 
   return (
-    <div className="rounded-lg p-5 bg-slate-400/10 shadow-sm">
+    <div className="rounded-lg p-5 bg-white shadow-sm">
       {editing ? (
         <input
           value={name}
@@ -164,7 +164,7 @@ export default function RecruiterCard({
         </div>
 
         <div className="space-y-1">
-          <strong>LinkedIn :</strong>
+          <strong>LinkedIn</strong>
 
           {editing ? (
             <input
@@ -233,7 +233,7 @@ export default function RecruiterCard({
               rows={5}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="border p-2 rounded w-full"
+              className="border-b p-2 border-gray-500/30 w-full"
             />
           ) : (
             <p className="whitespace-pre-wrap text-gray-700">
@@ -314,11 +314,14 @@ export default function RecruiterCard({
           }}
         />
       )}
+
+      <div className="mt-6 space-y-6 grid grid-cols-1 lg:grid-cols-2">
       <CommunicationList recruiterId={recruiter._id} />
       <EmailTemplates
         recruiterName={recruiter.name || "Recruiter"}
         company={company}
       />
+      </div>
     </div>
   );
 }

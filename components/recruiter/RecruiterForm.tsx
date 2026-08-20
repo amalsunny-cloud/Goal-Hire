@@ -90,7 +90,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-slate-400/10 backdrop-blur-xs border border-slate-200/50 rounded-2xl p-5 sm:p-6 shadow-xs space-y-5 text-slate-800 transition-all"
+      className="bg-white backdrop-blur-xs border border-slate-200/50 rounded-2xl p-5 sm:p-6 shadow-xs space-y-5 text-slate-800 transition-all"
     >
       {/* Header */}
       <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
@@ -98,7 +98,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           <UserPlus className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-lg font-bold text-slate-800">
+          <h2 className="text-xl font-semibold">
             Recruiter Information
           </h2>
           <p className="text-xs text-slate-500">
@@ -108,9 +108,10 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
       </div>
 
       {/* 2-Column Responsive Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="flex flex-col justify-center  gap-4 sm:gap-6">
+      <div className="gap-4">
         {/* Recruiter Name */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-name"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -130,7 +131,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         {/* Recruiter Email */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-email"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -149,7 +150,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         {/* Phone Number */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-phone"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -168,7 +169,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         {/* LinkedIn Profile */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-linkedin"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -187,7 +188,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         {/* Last Contact */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-last-contact"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -205,7 +206,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         {/* Next Follow-up */}
-        <div className="space-y-1.5">
+        <div className="space-y-2.5 mb-3">
           <label
             htmlFor="recruiter-next-followup"
             className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -222,6 +223,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           />
         </div>
       </div>
+      </div>
 
       {/* Tags Selection */}
       <div className="space-y-2 pt-1">
@@ -233,7 +235,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
       </div>
 
       {/* Notes & Extra Info */}
-      <div className="space-y-1.5">
+      <div className="space-y-2.5 mb-3">
         <label
           htmlFor="recruiter-notes"
           className="text-xs font-semibold text-slate-700 flex items-center gap-1.5"
@@ -243,7 +245,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </label>
         <textarea
           id="recruiter-notes"
-          rows={3}
+          rows={4}
           placeholder="Add recruiter preferences, interview feedback, communication style, or other relevant details..."
           value={notes}
           onChange={(e) => setNotes(e.target.value)}

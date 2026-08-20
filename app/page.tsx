@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import Navbar2 from "@/components/layout/Navbar2";
 import Link from "next/link";
 
@@ -117,9 +118,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900/40 text-xs py-4 backdrop-blur-md border-b border-slate-400 text-white transition-all">
-        <p>© {new Date().getFullYear()} Goal-Hire. All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }

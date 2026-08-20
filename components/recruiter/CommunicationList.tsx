@@ -58,7 +58,12 @@ export default function CommunicationList({ recruiterId }: Props) {
   }
 
   if (communications.length === 0) {
-    return <p className="text-gray-500">No communications yet.</p>;
+    return(
+      <div className="mt-6 bg-white flex flex-col justify-center rounded-xl shadow-md p-6">
+
+        <p className="text-gray-500">No communications yet.</p>;
+      </div>
+    )
   }
 
   const filteredCommunications = communications.filter((communication) => {
@@ -82,7 +87,7 @@ export default function CommunicationList({ recruiterId }: Props) {
     return matchesSearch && matchesType;
   });
   return (
-    <div className="mt-6">
+    <div className="mt-6 bg-white rounded-xl shadow-md p-6">
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
         <input
           type="text"

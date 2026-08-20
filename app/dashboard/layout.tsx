@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import Navbar2 from "@/components/layout/Navbar2";
 
 
 export default function MainLayout({
@@ -9,7 +10,7 @@ export default function MainLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <Navbar/>
+      <Navbar2/>
       <main className="flex-1 bg-white">{children}</main>
       <Footer />
     </div>

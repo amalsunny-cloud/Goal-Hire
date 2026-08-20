@@ -16,7 +16,7 @@ export default function RecruiterTags({
 
     return (
 
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex justify-center flex-wrap gap-2 mt-4 space-y-1.5">
 
             {tags.map(tag => (
 

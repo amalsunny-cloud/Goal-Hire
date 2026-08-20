@@ -239,49 +239,55 @@ export default async function ApplicationDetailsPage({
           </div>
         </div>
 
-        {/* Main Content Layout: 2-Column Grid */}
-        <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-          {/* Left Column (2/3 width) - Notes, Interviews & Timeline */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Notes Card */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
-              <ApplicationNotes
-                applicationId={application._id.toString()}
-                initialNotes={application.notes || ""}
-              />
-            </div>
+        <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
+          <ApplicationNotes
+            applicationId={application._id.toString()}
+            initialNotes={application.notes || ""}
+          />
+        </div>
 
-            {/* Interviews Schedule Form */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-              <h2 className="text-lg font-bold text-slate-800">
-                Schedule Interview
-              </h2>
-              <InterviewForm applicationId={application._id.toString()} />
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:col-span-2 space-y-6">
+          {/* Notes Card */}
 
-            {/* Interviews List */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-              <h2 className="text-lg font-bold text-slate-800">
-                Interview Rounds
-              </h2>
+          {/* Interviews Schedule Form */}
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <h2 className="text-lg font-bold text-slate-800">
+              Schedule Interview
+            </h2>
+            <InterviewForm applicationId={application._id.toString()} />
+          </div>
+
+          {/* Interviews List */}
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <h2 className="text-lg font-bold text-slate-800">
+              Interview Rounds
+            </h2>
+            <div className="flex flex-col justify-center items-center  border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
               <InterviewList interviews={interviews} />
             </div>
-
-            {/* Application Timeline */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-              <h2 className="text-lg font-bold text-slate-800">
-                Application Timeline
-              </h2>
-              <ApplicationTimeline applicationId={application._id.toString()} />
-            </div>
           </div>
+
+        </div>
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
+            <RecruiterSection applicationId={application._id.toString()} />
+          </div>
+
+        {/* Application Timeline */}
+
+        <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+          <h2 className="text-lg font-bold text-slate-800">
+            Application Timeline
+          </h2>
+          <ApplicationTimeline applicationId={application._id.toString()} />
+        </div>
+
+        {/* Main Content Layout: 2-Column Grid */}
+        <div className="">
+          {/* Left Column (2/3 width) - Notes, Interviews & Timeline */}
 
           {/* Right Column (1/3 width) - Recruiter & Attachments */}
           <div className="space-y-6">
             {/* Recruiter & Contacts */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
-              <RecruiterSection applicationId={application._id.toString()} />
-            </div>
 
             {/* File Upload & Attachments */}
             <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">

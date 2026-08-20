@@ -25,7 +25,7 @@ export default function StatsCard({
         </p>
         <span className={`h-2.5 w-2.5 rounded-full ${toneClasses[tone]}`} />
       </div>
-      <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-900">
+      <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
         {value}
       </h2>
     </div>

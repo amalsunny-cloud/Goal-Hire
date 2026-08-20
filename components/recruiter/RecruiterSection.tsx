@@ -139,6 +139,10 @@ export default function RecruiterSection({ applicationId }: Props) {
   };
   return (
     <div className="space-y-6">
+
+      <div className="bg-white grid grid-cols-1 lg:grid-cols-2 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+
+      
       <RecruiterForm
         applicationId={applicationId}
         onSuccess={() => {
@@ -151,6 +155,9 @@ export default function RecruiterSection({ applicationId }: Props) {
         recruiters={recruiters}
         communications={communications}
       />
+      </div>
+
+
       <RecruiterCalendar recruiters={recruiters} />
       <RecruiterReminderPanel recruiters={recruiters} />
       <ResponseAnalytics communications={communications} />

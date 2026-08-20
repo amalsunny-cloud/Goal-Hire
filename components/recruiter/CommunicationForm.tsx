@@ -79,32 +79,15 @@ export default function CommunicationForm({
   return (
     <form
       onSubmit={saveCommunication}
-      className="
-        border
-        rounded-lg
-        p-6
-        space-y-4
-      "
-    >
-      <h2
-        className="
-          text-xl
-          font-semibold
-        "
-      >
+      className="shadow-md rounded-lg p-6 space-y-4">
+      <h2 className="text-xl font-semibold">
         Add Communication
       </h2>
 
       <select
         value={type}
         onChange={(e) => setType(e.target.value as CommunicationType)}
-        className="
-          border
-          p-2
-          rounded
-          w-full
-        "
-      >
+        className="border-b p-2 w-full">
         <option value="Email">Email</option>
 
         <option value="Phone">Phone</option>
@@ -123,9 +106,9 @@ export default function CommunicationForm({
         value={date}
         onChange={(e) => setDate(e.target.value)}
         className="
-          border
+          border-b
           p-2
-          rounded
+          
           w-full
         "
       />
@@ -136,9 +119,9 @@ export default function CommunicationForm({
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         className="
-          border
+          border-b
           p-2
-          rounded
+          
           w-full
         "
       />
@@ -149,9 +132,9 @@ export default function CommunicationForm({
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         className="
-          border
+          border-b
           p-2
-          rounded
+          
           w-full
         "
       />
@@ -168,7 +151,7 @@ export default function CommunicationForm({
           rounded
           disabled:opacity-50
           transition-colors
-          w-full sm:w-auto
+          w-full sm:w-auto cursor-pointer
         "
       >
         {loading ? "Saving..." : "Save Communication"}
