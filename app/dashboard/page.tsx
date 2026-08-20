@@ -9,10 +9,7 @@ import DashboardStats from "@/components/DashboardStats";
 import ApplicationForm from "@/components/forms/ApplicationForm";
 import LogoutButton from "@/components/LogoutButton";
 import RecentApplications from "@/components/RecentApplications";
-import {
-  Application,
-  ApplicationStatus,
-} from "@/types/application";
+import { Application, ApplicationStatus } from "@/types/application";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -36,6 +33,14 @@ import GoalSettings from "@/components/dashboard/GoalSettings";
 import StreakTracker from "@/components/dashboard/StreakTracker";
 import PredictionAnalytics from "@/components/dashboard/PredictionAnalytics";
 import Link from "next/link";
+import {
+  BarChart3,
+  Building2,
+  ClipboardList,
+  LayoutDashboard,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
 
 export default function Dashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -129,7 +134,9 @@ export default function Dashboard() {
 
   const deleteApplication = async (id: string) => {
     try {
-      const response = await fetch(`/api/applications/${id}`, { method: "DELETE" });
+      const response = await fetch(`/api/applications/${id}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         toast.error("Failed to delete the application");
         throw new Error();
@@ -141,11 +148,16 @@ export default function Dashboard() {
     }
   };
 
-  const updateStatus = async (id: string, status: ApplicationStatus): Promise<boolean> => {
+  const updateStatus = async (
+    id: string,
+    status: ApplicationStatus,
+  ): Promise<boolean> => {
     const currentApplication = applications.find((a) => a._id === id);
     if (!currentApplication) return false;
     const previousStatus = currentApplication.status;
-    setApplications((prev) => prev.map((a) => (a._id === id ? { ...a, status } : a)));
+    setApplications((prev) =>
+      prev.map((a) => (a._id === id ? { ...a, status } : a)),
+    );
     try {
       const response = await fetch(`/api/applications/${id}`, {
         method: "PATCH",
@@ -156,7 +168,9 @@ export default function Dashboard() {
       toast.success("Status updated");
       return true;
     } catch (error) {
-      setApplications((prev) => prev.map((a) => (a._id === id ? { ...a, status: previousStatus } : a)));
+      setApplications((prev) =>
+        prev.map((a) => (a._id === id ? { ...a, status: previousStatus } : a)),
+      );
       toast.error("Failed to update status");
       return false;
     }
@@ -164,125 +178,239 @@ export default function Dashboard() {
 
   const filteredApplications = applications
     .filter((app) => {
-      const searchMatch = app.company.toLowerCase().includes(searchTerm.toLowerCase()) || app.role.toLowerCase().includes(searchTerm.toLowerCase());
+      const searchMatch =
+        app.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        app.role.toLowerCase().includes(searchTerm.toLowerCase());
       const statusMatch = statusFilter === "All" || app.status === statusFilter;
       return searchMatch && statusMatch;
     })
-    .sort((a, b) => (sortBy === "newest" ? new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() : new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
+    .sort((a, b) =>
+      sortBy === "newest"
+        ? new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        : new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+    );
 
   const applicationCount = applications.length;
-  const offerCount = applications.filter((app) => app.status === "Offer").length;
+  const offerCount = applications.filter(
+    (app) => app.status === "Offer",
+  ).length;
   const interviewCount = upcomingInterviews.length;
   const chartData = getApplicationsPerMonth(applications);
   const funnelData = getFunnelData(applications);
+  const panelClassName =
+    "rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/30 transition-shadow hover:shadow-md sm:p-6";
+  const tabs = [
+    { id: "overview", label: "Overview", icon: LayoutDashboard },
+    { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "workflow", label: "Workflow", icon: Workflow },
+    { id: "applications", label: "Applications", icon: ClipboardList },
+  ] as const;
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 p-4 md:p-8 space-y-8">
-      <header className="relative bg-white border border-slate-200 p-8 rounded-3xl shadow-sm overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-100 to-transparent opacity-50" />
-        <div className="relative flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-          <DashboardHeader applicationCount={applicationCount} interviewCount={interviewCount} offerCount={offerCount} applications={applications} />
-          <div className="flex items-center gap-3">
-            <Link href="/dashboard/company" className="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-all shadow-lg shadow-slate-200">Company Insights</Link>
-            <ExportCSVButton applications={applications} />
-            <LogoutButton />
-          </div>
-        </div>
-      </header>
-
-      <DashboardStats applications={applications} />
-
-      <div className="flex bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-fit mx-auto">
-        {[
-          { id: "overview", label: "Overview" },
-          { id: "analytics", label: "Analytics" },
-          { id: "workflow", label: "Workflow" },
-          { id: "applications", label: "Applications" },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md" : "text-slate-500 hover:bg-slate-100"}`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {activeTab === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><StreakTracker applications={applications} /></div>
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationsChart data={chartData} /></div>
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentApplications applications={applications} /></div>
-          </div>
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ReminderWidget applications={applications} interviews={interviews} /></div>
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><UpcomingInterviews interviews={upcomingInterviews} /></div>
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentActivity applications={applications} /></div>
-          </div>
-        </div>
-      )}
-
-      {activeTab === "analytics" && (
-        <div className="space-y-8">
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><AnalyticsSection applications={applications} /></div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationFunnel data={funnelData} /></div>
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><PredictionAnalytics applications={applications} /></div>
-          </div>
-          {goal && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><GoalTracker applications={applications} goal={goal} /></div>
-              <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><GoalSettings goal={goal} onGoalUpdated={setGoal} /></div>
+    <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
+      <div className="mx-auto max-w-7xl space-y-6">
+        <header className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 p-6 text-white shadow-2xl shadow-blue-950/20 sm:p-8 lg:p-10">
+          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-400/20 blur-3xl" />
+          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-400/15 blur-3xl" />
+          <div className="relative flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
+            <DashboardHeader
+              applicationCount={applicationCount}
+              interviewCount={interviewCount}
+              offerCount={offerCount}
+              applications={applications}
+            />
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link
+                href="/dashboard/company"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-900 shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50"
+              >
+                <Building2 className="h-4 w-4 text-blue-600" />
+                Company Insights
+              </Link>
+              <ExportCSVButton applications={applications} />
+              <LogoutButton />
             </div>
-          )}
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><SourceAnalytics applications={applications} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><SourceSuccessAnalytics applications={applications} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><CompanyInsights applications={applications} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><InterviewAnalytics interviews={interviews} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationAnalytics applications={applications} /></div>
-        </div>
-      )}
-
-      {activeTab === "workflow" && (
-        <div className="space-y-8">
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><KanbanBoard applications={applications} onStatusChange={updateStatus} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><ApplicationCalendar applications={applications} interviews={interviews} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><FollowUpList applications={applications} /></div>
-        </div>
-      )}
-
-      {activeTab === "applications" && (
-        <div className="space-y-8">
-          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold mb-6">Add New Application</h2>
-            <ApplicationForm onAddSuccess={handleAddApplication} />
           </div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-            <div className="flex flex-wrap gap-4 items-center justify-between mb-6">
-              <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 w-full md:w-64" />
-              <div className="flex gap-2">
-                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
-                  <option value="All">All Statuses</option>
-                  <option value="Applied">Applied</option>
-                  <option value="Interview">Interview</option>
-                  <option value="Offer">Offer</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
-                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
-                  <option value="newest">Newest</option>
-                  <option value="oldest">Oldest</option>
-                </select>
+        </header>
+
+        <DashboardStats applications={applications} />
+
+        <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
+          <div className="flex min-w-max gap-1">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all sm:px-5 ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md shadow-slate-300" : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"}`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {activeTab === "overview" && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+              <div className={panelClassName}>
+                <StreakTracker applications={applications} />
+              </div>
+              <div className={panelClassName}>
+                <ApplicationsChart data={chartData} />
+              </div>
+              <div className={panelClassName}>
+                <RecentApplications applications={applications} />
               </div>
             </div>
-            <ApplicationList applications={filteredApplications} onDelete={deleteApplication} onStatusChange={updateStatus} />
+            <div className="space-y-8">
+              <div className={panelClassName}>
+                <ReminderWidget
+                  applications={applications}
+                  interviews={interviews}
+                />
+              </div>
+              <div className={panelClassName}>
+                <UpcomingInterviews interviews={upcomingInterviews} />
+              </div>
+              <div className={panelClassName}>
+                <RecentActivity applications={applications} />
+              </div>
+            </div>
           </div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><FollowUpList applications={applications} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><UpcomingInterviews interviews={upcomingInterviews} /></div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm"><RecentActivity applications={applications} /></div>
-        </div>
-      )}
+        )}
+
+        {activeTab === "analytics" && (
+          <div className="space-y-8">
+            <div className={panelClassName}>
+              <AnalyticsSection applications={applications} />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className={panelClassName}>
+                <ApplicationFunnel data={funnelData} />
+              </div>
+              <div className={panelClassName}>
+                <PredictionAnalytics applications={applications} />
+              </div>
+            </div>
+            {goal && (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className={`lg:col-span-2 ${panelClassName}`}>
+                  <GoalTracker applications={applications} goal={goal} />
+                </div>
+                <div className={panelClassName}>
+                  <GoalSettings goal={goal} onGoalUpdated={setGoal} />
+                </div>
+              </div>
+            )}
+            <div className={panelClassName}>
+              <SourceAnalytics applications={applications} />
+            </div>
+            <div className={panelClassName}>
+              <SourceSuccessAnalytics applications={applications} />
+            </div>
+            <div className={panelClassName}>
+              <CompanyInsights applications={applications} />
+            </div>
+            <div className={panelClassName}>
+              <InterviewAnalytics interviews={interviews} />
+            </div>
+            <div className={panelClassName}>
+              <ApplicationAnalytics applications={applications} />
+            </div>
+          </div>
+        )}
+
+        {activeTab === "workflow" && (
+          <div className="space-y-8">
+            <div className={panelClassName}>
+              <KanbanBoard
+                applications={applications}
+                onStatusChange={updateStatus}
+              />
+            </div>
+            <div className={panelClassName}>
+              <ApplicationCalendar
+                applications={applications}
+                interviews={interviews}
+              />
+            </div>
+            <div className={panelClassName}>
+              <FollowUpList applications={applications} />
+            </div>
+          </div>
+        )}
+
+        {activeTab === "applications" && (
+          <div className="space-y-8">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm shadow-slate-200/30 sm:p-8">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <Sparkles className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-lg font-bold text-slate-900">
+                    Add New Application
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Keep your job search moving forward.
+                  </p>
+                </div>
+              </div>
+              <ApplicationForm onAddSuccess={handleAddApplication} />
+            </div>
+            <div className={panelClassName}>
+              <div className="flex flex-wrap gap-4 items-center justify-between mb-6">
+                <input
+                  type="text"
+                  placeholder="Search applications..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100 md:w-72"
+                />
+                <div className="flex gap-2">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+                  >
+                    <option value="All">All Statuses</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Offer">Offer</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+                  >
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+              </div>
+              <ApplicationList
+                applications={filteredApplications}
+                onDelete={deleteApplication}
+                onStatusChange={updateStatus}
+              />
+            </div>
+            <div className={panelClassName}>
+              <FollowUpList applications={applications} />
+            </div>
+            <div className={panelClassName}>
+              <UpcomingInterviews interviews={upcomingInterviews} />
+            </div>
+            <div className={panelClassName}>
+              <RecentActivity applications={applications} />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

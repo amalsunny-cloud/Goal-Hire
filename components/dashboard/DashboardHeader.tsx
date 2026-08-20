@@ -12,9 +12,8 @@ export default function DashboardHeader({
   applicationCount,
   interviewCount,
   offerCount,
-  applications
+  applications,
 }: DashboardHeaderProps) {
-  console.log("Interview count in dashboardheader is:", interviewCount);
   const hour = new Date().getHours();
 
   let greeting = "Hello";
@@ -27,11 +26,11 @@ export default function DashboardHeader({
     greeting = "Good Evening";
   }
 
-  const reminders = getReminderCount(applications)
+  const reminders = getReminderCount(applications);
   return (
-    <div className="bg-slate-400/10 rounded-lg p-6">
+    <div className="max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:p-6">
       <h1 className="text-3xl font-bold mb-2">{greeting} 👋</h1>
-      <p className="text-gray-600">
+      <p className="text-sm leading-6 text-blue-100/75 sm:text-base">
         Keep pushing forward. Every application is a step closer to your next
         role.
       </p>

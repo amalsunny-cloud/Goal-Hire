@@ -44,8 +44,8 @@ function StatCard({
         </div>
       </div>
 
-      <div className="flex items-baseline justify-between gap-2">
-        <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+      <div className="flex flex-col items-center justify-between gap-2">
+        <p className="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight">
           {value}
         </p>
         {subtitle && (

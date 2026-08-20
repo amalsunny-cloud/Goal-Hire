@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import CompanyDashboard from "@/components/company/CompanyDashboard";
-import { Recruiter } from "@/types/recruiter";
-import { RecruiterCommunication } from "@/types/recruiterCommunication";
-import { Application } from "@/types/application";
 import {
-  Building2,
-  ArrowLeft,
-  RefreshCw,
   AlertCircle,
-  TrendingUp,
+  ArrowLeft,
   Briefcase,
+  Building2,
+  RefreshCw,
+  Sparkles,
   Users,
 } from "lucide-react";
+import CompanyDashboard from "@/components/company/CompanyDashboard";
+import { Application } from "@/types/application";
+import { Recruiter } from "@/types/recruiter";
+import { RecruiterCommunication } from "@/types/recruiterCommunication";
 
 export default function CompanyDashboardPage() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,9 @@ export default function CompanyDashboardPage() {
   const [error, setError] = useState("");
 
   const [recruiters, setRecruiters] = useState<Recruiter[]>([]);
-  const [communications, setCommunications] = useState<RecruiterCommunication[]>([]);
+  const [communications, setCommunications] = useState<
+    RecruiterCommunication[]
+  >([]);
   const [applications, setApplications] = useState<Application[]>([]);
 
   const fetchData = useCallback(async (isManualRefresh = false) => {
@@ -32,21 +34,27 @@ export default function CompanyDashboardPage() {
       } else {
         setLoading(true);
       }
+
       setError("");
 
-      const [recruiterResponse, communicationResponse, applicationResponse] =
-        await Promise.all([
-          fetch("/api/company-dashboard/recruiters"),
-          fetch("/api/company-dashboard/communications"),
-          fetch("/api/applications"),
-        ]);
+      const [
+        recruiterResponse,
+        communicationResponse,
+        applicationResponse,
+      ] = await Promise.all([
+        fetch("/api/company-dashboard/recruiters"),
+        fetch("/api/company-dashboard/communications"),
+        fetch("/api/applications"),
+      ]);
 
       if (
         !recruiterResponse.ok ||
         !communicationResponse.ok ||
         !applicationResponse.ok
       ) {
-        throw new Error("Failed to load company intelligence data. Please try again.");
+        throw new Error(
+          "Failed to load company intelligence data. Please try again.",
+        );
       }
 
       const [recruiterData, communicationData, applicationData] =
@@ -72,180 +80,195 @@ export default function CompanyDashboardPage() {
     fetchData();
   }, [fetchData]);
 
-  // Derive unique company count
   const uniqueCompanyCount = new Set(
     applications.map((app) => app.company.trim()).filter(Boolean),
   ).size;
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50/50 p-4 sm:p-8 space-y-8 max-w-7xl mx-auto">
-        {/* Skeleton Header */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-xs animate-pulse">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-3">
-              <div className="h-4 w-32 bg-slate-200 rounded-md"></div>
-              <div className="h-8 w-64 bg-slate-200 rounded-lg"></div>
-              <div className="h-4 w-96 bg-slate-200 rounded-md"></div>
-            </div>
-            <div className="flex gap-3">
-              <div className="h-10 w-28 bg-slate-200 rounded-xl"></div>
-              <div className="h-10 w-28 bg-slate-200 rounded-xl"></div>
-            </div>
+      <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-8">
+        <div className="mx-auto max-w-7xl animate-pulse space-y-6">
+          <div className="h-72 rounded-4xl bg-slate-200" />
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)].map((_, index) => (
+              <div
+                key={index}
+                className="h-28 rounded-2xl border border-slate-200 bg-white"
+              />
+            ))}
           </div>
-        </div>
 
-        {/* Skeleton Stat Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs animate-pulse space-y-3"
-            >
-              <div className="flex justify-between items-center">
-                <div className="h-3 w-16 bg-slate-200 rounded"></div>
-                <div className="w-8 h-8 rounded-xl bg-slate-200"></div>
-              </div>
-              <div className="h-7 w-20 bg-slate-200 rounded-md"></div>
-            </div>
-          ))}
+          <div className="h-128 rounded-4xl border border-slate-200 bg-white" />
         </div>
-
-        {/* Skeleton Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 h-96 bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs animate-pulse"></div>
-          <div className="h-96 bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs animate-pulse"></div>
-        </div>
-      </div>
+      </main>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-slate-50/50 flex items-center justify-center p-4 sm:p-8">
-        <div className="bg-white border border-rose-200/80 rounded-2xl p-8 text-center max-w-md w-full shadow-xs space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-rose-50 flex items-center justify-center mx-auto text-rose-600 border border-rose-100 shadow-2xs">
-            <AlertCircle className="w-7 h-7" />
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+        <div className="w-full max-w-md rounded-4xl border border-rose-200 bg-white p-8 text-center shadow-xl shadow-slate-200/50">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-rose-600">
+            <AlertCircle className="h-7 w-7" />
           </div>
-          <div>
-            <h2 className="text-lg font-bold text-slate-900">
-              Unable to Load Dashboard
-            </h2>
-            <p className="text-xs text-rose-600 mt-1">{error}</p>
-          </div>
-          <p className="text-xs text-slate-500">
-            Please check your network connection or verify that your services are operational.
+
+          <h2 className="text-lg font-bold text-slate-900">
+            Unable to Load Dashboard
+          </h2>
+
+          <p className="mt-2 text-sm text-rose-600">{error}</p>
+
+          <p className="mt-3 text-xs leading-5 text-slate-500">
+            Please check your network connection or try again shortly.
           </p>
-          <div className="flex items-center justify-center gap-3 pt-2">
+
+          <div className="mt-6 flex justify-center gap-3">
             <button
               onClick={() => fetchData(true)}
-              className="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-xl shadow-xs transition-all cursor-pointer inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-blue-700"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
-              <span>Try Again</span>
+              <RefreshCw className="h-3.5 w-3.5" />
+              Try Again
             </button>
+
             <Link
               href="/dashboard"
-              className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200/80 text-slate-700 text-xs font-semibold rounded-xl transition-all inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Dashboard</span>
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Dashboard
             </Link>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-slate-50/50 p-4 sm:p-8 space-y-8 max-w-7xl mx-auto">
-      {/* Top Banner Header */}
-      <header className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
-        {/* Subtle background glow accent */}
-        <div className="absolute top-0 right-0 -mt-8 -mr-8 w-64 h-64 bg-linear-to-bl from-blue-500/10 via-indigo-500/5 to-transparent rounded-full blur-2xl pointer-events-none" />
+  const metrics = [
+    {
+      label: "Companies",
+      value: uniqueCompanyCount,
+      icon: Building2,
+      color: "text-blue-600",
+      background: "bg-blue-50",
+    },
+    {
+      label: "Recruiters",
+      value: recruiters.length,
+      icon: Users,
+      color: "text-emerald-600",
+      background: "bg-emerald-50",
+    },
+    {
+      label: "Applications",
+      value: applications.length,
+      icon: Briefcase,
+      color: "text-indigo-600",
+      background: "bg-indigo-50",
+    },
+  ];
 
-        <div className="relative z-10 space-y-4">
-          {/* Breadcrumb & Back Link */}
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+  return (
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-8 sm:py-8">
+      <div className="mx-auto max-w-7xl space-y-6">
+        <section className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-7 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
+          <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-indigo-400/15 blur-3xl" />
+
+          <div className="relative z-10">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <Link
                 href="/dashboard"
-                className="hover:text-blue-600 transition-colors flex items-center gap-1"
+                className="inline-flex items-center gap-2 text-xs font-medium text-blue-100 transition hover:text-white"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Dashboard</span>
+                <ArrowLeft className="h-3.5 w-3.5" />
+                Back to Dashboard
               </Link>
-              <span>/</span>
-              <span className="text-slate-800 font-semibold">Company Intelligence</span>
-            </div>
 
-            <div className="flex items-center gap-2">
               <button
                 onClick={() => fetchData(true)}
                 disabled={isRefreshing}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-xs font-semibold text-slate-700 transition-all border border-slate-200/60 cursor-pointer disabled:opacity-60"
-                title="Refresh dashboard data"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20 disabled:opacity-60"
               >
                 <RefreshCw
-                  className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-blue-600" : "text-slate-500"}`}
+                  className={`h-3.5 w-3.5 ${
+                    isRefreshing ? "animate-spin" : ""
+                  }`}
                 />
-                <span>{isRefreshing ? "Refreshing..." : "Refresh"}</span>
+                {isRefreshing ? "Refreshing..." : "Refresh data"}
               </button>
             </div>
-          </div>
 
-          {/* Title & Stats Badges */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-1">
-            <div className="flex items-start sm:items-center gap-4">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-linear-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white shadow-md shadow-blue-500/20 shrink-0">
-                <Building2 className="w-6 h-6 sm:w-7 sm:h-7" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2.5 flex-wrap">
-                  <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                    Company Intelligence
-                  </h1>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-                    Analytics & Insights
-                  </span>
+            <div className="mt-12 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+              <div className="max-w-2xl">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-3 py-1.5 text-xs font-semibold text-blue-100">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Analytics & Insights
                 </div>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                  Track recruiter relationships, response rates, and communication touchpoints across all target companies
+
+                <h1 className="text-3xl font-black tracking-tight sm:text-5xl">
+                  Company Intelligence
+                </h1>
+
+                <p className="mt-4 max-w-xl text-sm leading-6 text-blue-100/75 sm:text-base">
+                  Track recruiter relationships, response rates, and
+                  communication touchpoints across your target companies.
                 </p>
               </div>
-            </div>
 
-            {/* Quick Metrics Badges */}
-            <div className="flex items-center gap-2 flex-wrap self-start md:self-auto">
-              <div className="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 flex items-center gap-2 shadow-2xs">
-                <Building2 className="w-3.5 h-3.5 text-blue-500" />
-                <span>
-                  {uniqueCompanyCount} {uniqueCompanyCount === 1 ? "Company" : "Companies"}
-                </span>
-              </div>
-              <div className="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 flex items-center gap-2 shadow-2xs">
-                <Users className="w-3.5 h-3.5 text-emerald-500" />
-                <span>
-                  {recruiters.length} {recruiters.length === 1 ? "Recruiter" : "Recruiters"}
-                </span>
-              </div>
-              <div className="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200/80 text-xs font-semibold text-slate-700 flex items-center gap-2 shadow-2xs">
-                <Briefcase className="w-3.5 h-3.5 text-indigo-500" />
-                <span>
-                  {applications.length} {applications.length === 1 ? "Application" : "Applications"}
-                </span>
+              <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
+                  <Building2 className="h-5 w-5 text-blue-200" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{uniqueCompanyCount}</p>
+                  <p className="text-xs text-blue-100/65">
+                    Active target companies
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </section>
 
-      {/* Main Dashboard Content */}
-      <CompanyDashboard
-        applications={applications}
-        recruiters={recruiters}
-        communications={communications}
-      />
-    </div>
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {metrics.map((metric) => {
+            const Icon = metric.icon;
+
+            return (
+              <div
+                key={metric.label}
+                className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    {metric.label}
+                  </p>
+
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl ${metric.background} ${metric.color}`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                </div>
+
+                <p className="mt-4 text-3xl font-black tracking-tight text-slate-900">
+                  {metric.value}
+                </p>
+              </div>
+            );
+          })}
+        </section>
+
+        <section className="rounded-4xl border border-slate-200/80 bg-white p-3 shadow-sm sm:p-5">
+          <CompanyDashboard
+            applications={applications}
+            recruiters={recruiters}
+            communications={communications}
+          />
+        </section>
+      </div>
+    </main>
   );
 }

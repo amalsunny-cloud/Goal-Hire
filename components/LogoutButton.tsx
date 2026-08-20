@@ -19,9 +19,7 @@ export default function LogoutButton() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.message ?? "Logout failed."
-        );
+        throw new Error(data.message ?? "Logout failed.");
       }
 
       toast.success("Logged out successfully.");
@@ -32,9 +30,7 @@ export default function LogoutButton() {
       console.error(error);
 
       toast.error(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong."
+        error instanceof Error ? error.message : "Something went wrong.",
       );
     } finally {
       setLoading(false);
@@ -47,16 +43,7 @@ export default function LogoutButton() {
       onClick={handleLogout}
       disabled={loading}
       aria-label="Log out"
-      className="
-        bg-slate-600
-        text-white
-        cursor-pointer
-        px-4
-        py-2
-        rounded-xl
-        disabled:opacity-50
-        disabled:cursor-not-allowed
-      "
+      className="rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {loading ? "Logging out..." : "Logout"}
     </button>

@@ -190,7 +190,7 @@ export default function CompanyDashboard({
   return (
     <div className="space-y-8">
       {/* Navigation Tabs Bar */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 border-b border-slate-200/80 scrollbar-none">
+      <div className="flex items-center gap-2 overflow-x-auto pb-4 border-b border-slate-200/80 scrollbar-none">
         <button
           onClick={() => setActiveTab("overview")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${

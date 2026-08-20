@@ -6,7 +6,9 @@ import toast from "react-hot-toast";
 interface ExportCSVButtonProps {
   applications: Application[];
 }
-export default function ExportCSVButton({ applications }: ExportCSVButtonProps) {
+export default function ExportCSVButton({
+  applications,
+}: ExportCSVButtonProps) {
   const exportCSV = () => {
     const headers = [
       "Company",
@@ -42,13 +44,13 @@ export default function ExportCSVButton({ applications }: ExportCSVButtonProps) 
     link.click();
 
     window.URL.revokeObjectURL(url);
-    toast.success("CSV exported successfully.")
+    toast.success("CSV exported successfully.");
   };
 
   return (
     <button
       onClick={exportCSV}
-      className="bg-slate-600 text-white px-4 py-2 rounded-xl cursor-pointer"
+      className="rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
     >
       Export CSV
     </button>

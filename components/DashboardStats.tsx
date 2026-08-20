@@ -3,51 +3,48 @@ import StatsCard from "./StatsCard";
 import { useMemo } from "react";
 
 interface DashboardStatsProps {
-    applications: Application[];
+  applications: Application[];
 }
-export default function DashboardStats({ applications }:DashboardStatsProps) {
+export default function DashboardStats({ applications }: DashboardStatsProps) {
+  const stats = useMemo(() => {
+    const result = {
+      total: applications.length,
+      applied: 0,
+      interview: 0,
+      offer: 0,
+      rejected: 0,
+    };
 
-  console.log("Application in dashboardStats is:",applications)
+    for (const application of applications) {
+      switch (application.status) {
+        case "Applied":
+          result.applied++;
+          break;
 
-    const stats = useMemo(() => {
-  const result = {
-    total: applications.length,
-    applied: 0,
-    interview: 0,
-    offer: 0,
-    rejected: 0,
-  };
+        case "Interview":
+          result.interview++;
+          break;
 
-  for (const application of applications) {
-    switch (application.status) {
-      case "Applied":
-        result.applied++;
-        break;
+        case "Offer":
+          result.offer++;
+          break;
 
-      case "Interview":
-        result.interview++;
-        break;
-
-      case "Offer":
-        result.offer++;
-        break;
-
-      case "Rejected":
-        result.rejected++;
-        break;
+        case "Rejected":
+          result.rejected++;
+          break;
+      }
     }
-  }
 
-  return result;
-}, [applications]);
+    return result;
+  }, [applications]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-      <StatsCard title="Total" value={stats.total}/>
-      <StatsCard title="Applied" value={stats.applied}/>
-      <StatsCard title="Interview" value={stats.interview}/>
-      <StatsCard title="Offer" value={stats.offer}/>
-      <StatsCard title="Rejected" value={stats.rejected}/>
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+      <StatsCard title="Total" value={stats.total} tone="blue" />
+      <StatsCard title="Applied" value={stats.applied} tone="indigo" />
+      <StatsCard title="Interview" value={stats.interview} tone="violet" />
+      <StatsCard title="Offer" value={stats.offer} tone="emerald" />
+      <StatsCard title="Rejected" value={stats.rejected} tone="slate" />
     </div>
-  )
+  );
 }
