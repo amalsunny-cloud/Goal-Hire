@@ -26,7 +26,7 @@ export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
 }
 
   return (
-    <div className="rounded-lg shadow-md p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">Application Funnel</h2>
 
       <div className="space-y-4">

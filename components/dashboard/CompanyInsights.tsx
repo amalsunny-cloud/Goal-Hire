@@ -18,26 +18,26 @@ export default function CompanyInsights({
   );
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-2xl font-semibold mb-6">Company Insights</h2>
 
       <div className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="py-2">
-          <p className="text-gray-500">Top Location</p>
+        <div className="py-2 flex justify-center gap-2">
+          <p className="text-gray-500">Top Location : </p>
 
           <h4 className="text-xl font-bold">
             {insights.topLocation || "No data"}
           </h4>
         </div>
 
-        <div className="py-2">
-          <p className="text-gray-500">Top Role</p>
+        <div className="py-2 flex justify-center gap-2">
+          <p className="text-gray-500">Top Role : </p>
 
           <h4 className="text-xl font-bold">{insights.topRole || "No data"}</h4>
         </div>
 
-        <div className="py-2">
-          <p className="text-gray-500">Top Company</p>
+        <div className="py-2 flex justify-center gap-2">
+          <p className="text-gray-500">Top Company : </p>
 
           <h4 className="text-xl font-bold">
             {insights.topCompany || "No data"}
@@ -50,20 +50,20 @@ export default function CompanyInsights({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 
-          <div className="border border-gray-500/30 rounded p-3">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Applied</p>
             <h3 className="text-2xl font-bold">{status.applied}</h3>
           </div>
 
-          <div className="border border-gray-500/30 rounded p-3">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Interview</p>  
             <h3 className="text-2xl font-bold">{status.interview}</h3> 
           </div>
-          <div className="border border-gray-500/30 rounded p-3">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Offer</p>  
             <h3 className="text-2xl font-bold">{status.offer}</h3> 
           </div>
-          <div className="border border-gray-500/30 rounded p-3">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Rejected</p>  
             <h3 className="text-2xl font-bold">{status.rejected}</h3> 
           </div>

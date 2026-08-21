@@ -62,7 +62,7 @@ const applicationCount = applications.length;
   }, [applications, applicationGoal, interviewGoal, offerGoal]);
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">Monthly Goals</h2>
 
       <div className="space-y-6">

@@ -136,7 +136,7 @@ Skills: ${profile.skills || "N/A"}`;
           id="profile-select"
           value={selectedProfile}
           onChange={(e) => handleProfileChange(e.target.value)}
-          className="w-full sm:w-auto min-w-[180px] px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm cursor-pointer"
+          className="w-full sm:w-auto min-w-45 px-3 py-1.5 border-b border-slate-700 text-xs font-medium text-slate-700 focus:outline-none transition-all cursor-pointer"
         >
           <option value="">Select Profile (Optional)</option>
           {profiles.map((profile) => (
@@ -162,7 +162,7 @@ Skills: ${profile.skills || "N/A"}`;
             placeholder="e.g. Google, Microsoft, Stripe"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
           />
         </div>
 
@@ -179,7 +179,7 @@ Skills: ${profile.skills || "N/A"}`;
             placeholder="e.g. Full Stack Developer"
             value={role}
             onChange={(e) => setRole(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
           />
         </div>
 
@@ -196,7 +196,7 @@ Skills: ${profile.skills || "N/A"}`;
             placeholder="e.g. New York, NY / Remote"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
           />
         </div>
 
@@ -212,7 +212,7 @@ Skills: ${profile.skills || "N/A"}`;
             placeholder="e.g. $120,000 / yr"
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
           />
         </div>
 
@@ -227,7 +227,7 @@ Skills: ${profile.skills || "N/A"}`;
             required
             value={source}
             onChange={(e) => setSource(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm cursor-pointer"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 focus:outline-none transition-all cursor-pointer"
           >
             <option value="LinkedIn">LinkedIn</option>
             <option value="Indeed">Indeed</option>
@@ -249,7 +249,7 @@ Skills: ${profile.skills || "N/A"}`;
             type="date"
             value={followUpDate}
             onChange={(e) => setFollowUpDate(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm cursor-pointer"
+            className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 focus:outline-none transition-all cursor-pointer"
           />
         </div>
       </div>
@@ -266,7 +266,7 @@ Skills: ${profile.skills || "N/A"}`;
           placeholder="https://company.com/careers/job-id"
           value={jobUrl}
           onChange={(e) => setJobUrl(e.target.value)}
-          className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm"
+          className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
         />
       </div>
 
@@ -282,7 +282,7 @@ Skills: ${profile.skills || "N/A"}`;
           placeholder="Add interview stages, recruiter contact, required tech stack, or referral notes..."
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-sm resize-y"
+          className="w-full px-3.5 py-2.5 border-b border-slate-700 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all resize-y"
         />
       </div>
 
@@ -291,7 +291,7 @@ Skills: ${profile.skills || "N/A"}`;
         <button
           type="submit"
           disabled={loading}
-          className="w-full sm:w-auto min-w-[180px] inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
+          className="w-full sm:w-auto min-w-45 inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
         >
           {loading ? (
             <>

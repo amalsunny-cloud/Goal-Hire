@@ -89,7 +89,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, i) => (
-              <div key={i} className="p-8 bg-slate-400/10 border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="p-8 bg-slate-400/10 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-lg font-semibold text-slate-900">{feature.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 leading-relaxed">{feature.description}</p>

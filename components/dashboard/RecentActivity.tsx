@@ -16,7 +16,7 @@ export default function RecentActivity({ applications }: RecentActivityProps) {
     ).slice(0, 5);
 
   return (
-    <div className="bg-slate-400/10 shadow-md rounded-lg p-6">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
 
       {recentApplications.length === 0 ? (

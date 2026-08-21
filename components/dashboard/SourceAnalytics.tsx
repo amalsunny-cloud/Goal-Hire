@@ -12,7 +12,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
 
   if (sources.length === 0) {
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">
         Job Sources
       </h2>
@@ -25,7 +25,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
 }
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10 w-[50%]">
+    <div className="rounded-lg p-6 mx-auto w-[50%]">
       <h2 className="text-xl font-semibold mb-6">
         Job Sources
       </h2>
@@ -34,7 +34,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
         {Object.entries(analytics).map(([source, count]) => (
           <div
             key={source}
-            className="flex justify-between">
+            className="flex justify-between bg-white rounded-lg p-3">
             <span>{source}</span>
 
             <span>{count}</span>

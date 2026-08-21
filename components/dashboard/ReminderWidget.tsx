@@ -6,6 +6,7 @@ import { getUpcomingFollowUps } from "@/lib/dashboard/getUpcomingFollowUps";
 import { Application } from "@/types/application";
 import { Interview } from "@/types/interview";
 import toast from "react-hot-toast";
+import { BellRing, CalendarClock, ChevronRight } from "lucide-react";
 
 interface ReminderWidgetProps {
   applications: Application[];
@@ -85,14 +86,9 @@ export default function ReminderWidget({
 
   if (!reminders) {
     return (
-      <div className="border rounded-lg p-6 bg-white">
-        <h2 className="text-xl font-semibold mb-6">
-          Follow Up Reminders
-        </h2>
-
-        <p className="text-gray-500">
-          Loading reminders...
-        </p>
+      <div className="py-1">
+        <WidgetTitle />
+        <p className="rounded-2xl px-4 py-6 text-sm text-slate-500">Loading reminders…</p>
       </div>
     );
   }
@@ -108,29 +104,20 @@ export default function ReminderWidget({
     totalReminders > 0;
 
   return (
-    <div className="rounded-lg p-6 bg-slate-400/10 shadow-md">
-      <h2 className="text-xl font-semibold mb-6">
-        Follow Up Reminders
-      </h2>
+    <div className="py-1">
+      <WidgetTitle count={totalReminders} />
 
       {!hasContent ? (
-        <p className="text-gray-500">
-          No reminders at the moment.
-        </p>
+        <div className="rounded-2xl bg-emerald-50 px-4 py-6 text-sm font-medium text-emerald-700">You are all caught up. No reminders right now.</div>
       ) : (
-        <>
-          <div className="space-y-6">
+        <div className="space-y-5">
+          <div className="space-y-4">
             {overdue.length > 0 && (
               <section>
-                <h3 className="font-bold text-red-500 mb-2">
-                  Overdue
-                </h3>
-
-                <ul className="space-y-1">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-rose-600">Overdue</p>
+                <ul className="space-y-2">
                   {overdue.map((app) => (
-                    <li key={app._id}>
-                      {app.company}
-                    </li>
+                    <ReminderRow key={app._id} label={`Follow up with ${app.company}`} tone="rose" />
                   ))}
                 </ul>
               </section>
@@ -138,15 +125,10 @@ export default function ReminderWidget({
 
             {upcoming.length > 0 && (
               <section>
-                <h3 className="font-bold text-yellow-500 mb-2">
-                  Upcoming Follow-ups
-                </h3>
-
-                <ul className="space-y-1">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-600">Upcoming follow-ups</p>
+                <ul className="space-y-2">
                   {upcoming.map((app) => (
-                    <li key={app._id}>
-                      {app.company}
-                    </li>
+                    <ReminderRow key={app._id} label={app.company} tone="amber" />
                   ))}
                 </ul>
               </section>
@@ -154,68 +136,52 @@ export default function ReminderWidget({
 
             {upcomingInterviews.length > 0 && (
               <section>
-                <h3 className="font-bold text-blue-500 mb-2">
-                  Upcoming Interviews
-                </h3>
-
-                <ul className="space-y-1">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-blue-600">Upcoming interviews</p>
+                <ul className="space-y-2">
                   {upcomingInterviews.map(
                     (interview) => (
-                      <li key={interview._id}>
-                        {interview.round} –{" "}
-                        {new Date(
-                          interview.date!
-                        ).toLocaleDateString()}
-                      </li>
+                      <ReminderRow key={interview._id} label={`${interview.round} · ${new Date(interview.date!).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`} tone="blue" />
                     )
                   )}
                 </ul>
               </section>
             )}
           </div>
-
-          <div className="mt-8">
-            <h3 className="text-lg font-semibold mb-4">
-              Upcoming Reminder(s) (
-              {totalReminders})
-            </h3>
-
-            {reminders.followUps.length >
-              0 && (
-              <ul className="space-y-2 mb-4">
-                {reminders.followUps.map(
-                  (app) => (
-                    <li key={app._id}>
-                      🔔 Follow up with{" "}
-                      <span className="font-medium">
-                        {app.company}
-                      </span>
-                    </li>
-                  )
-                )}
-              </ul>
-            )}
-
-            {reminders.interviews.length >
-              0 && (
+          {totalReminders > 0 && (
+            <section className="border-t border-slate-100 pt-4">
+              <p className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Scheduled by your tracker</p>
               <ul className="space-y-2">
-                {reminders.interviews.map(
-                  (interview) => (
-                    <li
-                      key={interview._id}
-                    >
-                      🎤 Interview:{" "}
-                      <span className="font-medium">
-                        {interview.round}
-                      </span>
-                    </li>
-                  )
-                )}
+                {reminders.followUps.map((app) => <ReminderRow key={app._id} label={`Follow up with ${app.company}`} tone="slate" />)}
+                {reminders.interviews.map((interview) => <ReminderRow key={interview._id} label={`Interview: ${interview.round}`} tone="slate" />)}
               </ul>
-            )}
-          </div>
-        </>
+            </section>
+          )}
+        </div>
       )}
     </div>
   );
+}
+
+function WidgetTitle({ count }: { count?: number }) {
+  return (
+    <div className="mb-5 flex items-start justify-between gap-3">
+      <div>
+        <p className="text-lg font-bold tracking-tight text-slate-900">Follow-up reminders</p>
+        <p className="mt-0.5 text-xs text-slate-500">Stay on top of the next step</p>
+      </div>
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600"><BellRing className="h-4 w-4" /></span>
+      {typeof count === "number" && count > 0 && <span className="sr-only">{count} reminders</span>}
+    </div>
+  );
+}
+
+function ReminderRow({ label, tone }: { label: string; tone: "rose" | "amber" | "blue" | "slate" }) {
+  const tones = {
+    rose: "bg-rose-50 text-rose-600",
+    amber: "bg-amber-50 text-amber-600",
+    blue: "bg-blue-50 text-blue-600",
+    slate: "bg-slate-100 text-slate-600",
+  };
+
+  return <li className="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700"><span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg ${tones[tone]}`}><CalendarClock className="h-3.5 w-3.5" /></span><span className="min-w-0 flex-1 truncate">{label}</span><ChevronRight className="h-4 w-4 text-slate-300" /></li>;
 }

@@ -23,7 +23,7 @@ export default function ApplicationsChart({data}: ApplicationsChartProps) {
 }
 
   return (
-    <section className="rounded-lg p-6 bg-slate-400/10 shadow-md">
+    <section className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Applications Per Month</h2>
 
       <ResponsiveContainer width="100%" height={300}>

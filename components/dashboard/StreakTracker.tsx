@@ -10,7 +10,7 @@ export default function StreakTracker({ applications }: StreakTrackerProps) {
   const streak = useMemo(()=> getApplicationStreak(applications),[applications])
 
   return (
-    <div className="rounded-lg p-6 bg-slate-400/10 shadow-md">
+    <div className="rounded-lg p-6 bg-transparent backdrop-blur-2xl">
       <h2 className="text-xl font-semibold mb-6">Job Search Streak</h2>
 
       <div className="grid md:grid-cols-3 gap-4">

@@ -12,28 +12,28 @@ export default function InterviewAnalytics({interviews}:InterviewAnalyticsProps)
 );
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">
         Interview Analytics
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-        <div>
+        <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Total</p>
             <h3 className="text-2xl font-bold">{analytics.total}</h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Passed</p>
             <h3 className="text-2xl font-bold">{analytics.passed}</h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
             <p className="text-gray-500">Failed</p>
             <h3 className="text-2xl font-bold">{analytics.failed}</h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">
             Pending
           </p>
@@ -43,7 +43,7 @@ export default function InterviewAnalytics({interviews}:InterviewAnalyticsProps)
           </h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">
             Success Rate
           </p>

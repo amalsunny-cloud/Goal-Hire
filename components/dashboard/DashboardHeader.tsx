@@ -34,27 +34,6 @@ export default function DashboardHeader({
         Keep pushing forward. Every application is a step closer to your next
         role.
       </p>
-
-      {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div>
-          <p className="text-gray-500">Applications</p>
-          <p className="text-2xl font-bold">{applicationCount}</p>
-        </div>
-
-        <div>
-          <p className="text-gray-500">Interviews</p>
-          <p className="text-2xl font-bold">{interviewCount}</p>
-        </div>
-
-        <div>
-          <p className="text-gray-500">Offers</p>
-          <p className="text-2xl font-bold">{offerCount}</p>
-        </div>
-        <div>
-          <p className="text-gray-500">Reminders</p>
-          <p className="text-2xl font-bold">🔔 {reminders}</p>
-        </div>
-      </div> */}
     </div>
   );
 }

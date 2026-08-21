@@ -16,7 +16,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
 
   if (sources.length === 0) {
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">
         Source Success Analytics
       </h2>
@@ -30,7 +30,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
 
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">Source Success Analytics</h2>
 
       <div className="space-y-4">
@@ -44,23 +44,23 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
             data.applications > 0 ? (data.offers / data.applications) * 100 : 0;
 
           return (
-            <div key={source} className="shadow-md rounded-lg p-6 bg-slate-400/10">
+            <div key={source} className="rounded-lg p-6">
               <h3 className="font-bold text-lg mb-3">{source}</h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div>
+                <div className="bg-white rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Applications</p>
 
                   <p className="text-xl font-semibold">{data.applications}</p>
                 </div>
 
-                <div>
+                <div className="bg-white rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Interviews</p>
 
                   <p className="text-xl font-semibold">{data.interviews}</p>
                 </div>
 
-                <div>
+                <div className="bg-white rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Offers</p>
 
                   <p className="text-xl font-semibold">{data.offers}</p>
@@ -68,14 +68,14 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
               </div>
 
               <div className="mt-4 border-t border-gray-500/30 pt-3 space-y-1">
-                <p>
+                <p className="bg-white rounded-lg p-3">
                   Interview Rate:{" "}
                   <span className="font-semibold">
                     {interviewRate.toFixed(1)}%
                   </span>
                 </p>
 
-                <p>
+                <p className="bg-white rounded-lg p-3">
                   Offer Rate:{" "}
                   <span className="font-semibold">{offerRate.toFixed(1)}%</span>
                 </p>

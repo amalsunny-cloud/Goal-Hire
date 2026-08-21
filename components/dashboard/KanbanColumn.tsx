@@ -17,21 +17,8 @@ export default function KanbanColumn({
   applications,
 }: Props) {
   return (
-    <div
-      className="
-        bg-gray-100
-        rounded-lg
-        p-4
-        min-h-[300px]
-      "
-    >
-      <h2
-        className="
-          font-bold
-          text-lg
-          mb-4
-        "
-      >
+    <div className="bg-gray-100 rounded-lg p-4 min-h-75">
+      <h2 className="font-bold text-lg mb-4">
         {title}
       </h2>
 
@@ -40,7 +27,7 @@ export default function KanbanColumn({
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="space-y-3 min-h-[200px]"
+            className="space-y-3 min-h-50"
           >
             {applications.map(
               (application, index) => (

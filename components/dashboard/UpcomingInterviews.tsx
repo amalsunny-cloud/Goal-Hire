@@ -38,13 +38,13 @@ export default function UpcomingInterviews({
 
         <p className="text-green-600 font-medium">
           🎉 No upcoming interviews scheduled.
-        </p>
+        </p>z
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg p-4 bg-slate-400/10 shadow-md">
+    <div className="rounded-lg p-4">
       <h2 className="text-xl font-semibold mb-4">
         Upcoming Interviews
       </h2>

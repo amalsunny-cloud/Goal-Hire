@@ -188,15 +188,16 @@ export default function CompanyDashboard({
   const hasActiveFilters = search !== "" || rateFilter !== "all" || sortBy !== "communications";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Navigation Tabs Bar */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 border-b border-slate-200/80 scrollbar-none">
+      <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
+        <div className="flex min-w-max items-center gap-1">
         <button
           onClick={() => setActiveTab("overview")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "overview"
-              ? "bg-slate-800 text-white shadow-xs"
-              : "bg-white border border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
+              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
           }`}
         >
           <LayoutGrid className="w-3.5 h-3.5" />
@@ -207,8 +208,8 @@ export default function CompanyDashboard({
           onClick={() => setActiveTab("directory")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "directory"
-              ? "bg-slate-800 text-white shadow-xs"
-              : "bg-white border border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
+              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
           }`}
         >
           <Building2 className="w-3.5 h-3.5" />
@@ -219,8 +220,8 @@ export default function CompanyDashboard({
           onClick={() => setActiveTab("analytics")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "analytics"
-              ? "bg-slate-800 text-white shadow-xs"
-              : "bg-white border border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
+              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
           }`}
         >
           <BarChart3 className="w-3.5 h-3.5" />
@@ -231,13 +232,14 @@ export default function CompanyDashboard({
           onClick={() => setActiveTab("leaderboard")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "leaderboard"
-              ? "bg-slate-800 text-white shadow-xs"
-              : "bg-white border border-slate-200/80 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
+              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
           }`}
         >
           <Trophy className="w-3.5 h-3.5" />
           <span>Leaderboard</span>
         </button>
+        </div>
       </div>
 
       {/* Global Analytics Overview (Displayed in overview and analytics tab) */}

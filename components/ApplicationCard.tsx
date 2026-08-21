@@ -23,7 +23,7 @@ export default function ApplicationCard({
   onStatusChange,
 }: ApplicationCardProps) {
   return (
-    <div className="shadow-md rounded-lg p-4 bg-slate-400/10">
+    <div className="bg-white rounded-lg p-4">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <div className="flex flex-col justify-center space-y-1">
           <h3 className="font-bold text-lg text-gray-800">

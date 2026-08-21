@@ -11,21 +11,21 @@ export default function ApplicationAnalytics({ applications }: ApplicationAnalyt
 
   const avgInterviewTime = getAverageInterviewTime(applications);
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2
         className="text-xl font-semibold mb-6">
         Application Analytics
       </h2>
 
       <div className="grid md:grid-cols-3 gap-4">
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Interview Rate</p>
           <h3 className="text-2xl font-bold">
             {analytics.interviewRate.toFixed(1)}%
           </h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Offer Rate</p>
 
           <h3 className="text-2xl font-bold">
@@ -33,14 +33,14 @@ export default function ApplicationAnalytics({ applications }: ApplicationAnalyt
           </h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Rejections</p>
 
           <h3 className="text-2xl font-bold">{analytics.rejected}</h3>
         </div>
       </div>
 
-      <div>
+      <div className="bg-white rounded-lg p-3 mt-4">
         <p className="text-gray-500">Avg Interview Time</p>
 
         <h3 className="text-2xl font-bold">

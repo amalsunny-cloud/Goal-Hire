@@ -11,7 +11,7 @@ export default function MainLayout({
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <Navbar2/>
-      <main className="flex-1 bg-white">{children}</main>
+      <main className="flex-1 bg-blue-300/10">{children}</main>
       <Footer />
     </div>
   );

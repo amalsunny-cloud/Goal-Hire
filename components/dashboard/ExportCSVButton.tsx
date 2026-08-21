@@ -50,7 +50,7 @@ export default function ExportCSVButton({
   return (
     <button
       onClick={exportCSV}
-      className="rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+      className="rounded-2xl border border-indigo-100 bg-indigo-50 px-4 py-2.5 text-sm font-semibold text-indigo-700 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-100"
     >
       Export CSV
     </button>

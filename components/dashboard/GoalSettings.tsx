@@ -62,7 +62,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
     }
   };
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Goal Settings</h2>
 
       <div className="space-y-6 mt-2">

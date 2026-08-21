@@ -10,17 +10,17 @@ export default function PredictionAnalytics({ applications }: PredictionAnalytic
   const analytics = useMemo(()=> getPredictionAnalytics(applications),[applications]);
 
   return (
-    <div className="shadow-md rounded-lg p-6 bg-slate-400/10">
+    <div className="rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-6">Prediction Dashboard</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Total Applications</p>
 
           <h3 className="text-3xl font-bold">{analytics.totalApplications}</h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Interview Rate</p>
 
           <h3 className="text-3xl font-bold">
@@ -28,7 +28,7 @@ export default function PredictionAnalytics({ applications }: PredictionAnalytic
           </h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">Offer Rate</p>
 
           <h3 className="text-3xl font-bold">
@@ -36,7 +36,7 @@ export default function PredictionAnalytics({ applications }: PredictionAnalytic
           </h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">
             Expected Interviews (per 100 Applications)
           </p>
@@ -44,7 +44,7 @@ export default function PredictionAnalytics({ applications }: PredictionAnalytic
           <h3 className="text-3xl font-bold">{analytics.expectedInterviews}</h3>
         </div>
 
-        <div>
+        <div className="bg-white rounded-lg p-3">
           <p className="text-gray-500">
             Expected Offers (per 100 Applications)
           </p>

@@ -197,8 +197,9 @@ export default function Dashboard() {
   const interviewCount = upcomingInterviews.length;
   const chartData = getApplicationsPerMonth(applications);
   const funnelData = getFunnelData(applications);
+  
   const panelClassName =
-    "rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/30 transition-shadow hover:shadow-md sm:p-6";
+    "rounded-2xl bg-slate-400/10 p-5 shadow-sm shadow-slate-200/30 transition-shadow hover:shadow-md sm:p-6";
   const tabs = [
     { id: "overview", label: "Overview", icon: LayoutDashboard },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -207,11 +208,11 @@ export default function Dashboard() {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
+    <div className="min-h-screen px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-6">
-        <header className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 p-6 text-white shadow-2xl shadow-blue-950/20 sm:p-8 lg:p-10">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-400/20 blur-3xl" />
-          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-400/15 blur-3xl" />
+        <header className="relative overflow-hidden rounded-4xl bg-gray-500 p-6 text-white shadow-2xl shadow-blue-950/20 sm:p-8 lg:p-10">
+          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-100/20 blur-3xl" />
+          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-100/15 blur-3xl" />
           <div className="relative flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
             <DashboardHeader
               applicationCount={applicationCount}
@@ -235,8 +236,8 @@ export default function Dashboard() {
 
         <DashboardStats applications={applications} />
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
-          <div className="flex min-w-max gap-1">
+        <div className="overflow-x-auto w-[50%] mx-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
+          <div className="flex justify-center min-w-max gap-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -255,7 +256,7 @@ export default function Dashboard() {
 
         {activeTab === "overview" && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-4">
               <div className={panelClassName}>
                 <StreakTracker applications={applications} />
               </div>
@@ -266,7 +267,7 @@ export default function Dashboard() {
                 <RecentApplications applications={applications} />
               </div>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-4">
               <div className={panelClassName}>
                 <ReminderWidget
                   applications={applications}
@@ -284,7 +285,7 @@ export default function Dashboard() {
         )}
 
         {activeTab === "analytics" && (
-          <div className="space-y-8">
+          <div className="space-y-4">
             <div className={panelClassName}>
               <AnalyticsSection applications={applications} />
             </div>
@@ -325,7 +326,7 @@ export default function Dashboard() {
         )}
 
         {activeTab === "workflow" && (
-          <div className="space-y-8">
+          <div className="space-y-4">
             <div className={panelClassName}>
               <KanbanBoard
                 applications={applications}
@@ -345,9 +346,9 @@ export default function Dashboard() {
         )}
 
         {activeTab === "applications" && (
-          <div className="space-y-8">
-            <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm shadow-slate-200/30 sm:p-8">
-              <div className="mb-6 flex items-center gap-3">
+          <div className="space-y-4">
+            <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200/80 bg-slate-400/10 p-6 shadow-sm shadow-slate-200/30 sm:p-8">
+              <div className="mb-6 flex justify-center items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <Sparkles className="h-5 w-5" />
                 </div>
@@ -369,7 +370,7 @@ export default function Dashboard() {
                   placeholder="Search applications..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100 md:w-72"
+                  className="w-full border-b border-slate-700 px-4 py-2.5 text-sm outline-none transition placeholder:text-slate-400  md:w-72"
                 />
                 <div className="flex gap-2">
                   <select
