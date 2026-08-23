@@ -179,7 +179,7 @@ export default function CompanyAnalytics({ companies }: Props) {
       {/* Spotlight Highlights (2 Columns) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Spotlight 1: Best Response Rate */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs relative overflow-hidden flex flex-col justify-between">
+        <div className="bg-slate-400/10 border border-slate-200/80 rounded-2xl p-6 shadow-xs relative overflow-hidden flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
@@ -264,7 +264,7 @@ export default function CompanyAnalytics({ companies }: Props) {
         </div>
 
         {/* Spotlight 2: Most Active Company */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs relative overflow-hidden flex flex-col justify-between">
+        <div className="bg-slate-400/10 border border-slate-200/80 rounded-2xl p-6 shadow-xs relative overflow-hidden flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2.5">

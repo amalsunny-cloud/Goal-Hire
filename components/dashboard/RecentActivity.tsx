@@ -24,17 +24,17 @@ export default function RecentActivity({ applications }: RecentActivityProps) {
       ) : (
         <div className="space-y-3">
           {recentApplications.map((app) => (
-            <div key={app._id} className="border-b border-gray-500/30 pb-2">
-              <p className="font-medium">{app.company}</p>
-              <p className="text-sm text-gray-500">{app.role}</p>
+            <div key={app._id} className="border-b border-gray-500/30 pb-4">
+              <p className="font-bold">Company :<span className="font-medium">{" "}{app.company}</span></p>
+              <p className="text-sm text-gray-500 pb-2 font-bold">Role : <span className="font-medium">{app.role}</span></p>
               <p className="text-sm">
-                {app.status === "Offer" && "🎉 Offer received"}
+                {app.status === "Offer" && <span className="font-bold text-green-600">🎉 Offer received</span>}
 
-                {app.status === "Interview" && "📅 Interview stage"}
+                {app.status === "Interview" && <span className="font-bold text-blue-600">📅 Interview stage</span>}
 
-                {app.status === "Rejected" && "❌ Rejected"}
+                {app.status === "Rejected" && <span className="font-bold text-red-600">❌ Rejected</span>}
 
-                {app.status === "Applied" && "📨 Application submitted"}
+                {app.status === "Applied" && <span className="font-bold text-yellow-600">📨 Application submitted</span>}
               </p>
               <p className="text-xs text-gray-400">
                 Updated: {new Date(app.updatedAt).toLocaleString("en-GB")}

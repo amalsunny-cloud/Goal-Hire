@@ -126,7 +126,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             placeholder="e.g. Sarah Jenkins"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200  rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
         </div>
 
@@ -145,7 +145,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             placeholder="e.g. sarah.jenkins@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
         </div>
 
@@ -164,7 +164,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             placeholder="e.g. +1 (555) 234-5678"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
         </div>
 
@@ -183,7 +183,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             placeholder="https://linkedin.com/in/username"
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
         </div>
 
@@ -201,7 +201,8 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             type="date"
             value={lastContact}
             onChange={(e) => setLastContact(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs cursor-pointer"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 cursor-pointer
+             transition-all"
           />
         </div>
 
@@ -219,7 +220,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
             type="date"
             value={nextFollowUp}
             onChange={(e) => setNextFollowUp(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs cursor-pointer"
+            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 cursor-pointer transition-all"
           />
         </div>
       </div>
@@ -249,7 +250,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           placeholder="Add recruiter preferences, interview feedback, communication style, or other relevant details..."
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all shadow-2xs resize-y"
+          className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
         />
       </div>
 

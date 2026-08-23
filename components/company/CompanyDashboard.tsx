@@ -188,10 +188,10 @@ export default function CompanyDashboard({
   const hasActiveFilters = search !== "" || rateFilter !== "all" || sortBy !== "communications";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 flex flex-col justify-center items-center">
       {/* Navigation Tabs Bar */}
-      <div className="overflow-x-auto rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
-        <div className="flex min-w-max items-center gap-1">
+      <div className="overflow-x-auto w-[60%] flex flex-col justify-center items-center rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
+        <div className="flex mx-auto min-w-max items-center gap-1">
         <button
           onClick={() => setActiveTab("overview")}
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
@@ -273,10 +273,10 @@ export default function CompanyDashboard({
 
       {/* Company Directory Section */}
       {(activeTab === "overview" || activeTab === "directory") && (
-        <div className="space-y-6 pt-2">
+        <div className="space-y-6 pt-2 bg-slate-400/10 p-6 rounded-2xl">
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
+            <div className="mt-6">
               <h2 className="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
                 <span>Target Companies Directory</span>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
@@ -358,7 +358,7 @@ export default function CompanyDashboard({
                           | "responses",
                       )
                     }
-                    className="w-full md:w-auto pl-8.5 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all cursor-pointer appearance-none"
+                    className="w-full md:w-auto pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all cursor-pointer appearance-none"
                   >
                     <option value="communications">Sort: Most Outreach</option>
                     <option value="responses">Sort: Highest Response %</option>

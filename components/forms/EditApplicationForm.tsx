@@ -131,7 +131,7 @@ export default function EditApplicationForm({ application }: any) {
             <input
               id="company"
               type="text"
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               placeholder="e.g. Acme Corp"
               onChange={(e) => setCompany(e.target.value)}
               value={company}
@@ -148,7 +148,7 @@ export default function EditApplicationForm({ application }: any) {
             <input
               id="role"
               type="text"
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               placeholder="e.g. Frontend Engineer"
               onChange={(e) => setRole(e.target.value)}
               value={role}
@@ -169,7 +169,7 @@ export default function EditApplicationForm({ application }: any) {
               id="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all cursor-pointer"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all cursor-pointer"
             >
               <option value="Applied" className="dark:bg-slate-900">Applied</option>
               <option value="Interview" className="dark:bg-slate-900">Interview</option>
@@ -190,7 +190,7 @@ export default function EditApplicationForm({ application }: any) {
               type="number"
               placeholder="e.g. 120000"
               value={salary}
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               onChange={(e) => setSalary(e.target.value)}
             />
           </div>
@@ -209,7 +209,7 @@ export default function EditApplicationForm({ application }: any) {
               id="followUpDate"
               type="date"
               value={followUpDate}
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               onChange={(e) => setFollowUpDate(e.target.value)}
             />
           </div>
@@ -226,7 +226,7 @@ export default function EditApplicationForm({ application }: any) {
               type="url"
               placeholder="https://..."
               value={jobUrl}
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               onChange={(e) => setJobUrl(e.target.value)}
             />
           </div>
@@ -243,7 +243,7 @@ export default function EditApplicationForm({ application }: any) {
               type="text"
               placeholder="e.g. Remote / NYC"
               value={location}
-              className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               onChange={(e) => setLocation(e.target.value)}
             />
           </div>
@@ -260,7 +260,7 @@ export default function EditApplicationForm({ application }: any) {
           <textarea
             id="notes"
             rows={4}
-            className="w-full px-3.5 py-2 text-sm border-b border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-slate-100 transition-all resize-y"
+            className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
             placeholder="Add relevant notes about interviews, contacts, or requirements..."
             onChange={(e) => setNotes(e.target.value)}
             value={notes}

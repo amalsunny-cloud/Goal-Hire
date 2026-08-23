@@ -94,13 +94,13 @@ export default function CommunicationList({ recruiterId }: Props) {
           placeholder="Search subject or message..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border-b border-gray-500/30 rounded p-2 flex-1 focus:outline-none"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
         />
 
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value as "All" | CommunicationType)}
-          className="border-b border-gray-500/30 p-2 bg-transparent focus:outline-none"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
         >
           <option value="All">All</option>
 
@@ -128,7 +128,7 @@ export default function CommunicationList({ recruiterId }: Props) {
               <div
                 className="
                 absolute
-                -left-[33px]
+                -left-8.25
                 top-6
                 w-4
                 h-4

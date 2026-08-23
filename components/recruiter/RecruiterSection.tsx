@@ -200,13 +200,13 @@ export default function RecruiterSection({ applicationId }: Props) {
             placeholder="Search recruiter..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border-b border-gray-500/30 p-2 flex-1 focus:outline-none bg-transparent"
+            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
 
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="border-b border-gray-500/30 p-2 focus:outline-none bg-transparent"
+            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           >
             <option value="All">All Status</option>
             <option value="Upcoming">Upcoming</option>
@@ -217,7 +217,7 @@ export default function RecruiterSection({ applicationId }: Props) {
           <select
             value={tagFilter}
             onChange={(e) => setTagFilter(e.target.value)}
-            className="border-b border-gray-500/30 p-2 focus:outline-none bg-transparent"
+            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           >
             <option value="All">All Tags</option>
 

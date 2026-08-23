@@ -90,7 +90,7 @@ export default function LoginPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3.5 py-2.5  border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-400 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               required
             />
           </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 border-b border-slate-300 text-slate-600 placeholder-slate-300 text-sm focus:outline-none focus:border-slate-400 transition-all"
+              className="w-fullpl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
               required
             />
           </div>

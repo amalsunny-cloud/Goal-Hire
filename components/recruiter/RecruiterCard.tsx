@@ -120,7 +120,7 @@ export default function RecruiterCard({
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="border-b border-gray-500/30 p-2 w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
       ) : (
         <h2 className="text-lg font-semibold mb-4">{recruiter.name}</h2>
@@ -141,7 +141,7 @@ export default function RecruiterCard({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border-b border-gray-500/30 p-2 w-full"
+              className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
             />
           ) : (
             <p>{recruiter.email || "No email"}</p>
@@ -156,7 +156,7 @@ export default function RecruiterCard({
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="border-b border-gray-500/30 p-2 w-full"
+              className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
             />
           ) : (
             <p>{recruiter.phone || "No phone number"}</p>
@@ -171,7 +171,7 @@ export default function RecruiterCard({
               type="url"
               value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
-              className="border-b border-gray-500/30 p-2 w-full"
+              className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
             />
           ) : recruiter.linkedin ? (
             <a
@@ -195,7 +195,7 @@ export default function RecruiterCard({
               type="date"
               value={lastContact}
               onChange={(e) => setLastContact(e.target.value)}
-              className="border-b border-gray-500/30 p-2 w-full"
+              className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
             />
           ) : (
             <p>
@@ -214,7 +214,7 @@ export default function RecruiterCard({
               type="date"
               value={nextFollowUp}
               onChange={(e) => setNextFollowUp(e.target.value)}
-              className="border-b border-gray-500/30 p-2 w-full"
+              className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
             />
           ) : (
             <p>

@@ -79,7 +79,7 @@ export default function CompanyDetails({
         {/* Company Title Banner */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-1">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200/70 border border-slate-200 text-slate-800 flex items-center justify-center shadow-2xs">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-slate-100 to-slate-200/70 border border-slate-200 text-slate-800 flex items-center justify-center shadow-2xs">
               <Building2 className="w-7 h-7" />
             </div>
             <div>

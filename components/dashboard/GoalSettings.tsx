@@ -72,7 +72,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
           value={applicationGoal}
           min={1}
           onChange={(e) => setApplicationGoal(Number(e.target.value))}
-          className=" px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
+          className=" pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
           placeholder="Application Goal"
         />
 
@@ -83,7 +83,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
           value={interviewGoal}
           min={1}
           onChange={(e) => setInterviewGoal(Number(e.target.value))}
-          className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
+          className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
           placeholder="Interview Goal"
         />
 
@@ -94,7 +94,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
           value={offerGoal}
           min={1}
           onChange={(e) => setOfferGoal(Number(e.target.value))}
-          className="px-3.5 py-2.5 border-b border-gray-500/30 text-slate-600 placeholder-slate-300 text-sm focus:outline-none  focus:border-slate-500 transition-all w-full"
+          className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
           placeholder="Offer Goal"
         />
 

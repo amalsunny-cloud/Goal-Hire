@@ -80,7 +80,7 @@ export default function AttachmentList({ applicationId }: AttachmentListProps) {
           {attachments.map((attachment) => (
             <div
               key={attachment._id}
-              className="bg-slate-600 rounded p-3 flex justify-between items-center"
+              className="bg-white/50 backdrop-blur-2xl  rounded p-3 flex justify-between items-center"
             >
               <a
                 href={attachment.fileUrl}

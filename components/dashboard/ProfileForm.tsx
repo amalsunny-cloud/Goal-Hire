@@ -54,42 +54,42 @@ export default function ProfileForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Profile Name"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <input
           value={resumeUrl}
           onChange={(e) => setResumeUrl(e.target.value)}
           placeholder="Resume URL"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <input
           value={portfolioUrl}
           onChange={(e) => setPortfolioUrl(e.target.value)}
           placeholder="Portfolio URL"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <input
           value={githubUrl}
           onChange={(e) => setGithubUrl(e.target.value)}
           placeholder="GitHub URL"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <input
           value={linkedinUrl}
           onChange={(e) => setLinkedinUrl(e.target.value)}
           placeholder="LinkedIn URL"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <textarea
           value={skills}
           onChange={(e) => setSkills(e.target.value)}
           placeholder="Skills"
-          className="border p-2 rounded w-full"
+          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
         />
 
         <button

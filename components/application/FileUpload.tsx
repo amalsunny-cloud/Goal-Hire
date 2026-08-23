@@ -59,13 +59,7 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
       <input
         type="file"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
-        className="w-full max-w-sm text-sm text-gray-500
-    file:mr-4 file:py-2 file:px-4
-    file:rounded-md file:border-0
-    file:text-sm file:font-semibold
-    file:bg-black file:text-white
-    hover:file:bg-gray-800
-    cursor-pointer border border-gray-200 rounded-lg pr-4"
+        className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
       />
 
     {file && (

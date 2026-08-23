@@ -61,7 +61,7 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         type="date"
         value={responseDate}
         onChange={(e) => setResponseDate(e.target.value)}
-        className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900"
+        className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
       />
 
       <textarea
@@ -69,7 +69,7 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         placeholder="Recruiter reply..."
         value={responseNotes}
         onChange={(e) => setResponseNotes(e.target.value)}
-        className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 resize-y"
+        className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
       />
 
       <button
