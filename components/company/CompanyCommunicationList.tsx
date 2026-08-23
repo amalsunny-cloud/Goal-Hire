@@ -103,7 +103,7 @@ export default function CompanyCommunicationList({
   );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-slate-400/10 p-4 rounded-2xl border border-slate-200/80 shadow-xs">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100">
@@ -207,4 +207,4 @@ export default function CompanyCommunicationList({
       </div>
     </div>
   );
-}
+}

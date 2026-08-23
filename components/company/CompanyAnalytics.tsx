@@ -187,7 +187,7 @@ export default function CompanyAnalytics({ companies }: Props) {
                   <Trophy className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-md font-semibold text-slate-900">
                     Highest Response Rate Champion
                   </h3>
                   <p className="text-[11px] text-slate-500">
@@ -272,7 +272,7 @@ export default function CompanyAnalytics({ companies }: Props) {
                   <Zap className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900">
+                  <h3 className="text-md font-bold text-slate-900">
                     Most Active Engagement Hub
                   </h3>
                   <p className="text-[11px] text-slate-500">

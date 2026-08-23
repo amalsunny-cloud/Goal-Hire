@@ -36,7 +36,7 @@ export default function UpcomingInterviews({
         <p className="text-green-600 font-medium">
           🎉 No upcoming interviews scheduled.
         </p>
-        z
+        
       </div>
     );
   }

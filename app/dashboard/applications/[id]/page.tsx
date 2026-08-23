@@ -239,7 +239,7 @@ export default async function ApplicationDetailsPage({
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
+        <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm">
           <ApplicationNotes
             applicationId={application._id.toString()}
             initialNotes={application.notes || ""}

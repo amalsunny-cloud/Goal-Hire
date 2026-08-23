@@ -236,7 +236,7 @@ export default function Dashboard() {
 
         <DashboardStats applications={applications} />
 
-        <div className="overflow-x-auto w-[50%] mx-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
+        <div className="overflow-x-auto md:w-[50%] lg:w-[50%] mx-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
           <div className="flex justify-center min-w-max gap-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;

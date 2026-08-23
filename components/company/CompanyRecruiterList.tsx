@@ -34,7 +34,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 bg-slate-400/10 p-4 rounded-2xl border border-slate-200/80 shadow-xs">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="p-2 bg-blue-50 text-blue-600 rounded-xl border border-blue-100">
@@ -55,7 +55,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
         {recruiters.map((recruiter) => (
           <div
             key={recruiter._id}
-            className="bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-6 shadow-xs hover:shadow-sm transition-all space-y-4"
+            className="border-b border-slate-300 p-5 sm:p-6 transition-all space-y-4"
           >
             {/* Top Bar: Name & Company Tag */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
@@ -201,4 +201,4 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
       </div>
     </div>
   );
-}
+}

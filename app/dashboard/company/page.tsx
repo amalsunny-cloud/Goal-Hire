@@ -171,7 +171,7 @@ export default function CompanyDashboardPage() {
 
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-8 sm:py-8">
-      <div className="mx-auto max-w-7xl space-y-6">
+      <div className="mx-auto max-w-8xl space-y-6">
         <section className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-7 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
           <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
           <div className="absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-indigo-400/15 blur-3xl" />

@@ -123,10 +123,10 @@ export default function CompanyTimeline({
         </div>
       </div>
 
-      <div className="relative pl-6 space-y-6 before:absolute before:left-[15px] before:top-3 before:bottom-3 before:w-[2px] before:bg-slate-200/80">
+      <div className="relative pl-6 space-y-6 before:absolute before:left-3.75 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200/80">
         {events.map((event) => (
           <div key={event.id} className="relative flex items-start gap-4">
-            <div className="absolute -left-[27px] top-1">
+            <div className="absolute -left-9.25 top-1">
               {getIcon(event.type)}
             </div>
 
@@ -150,4 +150,4 @@ export default function CompanyTimeline({
       </div>
     </div>
   );
-}
+}

@@ -99,15 +99,15 @@ export default function CompanyDetails({
 
           {/* Quick Metrics Chips */}
           <div className="flex items-center gap-2 flex-wrap self-start md:self-auto">
-            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-sm font-semibold text-slate-700 flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5 text-slate-400" />
               <span>{applications.length} {applications.length === 1 ? "Role" : "Roles"}</span>
             </div>
-            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-sm font-semibold text-slate-700 flex items-center gap-1.5">
               <Users className="w-3.5 h-3.5 text-blue-500" />
               <span>{recruiters.length} {recruiters.length === 1 ? "Recruiter" : "Recruiters"}</span>
             </div>
-            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+            <div className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200/60 text-sm font-semibold text-slate-700 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
               <span>{responseRate}% Response</span>
             </div>
@@ -118,7 +118,7 @@ export default function CompanyDetails({
         <div className="flex items-center gap-1.5 overflow-x-auto pt-2 border-t border-slate-100 scrollbar-none">
           <button
             onClick={() => setActiveTab("overview")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
               activeTab === "overview"
                 ? "bg-slate-800 text-white shadow-xs"
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
@@ -130,7 +130,7 @@ export default function CompanyDetails({
 
           <button
             onClick={() => setActiveTab("recruiters")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
               activeTab === "recruiters"
                 ? "bg-slate-800 text-white shadow-xs"
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
@@ -142,7 +142,7 @@ export default function CompanyDetails({
 
           <button
             onClick={() => setActiveTab("communications")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-s font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
               activeTab === "communications"
                 ? "bg-slate-800 text-white shadow-xs"
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
@@ -154,7 +154,7 @@ export default function CompanyDetails({
 
           <button
             onClick={() => setActiveTab("applications")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
               activeTab === "applications"
                 ? "bg-slate-800 text-white shadow-xs"
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
@@ -166,7 +166,7 @@ export default function CompanyDetails({
 
           <button
             onClick={() => setActiveTab("timeline")}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
               activeTab === "timeline"
                 ? "bg-slate-800 text-white shadow-xs"
                 : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800"
@@ -196,7 +196,7 @@ export default function CompanyDetails({
           {/* Right Column (1/3 width) - Applications & Timeline */}
           <div className="space-y-6">
             {/* Applications at this company */}
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+            <div className="bg-slate-400/10 border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2">
                   <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100">
@@ -261,7 +261,7 @@ export default function CompanyDetails({
             </div>
 
             {/* Timeline Snapshot */}
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="bg-slate-400/10 border border-slate-200/80 rounded-2xl p-5 shadow-xs">
               <CompanyTimeline
                 recruiters={recruiters}
                 communications={communications}

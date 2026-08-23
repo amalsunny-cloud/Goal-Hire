@@ -190,11 +190,11 @@ export default function CompanyDashboard({
   return (
     <div className="space-y-6 flex flex-col justify-center items-center">
       {/* Navigation Tabs Bar */}
-      <div className="overflow-x-auto w-[60%] flex flex-col justify-center items-center rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
+      <div className="overflow-x-auto w-[70%] flex flex-col justify-center items-center rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
         <div className="flex mx-auto min-w-max items-center gap-1">
         <button
           onClick={() => setActiveTab("overview")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "overview"
               ? "bg-slate-900 text-white shadow-md shadow-slate-300"
               : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
@@ -206,7 +206,7 @@ export default function CompanyDashboard({
 
         <button
           onClick={() => setActiveTab("directory")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "directory"
               ? "bg-slate-900 text-white shadow-md shadow-slate-300"
               : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
@@ -218,7 +218,7 @@ export default function CompanyDashboard({
 
         <button
           onClick={() => setActiveTab("analytics")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "analytics"
               ? "bg-slate-900 text-white shadow-md shadow-slate-300"
               : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
@@ -230,7 +230,7 @@ export default function CompanyDashboard({
 
         <button
           onClick={() => setActiveTab("leaderboard")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
             activeTab === "leaderboard"
               ? "bg-slate-900 text-white shadow-md shadow-slate-300"
               : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
@@ -249,12 +249,12 @@ export default function CompanyDashboard({
 
       {/* Bar Chart & Leaderboard Row */}
       {activeTab === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <CompanyBarChart companies={rawCompanies} />
-          </div>
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 w-full max-w-7xl">
+          <div className="w-[95%]">
             <CompanyLeaderboard companies={rawCompanies} />
+          </div>
+          <div className="lg:col-span-2 w-[70%]">
+            <CompanyBarChart companies={rawCompanies} />
           </div>
         </div>
       )}
