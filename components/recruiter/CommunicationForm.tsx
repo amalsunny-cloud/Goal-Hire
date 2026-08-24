@@ -79,7 +79,7 @@ export default function CommunicationForm({
   return (
     <form
       onSubmit={saveCommunication}
-      className="shadow-md rounded-lg p-6 space-y-4">
+      className="shadow-md rounded-lg p-6 bg-slate-400/10 space-y-4">
       <h2 className="text-xl font-semibold">
         Add Communication
       </h2>

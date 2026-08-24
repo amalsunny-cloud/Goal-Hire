@@ -61,7 +61,7 @@ export default function CommunicationList({ recruiterId }: Props) {
     return(
       <div className="mt-6 bg-white flex flex-col justify-center rounded-xl shadow-md p-6">
 
-        <p className="text-gray-500">No communications yet.</p>;
+        <p className="text-red-500">No communications yet.</p>;
       </div>
     )
   }
@@ -125,19 +125,7 @@ export default function CommunicationList({ recruiterId }: Props) {
         <div className="relative border-l-2 border-gray-300 ml-5 space-y-8">
           {filteredCommunications.map((communication) => (
             <div key={communication._id} className="relative ml-6">
-              <div
-                className="
-                absolute
-                -left-8.25
-                top-6
-                w-4
-                h-4
-                rounded-full
-                bg-blue-600
-                border-4
-                border-white
-              "
-              />
+              <div className="absolute -left-8.25 top-6 w-4 h-4 rounded-full bg-blue-600 border-4 border-white"/>
               <CommunicationCard
                 communication={communication}
                 onUpdated={fetchCommunications}

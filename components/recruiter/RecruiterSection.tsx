@@ -161,11 +161,15 @@ export default function RecruiterSection({ applicationId }: Props) {
       <RecruiterCalendar recruiters={recruiters} />
       <RecruiterReminderPanel recruiters={recruiters} />
       <ResponseAnalytics communications={communications} />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <ResponsePieChart communications={communications} />
       <RecruiterConversionFunnel
         recruiters={recruiters}
         communications={communications}
       />
+
+      </div>
       <RecruiterLeaderboard
         recruiters={recruiters}
         communications={communications}
@@ -175,14 +179,26 @@ export default function RecruiterSection({ applicationId }: Props) {
         recruiters={recruiters}
         communications={communications}
       />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <CommunicationMethodChart communications={communications} />
       <MonthlyCommunicationChart communications={communications} />
+
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
       <FollowUpStatusChart recruiters={recruiters} />
       <CommunicationTrendChart communications={communications} />
+
+      </div>
       <RecruiterActivityTimeline
         recruiters={recruiters}
         communications={communications}
       />
+
+
+      
       <div>
         <h2
           className="

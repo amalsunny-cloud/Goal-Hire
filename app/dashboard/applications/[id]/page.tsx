@@ -246,23 +246,23 @@ export default async function ApplicationDetailsPage({
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:col-span-2 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:col-span-2 space-y-6 mt-6 lg:space-y-0 lg:gap-6">
           {/* Notes Card */}
 
           {/* Interviews Schedule Form */}
-          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-            <h2 className="text-lg font-bold text-slate-800">
+          <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-slate-800">
               Schedule Interview
             </h2>
             <InterviewForm applicationId={application._id.toString()} />
           </div>
 
           {/* Interviews List */}
-          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-            <h2 className="text-lg font-bold text-slate-800">
+          <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-slate-800">
               Interview Rounds
             </h2>
-            <div className="flex flex-col justify-center items-center  border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <div className="flex flex-col justify-center items-center border border-slate-200/80 p-6 rounded-2xl space-y-4">
               <InterviewList interviews={interviews} />
             </div>
           </div>
@@ -283,12 +283,7 @@ export default async function ApplicationDetailsPage({
 
         {/* Main Content Layout: 2-Column Grid */}
         <div className="">
-          {/* Left Column (2/3 width) - Notes, Interviews & Timeline */}
-
-          {/* Right Column (1/3 width) - Recruiter & Attachments */}
           <div className="space-y-6">
-            {/* Recruiter & Contacts */}
-
             {/* File Upload & Attachments */}
             <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
               <FileUpload applicationId={application._id.toString()} />

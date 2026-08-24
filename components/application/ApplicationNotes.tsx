@@ -49,7 +49,7 @@ export default function ApplicationNotes({
   };
 
   return (
-    <div className="rounded-xl bg-slate-400/10">
+    <div className="rounded-xl">
       <div className="my-5 pt-4 px-5 flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="rounded-xl border border-blue-100 bg-blue-50 p-2 text-blue-600">

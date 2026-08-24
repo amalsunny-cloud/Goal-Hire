@@ -22,7 +22,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
   if (recruiters.length === 0) {
     return (
       <div className="bg-white border border-slate-200/80 rounded-2xl p-8 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+        <div className="w-12 h-12 rounded-2xl bg-slate-100 text-gray-700 flex items-center justify-center mx-auto mb-3">
           <Users className="w-6 h-6" />
         </div>
         <h3 className="text-base font-semibold text-slate-800">No recruiters found</h3>
@@ -89,9 +89,9 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {/* Email */}
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
-                <Mail className="w-4 h-4 text-slate-400 shrink-0" />
+                <Mail className="w-4 h-4 text-gray-700 shrink-0" />
                 <div className="truncate">
-                  <span className="text-[10px] uppercase font-semibold text-slate-400 block">Email</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Email</span>
                   {recruiter.email ? (
                     <a
                       href={`mailto:${recruiter.email}`}
@@ -100,16 +100,16 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
                       {recruiter.email}
                     </a>
                   ) : (
-                    <span className="text-slate-400 font-medium">Not provided</span>
+                    <span className="text-gray-700 font-medium">Not provided</span>
                   )}
                 </div>
               </div>
 
               {/* Phone */}
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
-                <Phone className="w-4 h-4 text-slate-400 shrink-0" />
+                <Phone className="w-4 h-4 text-gray-700 shrink-0" />
                 <div className="truncate">
-                  <span className="text-[10px] uppercase font-semibold text-slate-400 block">Phone</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Phone</span>
                   {recruiter.phone ? (
                     <a
                       href={`tel:${recruiter.phone}`}
@@ -118,16 +118,16 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
                       {recruiter.phone}
                     </a>
                   ) : (
-                    <span className="text-slate-400 font-medium">Not provided</span>
+                    <span className="text-gray-700 font-medium">Not provided</span>
                   )}
                 </div>
               </div>
 
               {/* LinkedIn */}
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
-                <LinkIcon className="w-4 h-4 text-slate-400 shrink-0" />
+                <LinkIcon className="w-4 h-4 text-gray-700 shrink-0" />
                 <div className="truncate">
-                  <span className="text-[10px] uppercase font-semibold text-slate-400 block">LinkedIn</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">LinkedIn</span>
                   {recruiter.linkedin ? (
                     <a
                       href={recruiter.linkedin}
@@ -139,16 +139,16 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   ) : (
-                    <span className="text-slate-400 font-medium">Not linked</span>
+                    <span className="text-gray-700 font-medium">Not linked</span>
                   )}
                 </div>
               </div>
 
               {/* Last Contact */}
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
-                <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
+                <Calendar className="w-4 h-4 text-gray-700 shrink-0" />
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-400 block">Last Contact</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Last Contact</span>
                   <span className="font-medium text-slate-700">
                     {recruiter.lastContact
                       ? new Date(recruiter.lastContact).toLocaleDateString("en-GB")
@@ -159,9 +159,9 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
 
               {/* Next Follow-up */}
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700 sm:col-span-2 lg:col-span-2">
-                <Clock className="w-4 h-4 text-slate-400 shrink-0" />
+                <Clock className="w-4 h-4 text-gray-700 shrink-0" />
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-400 block">Next Follow-up</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Next Follow-up</span>
                   <span className="font-medium text-slate-700">
                     {recruiter.nextFollowUp
                       ? new Date(recruiter.nextFollowUp).toLocaleDateString("en-GB")

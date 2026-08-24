@@ -63,8 +63,7 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
     }
   return (
     <form onSubmit={handleSubmit}
-      className="space-y-4 bg-white p-4 sm:p-5 rounded-lg mt-4 shadow-xs">
-      <h2 className="text-xl font-semibold">Add Interview</h2>
+      className="space-y-4  p-4 sm:p-5 rounded-lg mt-4 shadow-xs">
       <input type="text" placeholder="Technical Round" className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
       <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"/>

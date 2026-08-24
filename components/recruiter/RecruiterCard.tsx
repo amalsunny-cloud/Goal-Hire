@@ -115,7 +115,7 @@ export default function RecruiterCard({
   };  
 
   return (
-    <div className="rounded-lg p-5 bg-white shadow-sm">
+    <div className="rounded-lg p-5 bg-white">
       {editing ? (
         <input
           value={name}
@@ -130,6 +130,8 @@ export default function RecruiterCard({
       ) : (
         <RecruiterTags tags={recruiter.tags} />
       )}
+
+
       <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp} />
 
       <div className="space-y-2">
@@ -243,7 +245,7 @@ export default function RecruiterCard({
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2.5 sm:gap-3 mt-5">
+      <div className="flex justify-center flex-wrap gap-2.5 sm:gap-3 mt-5">
         {!editing && (
           <button
             onClick={markContactedToday}
@@ -305,14 +307,16 @@ export default function RecruiterCard({
       </div>
 
       {showCommunicationForm && (
-        <CommunicationForm
-          recruiterId={recruiter._id}
-          applicationId={recruiter.applicationId}
-          onSuccess={() => {
-            setShowCommunicationForm(false);
-            onUpdated();
-          }}
-        />
+        <div className="flex justify-center gap-6 mt-6">
+          <CommunicationForm
+            recruiterId={recruiter._id}
+            applicationId={recruiter.applicationId}
+            onSuccess={() => {
+              setShowCommunicationForm(false);
+              onUpdated();
+            }}
+          />
+        </div>
       )}
 
       <div className="mt-6 space-y-6 grid grid-cols-1 lg:grid-cols-2">
