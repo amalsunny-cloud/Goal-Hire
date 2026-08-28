@@ -32,7 +32,7 @@ export default function RecruiterTagSelector({
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap my-4 gap-2">
       {availableTags.map((tag) => {
         const isSelected = selected.includes(tag);
         return (

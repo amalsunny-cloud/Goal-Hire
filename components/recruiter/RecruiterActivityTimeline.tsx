@@ -62,19 +62,14 @@ export default function RecruiterActivityTimeline({
   return a.title.localeCompare(b.title);
 });
 
-
-
   const getDateLabel = (dateString: string) => {
     const date = new Date(dateString);
 
     date.setHours(0, 0, 0, 0);
-
     const today = new Date();
-
     today.setHours(0, 0, 0, 0);
 
     const yesterday = new Date(today);
-
     yesterday.setDate(today.getDate() - 1);
 
     if (date.getTime() === today.getTime()) {
@@ -256,19 +251,8 @@ export default function RecruiterActivityTimeline({
                 {items.map((event) => (
                   <div
                     key={event.id}
-                    className="relative ml-8 mb-8 pb-2 transition-all duration-200 hover:translate-x-1">
-                    <div
-                      className={`
-                      absolute
-                      -left-11
-                      top-0
-                      bg-white
-                      p-1
-                      rounded-full
-                      border
-                      ${getColor(event)}
-                    `}
-                    >
+                    className="relative bg-slate-400/10 rounded-xl p-2 ml-8 mb-8 pb-2 transition-all duration-200 hover:bg-slate-400/20">
+                    <div className={`absolute -left-11 top-0 bg-white p-1 rounded-full border ${getColor(event)}`}>
                       {getIcon(event)}
                     </div>
 
@@ -286,7 +270,7 @@ export default function RecruiterActivityTimeline({
                     </div>
 
                     {event.description && (
-                      <p className="text-gray-600 mt-2 whitespace-pre-wrap wrap-break-word">{event.description}</p>
+                      <p className={`text-${getColor(event)} mt-2 whitespace-pre-wrap wrap-break-word`}>{event.description}</p>
                     )}
                   </div>
                 ))}

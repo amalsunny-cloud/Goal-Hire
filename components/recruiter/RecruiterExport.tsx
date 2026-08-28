@@ -157,8 +157,8 @@ export default function RecruiterExport({
           disabled={!hasData}
           className={`px-4 py-2 rounded text-sm font-medium transition-colors w-full sm:w-auto text-center ${
             hasData
-              ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
-              : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
+              ? "bg-black rounded-xl text-white cursor-pointer transform transition-all duration-2000"
+              : "bg-black rounded-xl text-slate-500 cursor-not-allowed opacity-60"
           }`}
         >
           Export CSV
@@ -169,8 +169,8 @@ export default function RecruiterExport({
           disabled={!hasData}
           className={`px-4 py-2 rounded text-sm font-medium transition-colors w-full sm:w-auto text-center ${
             hasData
-              ? "bg-green-600 hover:bg-green-700 text-white cursor-pointer"
-              : "bg-slate-300 text-slate-500 cursor-not-allowed opacity-60"
+              ? "bg-black rounded-xl text-white cursor-pointer transform transition-all duration-2000"
+              : "bg-black rounded-xl text-slate-500 cursor-not-allowed opacity-60"
           }`}
         >
           Export PDF

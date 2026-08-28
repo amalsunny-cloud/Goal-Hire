@@ -134,9 +134,9 @@ export default function RecruiterCard({
 
       <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp} />
 
-      <div className="space-y-2">
+      <div className="space-y-2 my-4">
         <div className="space-y-1">
-          <strong>Email</strong>
+          <strong>Email :</strong>
 
           {editing ? (
             <input
@@ -151,7 +151,7 @@ export default function RecruiterCard({
         </div>
 
         <div className="space-y-1">
-          <strong>Phone</strong>
+          <strong>Phone :</strong>
 
           {editing ? (
             <input
@@ -166,7 +166,7 @@ export default function RecruiterCard({
         </div>
 
         <div className="space-y-1">
-          <strong>LinkedIn</strong>
+          <strong>LinkedIn :</strong>
 
           {editing ? (
             <input
@@ -189,7 +189,7 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-1">
+        <div className="space-y-2">
           <strong>Last Contact</strong>
 
           {editing ? (
@@ -208,8 +208,8 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-1">
-          <strong>Next Follow-up</strong>
+        <div className="space-y-2">
+          <strong>Next Follow-up :</strong>
 
           {editing ? (
             <input
@@ -227,8 +227,8 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-1">
-          <strong>Notes</strong>
+        <div className="space-y-2">
+          <strong>Notes :</strong>
 
           {editing ? (
             <textarea
@@ -250,7 +250,7 @@ export default function RecruiterCard({
           <button
             onClick={markContactedToday}
             disabled={contacting}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors disabled:opacity-50"
           >
             {contacting ? "Updating..." : "Contacted Today"}
           </button>
@@ -273,7 +273,7 @@ export default function RecruiterCard({
           text-white
           px-4
           py-2
-          rounded
+          rounded-xl
           text-sm
           font-medium
           transition-colors
@@ -285,7 +285,7 @@ export default function RecruiterCard({
         ) : (
           <button
             onClick={() => setEditing(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
           >
             Edit
           </button>
@@ -293,14 +293,14 @@ export default function RecruiterCard({
 
         <button
           onClick={() => setShowCommunicationForm(!showCommunicationForm)}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
         >
           {showCommunicationForm ? "Cancel Communication" : "Add Communication"}
         </button>
 
         <button
           onClick={onDelete}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
         >
           Delete
         </button>

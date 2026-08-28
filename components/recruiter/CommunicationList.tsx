@@ -61,7 +61,7 @@ export default function CommunicationList({ recruiterId }: Props) {
     return(
       <div className="mt-6 bg-white flex flex-col justify-center rounded-xl shadow-md p-6">
 
-        <p className="text-red-500">No communications yet.</p>;
+        <p className="text-red-500">No communications yet.</p>
       </div>
     )
   }

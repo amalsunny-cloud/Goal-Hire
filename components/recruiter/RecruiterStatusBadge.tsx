@@ -20,17 +20,7 @@ export default function RecruiterStatusBadge({nextFollowUp}:Props) {
 
     if(differenceInDays < 0){
         return (
-      <span
-        className="
-          bg-red-100
-          text-red-700
-          px-3
-          py-1
-          rounded-full
-          text-sm
-          font-medium
-        "
-      >
+      <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
         🔴 Overdue by{" "}
         {Math.abs(
           differenceInDays
@@ -48,16 +38,7 @@ export default function RecruiterStatusBadge({nextFollowUp}:Props) {
 
     return (
       <span
-        className="
-          bg-yellow-100
-          text-yellow-800
-          px-3
-          py-1
-          rounded-full
-          text-sm
-          font-medium
-        "
-      >
+        className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
         🟡 Follow-up Today
       </span>
     );
@@ -65,17 +46,7 @@ export default function RecruiterStatusBadge({nextFollowUp}:Props) {
   }
 
   return (
-    <span
-      className="
-        bg-green-100
-        text-green-700
-        px-3
-        py-1
-        rounded-full
-        text-sm
-        font-medium
-      "
-    >
+    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
       🟢 Upcoming in{" "}
       {differenceInDays} day
       {differenceInDays > 1

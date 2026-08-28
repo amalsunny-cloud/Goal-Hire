@@ -192,7 +192,7 @@ export default function CommunicationCard({
 
 
 
-      <div className="flex flex-wrap gap-2.5 sm:gap-3 mt-5">
+      <div className="flex justify-center flex-wrap gap-2.5 sm:gap-3 mt-5">
         {editing ? (
           <>
             <button
@@ -233,41 +233,19 @@ export default function CommunicationCard({
         ) : (
           <button
             onClick={() => setEditing(true)}
-            className="
-              bg-blue-600
-              hover:bg-blue-700
-              text-white
-              px-4
-              py-2
-              rounded
-              text-sm
-              font-medium
-              transition-colors
-            "
-          >
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm cursor-pointer font-medium transition-colors">
             Edit
           </button>
         )}
 
         <button
           onClick={onDelete}
-          className="
-            bg-red-600
-            hover:bg-red-700
-            text-white
-            px-4
-            py-2
-            rounded
-            text-sm
-            font-medium
-            transition-colors
-          "
-        >
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl cursor-pointer text-sm font-medium transition-colors">
           Delete
         </button>
 
         <button
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+          className="bg-black text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors"
           onClick={() => setShowResponseForm(!showResponseForm)}
         >
           {communication.responded ? "Edit Response" : "Add Response"}

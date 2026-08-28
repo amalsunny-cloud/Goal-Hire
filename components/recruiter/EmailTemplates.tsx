@@ -86,7 +86,7 @@ export default function EmailTemplates({recruiterName, company}:Props) {
         Email Templates
       </h2>
 
-      <select className="border-b border-gray-500/30 p-2 w-full mb-5" value={selected} onChange={(e)=>setSelected(e.target.value as keyof typeof templates)}>
+      <select className="pl-10 pr-9 w-full mb-5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all" value={selected} onChange={(e)=>setSelected(e.target.value as keyof typeof templates)}>
         <option value="application">Follow-up After Application</option>
         <option value="interview">Follow-up After Interview</option>
         <option value="thankyou">Thank You</option>
@@ -94,9 +94,9 @@ export default function EmailTemplates({recruiterName, company}:Props) {
         <option value="reconnect">Keep In Touch</option>
       </select>
 
-      <textarea readOnly value={email} rows={14} className="bg-slate-400/10 rounded p-3 w-full"></textarea>
+      <textarea readOnly value={email} rows={14} className="bg-slate-400/10 rounded p-6 w-full"></textarea>
 
-      <button onClick={copy} className="mt-5 bg-transparent hover:bg-slate-700/20 text-gray-700 px-5 py-2 rounded-lg shadow-md transition-colors w-full cursor-pointer sm:w-auto">Copy Email</button>
+      <button onClick={copy} className="mt-5 bg-black text-white px-5 py-2 rounded-lg shadow-md transition-colors w-full cursor-pointer sm:w-auto">Copy Email</button>
     </div>
   )
 }

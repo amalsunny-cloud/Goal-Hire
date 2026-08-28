@@ -101,7 +101,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
         <button
           onClick={saveGoals}
           disabled={loading}
-          className="bg-black text-white px-4 py-2.5 rounded">
+          className="bg-black text-white px-4 py-2.5 rounded-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
           {loading ? "Saving..." : "Save Goals"}
         </button>
       </div>
