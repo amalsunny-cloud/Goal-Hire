@@ -112,7 +112,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
                 setSelectedId(interview._id);
                 setShowModal(true);
               }}
-              className="bg-red-500 text-white px-3 py-1 rounded"
+              className="bg-red-500 hover:bg-red-500/80 cursor-pointer rounded-xl text-white px-3 py-1"
             >
               Delete
             </button>
@@ -136,7 +136,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
             <select
               value={interview.outcome}
               onChange={(e) => updateOutcome(interview._id, e.target.value)}
-              className="border-b border-gray-500/30 px-3 py-1.5 focus:outline-none"
+              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
             >
               <option value="Pending">Pending</option>
               <option value="Passed">Passed</option>

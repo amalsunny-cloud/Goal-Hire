@@ -31,10 +31,10 @@ export default function UpcomingInterviews({
 
   if (upcomingInterviews.length === 0) {
     return (
-      <div className="shadow-md rounded-lg p-4 bg-white">
+      <div className="rounded-lg p-4">
         <h2 className="text-xl font-semibold mb-2">Upcoming Interviews</h2>
-        <p className="text-green-600 font-medium">
-          🎉 No upcoming interviews scheduled.
+        <p className="text-gray-600">
+           No upcoming interviews scheduled.
         </p>
         
       </div>

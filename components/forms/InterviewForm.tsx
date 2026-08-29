@@ -64,11 +64,11 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
   return (
     <form onSubmit={handleSubmit}
       className="space-y-4  p-4 sm:p-5 rounded-lg mt-4 shadow-xs">
-      <input type="text" placeholder="Technical Round" className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full" value={round} onChange={(e)=>setRound(e.target.value)} required/>
+      <input type="text" placeholder="Technical Round" className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full" value={round} onChange={(e)=>setRound(e.target.value)} required/>
 
-      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"/>
+      <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"/>
 
-      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full resize-y"
+      <textarea placeholder="Interview notes..." value={notes} onChange={(e)=>setNotes(e.target.value)} className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full resize-y"
         rows={3}/>
 
         {error && (
@@ -76,7 +76,7 @@ export default function InterviewForm({applicationId}:InterviewFormProps) {
         )}
 
       <div>
-        <button type="submit" disabled={loading} className="bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors w-full sm:w-auto disabled:opacity-50">{loading?"Adding...":"Add Interview"}</button>
+        <button type="submit" disabled={loading} className="bg-black hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer w-full sm:w-auto disabled:opacity-50">{loading?"Adding...":"Add Interview"}</button>
       </div>
     </form>
   )

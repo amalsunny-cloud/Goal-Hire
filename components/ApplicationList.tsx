@@ -22,8 +22,8 @@ export default function ApplicationList({
 }: ListProps) {
   if (applications.length === 0) {
     return (
-      <div className="text-center flex justify-center items-center border rounded-lg p-6 bg-white">
-        <p className="text-red-600 font-semibold">
+      <div className="text-center flex justify-center items-center rounded-lg p-6">
+        <p className="text-gray-600">
           No matching application found.
         </p>
       </div>

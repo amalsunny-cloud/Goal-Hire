@@ -76,7 +76,7 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
 
       <button
         onClick={handleUpload} disabled={!file} type="button"
-        className="mt-4 bg-black text-white px-4 py-2 rounded-xl cursor-pointer disabled:opacity-50 transition-colors w-full sm:w-auto"
+        className="mt-4 bg-black hover:bg-gray-700 text-white px-4 py-2 rounded-xl cursor-pointer disabled:opacity-50 transition-colors w-full sm:w-auto"
       >
         Upload
       </button>

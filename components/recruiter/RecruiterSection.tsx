@@ -157,7 +157,6 @@ export default function RecruiterSection({ applicationId }: Props) {
       />
       </div>
 
-
       <RecruiterCalendar recruiters={recruiters} />
       <RecruiterReminderPanel recruiters={recruiters} />
       <ResponseAnalytics communications={communications} />
@@ -197,16 +196,8 @@ export default function RecruiterSection({ applicationId }: Props) {
         communications={communications}
       />
 
-
-      
       <div>
-        <h2
-          className="
-            text-2xl
-            font-semibold
-            mb-4
-          "
-        >
+        <h2 className="text-2xl font-semibold mb-4">
           Recruiters
         </h2>
 

@@ -96,7 +96,7 @@ export default function EmailTemplates({recruiterName, company}:Props) {
 
       <textarea readOnly value={email} rows={14} className="bg-slate-400/10 rounded p-6 w-full"></textarea>
 
-      <button onClick={copy} className="mt-5 bg-black text-white px-5 py-2 rounded-lg shadow-md transition-colors w-full cursor-pointer sm:w-auto">Copy Email</button>
+      <button onClick={copy} className="mt-5 bg-black hover:bg-gray-700 text-white px-5 py-2 rounded-lg shadow-md transition-colors w-full cursor-pointer sm:w-auto">Copy Email</button>
     </div>
   )
 }

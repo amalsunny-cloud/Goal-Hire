@@ -74,7 +74,7 @@ export default function AttachmentList({ applicationId }: AttachmentListProps) {
     <div className="bg-slate-400/10 rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Uploaded Files</h2>
       {attachments.length === 0 ? (
-        <p className="text-red-500">No attachments yet.</p>
+        <p className="text-gray-500">No attachments yet.</p>
       ) : (
         <div className="space-y-3">
           {attachments.map((attachment) => (

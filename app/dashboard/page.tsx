@@ -244,7 +244,7 @@ export default function Dashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all sm:px-5 ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md shadow-slate-300" : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"}`}
+                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold cursor-pointer transition-all sm:px-5 ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md shadow-slate-300" : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"}`}
                 >
                   <Icon className="h-4 w-4" />
                   {tab.label}

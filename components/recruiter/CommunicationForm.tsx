@@ -87,7 +87,7 @@ export default function CommunicationForm({
       <select
         value={type}
         onChange={(e) => setType(e.target.value as CommunicationType)}
-        className="border-b p-2 w-full">
+        className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all">
         <option value="Email">Email</option>
 
         <option value="Phone">Phone</option>
@@ -106,7 +106,7 @@ export default function CommunicationForm({
         value={date}
         onChange={(e) => setDate(e.target.value)}
         className="
-          pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
+          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
           w-full
         "
       />
@@ -117,7 +117,7 @@ export default function CommunicationForm({
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         className="
-          pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
+          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
           w-full
         "
       />
@@ -128,7 +128,7 @@ export default function CommunicationForm({
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         className="
-          pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
+          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
           w-full
         "
       />
@@ -136,18 +136,7 @@ export default function CommunicationForm({
       <button
         type="submit"
         disabled={loading}
-        className="
-          bg-black
-          hover:bg-slate-800
-          text-white
-          px-4
-          py-2
-          rounded
-          disabled:opacity-50
-          transition-colors
-          w-full sm:w-auto cursor-pointer
-        "
-      >
+        className="bg-black hover:bg-slate-800 text-white px-4 py-2 rounded-xl disabled:opacity-50 transition-colors w-full sm:w-auto cursor-pointer">
         {loading ? "Saving..." : "Save Communication"}
       </button>
     </form>

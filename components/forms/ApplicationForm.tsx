@@ -291,7 +291,7 @@ Skills: ${profile.skills || "N/A"}`;
         <button
           type="submit"
           disabled={loading}
-          className="w-full sm:w-auto min-w-45 inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
+          className="w-full sm:w-auto min-w-45 inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 cursor-pointer hover:bg-slate-900 text-white font-medium rounded-xl shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
         >
           {loading ? (
             <>

@@ -134,7 +134,8 @@ export default function RecruiterCard({
 
       <RecruiterStatusBadge nextFollowUp={recruiter.nextFollowUp} />
 
-      <div className="space-y-2 my-4">
+      <div className="space-y-2 my-5 grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="bg-slate-400/10 rounded-lg p-4 shadow-sm">
         <div className="space-y-1">
           <strong>Email :</strong>
 
@@ -164,8 +165,9 @@ export default function RecruiterCard({
             <p>{recruiter.phone || "No phone number"}</p>
           )}
         </div>
+        </div>
 
-        <div className="space-y-1">
+        <div className="space-y-1 flex flex-col justify-center items-center bg-slate-400/10 rounded-lg p-4 shadow-sm">
           <strong>LinkedIn :</strong>
 
           {editing ? (
@@ -189,7 +191,7 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col justify-center items-cente bg-slate-400/10 rounded-lg p-4 shadow-sm">
           <strong>Last Contact</strong>
 
           {editing ? (
@@ -208,7 +210,7 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col justify-center items-center bg-slate-400/10 rounded-lg p-4 shadow-sm">
           <strong>Next Follow-up :</strong>
 
           {editing ? (
@@ -227,7 +229,7 @@ export default function RecruiterCard({
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col justify-center items-center bg-slate-400/10 rounded-lg p-4 shadow-sm">
           <strong>Notes :</strong>
 
           {editing ? (
@@ -245,12 +247,12 @@ export default function RecruiterCard({
         </div>
       </div>
 
-      <div className="flex justify-center flex-wrap gap-2.5 sm:gap-3 mt-5">
+      <div className="flex justify-center flex-wrap gap-2.5 sm:gap-3 my-5">
         {!editing && (
           <button
             onClick={markContactedToday}
             disabled={contacting}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors disabled:opacity-50"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors disabled:opacity-50"
           >
             {contacting ? "Updating..." : "Contacted Today"}
           </button>
@@ -260,32 +262,21 @@ export default function RecruiterCard({
             <button
               onClick={saveChanges}
               disabled={loading}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium cursor-pointer transition-colors"
             >
               {loading ? "Saving..." : "Save"}
             </button>
 
             <button
               onClick={() => setEditing(false)}
-              className="
-          bg-gray-500
-          hover:bg-gray-600
-          text-white
-          px-4
-          py-2
-          rounded-xl
-          text-sm
-          font-medium
-          transition-colors
-        "
-            >
+              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors">
               Cancel
             </button>
           </>
         ) : (
           <button
             onClick={() => setEditing(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors"
           >
             Edit
           </button>
@@ -293,14 +284,14 @@ export default function RecruiterCard({
 
         <button
           onClick={() => setShowCommunicationForm(!showCommunicationForm)}
-          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+          className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors"
         >
           {showCommunicationForm ? "Cancel Communication" : "Add Communication"}
         </button>
 
         <button
           onClick={onDelete}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-colors"
         >
           Delete
         </button>

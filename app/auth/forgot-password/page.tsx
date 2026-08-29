@@ -56,7 +56,7 @@ export default function ForgotPasswordPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md">
-        <div className="text-center space-y-2">
+        <div className="space-y-2">
           <div className="inline-flex w-12 h-12 rounded-xl bg-gray-600/10 border border-gray-500/20 items-center justify-center text-gray-400 font-bold text-xl">
             G
           </div>
@@ -93,12 +93,12 @@ export default function ForgotPasswordPage() {
             onSubmit={handleSubmit}
             className="space-y-5"
           >
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 text-start">
               <label
                 htmlFor="email"
-                className="block text-xs text-gray-500"
+                className="ml-1 font-semibold text-xs text-gray-500"
               >
-                Email Address
+                Email :
               </label>
 
               <input

@@ -27,9 +27,14 @@ export default function KanbanColumn({
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="space-y-3 min-h-50"
+            className="space-y-3 flex flex-col justify-center items-center min-h-50"
           >
-            {applications.map(
+            {applications.length === 0 ? (
+              <div className="text-gray-500">
+                No applications in this column
+              </div>
+            ) : (
+            applications.map(
               (application, index) => (
                 <Draggable
                   key={application._id}
@@ -64,7 +69,7 @@ export default function KanbanColumn({
                     </div>
                   )}
                 </Draggable>
-              ),
+              ))
             )}
 
             {provided.placeholder}

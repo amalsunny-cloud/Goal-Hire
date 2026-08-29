@@ -79,9 +79,9 @@ export default function LoginPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-start text-xs  text-gray-500"
+              className="block text-start text-xs  text-gray-500 font-semibold"
             >
-              Email Address
+              Email :
             </label>
             <input
               type="email"
@@ -97,8 +97,8 @@ export default function LoginPage() {
 
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-xs text-gray-500">
-                Password
+              <label htmlFor="password" className="block text-xs text-gray-500 font-semibold">
+                Password :
               </label>
               <Link
                 href="/auth/forgot-password"

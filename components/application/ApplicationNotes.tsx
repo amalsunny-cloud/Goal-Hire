@@ -56,7 +56,7 @@ export default function ApplicationNotes({
             <FileText className="h-4 w-4" />
           </div>
           <div>
-            <h2 className="text-base font-bold text-slate-900">Notes</h2>
+            <h2 className="text-start font-bold text-slate-900">Notes</h2>
             <p className="mt-0.5 text-xs text-slate-500">
               Keep key details and next steps in one place.
             </p>
@@ -65,7 +65,7 @@ export default function ApplicationNotes({
         {!editing && (
           <button
             onClick={() => setEditing(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-black hover:bg-gray-700 px-3 py-2 text-xs font-semibold text-white shadow-sm transition cursor-pointer hover:border-slate-300 "
           >
             <Pencil className="h-3.5 w-3.5" />
             Edit notes
@@ -89,14 +89,14 @@ export default function ApplicationNotes({
             <button
               onClick={saveNotes}
               disabled={loading}
-              className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-lg bg-black hover:bg-gray-700 px-4 py-2 text-sm font-semibold text-white shadow-sm cursor-pointer transitiondisabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? "Saving..." : "Save"}
             </button>
 
             <button
               onClick={() => setEditing(false)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-red-600 px-4 py-2 text-sm cursor-pointer font-semibold text-white transition hover:bg-red-500/90 disabled:cursor-not-allowed disabled:opacity-60"
               disabled={loading}
             >
               <X className="h-4 w-4" />

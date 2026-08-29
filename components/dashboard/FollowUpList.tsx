@@ -32,7 +32,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
           Follow Ups
         </h2>
 
-        <p className="text-red-500 font-semibold">
+        <p className="text-gray-500">
           No follow-ups due this week.
         </p>
       </div>

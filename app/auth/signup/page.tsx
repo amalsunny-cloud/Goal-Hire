@@ -86,9 +86,9 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="name"
-              className="block text-xs text-gray-500 text-start"
+              className="block text-xs text-gray-500 text-start font-semibold"
             >
-              Full Name
+              Full Name :
             </label>
             <input
               id="name"
@@ -105,9 +105,9 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="email"
-              className="block text-xs text-gray-500 text-start"
+              className="block text-xs text-gray-500 text-start font-semibold"
             >
-              Email Address
+              Email :
             </label>
             <input
               id="email"
@@ -124,9 +124,9 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="password"
-              className="block text-xs text-gray-500 text-start"
+              className="block text-xs text-gray-500 text-start font-semibold"
             >
-              Password
+              Password :
             </label>
             <input
               id="password"
@@ -143,9 +143,9 @@ export default function SignUpPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="confirm-password"
-              className="block text-xs text-gray-500 text-start"
+              className="block text-xs text-gray-500 text-start font-semibold"
             >
-              Confirm Password
+              Confirm Password :
             </label>
             <input
               id="confirm-password"
