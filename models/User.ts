@@ -16,13 +16,6 @@ const UserSchema = new Schema(
             type: String,
             required: true,
         },
-        resetPasswordTokenHash: {
-            type: String,
-        },
-        resetPasswordExpires: {
-            type: Date,
-        },
-
     },
     { timestamps : true }
 );

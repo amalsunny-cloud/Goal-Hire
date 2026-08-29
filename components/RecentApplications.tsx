@@ -19,9 +19,9 @@ export default function RecentApplications({ applications }: RecentApplicationsP
 
     if(recent.length===0){
     return (
-      <div className="border rounded-lg py-3">
+      <div className="rounded-lg py-3">
         <h2 className="font-bold text-lg mb-2">Recent Applications</h2>
-        <p className="text-red-500 font-semibold">No recent applications yet.</p>
+        <p className="text-gray-500 font-semibold">No recent applications yet.</p>
       </div>
     )
   }
