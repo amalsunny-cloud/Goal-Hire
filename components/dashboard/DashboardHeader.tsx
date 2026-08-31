@@ -29,7 +29,7 @@ export default function DashboardHeader({
   const reminders = getReminderCount(applications);
   return (
     <div className="max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm sm:p-6">
-      <h1 className="text-3xl font-bold mb-2">{greeting} 👋</h1>
+      <h1 className="text-3xl tracking-tight font-semibold mb-2">{greeting} 👋</h1>
       <p className="text-sm leading-6 text-blue-100/75 sm:text-base">
         Keep pushing forward. Every application is a step closer to your next
         role.

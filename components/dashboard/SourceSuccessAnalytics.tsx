@@ -17,7 +17,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
   if (sources.length === 0) {
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Source Success Analytics
       </h2>
 
@@ -31,7 +31,7 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-6">Source Success Analytics</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Source Success Analytics</h2>
 
       <div className="space-y-4">
         {sources.map(([source, data]) => {

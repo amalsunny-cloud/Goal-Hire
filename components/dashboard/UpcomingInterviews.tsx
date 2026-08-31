@@ -32,7 +32,7 @@ export default function UpcomingInterviews({
   if (upcomingInterviews.length === 0) {
     return (
       <div className="rounded-lg p-4">
-        <h2 className="text-xl font-semibold mb-2">Upcoming Interviews</h2>
+        <h2 className="text-2xl font-semibold mb-2 tracking-tight">Upcoming Interviews</h2>
         <p className="text-gray-600">
            No upcoming interviews scheduled.
         </p>
@@ -43,7 +43,7 @@ export default function UpcomingInterviews({
 
   return (
     <div className="rounded-lg p-4">
-      <h2 className="text-xl font-semibold mb-4">Upcoming Interviews</h2>
+      <h2 className="text-2xl font-semibold mb-4 tracking-tight">Upcoming Interviews</h2>
 
       <ul className="space-y-3">
         {upcomingInterviews.map((interview) => {

@@ -13,7 +13,7 @@ export default function ApplicationAnalytics({ applications }: ApplicationAnalyt
   return (
     <div className="rounded-lg p-6">
       <h2
-        className="text-xl font-semibold mb-6">
+        className="text-2xl tracking-tight font-semibold mb-6">
         Application Analytics
       </h2>
 

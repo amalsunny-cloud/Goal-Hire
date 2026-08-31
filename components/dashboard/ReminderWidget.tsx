@@ -166,7 +166,7 @@ function WidgetTitle({ count }: { count?: number }) {
   return (
     <div className="mb-5 flex items-start justify-between gap-3">
       <div>
-        <p className="text-lg font-bold tracking-tight text-slate-900">Follow-up reminders</p>
+        <p className="text-2xl font-semibold tracking-tight text-slate-900">Follow-up reminders</p>
         <p className="mt-0.5 text-xs text-slate-500">Stay on top of the next step</p>
       </div>
       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600"><BellRing className="h-4 w-4" /></span>

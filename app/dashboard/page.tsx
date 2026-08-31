@@ -210,9 +210,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-6">
-        <header className="relative overflow-hidden rounded-4xl bg-gray-500 p-6 text-white shadow-2xl shadow-blue-950/20 sm:p-8 lg:p-10">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-100/20 blur-3xl" />
-          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-100/15 blur-3xl" />
+        <header className="relative overflow-hidden rounded-4xl bg-gray-500 text-white shadow-2xl shadow-blue-950/20 sm:p-8">
+          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-700/30 blur-3xl" />
+          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-700/30 blur-3xl" />
           <div className="relative flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
             <DashboardHeader
               applicationCount={applicationCount}
@@ -223,7 +223,7 @@ export default function Dashboard() {
             <div className="flex flex-wrap items-center gap-2.5">
               <Link
                 href="/dashboard/company"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-900 shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm text-slate-900 shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50"
               >
                 <Building2 className="h-4 w-4 text-blue-600" />
                 Company Insights

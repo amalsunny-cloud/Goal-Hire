@@ -17,7 +17,7 @@ export default function RecentActivity({ applications }: RecentActivityProps) {
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+      <h2 className="text-2xl font-semibold mb-4 tracking-tight">Recent Activity</h2>
 
       {recentApplications.length === 0 ? (
         <p className="text-gray-500">No recent activity</p>

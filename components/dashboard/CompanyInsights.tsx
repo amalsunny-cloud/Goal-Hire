@@ -19,13 +19,13 @@ export default function CompanyInsights({
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-2xl font-semibold mb-6">Company Insights</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Company Insights</h2>
 
       <div className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="py-2 flex justify-center gap-2">
           <p className="text-gray-500">Top Location : </p>
 
-          <h4 className="text-xl font-bold">
+          <h4 className="text-lg font-semibold">
             {insights.topLocation || "No data"}
           </h4>
         </div>
@@ -33,13 +33,13 @@ export default function CompanyInsights({
         <div className="py-2 flex justify-center gap-2">
           <p className="text-gray-500">Top Role : </p>
 
-          <h4 className="text-xl font-bold">{insights.topRole || "No data"}</h4>
+          <h4 className="text-lg font-semibold">{insights.topRole || "No data"}</h4>
         </div>
 
         <div className="py-2 flex justify-center gap-2">
           <p className="text-gray-500">Top Company : </p>
 
-          <h4 className="text-xl font-bold">
+          <h4 className="text-lg font-semibold">
             {insights.topCompany || "No data"}
           </h4>
         </div>

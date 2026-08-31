@@ -14,7 +14,7 @@ export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
     if (data.length === 0) {
   return (
     <div className="border rounded-lg p-6 bg-white">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Application Funnel
       </h2>
 
@@ -27,7 +27,7 @@ export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-6">Application Funnel</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Application Funnel</h2>
 
       <div className="space-y-4">
         {data.map(item=>{

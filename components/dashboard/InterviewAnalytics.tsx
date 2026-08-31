@@ -13,7 +13,7 @@ export default function InterviewAnalytics({interviews}:InterviewAnalyticsProps)
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Interview Analytics
       </h2>
 

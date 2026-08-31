@@ -63,7 +63,7 @@ export default function GoalSettings({ goal, onGoalUpdated }: GoalSettingsProps)
   };
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Goal Settings</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-4">Goal Settings</h2>
 
       <div className="space-y-6 mt-2">
         <label htmlFor="applicationGoal">Application Goal :</label>
