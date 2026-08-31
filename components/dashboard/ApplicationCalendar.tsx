@@ -70,7 +70,7 @@ export default function ApplicationCalendar({
   if (events.length === 0) {
     return (
       <div className="rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-6">
+        <h2 className="text-2xl tracking-tight font-semibold mb-6">
           Calendar View
         </h2>
 
@@ -83,7 +83,7 @@ export default function ApplicationCalendar({
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Calendar View
       </h2>
 

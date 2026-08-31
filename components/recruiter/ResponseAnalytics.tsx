@@ -17,7 +17,7 @@ export default function ResponseAnalytics({communications}:Props) {
 
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
-      <h2 className="text-xl font-semibold mb-6">Recruiter Response Analytics</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Recruiter Response Analytics</h2>
 
       <div className="grid grid-cols-2 md:grid:cols-3 lg:grid-cols-6 gap-4">
         <Card title="Communications" value={total}/>

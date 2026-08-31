@@ -47,7 +47,7 @@ export default function RecruiterConversionFunnel({
 
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
-      <h2 className="text-xl font-semibold mb-8">
+      <h2 className="text-2xl tracking-tight font-semibold mb-8">
         Recruiter Conversion Funnel
       </h2>
 
@@ -77,7 +77,7 @@ export default function RecruiterConversionFunnel({
 
               <div className="w-full h-7 rounded bg-gray-200 overflow-hidden">
                 <div
-                  className={`${stage.color} h-full flex items-center justify-end pr-3 text-white font-semibold`}
+                  className={`${stage.color} h-full flex items-center justify-end pr-3 text-white font-semibold rounded-full`}
                   style={{
                     width: `${percentage}%`,
                   }}

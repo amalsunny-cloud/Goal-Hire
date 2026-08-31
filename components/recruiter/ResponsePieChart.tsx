@@ -65,7 +65,7 @@ export default function ResponsePieChart({
 
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
-      <h2 className="text-xl font-semibold mb-6">
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Recruiter Response Distribution
       </h2>
 

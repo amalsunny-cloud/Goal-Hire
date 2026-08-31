@@ -353,7 +353,7 @@ export default function Dashboard() {
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-slate-900">
+                  <p className="text-2xl tracking-tight font-semibold text-slate-900">
                     Add New Application
                   </p>
                   <p className="text-sm text-slate-500">

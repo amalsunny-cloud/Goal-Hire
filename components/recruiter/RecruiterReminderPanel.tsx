@@ -115,7 +115,7 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
 
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
-      <h2 className="text-xl font-semibold mb-6">Recruiter Reminder Center</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Recruiter Reminder Center</h2>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="rounded-lg p-4 text-center bg-red-50">

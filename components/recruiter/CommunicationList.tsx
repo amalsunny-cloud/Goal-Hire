@@ -60,7 +60,7 @@ export default function CommunicationList({ recruiterId }: Props) {
   if (communications.length === 0) {
     return(
       <div className="mt-6 bg-white flex flex-col justify-center rounded-xl shadow-md p-6">
-        <h2 className="text-xl font-semibold mb-6">Communication Timeline</h2>
+        <h2 className="text-2xl tracking-tight font-semibold mb-6">Communication Timeline</h2>
         <p className="text-gray-500">No communications yet.</p>
       </div>
     )
@@ -117,7 +117,7 @@ export default function CommunicationList({ recruiterId }: Props) {
           <option value="Other">Other</option>
         </select>
       </div>
-      <h2 className="text-xl font-semibold mb-6">Communication Timeline</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Communication Timeline</h2>
 
       {filteredCommunications.length === 0 ? (
         <p className="text-gray-500">No communications yet.</p>

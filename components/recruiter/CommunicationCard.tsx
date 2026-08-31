@@ -102,21 +102,21 @@ export default function CommunicationCard({
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
+            className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs mb-3 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
           />
 
           <input
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
+            className="pl-3 pr-3 py-2.5 mb-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800  w-full placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
           />
 
           <textarea
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
+            className="pl-3 pr-3 py-2.5 mb-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all w-full"
           />
         </>
       ) : (
@@ -167,7 +167,7 @@ export default function CommunicationCard({
 
 
       {communication.responded && (
-  <div className="mt-5 border-t pt-4">
+  <div className="mt-5 border-t border-gray-300/80 pt-4">
     <h3 className="font-semibold mb-3">
       Recruiter Response
     </h3>
@@ -204,7 +204,7 @@ export default function CommunicationCard({
                 text-white
                 px-4
                 py-2
-                rounded
+                rounded-xl
                 text-sm
                 font-medium
                 transition-colors
@@ -221,7 +221,7 @@ export default function CommunicationCard({
                 text-white
                 px-4
                 py-2
-                rounded
+                rounded-xl
                 text-sm
                 font-medium
                 transition-colors

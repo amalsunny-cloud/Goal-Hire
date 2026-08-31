@@ -98,7 +98,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
           <UserPlus className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-2xl tracking-tight font-semibold">
             Recruiter Information
           </h2>
           <p className="text-xs text-slate-500">

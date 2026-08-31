@@ -251,7 +251,7 @@ export default async function ApplicationDetailsPage({
 
           {/* Interviews Schedule Form */}
           <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-            <h2 className="text-xl font-bold text-slate-800">
+            <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
               Schedule Interview
             </h2>
             <InterviewForm applicationId={application._id.toString()} />
@@ -259,7 +259,7 @@ export default async function ApplicationDetailsPage({
 
           {/* Interviews List */}
           <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-            <h2 className="text-xl font-bold text-slate-800">
+            <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
               Interview Rounds
             </h2>
             <div className="flex flex-col justify-center items-center border border-slate-200/80 p-6 rounded-2xl space-y-4">
@@ -275,7 +275,7 @@ export default async function ApplicationDetailsPage({
         {/* Application Timeline */}
 
         <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
-          <h2 className="text-lg font-bold text-slate-800">
+          <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
             Application Timeline
           </h2>
           <ApplicationTimeline applicationId={application._id.toString()} />

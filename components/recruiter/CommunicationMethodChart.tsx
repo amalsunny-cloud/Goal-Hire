@@ -30,7 +30,7 @@ export default function CommunicationMethodChart({ communications }: Props) {
 
   return (
     <div className="rounded-lg bg-slate-400/10 p-6 shadow-sm">
-      <h2 className="text-xl font-semibold mb-6">Communication Methods</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-6">Communication Methods</h2>
 
       {data.length === 0 ? (
         <p className="text-gray-500">No communication data available.</p>

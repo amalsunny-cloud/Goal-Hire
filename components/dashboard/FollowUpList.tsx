@@ -28,7 +28,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
     return (
       <div className="rounded-lg p-6 py-3">
         <h2
-          className="text-xl font-semibold mb-2">
+          className="text-2xl tracking-tight font-semibold mb-2">
           Follow Ups
         </h2>
 
@@ -41,7 +41,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
   return (
     <div className="rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Follow Ups</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-4">Follow Ups</h2>
 
       <div className="space-y-3">
         {upcomingFollowUps.map((app) => (

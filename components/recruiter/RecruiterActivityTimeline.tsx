@@ -233,16 +233,17 @@ export default function RecruiterActivityTimeline({
 
   return (
     <div className="rounded-lg bg-slate-400/10 p-6 shadow-sm">
-      <h2 className="text-xl font-semibold mb-8">Activity Timeline</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-8">Activity Timeline</h2>
 
       {events.length === 0 ? (
         <p className="text-gray-500">No activity yet.</p>
       ) : (
         <>
+        <div className="grid grid-cols-2 space-x-3">
           {Object.entries(groupedEvents).map(([label, items]) => (
             <div key={label} className="mb-10">
               <h2
-                className="text-lg font-bold text-gray-700 mb-5">
+                className="text-sm font-bold text-gray-700 mb-2">
                 {label}
               </h2>
 
@@ -277,6 +278,7 @@ export default function RecruiterActivityTimeline({
               </div>
             </div>
           ))}
+          </div>
         </>
       )}
     </div>

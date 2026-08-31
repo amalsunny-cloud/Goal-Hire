@@ -82,7 +82,7 @@ export default function EmailTemplates({recruiterName, company}:Props) {
 
   return (
     <div className="mt-5 rounded-lg p-6 bg-white shadow-sm">
-       <h2 className="text-xl font-semibold mb-6">
+       <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Email Templates
       </h2>
 

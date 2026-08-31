@@ -61,7 +61,7 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         type="date"
         value={responseDate}
         onChange={(e) => setResponseDate(e.target.value)}
-        className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
+        className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 w-full rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
       />
 
       <textarea
@@ -69,13 +69,13 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         placeholder="Recruiter reply..."
         value={responseNotes}
         onChange={(e) => setResponseNotes(e.target.value)}
-        className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
+        className="pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 w-full rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
       />
 
       <button
         disabled={loading}
         onClick={saveResponse}
-        className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors w-full sm:w-auto disabled:opacity-50"
+        className="bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer w-full sm:w-auto disabled:opacity-50"
       >
         {loading ? "Saving..." : "Save Response"}
       </button>

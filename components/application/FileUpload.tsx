@@ -54,7 +54,7 @@ export default function FileUpload({ applicationId }: FileUploadProps ) {
 
   return (
     <div className="p-6 flex flex-col justify-center items-center">
-      <h2 className="text-xl font-semibold mb-4">Attachments</h2>
+      <h2 className="text-2xl tracking-tight font-semibold mb-4">Attachments</h2>
 
       <input
         type="file"

@@ -147,7 +147,7 @@ export default function RecruiterExport({
   return (
     <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm flex flex-col justify-center items-center">
 
-      <h2 className="text-xl font-semibold mb-5">
+      <h2 className="text-2xl tracking-tight font-semibold mb-5">
         Export Recruiter Data
       </h2>
 

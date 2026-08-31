@@ -140,7 +140,7 @@ export default function RecruiterSection({ applicationId }: Props) {
   return (
     <div className="space-y-6">
 
-      <div className="bg-white grid grid-cols-1 lg:grid-cols-2 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+      <div className="bg-white grid grid-cols-1 lg:grid-cols-2 p-6 gap-6 rounded-2xl  space-y-4">
 
       
       <RecruiterForm
@@ -197,7 +197,7 @@ export default function RecruiterSection({ applicationId }: Props) {
       />
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl tracking-tight font-semibold mb-4">
           Recruiters
         </h2>
 
