@@ -1,14 +1,15 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-
 interface SendPasswordResetEmailProps {
   to: string;
   resetUrl: string;
 }
-export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordResetEmailProps) {
-    if (!process.env.RESEND_API_KEY) {
+
+export async function sendPasswordResetEmail({
+  to,
+  resetUrl,
+}: SendPasswordResetEmailProps) {
+  if (!process.env.RESEND_API_KEY) {
     throw new Error("RESEND_API_KEY is not configured");
   }
 
@@ -16,12 +17,14 @@ export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordReset
     throw new Error("RESEND_FROM_EMAIL is not configured");
   }
 
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   const { data, error } = await resend.emails.send({
     from: process.env.RESEND_FROM_EMAIL,
     to,
     subject: "Reset your Goal-Hire password",
     html: `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
         
         <h2>Reset your Goal-Hire password</h2>
 
@@ -56,12 +59,13 @@ export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordReset
         </p>
 
       </div>
-`
-});
+    `,
+  });
 
-if(error){
+  if (error) {
     console.error("Resend email error:", error);
     throw new Error("Failed to send password reset email");
-}
-return data;
+  }
+
+  return data;
 }
