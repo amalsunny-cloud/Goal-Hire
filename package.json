@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^2.21.0",
     "@hello-pangea/dnd": "^18.0.1",
     "@types/react-calendar": "^3.9.0",
     "bcryptjs": "^3.0.3",
@@ -27,7 +28,8 @@
     "react-dom": "19.2.4",
     "react-hot-toast": "^2.6.0",
     "recharts": "^3.8.1",
-    "resend": "^6.25.0"
+    "resend": "^6.25.0",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
