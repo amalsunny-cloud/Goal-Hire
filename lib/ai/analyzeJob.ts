@@ -1,10 +1,11 @@
 import { z } from "zod";
-import { gemini } from "@/lib/ai/gemini";
+import { getGeminiClient } from "@/lib/ai/gemini";
 import { jobAnalysisSchema } from "@/lib/ai/schemas/jobAnalysis";
 
 const jobAnalysisJsonSchema = z.toJSONSchema(jobAnalysisSchema);
 
 export async function analyzeJobDescription(jobDescription: string) {
+  const gemini = getGeminiClient();
   const prompt = `
 You are an expert technical recruiter and career analyst.
 
