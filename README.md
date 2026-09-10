@@ -209,7 +209,11 @@ Examples include:
 
 ## Screenshots
 
-Screenshots will be added as the project interface is finalized.
+## 📸 Screenshot
+
+![Next.js App Screenshot](./public/images/Goal-Hire-main.png)
+![Next.js App Screenshot](./public/images/Goal-Hire-main2.png)
+![Next.js App Screenshot](./public/images/Goal-Hire-home.png)
 
 Recommended structure:
 
