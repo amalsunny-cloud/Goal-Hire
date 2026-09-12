@@ -201,7 +201,9 @@ export default function RecruiterSection({ applicationId }: Props) {
           Recruiters
         </h2>
 
-        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+        {recruiters.length > 0 && (
+          <div className="flex flex-col sm:flex-row gap-3 mb-4">
+          
           <input
             type="text"
             placeholder="Search recruiter..."
@@ -238,6 +240,9 @@ export default function RecruiterSection({ applicationId }: Props) {
             ))}
           </select>
         </div>
+        )
+        }
+        
 
 
         {loading ? (

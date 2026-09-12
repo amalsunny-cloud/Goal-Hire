@@ -45,7 +45,7 @@ export default function FollowUpList({ applications }: FollowUpListProps) {
 
       <div className="space-y-3">
         {upcomingFollowUps.map((app) => (
-          <div key={app._id} className="border rounded p-3">
+          <div key={app._id} className="bg-white/50 rounded-lg p-3">
             <h3 className="font-semibold">{app.company}</h3>
             <p>{app.role}</p>
             <p>

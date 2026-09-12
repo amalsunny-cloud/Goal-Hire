@@ -50,20 +50,20 @@ export default function CompanyInsights({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 
-          <div className="bg-white rounded-lg p-3">
+          <div className="bg-white/50 rounded-lg p-3">
             <p className="text-gray-500">Applied</p>
             <h3 className="text-2xl font-bold">{status.applied}</h3>
           </div>
 
-          <div className="bg-white rounded-lg p-3">
+          <div className="bg-white/50 rounded-lg p-3">
             <p className="text-gray-500">Interview</p>  
             <h3 className="text-2xl font-bold">{status.interview}</h3> 
           </div>
-          <div className="bg-white rounded-lg p-3">
+          <div className="bg-white/50 rounded-lg p-3">
             <p className="text-gray-500">Offer</p>  
             <h3 className="text-2xl font-bold">{status.offer}</h3> 
           </div>
-          <div className="bg-white rounded-lg p-3">
+          <div className="bg-white/50 rounded-lg p-3">
             <p className="text-gray-500">Rejected</p>  
             <h3 className="text-2xl font-bold">{status.rejected}</h3> 
           </div>

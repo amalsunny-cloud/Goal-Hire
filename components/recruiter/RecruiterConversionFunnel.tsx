@@ -75,9 +75,9 @@ export default function RecruiterConversionFunnel({
                 <span>{stage.value}</span>
               </div>
 
-              <div className="w-full h-7 rounded bg-gray-200 overflow-hidden">
+              <div className="w-full h-7 rounded-full bg-gray-300 overflow-hidden">
                 <div
-                  className={`${stage.color} h-full flex items-center justify-end pr-3 text-white font-semibold rounded-full`}
+                  className={`${stage.color} border border-gray-700/50 h-full flex items-center justify-end pr-3 text-white font-semibold rounded-full`}
                   style={{
                     width: `${percentage}%`,
                   }}

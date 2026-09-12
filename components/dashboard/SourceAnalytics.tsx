@@ -34,7 +34,7 @@ export default function SourceAnalytics({ applications }: SourceAnalyticsProps) 
         {Object.entries(analytics).map(([source, count]) => (
           <div
             key={source}
-            className="flex justify-between bg-white rounded-lg p-3">
+            className="flex justify-between bg-white/50 rounded-lg p-3">
             <span>{source}</span>
 
             <span>{count}</span>

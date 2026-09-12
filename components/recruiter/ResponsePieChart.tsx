@@ -100,7 +100,7 @@ export default function ResponsePieChart({
         </ResponsiveContainer>
       </div>
       ):(
-        <div>
+        <div className="flex items-center justify-center h-64 rounded-lg">
         <p>No data available</p>
         </div>
       )}

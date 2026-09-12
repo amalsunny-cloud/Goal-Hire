@@ -5,7 +5,7 @@ interface AnalyticsCardProps {
 
 export default function AnalyticsCard({ title, value }: AnalyticsCardProps) {
   return (
-    <div className="shadow-md rounded-lg p-6 bg-white">
+    <div className="shadow-md rounded-lg p-6 bg-white/50 backdrop-blur-md">
       <p className="text-gray-500 mb-2">
         {title}
       </p>

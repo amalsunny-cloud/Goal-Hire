@@ -75,9 +75,9 @@ const applicationCount = applications.length;
             </span>
           </div>
 
-          <div className="w-full bg-gray-200 rounded-full h-3">
+          <div className="w-full bg-gray-300 rounded-full h-3">
             <div
-              className="bg-blue-500 h-3 rounded-full"
+              className="bg-blue-500 h-3 rounded-full border border-gray-700/50 transition-all duration-500"
               role="progressbar"
               aria-valuenow={applicationProgress}
               aria-valuemin={0}
@@ -98,9 +98,9 @@ const applicationCount = applications.length;
             </span>
           </div>
 
-          <div className="w-full bg-gray-200 rounded-full h-3">
+          <div className="w-full bg-gray-300 rounded-full h-3">
             <div
-              className="bg-yellow-500 h-3 rounded-full"
+              className="bg-yellow-500 h-3 rounded-full border border-gray-700/50 transition-all duration-500"
               style={{
                 width: `${interviewProgress}%`,
               }}

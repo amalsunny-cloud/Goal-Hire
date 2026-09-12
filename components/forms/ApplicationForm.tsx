@@ -80,7 +80,7 @@ Skills: ${profile.skills || "N/A"}`;
         body: JSON.stringify({
           company,
           role,
-          note,
+          notes:note,
           followUpDate,
           jobUrl,
           location,
@@ -88,6 +88,8 @@ Skills: ${profile.skills || "N/A"}`;
           source,
         }),
       });
+      console.log("response is in handle:",response);
+      
 
       if (!response.ok) {
         toast.error("Failed to add application");

@@ -48,19 +48,19 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
               <h3 className="font-bold text-lg mb-3">{source}</h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div className="bg-white rounded-lg p-3">
+                <div className="bg-white/50 rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Applications</p>
 
                   <p className="text-xl font-semibold">{data.applications}</p>
                 </div>
 
-                <div className="bg-white rounded-lg p-3">
+                <div className="bg-white/50 rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Interviews</p>
 
                   <p className="text-xl font-semibold">{data.interviews}</p>
                 </div>
 
-                <div className="bg-white rounded-lg p-3">
+                <div className="bg-white/50 rounded-lg p-3">
                   <p className="text-gray-500 text-sm">Offers</p>
 
                   <p className="text-xl font-semibold">{data.offers}</p>
@@ -68,14 +68,14 @@ export default function SourceSuccessAnalytics({ applications }: SourceSuccessAn
               </div>
 
               <div className="mt-4 border-t border-gray-500/30 pt-3 space-y-1">
-                <p className="bg-white rounded-lg p-3">
+                <p className="bg-white/50 rounded-lg p-3">
                   Interview Rate:{" "}
                   <span className="font-semibold">
                     {interviewRate.toFixed(1)}%
                   </span>
                 </p>
 
-                <p className="bg-white rounded-lg p-3">
+                <p className="bg-white/50 rounded-lg p-3">
                   Offer Rate:{" "}
                   <span className="font-semibold">{offerRate.toFixed(1)}%</span>
                 </p>

@@ -400,15 +400,8 @@ export default function Dashboard() {
                 onStatusChange={updateStatus}
               />
             </div>
-            <div className={panelClassName}>
-              <FollowUpList applications={applications} />
-            </div>
-            <div className={panelClassName}>
-              <UpcomingInterviews interviews={upcomingInterviews} />
-            </div>
-            <div className={panelClassName}>
-              <RecentActivity applications={applications} />
-            </div>
+            
+          
           </div>
         )}
       </div>

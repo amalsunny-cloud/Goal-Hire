@@ -13,7 +13,7 @@ export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
 
     if (data.length === 0) {
   return (
-    <div className="border rounded-lg p-6 bg-white">
+    <div className="rounded-lg p-6 bg-white/50 backdrop-blur-md">
       <h2 className="text-2xl tracking-tight font-semibold mb-6">
         Application Funnel
       </h2>
@@ -40,8 +40,8 @@ export default function ApplicationFunnel({data}:ApplicationFunnelProps) {
                         <span>{item.value}</span>
                     </div>
 
-                    <div className="w-full h-4 bg-gray-200 rounded" role="progressbar" aria-valuenow={item.value} aria-valuemin={0} aria-valuemax={maxValue}>
-                        <div className="h-4 bg-green-600 rounded transition-all duration-500"
+                    <div className="w-full h-4 bg-gray-300 rounded-lg" role="progressbar" aria-valuenow={item.value} aria-valuemin={0} aria-valuemax={maxValue}>
+                        <div className="h-4 bg-green-600 rounded-lg border border-gray-700/50 transition-all duration-500"
                            style={{ width: `${width}%` }}></div>
                     </div>
                 </div>

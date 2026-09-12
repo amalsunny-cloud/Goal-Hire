@@ -103,7 +103,7 @@ export default async function ApplicationDetailsPage({
     <div className="min-h-screen bg-slate-50/80 text-slate-800 p-4 sm:p-8 space-y-6">
       <div className="mx-auto max-w-7xl">
         {/* Top Navigation & Actions */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-4 mb-4">
           <Link
             href="/dashboard"
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-1.5 rounded-lg hover:bg-slate-100"
@@ -239,7 +239,7 @@ export default async function ApplicationDetailsPage({
           </div>
         </div>
 
-        <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm">
+        <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl mt-6 shadow-sm">
           <ApplicationNotes
             applicationId={application._id.toString()}
             initialNotes={application.notes || ""}
@@ -268,7 +268,7 @@ export default async function ApplicationDetailsPage({
           </div>
 
         </div>
-          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm">
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl mt-6 shadow-sm">
             <RecruiterSection applicationId={application._id.toString()} />
           </div>
 
