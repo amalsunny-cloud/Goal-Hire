@@ -82,7 +82,7 @@ export default function JobDescriptionAnalyzer() {
           rows={14}
           maxLength={20000}
           disabled={loading}
-          className="w-full resize-y rounded-lg border border-gray-300 px-6 py-6 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-gray-100"
+          className="w-full resize-y rounded-lg border border-gray-300 px-6 py-6 text-sm outline-none transition focus:border-gray-200 focus:ring-2 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-gray-100"
         />
 
         <div className="mt-2 flex items-center justify-between">
@@ -94,7 +94,7 @@ export default function JobDescriptionAnalyzer() {
             type="button"
             onClick={handleAnalyze}
             disabled={loading || !jobDescription.trim()}
-            className="rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg cursor-pointer bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Analyzing..." : "Analyze Job"}
           </button>
@@ -121,36 +121,36 @@ export default function JobDescriptionAnalyzer() {
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
-                <p className="text-xs font-medium uppercase text-gray-500">
+                <h2 className="font-bold uppercase">
                   Job Title
-                </p>
+                </h2>
                 <p className="mt-1 text-sm font-medium text-gray-900">
                   {analysis.jobTitle}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase text-gray-500">
+                <h2 className="font-bold uppercase">
                   Company
-                </p>
+                </h2>
                 <p className="mt-1 text-sm font-medium text-gray-900">
                   {analysis.company || "Not specified"}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase text-gray-500">
+                <h2 className="font-bold uppercase">
                   Seniority
-                </p>
+                </h2>
                 <p className="mt-1 text-sm text-gray-700">
                   {analysis.seniority || "Not specified"}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-medium uppercase text-gray-500">
+                <h2 className="font-bold uppercase">
                   Experience
-                </p>
+                </h2>
                 <p className="mt-1 text-sm text-gray-700">
                   {analysis.experience || "Not specified"}
                 </p>
@@ -158,9 +158,9 @@ export default function JobDescriptionAnalyzer() {
             </div>
 
             <div className="mt-5 border-t border-gray-500/30 pt-5">
-              <p className="text-xs font-medium uppercase text-gray-500">
+              <h2 className="font-bold uppercase">
                 Summary
-              </p>
+              </h2>
 
               <p className="mt-2 text-sm leading-6 text-gray-700">
                 {analysis.summary}
@@ -173,21 +173,26 @@ export default function JobDescriptionAnalyzer() {
             <AnalysisList
               title="Must-Have Skills"
               items={analysis.mustHaveSkills}
+              variant="red"
             />
 
             <AnalysisList
               title="Nice-to-Have Skills"
               items={analysis.niceToHaveSkills}
+              variant="yellow"
             />
 
             <AnalysisList
               title="Technical Skills"
               items={analysis.technicalSkills}
+              variant="green"
             />
 
             <AnalysisList
               title="Soft Skills"
               items={analysis.softSkills}
+              variant="blue"
+            
             />
           </div>
 
@@ -196,11 +201,14 @@ export default function JobDescriptionAnalyzer() {
             <AnalysisList
               title="Responsibilities"
               items={analysis.responsibilities}
+              variant="purple"
             />
 
             <AnalysisList
               title="Qualifications"
               items={analysis.qualifications}
+              variant="orange"
+
             />
           </div>
 
@@ -208,6 +216,7 @@ export default function JobDescriptionAnalyzer() {
           <AnalysisList
             title="Education Requirements"
             items={analysis.education}
+            variant="blue"
           />
 
           {/* ATS Keywords */}
@@ -242,12 +251,48 @@ export default function JobDescriptionAnalyzer() {
 interface AnalysisListProps {
   title: string;
   items: string[];
+  variant?: "red" | "yellow" | "blue" | "green" | "purple" | "orange";
 }
 
-function AnalysisList({ title, items }: AnalysisListProps) {
+function AnalysisList({ title, items, variant = "blue" }: AnalysisListProps) {
+  const styles = {
+  red: {
+    container: "bg-red-50",
+    title: "text-red-800",
+    bullet: "text-red-500",
+  },
+  yellow: {
+    container: "bg-yellow-50",
+    title: "text-yellow-800",
+    bullet: "text-yellow-500",
+  },
+  blue: {
+    container: "bg-blue-100",
+    title: "text-blue-800",
+    bullet: "text-blue-500",
+  },
+  green: {
+    container: "bg-green-50",
+    title: "text-green-800",
+    bullet: "text-green-500",
+  },
+  purple: {
+    container: "bg-purple-50",
+    title: "text-purple-800",
+    bullet: "text-purple-500",
+  },
+  orange: {
+    container: "bg-orange-50",
+    title: "text-orange-800",
+    bullet: "text-orange-500",
+  },
+};
+
+  const currentStyle = styles[variant];
+
   return (
-    <div className="rounded-xl bg-slate-400/10 p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-gray-900">
+    <div className={`rounded-xl ${currentStyle.container} p-6 shadow-sm`}>
+      <h2 className={`text-lg font-semibold ${currentStyle.title}`}>
         {title}
       </h2>
 
