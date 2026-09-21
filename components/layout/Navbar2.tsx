@@ -7,11 +7,11 @@ export default function Navbar2() {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo & Title */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-slate-600 to-gray-500/10 flex items-center justify-center font-bold text-white shadow-md shadow-gray-500/20 group-hover:scale-105 transition-transform">
-              G
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-md shadow-gray-500/20 group-hover:scale-105 transition-transform">
+              <img src="/Goal-Hire-Logo.webp" alt="Goal-Hire Logo" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-slate-500 via-slate-300 to-slate-400">
+              <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-slate-400">
                 Goal-Hire
               </span>
               <span className="text-[10px] uppercase tracking-wider text-white font-semibold -mt-1">

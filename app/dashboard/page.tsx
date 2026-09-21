@@ -122,15 +122,22 @@ export default function Dashboard() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-sm space-y-4">
-          <div className="h-8 bg-slate-200 rounded-lg animate-pulse w-3/4 mx-auto" />
-          <div className="h-64 bg-slate-200 rounded-2xl animate-pulse" />
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
+      <div className="w-full max-w-md space-y-4">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 animate-pulse rounded-xl bg-slate-200" />
+          <div className="flex-1 space-y-2">
+            <div className="h-4 w-40 animate-pulse rounded bg-slate-200" />
+            <div className="h-3 w-56 animate-pulse rounded bg-slate-100" />
+          </div>
         </div>
+
+        <div className="h-64 animate-pulse rounded-3xl border border-slate-200 bg-white" />
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   const deleteApplication = async (id: string) => {
     try {
@@ -199,7 +206,7 @@ export default function Dashboard() {
   const funnelData = getFunnelData(applications);
   
   const panelClassName =
-    "rounded-2xl bg-slate-400/10 p-5 shadow-sm shadow-slate-200/30 transition-shadow hover:shadow-md sm:p-6";
+    "rounded-3xl border border-slate-200 bg-white p-1 shadow-sm transition-shadow duration-200 hover:shadow-md";
   const tabs = [
     { id: "overview", label: "Overview", icon: LayoutDashboard },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -208,46 +215,56 @@ export default function Dashboard() {
   ] as const;
 
   return (
-    <div className="min-h-screen px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
-      <div className="mx-auto max-w-7xl space-y-6">
-        <header className="relative overflow-hidden rounded-4xl bg-gray-500 text-white shadow-2xl shadow-blue-950/20 sm:p-8">
-          <div className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-700/30 blur-3xl" />
-          <div className="absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-indigo-700/30 blur-3xl" />
-          <div className="relative flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
-            <DashboardHeader
-              applicationCount={applicationCount}
-              interviewCount={interviewCount}
-              offerCount={offerCount}
-              applications={applications}
-            />
-            <div className="flex flex-wrap items-center gap-2.5">
-              <Link
-                href="/dashboard/company"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm text-slate-900 shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50"
-              >
-                <Building2 className="h-4 w-4 text-blue-600" />
-                Company Insights
-              </Link>
+    <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
+      <div className="mx-auto max-w-7xl space-y-7">
+        <header className="rounded-3xl border border-slate-800 bg-slate-950 p-5 text-white shadow-sm sm:p-7 lg:p-8">
+  <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+    <DashboardHeader
+      applicationCount={applicationCount}
+      interviewCount={interviewCount}
+      offerCount={offerCount}
+      applications={applications}
+    />
 
-              <Link href="/dashboard/ai/job-analyzer"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm text-slate-900 shadow-lg shadow-blue-950/20 transition hover:-translate-y-0.5 hover:bg-blue-50">AI Tools</Link>
-              <ExportCSVButton applications={applications} />
-              <LogoutButton />
-            </div>
-          </div>
-        </header>
+    <div className="flex w-full flex-wrap items-center gap-2 lg:w-auto">
+      <Link
+        href="/dashboard/company"
+        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
+      >
+        <Building2 className="h-4 w-4 text-blue-600" />
+        Company Insights
+      </Link>
+
+      <Link
+        href="/dashboard/ai/job-analyzer"
+        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
+      >
+        <Sparkles className="h-4 w-4 text-indigo-600" />
+        AI Tools
+      </Link>
+
+      <ExportCSVButton applications={applications} />
+
+      <LogoutButton />
+    </div>
+  </div>
+</header>
 
         <DashboardStats applications={applications} />
 
-        <div className="overflow-x-auto md:w-[50%] lg:w-[50%] mx-auto rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-sm shadow-slate-200/30">
-          <div className="flex justify-center min-w-max gap-1">
+        <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
+          <div className="flex min-w-max justify-center gap-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                  className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold cursor-pointer transition-all sm:px-5 ${activeTab === tab.id ? "bg-slate-900 text-white shadow-md shadow-slate-300" : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"}`}
+                  className={`inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 sm:px-5 ${
+  activeTab === tab.id
+    ? "bg-slate-900 text-white shadow-sm"
+    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+}`}
                 >
                   <Icon className="h-4 w-4" />
                   {tab.label}
@@ -258,8 +275,8 @@ export default function Dashboard() {
         </div>
 
         {activeTab === "overview" && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div className="space-y-4 lg:col-span-2">
               <div className={panelClassName}>
                 <StreakTracker applications={applications} />
               </div>
@@ -271,7 +288,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="space-y-4">
-              <div className={panelClassName}>
+              <div>
                 <ReminderWidget
                   applications={applications}
                   interviews={interviews}
@@ -292,7 +309,7 @@ export default function Dashboard() {
             <div className={panelClassName}>
               <AnalyticsSection applications={applications} />
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div className={panelClassName}>
                 <ApplicationFunnel data={funnelData} />
               </div>
@@ -301,7 +318,7 @@ export default function Dashboard() {
               </div>
             </div>
             {goal && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 <div className={`lg:col-span-2 ${panelClassName}`}>
                   <GoalTracker applications={applications} goal={goal} />
                 </div>
@@ -329,7 +346,7 @@ export default function Dashboard() {
         )}
 
         {activeTab === "workflow" && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div className={panelClassName}>
               <KanbanBoard
                 applications={applications}
@@ -349,59 +366,69 @@ export default function Dashboard() {
         )}
 
         {activeTab === "applications" && (
-          <div className="space-y-4">
-            <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200/80 bg-slate-400/10 p-6 shadow-sm shadow-slate-200/30 sm:p-8">
-              <div className="mb-6 flex justify-center items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-2xl tracking-tight font-semibold text-slate-900">
-                    Add New Application
-                  </p>
-                  <p className="text-sm text-slate-500">
-                    Keep your job search moving forward.
-                  </p>
-                </div>
-              </div>
-              <ApplicationForm onAddSuccess={handleAddApplication} />
-            </div>
+          <div className="space-y-5">
+            <div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7 lg:p-8">
+  <div className="mb-8 flex items-center gap-4 border-b border-slate-100 pb-6">
+    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+      <Sparkles className="h-5 w-5" />
+    </div>
+
+    <div>
+      <p className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+        Add New Application
+      </p>
+
+      <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+        Keep your job search moving forward.
+      </p>
+    </div>
+  </div>
+
+  <ApplicationForm onAddSuccess={handleAddApplication} />
+</div>
             <div className={panelClassName}>
-              <div className="flex flex-wrap gap-4 items-center justify-between mb-6">
-                <input
-                  type="text"
-                  placeholder="Search applications..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all md:w-72"
-                />
-                <div className="flex gap-2">
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                    className="rounded-xl pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-                  >
-                    <option value="All">All Statuses</option>
-                    <option value="Applied">Applied</option>
-                    <option value="Interview">Interview</option>
-                    <option value="Offer">Offer</option>
-                    <option value="Rejected">Rejected</option>
-                  </select>
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-                  >
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                  </select>
-                </div>
-              </div>
-              <ApplicationList
-                applications={filteredApplications}
-                onDelete={deleteApplication}
-                onStatusChange={updateStatus}
-              />
+              <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4 md:flex-row md:items-center md:justify-between">
+  {/* Search */}
+  <div className="relative w-full md:w-80">
+    <input
+      type="text"
+      placeholder="Search applications..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+    />
+  </div>
+
+  {/* Filters */}
+  <div className="flex w-full flex-col gap-2 sm:flex-row md:w-auto">
+    <select
+      value={statusFilter}
+      onChange={(e) => setStatusFilter(e.target.value)}
+      className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10 sm:w-40"
+    >
+      <option value="All">All Statuses</option>
+      <option value="Applied">Applied</option>
+      <option value="Interview">Interview</option>
+      <option value="Offer">Offer</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+
+    <select
+      value={sortBy}
+      onChange={(e) => setSortBy(e.target.value)}
+      className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10 sm:w-32"
+    >
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+    </select>
+  </div>
+</div>
+
+<ApplicationList
+  applications={filteredApplications}
+  onDelete={deleteApplication}
+  onStatusChange={updateStatus}
+/>
             </div>
             
           

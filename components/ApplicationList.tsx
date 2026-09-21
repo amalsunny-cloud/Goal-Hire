@@ -22,10 +22,15 @@ export default function ApplicationList({
 }: ListProps) {
   if (applications.length === 0) {
     return (
-      <div className="text-center flex justify-center items-center rounded-lg p-6">
-        <p className="text-gray-600">
-          No matching application found.
-        </p>
+      <div className="flex min-h-40 items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-slate-50/60 p-8">
+        <div className="text-center">
+          <p className="text-sm font-semibold text-slate-700">
+            No matching applications
+          </p>
+          <p className="mt-1 text-xs text-slate-400">
+            Try changing your search or filter.
+          </p>
+        </div>
       </div>
     );
   }

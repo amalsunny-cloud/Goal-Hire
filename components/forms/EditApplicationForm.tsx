@@ -14,6 +14,7 @@ export default function EditApplicationForm({ application }: any) {
   const [followUpDate, setFollowUpDate] = useState(
     application?.followUpDate || "",
   );
+
   const [jobUrl, setJobUrl] = useState(application?.jobUrl || "");
   const [location, setLocation] = useState(application?.location || "");
 
@@ -89,200 +90,260 @@ export default function EditApplicationForm({ application }: any) {
 
   return (
     <>
-    <div className="ml-5 pl-5 mt-4 text-start">
-      <Link href={`/dashboard/applications/${application._id}`}>← Back</Link>
-    </div>
-    
-    <div className="w-[90%] mx-auto bg-slate-400/10 rounded-xl shadow-sm p-6 sm:p-8 mt-4">
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-slate-900">
-          Edit Application
-        </h2>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-          Update the details of your job application.
-        </p>
+      {/* Back */}
+      <div className="mx-auto mt-5 w-full max-w-5xl px-4 sm:px-6">
+        <Link
+          href={`/dashboard/applications/${application._id}`}
+          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-600 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+        >
+          <span>←</span>
+          Back to Application
+        </Link>
       </div>
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
-        {/* Unchanged Warning State */}
-        {isUnchanged && (
-          <div className="flex items-center gap-2 p-3 text-xs text-slate-600 border border-slate-200 dark:border-slate-700/50 rounded-lg">
-            <span>ℹ️</span>
-            <span>You haven't made any edits to this application yet.</span>
-          </div>
-        )}
+      {/* Main Card */}
+      <div className="mx-auto mt-5 w-full max-w-5xl rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7 lg:p-8">
+        {/* Header */}
+        <div className="mb-8 flex items-start justify-between gap-4 border-b border-slate-100 pb-6">
+          <div className="flex items-start gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+              <span className="text-lg">✏️</span>
+            </div>
 
-        {/* Server Error Message Display */}
-        {error && (
-          <div className="p-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-lg">
-            {error}
-          </div>
-        )}
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                Edit Application
+              </h2>
 
-        {/* Grid: Company & Role */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="text-start">
-            <label
-              htmlFor="company"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Company <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="company"
-              type="text"
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              placeholder="e.g. Acme Corp"
-              onChange={(e) => setCompany(e.target.value)}
-              value={company}
-            />
+              <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+                Update the details of your job application.
+              </p>
+            </div>
           </div>
 
-          <div className="text-start">
-            <label
-              htmlFor="role"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Role / Position <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="role"
-              type="text"
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              placeholder="e.g. Frontend Engineer"
-              onChange={(e) => setRole(e.target.value)}
-              value={role}
-            />
+          <div className="hidden rounded-xl border border-blue-100 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-600 sm:block">
+            Application Details
           </div>
         </div>
 
-        {/* Grid: Status & Salary */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="text-start">
-            <label
-              htmlFor="status"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Status
-            </label>
-            <select
-              id="status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all cursor-pointer"
-            >
-              <option value="Applied" className="dark:bg-slate-900">Applied</option>
-              <option value="Interview" className="dark:bg-slate-900">Interview</option>
-              <option value="Offer" className="dark:bg-slate-900">Offer</option>
-              <option value="Rejected" className="dark:bg-slate-900">Rejected</option>
-            </select>
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* Unchanged Warning State */}
+          {isUnchanged && (
+            <div className="flex items-start gap-3 rounded-2xl border border-amber-100 bg-amber-50/70 p-4 text-sm text-amber-700">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white text-sm shadow-sm">
+                ℹ️
+              </div>
+
+              <div>
+                <p className="font-semibold">No changes yet</p>
+
+                <p className="mt-0.5 text-xs leading-5 text-amber-600">
+                  You haven't made any edits to this application yet.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Server Error Message Display */}
+          {error && (
+            <div className="flex items-start gap-3 rounded-2xl border border-rose-100 bg-rose-50 p-4 text-sm text-rose-700">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white text-sm shadow-sm">
+                ⚠️
+              </div>
+
+              <div>
+                <p className="font-semibold">Something went wrong</p>
+
+                <p className="mt-0.5 text-xs leading-5 text-rose-600">
+                  {error}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Company & Role */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="text-start">
+              <label
+                htmlFor="company"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Company <span className="text-rose-500">*</span>
+              </label>
+
+              <input
+                id="company"
+                type="text"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                placeholder="e.g. Acme Corp"
+                onChange={(e) => setCompany(e.target.value)}
+                value={company}
+              />
+            </div>
+
+            <div className="text-start">
+              <label
+                htmlFor="role"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Role / Position <span className="text-rose-500">*</span>
+              </label>
+
+              <input
+                id="role"
+                type="text"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                placeholder="e.g. Frontend Engineer"
+                onChange={(e) => setRole(e.target.value)}
+                value={role}
+              />
+            </div>
           </div>
 
-          <div className="text-start">
-            <label
-              htmlFor="salary"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Salary ($)
-            </label>
-            <input
-              id="salary"
-              type="number"
-              placeholder="e.g. 120000"
-              value={salary}
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              onChange={(e) => setSalary(e.target.value)}
-            />
-          </div>
-        </div>
+          {/* Status & Salary */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="text-start">
+              <label
+                htmlFor="status"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Status
+              </label>
 
-        {/* Grid: Follow Up, Job URL & Location */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="text-start">
-            <label
-              htmlFor="followUpDate"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Follow-Up Date
-            </label>
-            <input
-              id="followUpDate"
-              type="date"
-              value={followUpDate}
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              onChange={(e) => setFollowUpDate(e.target.value)}
-            />
-          </div>
+              <select
+                id="status"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              >
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
 
-          <div className="text-start">
-            <label
-              htmlFor="jobUrl"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-            >
-              Job URL
-            </label>
-            <input
-              id="jobUrl"
-              type="url"
-              placeholder="https://..."
-              value={jobUrl}
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              onChange={(e) => setJobUrl(e.target.value)}
-            />
+            <div className="text-start">
+              <label
+                htmlFor="salary"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Salary ($)
+              </label>
+
+              <input
+                id="salary"
+                type="number"
+                placeholder="e.g. 120000"
+                value={salary}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                onChange={(e) => setSalary(e.target.value)}
+              />
+            </div>
           </div>
 
+          {/* Follow Up, Job URL & Location */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="text-start">
+              <label
+                htmlFor="followUpDate"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Follow-Up Date
+              </label>
+
+              <input
+                id="followUpDate"
+                type="date"
+                value={followUpDate}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                onChange={(e) => setFollowUpDate(e.target.value)}
+              />
+            </div>
+
+            <div className="text-start">
+              <label
+                htmlFor="jobUrl"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Job URL
+              </label>
+
+              <input
+                id="jobUrl"
+                type="url"
+                placeholder="https://..."
+                value={jobUrl}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                onChange={(e) => setJobUrl(e.target.value)}
+              />
+            </div>
+
+            <div className="text-start">
+              <label
+                htmlFor="location"
+                className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
+              >
+                Location
+              </label>
+
+              <input
+                id="location"
+                type="text"
+                placeholder="e.g. Remote / NYC"
+                value={location}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Notes */}
           <div className="text-start">
             <label
-              htmlFor="location"
-              className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
+              htmlFor="notes"
+              className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500"
             >
-              Location
+              Notes
             </label>
-            <input
-              id="location"
-              type="text"
-              placeholder="e.g. Remote / NYC"
-              value={location}
-              className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-              onChange={(e) => setLocation(e.target.value)}
-            />
+
+            <textarea
+              id="notes"
+              rows={4}
+              className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm leading-6 text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              placeholder="Add relevant notes about interviews, contacts, or requirements..."
+              onChange={(e) => setNotes(e.target.value)}
+              value={notes}
+            ></textarea>
           </div>
-        </div>
 
-        {/* Textarea: Notes */}
-        <div className="text-start">
-          <label
-            htmlFor="notes"
-            className="block text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 tracking-wider mb-1.5"
-          >
-            Notes
-          </label>
-          <textarea
-            id="notes"
-            rows={4}
-            className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all resize-y"
-            placeholder="Add relevant notes about interviews, contacts, or requirements..."
-            onChange={(e) => setNotes(e.target.value)}
-            value={notes}
-          ></textarea>
-        </div>
+          {/* Submit */}
+          <div className="flex flex-col items-stretch gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center sm:justify-end">
+            <Link
+              href={`/dashboard/applications/${application._id}`}
+              className="inline-flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-600 transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 sm:w-auto"
+            >
+              Cancel
+            </Link>
 
-        {/* Submit Button */}
-        <div className="pt-2 flex flex-col justify-center items-center">
-          <button
-            type="submit"
-            disabled={isUnchanged || isSubmitting}
-            className={`py-2.5 px-4 rounded-lg font-medium text-sm transition-all duration-200 flex justify-center items-center gap-2 ${
-              isUnchanged || isSubmitting
-                ? "bg-slate-800 text-white cursor-not-allowed"
-                : "bg-slate-900 hover:bg-slate-800/90 text-white  cursor-pointer shadow-sm"
-            }`}
-          >
-            {isSubmitting ? "Saving Changes..." : "Save Changes"}
-          </button>
-        </div>
-      </form>
-    </div>
+            <button
+              type="submit"
+              disabled={isUnchanged || isSubmitting}
+              className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold shadow-sm transition-all duration-200 sm:w-auto ${
+                isUnchanged || isSubmitting
+                  ? "cursor-not-allowed bg-slate-200 text-slate-400"
+                  : "cursor-pointer bg-slate-900 text-white hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-sm"
+              }`}
+            >
+              {isSubmitting && (
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+              )}
+
+              {isSubmitting ? "Saving Changes..." : "Save Changes"}
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

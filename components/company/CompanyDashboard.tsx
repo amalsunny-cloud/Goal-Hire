@@ -42,7 +42,9 @@ export default function CompanyDashboard({
     "overview" | "directory" | "analytics" | "leaderboard"
   >("overview");
   const [search, setSearch] = useState("");
-  const [rateFilter, setRateFilter] = useState<"all" | "high" | "moderate" | "low">("all");
+  const [rateFilter, setRateFilter] = useState<
+    "all" | "high" | "moderate" | "low"
+  >("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState<
     "communications" | "responses" | "recruiters" | "alphabetical"
@@ -83,8 +85,11 @@ export default function CompanyDashboard({
 
     // Count recruiters per company
     recruiters.forEach((recruiter) => {
-      const application = applicationMap.get(recruiter.applicationId?.toString());
-      const companyName = application?.company?.trim() || recruiter.company?.trim();
+      const application = applicationMap.get(
+        recruiter.applicationId?.toString(),
+      );
+      const companyName =
+        application?.company?.trim() || recruiter.company?.trim();
 
       if (!companyName) return;
 
@@ -115,11 +120,16 @@ export default function CompanyDashboard({
 
     // Count communications and responses
     communications.forEach((communication) => {
-      const recruiter = recruiterMap.get(communication.recruiterId?.toString());
+      const recruiter = recruiterMap.get(
+        communication.recruiterId?.toString(),
+      );
       if (!recruiter) return;
 
-      const application = applicationMap.get(recruiter.applicationId?.toString());
-      const companyName = application?.company?.trim() || recruiter.company?.trim();
+      const application = applicationMap.get(
+        recruiter.applicationId?.toString(),
+      );
+      const companyName =
+        application?.company?.trim() || recruiter.company?.trim();
 
       if (!companyName) return;
       const item = map.get(companyName);
@@ -152,9 +162,13 @@ export default function CompanyDashboard({
 
     // Filter by response health
     if (rateFilter === "high") {
-      result = result.filter((c) => c.responseRate >= 70 && c.communicationCount > 0);
+      result = result.filter(
+        (c) => c.responseRate >= 70 && c.communicationCount > 0,
+      );
     } else if (rateFilter === "moderate") {
-      result = result.filter((c) => c.responseRate >= 40 && c.responseRate < 70);
+      result = result.filter(
+        (c) => c.responseRate >= 40 && c.responseRate < 70,
+      );
     } else if (rateFilter === "low") {
       result = result.filter((c) => c.responseRate < 40);
     }
@@ -185,233 +199,258 @@ export default function CompanyDashboard({
     setSortBy("communications");
   };
 
-  const hasActiveFilters = search !== "" || rateFilter !== "all" || sortBy !== "communications";
+  const hasActiveFilters =
+    search !== "" || rateFilter !== "all" || sortBy !== "communications";
 
   return (
-    <div className="space-y-6 flex flex-col justify-center items-center">
-      {/* Navigation Tabs Bar */}
-      <div className="overflow-x-auto w-[70%] flex flex-col justify-center items-center rounded-2xl border border-slate-200/80 bg-white/90 p-1.5 shadow-sm shadow-slate-200/50 scrollbar-none">
-        <div className="flex mx-auto min-w-max items-center gap-1">
-        <button
-          onClick={() => setActiveTab("overview")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
-            activeTab === "overview"
-              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
-              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-          }`}
-        >
-          <LayoutGrid className="w-3.5 h-3.5" />
-          <span>Dashboard Overview</span>
-        </button>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6">
+      {/* Navigation Tabs */}
+      <div className="w-full overflow-x-auto rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm scrollbar-none">
+        <div className="flex min-w-max items-center gap-1">
+          <button
+            onClick={() => setActiveTab("overview")}
+            className={`inline-flex cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
+              activeTab === "overview"
+                ? "bg-slate-900 text-white shadow-sm"
+                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            <LayoutGrid className="h-3.5 w-3.5" />
+            <span>Dashboard Overview</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab("directory")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
-            activeTab === "directory"
-              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
-              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-          }`}
-        >
-          <Building2 className="w-3.5 h-3.5" />
-          <span>Company Directory ({rawCompanies.length})</span>
-        </button>
+          <button
+            onClick={() => setActiveTab("directory")}
+            className={`inline-flex cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
+              activeTab === "directory"
+                ? "bg-slate-900 text-white shadow-sm"
+                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            <Building2 className="h-3.5 w-3.5" />
+            <span>Company Directory ({rawCompanies.length})</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab("analytics")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
-            activeTab === "analytics"
-              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
-              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-          }`}
-        >
-          <BarChart3 className="w-3.5 h-3.5" />
-          <span>Analytics & Comparisons</span>
-        </button>
+          <button
+            onClick={() => setActiveTab("analytics")}
+            className={`inline-flex cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
+              activeTab === "analytics"
+                ? "bg-slate-900 text-white shadow-sm"
+                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            <BarChart3 className="h-3.5 w-3.5" />
+            <span>Analytics & Comparisons</span>
+          </button>
 
-        <button
-          onClick={() => setActiveTab("leaderboard")}
-          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer select-none whitespace-nowrap ${
-            activeTab === "leaderboard"
-              ? "bg-slate-900 text-white shadow-md shadow-slate-300"
-              : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-          }`}
-        >
-          <Trophy className="w-3.5 h-3.5" />
-          <span>Leaderboard</span>
-        </button>
+          <button
+            onClick={() => setActiveTab("leaderboard")}
+            className={`inline-flex cursor-pointer select-none items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
+              activeTab === "leaderboard"
+                ? "bg-slate-900 text-white shadow-sm"
+                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            <Trophy className="h-3.5 w-3.5" />
+            <span>Leaderboard</span>
+          </button>
         </div>
       </div>
 
-      {/* Global Analytics Overview (Displayed in overview and analytics tab) */}
+      {/* Global Analytics Overview */}
       {(activeTab === "overview" || activeTab === "analytics") && (
         <CompanyAnalytics companies={rawCompanies} />
       )}
 
       {/* Bar Chart & Leaderboard Row */}
       {activeTab === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 w-full max-w-7xl">
-          <div className="w-[95%]">
+        <div className="grid w-full grid-cols-1 gap-6">
+          <div className="w-full">
             <CompanyLeaderboard companies={rawCompanies} />
           </div>
-          <div className="lg:col-span-2 w-[70%]">
+
+          <div className="w-full">
             <CompanyBarChart companies={rawCompanies} />
           </div>
         </div>
       )}
 
+      {/* Analytics */}
       {activeTab === "analytics" && (
         <div className="space-y-6">
           <CompanyBarChart companies={rawCompanies} />
         </div>
       )}
 
+      {/* Leaderboard */}
       {activeTab === "leaderboard" && (
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto w-full max-w-5xl">
           <CompanyLeaderboard companies={rawCompanies} />
         </div>
       )}
 
-      {/* Company Directory Section */}
+      {/* Company Directory */}
       {(activeTab === "overview" || activeTab === "directory") && (
-        <div className="space-y-6 pt-2 bg-slate-400/10 p-6 rounded-2xl">
+        <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="mt-6">
-              <h2 className="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <span>Target Companies Directory</span>
-                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+                  <Building2 className="h-5 w-5" />
+                </div>
+
+                <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                  Target Companies Directory
+                </h2>
+
+                <span className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
                   {filteredCompanies.length} of {rawCompanies.length}
                 </span>
-              </h2>
-              <p className="text-xs text-slate-500 mt-0.5">
-                Explore individual company communication logs, recruiter contacts, and response metrics
+              </div>
+
+              <p className="mt-2 max-w-2xl text-xs leading-5 text-slate-500 sm:text-sm">
+                Explore individual company communication logs, recruiter
+                contacts, and response metrics.
               </p>
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl self-start md:self-auto border border-slate-200/60">
+            <div className="flex w-fit items-center gap-1 rounded-xl border border-slate-200 bg-slate-50 p-1">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                   viewMode === "grid"
-                    ? "bg-white text-slate-900 shadow-2xs"
+                    ? "bg-white text-slate-900 shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
                 title="Grid view"
               >
-                <LayoutGrid className="w-3.5 h-3.5" />
+                <LayoutGrid className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">Grid</span>
               </button>
+
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                   viewMode === "list"
-                    ? "bg-white text-slate-900 shadow-2xs"
+                    ? "bg-white text-slate-900 shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
                 }`}
                 title="List view"
               >
-                <List className="w-3.5 h-3.5" />
+                <List className="h-3.5 w-3.5" />
                 <span className="hidden sm:inline">List</span>
               </button>
             </div>
           </div>
 
           {/* Search, Filter & Sort Control Panel */}
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-xs space-y-4">
-            <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
-              {/* Search Box */}
-              <div className="relative flex-1 w-full">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <div className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50/60 p-3 sm:p-4">
+            <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+              {/* Search */}
+              <div className="relative w-full flex-1">
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+
                 <input
                   type="text"
                   placeholder="Search by company name..."
                   aria-label="Search companies"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
+                  className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-10 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10"
                 />
+
                 {search && (
                   <button
                     onClick={() => setSearch("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
                   >
-                    <X className="w-3.5 h-3.5" />
+                    <X className="h-3.5 w-3.5" />
                   </button>
                 )}
               </div>
 
-              {/* Sort Selector */}
-              <div className="flex items-center gap-2.5 w-full md:w-auto">
-                <div className="relative w-full md:w-auto">
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-                    <ArrowUpDown className="w-3.5 h-3.5" />
-                  </div>
-                  <select
-                    value={sortBy}
-                    onChange={(e) =>
-                      setSortBy(
-                        e.target.value as
-                          | "alphabetical"
-                          | "recruiters"
-                          | "communications"
-                          | "responses",
-                      )
-                    }
-                    className="w-full md:w-auto pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all cursor-pointer appearance-none"
-                  >
-                    <option value="communications">Sort: Most Outreach</option>
-                    <option value="responses">Sort: Highest Response %</option>
-                    <option value="recruiters">Sort: Most Recruiters</option>
-                    <option value="alphabetical">Sort: Alphabetical (A-Z)</option>
-                  </select>
-                </div>
+              {/* Sort */}
+              <div className="relative w-full md:w-auto">
+                <ArrowUpDown className="pointer-events-none absolute left-3.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
+
+                <select
+                  value={sortBy}
+                  onChange={(e) =>
+                    setSortBy(
+                      e.target.value as
+                        | "alphabetical"
+                        | "recruiters"
+                        | "communications"
+                        | "responses",
+                    )
+                  }
+                  className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-9 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 md:w-64"
+                >
+                  <option value="communications">
+                    Sort: Most Outreach
+                  </option>
+                  <option value="responses">
+                    Sort: Highest Response %
+                  </option>
+                  <option value="recruiters">
+                    Sort: Most Recruiters
+                  </option>
+                  <option value="alphabetical">
+                    Sort: Alphabetical (A-Z)
+                  </option>
+                </select>
               </div>
             </div>
 
             {/* Quick Health Filter Chips */}
-            <div className="flex items-center justify-between flex-wrap gap-2 pt-1 border-t border-slate-100">
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-xs font-semibold text-slate-500 mr-1 flex items-center gap-1">
-                  <Filter className="w-3 h-3" />
-                  <span>Filter:</span>
+            <div className="flex flex-col gap-3 border-t border-slate-200/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="mr-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <Filter className="h-3 w-3" />
+                  Filter:
                 </span>
+
                 <button
                   onClick={() => setRateFilter("all")}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`cursor-pointer rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                     rateFilter === "all"
-                      ? "bg-slate-800 text-white shadow-2xs"
-                      : "bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200/60"
+                      ? "bg-slate-900 text-white shadow-sm"
+                      : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
                   }`}
                 >
                   All ({rawCompanies.length})
                 </button>
+
                 <button
                   onClick={() => setRateFilter("high")}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`cursor-pointer rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                     rateFilter === "high"
-                      ? "bg-emerald-600 text-white shadow-2xs"
-                      : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
                   }`}
                 >
                   High Response ≥70%
                 </button>
+
                 <button
                   onClick={() => setRateFilter("moderate")}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`cursor-pointer rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                     rateFilter === "moderate"
-                      ? "bg-amber-600 text-white shadow-2xs"
-                      : "bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200"
+                      ? "bg-amber-600 text-white shadow-sm"
+                      : "border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100"
                   }`}
                 >
                   Moderate (40-69%)
                 </button>
+
                 <button
                   onClick={() => setRateFilter("low")}
-                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                  className={`cursor-pointer rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 ${
                     rateFilter === "low"
-                      ? "bg-rose-600 text-white shadow-2xs"
-                      : "bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200"
+                      ? "bg-rose-600 text-white shadow-sm"
+                      : "border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100"
                   }`}
                 >
                   Needs Outreach (&lt;40%)
@@ -421,10 +460,10 @@ export default function CompanyDashboard({
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="text-xs font-semibold text-rose-600 hover:text-rose-700 hover:underline cursor-pointer flex items-center gap-1"
+                  className="inline-flex cursor-pointer items-center gap-1.5 text-xs font-semibold text-rose-600 transition-colors hover:text-rose-700"
                 >
-                  <X className="w-3 h-3" />
-                  <span>Reset Filters</span>
+                  <X className="h-3 w-3" />
+                  Reset Filters
                 </button>
               )}
             </div>
@@ -432,109 +471,127 @@ export default function CompanyDashboard({
 
           {/* Company Cards Grid or List */}
           {filteredCompanies.length === 0 ? (
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-12 text-center shadow-xs space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto border border-slate-200/60 shadow-2xs">
-                <Building2 className="w-7 h-7" />
+            <div className="flex min-h-64 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-slate-50/60 p-10 text-center">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-400 shadow-sm">
+                <Building2 className="h-7 w-7" />
               </div>
-              <div className="space-y-1">
+
+              <div>
                 <h3 className="text-base font-bold text-slate-800">
                   No matching companies found
                 </h3>
-                <p className="text-xs text-slate-500 max-w-sm mx-auto">
+
+                <p className="mx-auto mt-1 max-w-sm text-xs leading-5 text-slate-500">
                   {search
                     ? `No organizations match "${search}". Try checking your spelling or adjusting your response filters.`
                     : "No companies match the selected filter criteria."}
                 </p>
               </div>
+
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-xl shadow-xs transition-all cursor-pointer inline-flex items-center gap-2"
+                  className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X className="h-3.5 w-3.5" />
                   <span>Clear Search & Filters</span>
                 </button>
               )}
             </div>
           ) : viewMode === "grid" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
               {filteredCompanies.map((company) => (
                 <CompanyCard key={company.company} company={company} />
               ))}
             </div>
           ) : (
             /* List / Table Mode */
-            <div className="bg-white border border-slate-200/80 rounded-2xl shadow-xs overflow-hidden divide-y divide-slate-100">
-              {filteredCompanies.map((company) => (
-                <Link
-                  key={company.company}
-                  href={`/dashboard/company/${encodeURIComponent(company.company)}`}
-                  className="group block p-4 sm:p-5 hover:bg-slate-50/80 transition-colors"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-slate-100 to-slate-200/80 border border-slate-200 text-slate-800 font-extrabold text-sm flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
-                        {company.company.slice(0, 2).toUpperCase()}
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <div className="divide-y divide-slate-100">
+                {filteredCompanies.map((company) => (
+                  <Link
+                    key={company.company}
+                    href={`/dashboard/company/${encodeURIComponent(
+                      company.company,
+                    )}`}
+                    className="group block p-4 transition-colors duration-200 hover:bg-slate-50 sm:p-5"
+                  >
+                    <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+                      {/* Company */}
+                      <div className="flex min-w-0 items-center gap-3.5">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-sm font-extrabold text-slate-800 transition-transform duration-200 group-hover:scale-105">
+                          {company.company.slice(0, 2).toUpperCase()}
+                        </div>
+
+                        <div className="min-w-0">
+                          <h4 className="truncate text-sm font-bold text-slate-900 transition-colors group-hover:text-blue-600">
+                            {company.company}
+                          </h4>
+
+                          <span className="text-xs text-slate-400">
+                            {company.lastContact
+                              ? `Last contact: ${new Date(
+                                  company.lastContact,
+                                ).toLocaleDateString("en-GB")}`
+                              : "No contacts logged"}
+                          </span>
+                        </div>
                       </div>
-                      <div className="min-w-0 truncate">
-                        <h4 className="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors truncate">
-                          {company.company}
-                        </h4>
-                        <span className="text-xs text-slate-400">
-                          {company.lastContact
-                            ? `Last contact: ${new Date(company.lastContact).toLocaleDateString("en-GB")}`
-                            : "No contacts logged"}
-                        </span>
+
+                      {/* Metrics */}
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
+                        <div className="grid grid-cols-3 gap-4 text-center">
+                          <div>
+                            <span className="block text-sm font-bold text-slate-900">
+                              {company.recruiterCount}
+                            </span>
+
+                            <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                              Recruiters
+                            </span>
+                          </div>
+
+                          <div>
+                            <span className="block text-sm font-bold text-slate-900">
+                              {company.communicationCount}
+                            </span>
+
+                            <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                              Outreach
+                            </span>
+                          </div>
+
+                          <div>
+                            <span className="block text-sm font-bold text-slate-900">
+                              {company.responseCount}
+                            </span>
+
+                            <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                              Responses
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between gap-3 sm:justify-end">
+                          <span
+                            className={`rounded-xl border px-3 py-1.5 text-xs font-bold ${
+                              company.responseRate >= 70
+                                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                                : company.responseRate >= 40
+                                  ? "border-amber-200 bg-amber-50 text-amber-700"
+                                  : "border-slate-200 bg-slate-100 text-slate-600"
+                            }`}
+                          >
+                            {company.responseRate}%
+                          </span>
+
+                          <ArrowRight className="h-4 w-4 text-slate-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-blue-600" />
+                        </div>
                       </div>
                     </div>
-
-                    <div className="flex items-center justify-between sm:justify-end gap-6">
-                      <div className="flex items-center gap-4 text-xs text-slate-600">
-                        <div className="text-center">
-                          <span className="font-bold text-slate-900 block">
-                            {company.recruiterCount}
-                          </span>
-                          <span className="text-[10px] text-slate-400 uppercase font-semibold">
-                            Recruiters
-                          </span>
-                        </div>
-                        <div className="text-center">
-                          <span className="font-bold text-slate-900 block">
-                            {company.communicationCount}
-                          </span>
-                          <span className="text-[10px] text-slate-400 uppercase font-semibold">
-                            Outreach
-                          </span>
-                        </div>
-                        <div className="text-center">
-                          <span className="font-bold text-slate-900 block">
-                            {company.responseCount}
-                          </span>
-                          <span className="text-[10px] text-slate-400 uppercase font-semibold">
-                            Responses
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`px-2.5 py-1 rounded-full text-xs font-bold border ${
-                            company.responseRate >= 70
-                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                              : company.responseRate >= 40
-                              ? "bg-amber-50 text-amber-700 border-amber-200"
-                              : "bg-slate-100 text-slate-600 border-slate-200"
-                          }`}
-                        >
-                          {company.responseRate}%
-                        </span>
-
-                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </div>

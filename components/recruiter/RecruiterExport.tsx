@@ -14,21 +14,20 @@ export default function RecruiterExport({
   recruiters,
   communications,
 }: Props) {
-
   const hasData = recruiters.length > 0;
 
   const exportCSV = () => {
-    if(!hasData) return;
+    if (!hasData) return;
     const rows = recruiters.map((recruiter) => {
       const communicationCount = communications.filter(
         (communication) =>
-          communication.recruiterId === recruiter._id
+          communication.recruiterId === recruiter._id,
       ).length;
 
       const positiveResponses = communications.filter(
         (communication) =>
           communication.recruiterId === recruiter._id &&
-          communication.responseType === "Positive"
+          communication.responseType === "Positive",
       ).length;
 
       return {
@@ -55,19 +54,16 @@ export default function RecruiterExport({
         headers
           .map((header) =>
             `"${String(
-              row[header as keyof typeof row] ?? ""
-            ).replace(/"/g, '""')}"`
+              row[header as keyof typeof row] ?? "",
+            ).replace(/"/g, '""')}"`,
           )
-          .join(",")
+          .join(","),
       ),
     ].join("\n");
 
-    const blob = new Blob(
-      [csv],
-      {
-        type: "text/csv;charset=utf-8;",
-      }
-    );
+    const blob = new Blob([csv], {
+      type: "text/csv;charset=utf-8;",
+    });
 
     const url = URL.createObjectURL(blob);
 
@@ -83,17 +79,13 @@ export default function RecruiterExport({
   };
 
   const exportPDF = () => {
-    if(!hasData) return;
+    if (!hasData) return;
 
     const doc = new jsPDF();
 
     doc.setFontSize(18);
 
-    doc.text(
-      "Recruiter Report",
-      14,
-      20
-    );
+    doc.text("Recruiter Report", 14, 20);
 
     autoTable(doc, {
       startY: 30,
@@ -108,33 +100,27 @@ export default function RecruiterExport({
       ]],
 
       body: recruiters.map((recruiter) => {
-
         const recruiterCommunications =
           communications.filter(
             (communication) =>
-              communication.recruiterId === recruiter._id
+              communication.recruiterId === recruiter._id,
           );
 
         const positive =
           recruiterCommunications.filter(
             (communication) =>
-              communication.responseType === "Positive"
+              communication.responseType === "Positive",
           ).length;
 
         return [
           recruiter.name ?? "",
-
           recruiter.email ?? "",
-
           recruiter.phone ?? "",
-
           recruiterCommunications.length.toString(),
-
           positive.toString(),
-
           recruiter.nextFollowUp
             ? new Date(
-                recruiter.nextFollowUp
+                recruiter.nextFollowUp,
               ).toLocaleDateString("en-GB")
             : "-",
         ];
@@ -145,41 +131,59 @@ export default function RecruiterExport({
   };
 
   return (
-    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm flex flex-col justify-center items-center">
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      {/* Header */}
+      <div className="mb-6 flex flex-col items-center text-center">
+        <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+          <span className="text-lg">📤</span>
+        </div>
 
-      <h2 className="text-2xl tracking-tight font-semibold mb-5">
-        Export Recruiter Data
-      </h2>
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          Export Recruiter Data
+        </h2>
 
-      <div className="flex flex-wrap gap-3 justify-center w-full">
+        <p className="mt-1 max-w-md text-xs leading-5 text-slate-500 sm:text-sm">
+          Download your recruiter information and communication data for
+          offline use.
+        </p>
+      </div>
+
+      {/* Export Buttons */}
+      <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
         <button
           onClick={exportCSV}
           disabled={!hasData}
-          className={`px-4 py-2 rounded text-sm transition-colors w-full sm:w-auto text-center ${
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 sm:w-auto ${
             hasData
-              ? "bg-black rounded-xl text-white cursor-pointer transform transition-all duration-2000"
-              : "bg-black rounded-xl text-slate-500 cursor-not-allowed opacity-60"
+              ? "cursor-pointer border border-emerald-600 bg-emerald-600 text-white shadow-sm hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-sm"
+              : "cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400"
           }`}
         >
+          <span>↓</span>
           Export CSV
         </button>
 
         <button
           onClick={exportPDF}
           disabled={!hasData}
-          className={`px-4 py-2 rounded text-sm transition-colors w-full sm:w-auto text-center ${
+          className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 sm:w-auto ${
             hasData
-              ? "bg-black rounded-xl text-white cursor-pointer transform transition-all duration-2000"
-              : "bg-black rounded-xl text-slate-500 cursor-not-allowed opacity-60"
+              ? "cursor-pointer border border-rose-600 bg-rose-600 text-white shadow-sm hover:-translate-y-0.5 hover:bg-rose-700 hover:shadow-sm"
+              : "cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400"
           }`}
         >
+          <span>↓</span>
           Export PDF
         </button>
       </div>
-          {!hasData && (
-        <p className="text-xs text-slate-500 mt-4 py-1.5 px-3 rounded-full border border-slate-300/40">
-          💡 Add recruiter data to enable export options.
-        </p>
+
+      {/* Empty State */}
+      {!hasData && (
+        <div className="mt-5 flex items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-4 py-3">
+          <p className="text-xs font-medium text-slate-500">
+            💡 Add recruiter data to enable export options.
+          </p>
+        </div>
       )}
     </div>
   );

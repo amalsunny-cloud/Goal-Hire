@@ -1,5 +1,9 @@
 "use client";
-import { CommunicationType, RecruiterCommunication } from "@/types/recruiterCommunication";
+
+import {
+  CommunicationType,
+  RecruiterCommunication,
+} from "@/types/recruiterCommunication";
 import { useEffect, useState } from "react";
 import CommunicationCard from "./CommunicationCard";
 import toast from "react-hot-toast";
@@ -7,6 +11,7 @@ import toast from "react-hot-toast";
 interface Props {
   recruiterId: string;
 }
+
 export default function CommunicationList({ recruiterId }: Props) {
   const [communications, setCommunications] = useState<
     RecruiterCommunication[]
@@ -22,7 +27,6 @@ export default function CommunicationList({ recruiterId }: Props) {
     fetchCommunications();
   }, [recruiterId]);
 
-  
   const fetchCommunications = async () => {
     try {
       const response = await fetch(
@@ -51,19 +55,62 @@ export default function CommunicationList({ recruiterId }: Props) {
     }
   };
 
-  
-
   if (loading) {
-    return <p>Loading communications...</p>;
+    return (
+      <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="h-10 w-10 animate-pulse rounded-xl bg-slate-100" />
+
+          <div className="space-y-2">
+            <div className="h-5 w-44 animate-pulse rounded-md bg-slate-100" />
+            <div className="h-3 w-32 animate-pulse rounded-md bg-slate-100" />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="h-20 animate-pulse rounded-2xl bg-slate-50" />
+          <div className="h-20 animate-pulse rounded-2xl bg-slate-50" />
+        </div>
+      </div>
+    );
   }
 
   if (communications.length === 0) {
-    return(
-      <div className="mt-6 bg-white flex flex-col justify-center rounded-xl shadow-md p-6">
-        <h2 className="text-2xl tracking-tight font-semibold mb-6">Communication Timeline</h2>
-        <p className="text-gray-500">No communications yet.</p>
+    return (
+      <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div className="mb-6 flex items-start gap-3 border-b border-slate-100 pb-5">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+            <span className="text-lg">💬</span>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              Communication Timeline
+            </h2>
+
+            <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+              Track your communication history with this recruiter.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex min-h-40 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-6">
+          <div className="text-center">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-lg">
+              💬
+            </div>
+
+            <p className="text-sm font-semibold text-slate-700">
+              No communications yet
+            </p>
+
+            <p className="mt-1 text-xs text-slate-400">
+              Your recruiter communication history will appear here.
+            </p>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 
   const filteredCommunications = communications.filter((communication) => {
@@ -86,46 +133,99 @@ export default function CommunicationList({ recruiterId }: Props) {
 
     return matchesSearch && matchesType;
   });
+
   return (
-    <div className="mt-6 bg-white rounded-xl shadow-md p-6">
-      <div className="flex flex-col justify-center sm:flex-row gap-3 sm:gap-4 mb-6">
-        <input
-          type="text"
-          placeholder="Search subject or message..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-        />
+    <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      {/* Header */}
+      <div className="mb-6 flex flex-col gap-4 border-b border-slate-100 pb-5 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+            <span className="text-lg">💬</span>
+          </div>
 
-        <select
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value as "All" | CommunicationType)}
-          className="pl-10 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all"
-        >
-          <option value="All">All</option>
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              Communication Timeline
+            </h2>
 
-          <option value="Email">Email</option>
+            <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+              Search and review your recruiter communication history.
+            </p>
+          </div>
+        </div>
 
-          <option value="Phone">Phone</option>
-
-          <option value="Linkedin">LinkedIn</option>
-
-          <option value="WhatsApp">WhatsApp</option>
-
-          <option value="Meeting">Meeting</option>
-
-          <option value="Other">Other</option>
-        </select>
+        <div className="w-fit rounded-xl border border-indigo-100 bg-indigo-50 px-3 py-2 text-xs font-semibold text-indigo-600">
+          {filteredCommunications.length}{" "}
+          {filteredCommunications.length === 1
+            ? "Communication"
+            : "Communications"}
+        </div>
       </div>
-      <h2 className="text-2xl tracking-tight font-semibold mb-6">Communication Timeline</h2>
 
+      {/* Filters */}
+      <div className="mb-7 rounded-2xl border border-slate-200 bg-slate-50/60 p-3 sm:p-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto]">
+          <input
+            type="text"
+            placeholder="Search subject or message..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10"
+          />
+
+          <select
+            value={filterType}
+            onChange={(e) =>
+              setFilterType(
+                e.target.value as
+                  | "All"
+                  | CommunicationType,
+              )
+            }
+            className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 sm:w-40"
+          >
+            <option value="All">All</option>
+
+            <option value="Email">Email</option>
+
+            <option value="Phone">Phone</option>
+
+            <option value="Linkedin">LinkedIn</option>
+
+            <option value="WhatsApp">WhatsApp</option>
+
+            <option value="Meeting">Meeting</option>
+
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Timeline */}
       {filteredCommunications.length === 0 ? (
-        <p className="text-gray-500">No communications yet.</p>
+        <div className="flex min-h-40 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-6">
+          <div className="text-center">
+            <p className="text-sm font-semibold text-slate-700">
+              No matching communications
+            </p>
+
+            <p className="mt-1 text-xs text-slate-400">
+              Try changing your search or communication type.
+            </p>
+          </div>
+        </div>
       ) : (
-        <div className="relative border-l-2 border-gray-300 ml-5 space-y-8">
+        <div className="relative ml-3 border-l-2 border-slate-100 pl-7 sm:ml-5 sm:pl-8">
           {filteredCommunications.map((communication) => (
-            <div key={communication._id} className="relative ml-6">
-              <div className="absolute -left-8.25 top-6 w-4 h-4 rounded-full bg-blue-600 border-4 border-white"/>
+            <div
+              key={communication._id}
+              className="relative mb-7 last:mb-0"
+            >
+              {/* Timeline Dot */}
+              <div className="absolute left-[-2.45rem] top-6 flex h-4 w-4 items-center justify-center rounded-full border-4 border-white bg-blue-600 shadow-sm sm:left-[-2.7rem]">
+                <span className="h-1.5 w-1.5 rounded-full bg-white" />
+              </div>
+
               <CommunicationCard
                 communication={communication}
                 onUpdated={fetchCommunications}

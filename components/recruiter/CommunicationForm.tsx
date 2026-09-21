@@ -79,66 +79,118 @@ export default function CommunicationForm({
   return (
     <form
       onSubmit={saveCommunication}
-      className="shadow-md rounded-lg p-6 bg-slate-400/10 space-y-4">
-      <h2 className="text-xl font-semibold">
-        Add Communication
-      </h2>
+      className="space-y-5 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+    >
+      {/* Header */}
+      <div className="flex items-start gap-3 border-b border-slate-100 pb-5">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-indigo-100 bg-indigo-50 text-indigo-600">
+          <span className="text-lg">💬</span>
+        </div>
 
-      <select
-        value={type}
-        onChange={(e) => setType(e.target.value as CommunicationType)}
-        className="w-full pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all">
-        <option value="Email">Email</option>
+        <div>
+          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+            Add Communication
+          </h2>
 
-        <option value="Phone">Phone</option>
+          <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+            Record a communication with this recruiter.
+          </p>
+        </div>
+      </div>
 
-        <option value="LinkedIn">LinkedIn</option>
+      {/* Communication Type */}
+      <div>
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Communication Type
+        </label>
 
-        <option value="WhatsApp">WhatsApp</option>
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value as CommunicationType)}
+          className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm font-medium text-slate-700 outline-none transition-all duration-200 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-500/10"
+        >
+          <option value="Email">Email</option>
 
-        <option value="Meeting">Meeting</option>
+          <option value="Phone">Phone</option>
 
-        <option value="Other">Other</option>
-      </select>
+          <option value="LinkedIn">LinkedIn</option>
 
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        className="
-          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
-          w-full
-        "
-      />
+          <option value="WhatsApp">WhatsApp</option>
 
-      <input
-        type="text"
-        placeholder="Subject"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        className="
-          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
-          w-full
-        "
-      />
+          <option value="Meeting">Meeting</option>
 
-      <textarea
-        rows={5}
-        placeholder="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="
-          pl-3 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all
-          w-full
-        "
-      />
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-black hover:bg-slate-800 text-white px-4 py-2 rounded-xl disabled:opacity-50 transition-colors w-full sm:w-auto cursor-pointer">
-        {loading ? "Saving..." : "Save Communication"}
-      </button>
+      {/* Date */}
+      <div>
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Date
+        </label>
+
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-700 outline-none transition-all duration-200 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-500/10"
+        />
+      </div>
+
+      {/* Subject */}
+      <div>
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Subject
+        </label>
+
+        <input
+          type="text"
+          placeholder="e.g. Follow-up regarding application"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-500/10"
+        />
+      </div>
+
+      {/* Message */}
+      <div>
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Message
+        </label>
+
+        <textarea
+          rows={5}
+          placeholder="Write a brief summary of the communication..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm leading-6 text-slate-800 placeholder:text-slate-400 outline-none transition-all duration-200 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-500/10"
+        />
+      </div>
+
+      {/* Footer / Submit */}
+      <div className="flex flex-col gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-xs leading-5 text-slate-400">
+          Keep your communication history organized for easier follow-ups.
+        </p>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+        >
+          {loading ? (
+            <>
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+              Saving...
+            </>
+          ) : (
+            <>
+              <span>＋</span>
+              Save Communication
+            </>
+          )}
+        </button>
+      </div>
     </form>
   );
 }

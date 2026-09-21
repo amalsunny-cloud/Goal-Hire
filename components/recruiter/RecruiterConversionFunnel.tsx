@@ -46,12 +46,27 @@ export default function RecruiterConversionFunnel({
   ];
 
   return (
-    <div className="rounded-lg p-6 bg-slate-400/10 shadow-sm">
-      <h2 className="text-2xl tracking-tight font-semibold mb-8">
-        Recruiter Conversion Funnel
-      </h2>
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      {/* Header */}
+      <div className="mb-7 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
+        <div>
+          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            Recruiter Conversion Funnel
+          </h2>
 
-      <div className="space-y-6">
+          <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+            Track your recruiter outreach from initial contact to positive
+            responses.
+          </p>
+        </div>
+
+        <div className="hidden rounded-xl border border-indigo-100 bg-indigo-50 px-3 py-2 text-xs font-semibold text-indigo-600 sm:block">
+          Funnel Overview
+        </div>
+      </div>
+
+      {/* Funnel */}
+      <div className="space-y-5">
         {stages.map((stage, index) => {
           const percentages = [
             100,
@@ -67,17 +82,30 @@ export default function RecruiterConversionFunnel({
           ];
 
           const percentage = percentages[index];
-          return (
-            <div key={stage.title}>
-              <div className="flex justify-between mb-2">
-                <span className="font-medium">{stage.title}</span>
 
-                <span>{stage.value}</span>
+          return (
+            <div key={stage.title} className="group">
+              {/* Label */}
+              <div className="mb-2.5 flex items-center justify-between gap-4">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span
+                    className={`h-2.5 w-2.5 shrink-0 rounded-full ${stage.color}`}
+                  />
+
+                  <span className="truncate text-sm font-semibold text-slate-700">
+                    {stage.title}
+                  </span>
+                </div>
+
+                <span className="shrink-0 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
+                  {stage.value}
+                </span>
               </div>
 
-              <div className="w-full h-7 rounded-full bg-gray-300 overflow-hidden">
+              {/* Progress */}
+              <div className="h-9 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
                 <div
-                  className={`${stage.color} border border-gray-700/50 h-full flex items-center justify-end pr-3 text-white font-semibold rounded-full`}
+                  className={`${stage.color} flex h-full items-center justify-end rounded-xl pr-3 text-xs font-bold text-white transition-all duration-500`}
                   style={{
                     width: `${percentage}%`,
                   }}
@@ -88,6 +116,15 @@ export default function RecruiterConversionFunnel({
             </div>
           );
         })}
+      </div>
+
+      {/* Footer */}
+      <div className="mt-7 flex items-center gap-2 border-t border-slate-100 pt-5">
+        <span className="h-2 w-2 rounded-full bg-indigo-500" />
+
+        <p className="text-xs leading-5 text-slate-500">
+          Each stage shows the conversion from the previous stage.
+        </p>
       </div>
     </div>
   );
