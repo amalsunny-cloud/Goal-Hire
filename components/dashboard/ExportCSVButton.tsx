@@ -51,7 +51,7 @@ export default function ExportCSVButton({
   return (
     <button
       onClick={exportCSV}
-      className="rounded-2xl flex justify-between border border-indigo-100 bg-indigo-50 px-4 py-2.5 text-sm text-gray-700 shadow-sm transition hover:-translate-y-0.5 cursor-pointer"
+      className="rounded-xl flex justify-between border border-indigo-100 bg-indigo-50 px-4 py-2.5 text-sm text-gray-700 shadow-sm transition hover:-translate-y-0.5 cursor-pointer"
     > <FileUp color="blue" className="h-4 w-4 me-1"/>
       Export CSV
     </button>

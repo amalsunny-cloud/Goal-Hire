@@ -1,8 +1,7 @@
 "use client";
 
 import { Application } from "@/types/application";
-import { Profile } from "@/types/profile";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import {
   Building2,
@@ -13,7 +12,6 @@ import {
   Calendar,
   Link as LinkIcon,
   FileText,
-  User,
   PlusCircle,
   Loader2,
 } from "lucide-react";
@@ -34,45 +32,9 @@ export default function ApplicationForm({
   const [salary, setSalary] = useState("");
   const [source, setSource] = useState("LinkedIn");
   const [loading, setLoading] = useState(false);
-  const [profiles, setProfiles] = useState<Profile[]>([]);
-  const [selectedProfile, setSelectedProfile] = useState("");
+  
 
-  const fetchProfiles = async () => {
-    try {
-      const response = await fetch("/api/profiles");
-
-      if (response.ok) {
-        const data = await response.json();
-        setProfiles(data);
-      }
-    } catch (error) {
-      console.error("Error fetching profiles:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProfiles();
-  }, []);
-
-  const handleProfileChange = (profileId: string) => {
-    setSelectedProfile(profileId);
-
-    const profile = profiles.find((p) => p._id === profileId);
-    if (!profile) return;
-
-    setNote((prev) => {
-      if (prev.trim()) return prev;
-
-      return `Portfolio: ${profile.portfolioUrl || "N/A"}
-GitHub: ${profile.githubUrl || "N/A"}
-LinkedIn: ${profile.linkedinUrl || "N/A"}
-Skills: ${profile.skills || "N/A"}`;
-    });
-  };
-
-  const handleSubmit = async (
-    e: React.SubmitEvent<HTMLFormElement>,
-  ) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -117,7 +79,6 @@ Skills: ${profile.skills || "N/A"}`;
       setLocation("");
       setSalary("");
       setSource("LinkedIn");
-      setSelectedProfile("");
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong. Please try again.");
@@ -128,45 +89,7 @@ Skills: ${profile.skills || "N/A"}`;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 text-slate-800">
-      {/* Profile Selection */}
-      <div className="rounded-2xl border border-indigo-100 bg-indigo-50/50 p-4">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-indigo-600 shadow-sm">
-              <User className="h-4 w-4" />
-            </div>
-
-            <div>
-              <label
-                htmlFor="profile-select"
-                className="block text-xs font-bold uppercase tracking-wide text-slate-700"
-              >
-                Application Profile
-              </label>
-
-              <p className="mt-0.5 text-xs text-slate-500">
-                Auto-fill links & skills from your saved profile
-              </p>
-            </div>
-          </div>
-
-          <select
-            id="profile-select"
-            value={selectedProfile}
-            onChange={(e) => handleProfileChange(e.target.value)}
-            className="w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs font-medium text-slate-700 outline-none transition-all duration-200 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/10 sm:w-auto sm:min-w-55"
-          >
-            <option value="">Select Profile (Optional)</option>
-
-            {profiles.map((profile) => (
-              <option key={profile._id} value={profile._id}>
-                {profile.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
+      
       {/* Main Fields */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {/* Company */}
@@ -347,7 +270,7 @@ Skills: ${profile.skills || "N/A"}`;
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {loading ? (
             <>
