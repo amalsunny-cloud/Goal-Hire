@@ -16,11 +16,7 @@ export default function StreakTracker({
   );
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-linear-to-br from-blue-50 via-white to-indigo-100/80 p-6 md:p-8">
-
-      {/* Decorative background */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-indigo-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 right-20 h-48 w-48 rounded-full bg-blue-200/30 blur-3xl" />
+    <div className="relative overflow-hidden rounded-3xl border md:p-8  border-slate-200 bg-white p-5 shadow-sm transition-shadow duration-200">
 
       {/* Header */}
       <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
@@ -28,7 +24,7 @@ export default function StreakTracker({
         <div className="flex items-start gap-4">
 
           {/* Flame Icon */}
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-blue-100 to-indigo-100 shadow-sm">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-sm">
             <Flame
               className="h-7 w-7 text-blue-600"
               strokeWidth={2.2}
@@ -45,13 +41,10 @@ export default function StreakTracker({
             </p>
           </div>
         </div>
-
-       
-        
       </div>
 
       {/* Metrics */}
-      <div className="relative z-10 mt-8 grid grid-cols-1 divide-y divide-slate-200/70 rounded-2xl border border-white/70 bg-white/45 backdrop-blur-md sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div className="relative z-10 mt-8 grid grid-cols-1 divide-y divide-slate-200/70 rounded-2xl border border-white/70 bg-white/45  sm:grid-cols-3 sm:divide-x sm:divide-y-0">
 
         {/* Current Streak */}
         <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6">

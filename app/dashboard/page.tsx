@@ -277,13 +277,13 @@ export default function Dashboard() {
         {activeTab === "overview" && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             <div className="space-y-4 lg:col-span-2">
-              <div className={panelClassName}>
+              <div>
                 <StreakTracker applications={applications} />
               </div>
-              <div className={panelClassName}>
+              <div>
                 <ApplicationsChart data={chartData} />
               </div>
-              <div className={panelClassName}>
+              <div>
                 <RecentApplications applications={applications} />
               </div>
             </div>
@@ -294,10 +294,10 @@ export default function Dashboard() {
                   interviews={interviews}
                 />
               </div>
-              <div className={panelClassName}>
+              <div>
                 <UpcomingInterviews interviews={upcomingInterviews} />
               </div>
-              <div className={panelClassName}>
+              <div>
                 <RecentActivity applications={applications} />
               </div>
             </div>
@@ -306,7 +306,7 @@ export default function Dashboard() {
 
         {activeTab === "analytics" && (
           <div className="space-y-4">
-            <div className={panelClassName}>
+            <div>
               <AnalyticsSection applications={applications} />
             </div>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -387,7 +387,7 @@ export default function Dashboard() {
   <ApplicationForm onAddSuccess={handleAddApplication} />
 </div>
             <div className={panelClassName}>
-              <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4 md:flex-row md:items-center md:justify-between">
+              <div className="mb-6 flex flex-col gap-3 rounded-2xl  bg-white p-3 sm:p-4 md:flex-row md:items-center md:justify-between">
   {/* Search */}
   <div className="relative w-full md:w-80">
     <input

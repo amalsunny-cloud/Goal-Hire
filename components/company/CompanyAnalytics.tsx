@@ -183,7 +183,7 @@ export default function CompanyAnalytics({ companies }: Props) {
       </div>
 
       {/* Spotlight Highlights */}
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 mb-4 border-b border-slate-200">
         {/* Spotlight 1: Best Response Rate */}
         <div className="flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="space-y-5">

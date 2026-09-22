@@ -1,3 +1,16 @@
+// StatsCard.tsx
+
+import {
+  BriefcaseBusiness,
+  CheckCircle2,
+  CircleDot,
+  FileText,
+  Gift,
+  LucideIcon,
+  MessageSquare,
+  XCircle,
+} from "lucide-react";
+
 interface StatsCardProps {
   title: string;
   value: string | number;
@@ -5,11 +18,34 @@ interface StatsCardProps {
 }
 
 const toneClasses = {
-  blue: "bg-blue-500 shadow-blue-500/25",
-  indigo: "bg-indigo-500 shadow-indigo-500/25",
-  violet: "bg-violet-500 shadow-violet-500/25",
-  emerald: "bg-emerald-500 shadow-emerald-500/25",
-  slate: "bg-slate-500 shadow-slate-500/25",
+  blue: {
+    icon: "bg-blue-50 text-blue-600",
+    number: "text-slate-900",
+  },
+  indigo: {
+    icon: "bg-indigo-50 text-indigo-600",
+    number: "text-slate-900",
+  },
+  violet: {
+    icon: "bg-violet-50 text-violet-600",
+    number: "text-slate-900",
+  },
+  emerald: {
+    icon: "bg-emerald-50 text-emerald-600",
+    number: "text-slate-900",
+  },
+  slate: {
+    icon: "bg-slate-100 text-slate-500",
+    number: "text-slate-900",
+  },
+};
+
+const iconMap: Record<string, LucideIcon> = {
+  Total: BriefcaseBusiness,
+  Applied: FileText,
+  Interview: MessageSquare,
+  Offer: Gift,
+  Rejected: XCircle,
 };
 
 export default function StatsCard({
@@ -17,18 +53,34 @@ export default function StatsCard({
   value,
   tone = "blue",
 }: StatsCardProps) {
+  const currentTone = toneClasses[tone];
+  const Icon = iconMap[title] || CircleDot;
+
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm shadow-slate-200/30 transition duration-200 hover:-translate-y-0.5 hover:shadow-md sm:p-5">
-      <div className="absolute inset-x-0 top-0 h-1" />
-      <div className="flex items-start justify-between gap-2">
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-          {title}
-        </p>
-        <span className="h-1.5 w-1.5 rounded-full shadow-[0_0_0_1px]" />
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md">
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-medium text-slate-500">{title}</p>
+
+        <div
+          className={`flex h-8 w-8 items-center justify-center rounded-lg ${currentTone.icon}`}
+        >
+          <Icon className="h-4 w-4" strokeWidth={2} />
+        </div>
       </div>
-      <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-900">
-        {value}
-      </h2>
+
+      <div className="mt-5">
+        <h2
+          className={`text-3xl font-bold tracking-tight ${currentTone.number}`}
+        >
+          {value}
+        </h2>
+      </div>
+
+      <div className="mt-3 h-px bg-slate-100" />
+
+      <p className="mt-3 text-xs text-slate-400">
+        {title} applications
+      </p>
     </div>
   );
 }

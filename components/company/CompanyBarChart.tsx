@@ -103,7 +103,7 @@ export default function CompanyBarChart({ companies }: Props) {
   }
 
   return (
-    <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
+    <div className="space-y-6 border-b border-slate-200 bg-white p-5 sm:p-6 lg:p-7">
       {/* Header */}
       <div className="flex flex-col gap-5 border-b border-slate-100 pb-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex min-w-0 items-start gap-3">

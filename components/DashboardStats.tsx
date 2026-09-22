@@ -1,3 +1,5 @@
+// DashboardStats.tsx
+
 import { Application } from "@/types/application";
 import StatsCard from "./StatsCard";
 import { useMemo } from "react";
@@ -5,7 +7,10 @@ import { useMemo } from "react";
 interface DashboardStatsProps {
   applications: Application[];
 }
-export default function DashboardStats({ applications }: DashboardStatsProps) {
+
+export default function DashboardStats({
+  applications,
+}: DashboardStatsProps) {
   const stats = useMemo(() => {
     const result = {
       total: applications.length,
@@ -39,7 +44,7 @@ export default function DashboardStats({ applications }: DashboardStatsProps) {
   }, [applications]);
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       <StatsCard title="Total" value={stats.total} tone="blue" />
       <StatsCard title="Applied" value={stats.applied} tone="indigo" />
       <StatsCard title="Interview" value={stats.interview} tone="violet" />

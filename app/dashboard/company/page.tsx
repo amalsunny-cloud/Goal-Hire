@@ -170,7 +170,7 @@ export default function CompanyDashboardPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-8 sm:py-8">
+    <main className="min-h-screen bg-slate-50 px-4 py-3 sm:px-8 sm:py-6">
       <div className="mx-auto max-w-7xl space-y-6">
         <section className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-6 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
           <div className="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
@@ -200,7 +200,7 @@ export default function CompanyDashboardPage() {
               </button>
             </div>
 
-            <div className="mt-12 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <div className="mt-3 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
               <div className="max-w-2xl">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-3 py-1.5 text-xs font-semibold text-blue-100">
                   <Sparkles className="h-3.5 w-3.5" />
