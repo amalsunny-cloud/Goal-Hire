@@ -2,6 +2,22 @@
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import {
+  BriefcaseBusiness,
+  Check,
+  GraduationCap,
+  Link2,
+  MapPin,
+  Phone,
+  Plus,
+  Save,
+  Trash2,
+  UserRound,
+  
+  Globe,
+  FileText,
+  Code2,
+} from "lucide-react";
 
 interface ProfileFormData {
   phone: string;
@@ -208,37 +224,72 @@ export default function ProfileForm() {
 
   if (loading) {
     return (
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="animate-pulse space-y-4">
-          <div className="h-5 w-48 rounded-lg bg-slate-200" />
-          <div className="h-11 w-full rounded-xl bg-slate-100" />
-          <div className="h-11 w-full rounded-xl bg-slate-100" />
+      <div className="space-y-6">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="animate-pulse space-y-5">
+            <div className="h-7 w-48 rounded-lg bg-slate-200" />
+            <div className="h-4 w-80 max-w-full rounded-lg bg-slate-100" />
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="h-12 rounded-xl bg-slate-100" />
+              <div className="h-12 rounded-xl bg-slate-100" />
+              <div className="h-12 rounded-xl bg-slate-100" />
+              <div className="h-28 rounded-xl bg-slate-100 sm:col-span-2" />
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="animate-pulse space-y-4">
+            <div className="h-6 w-32 rounded-lg bg-slate-200" />
+            <div className="h-11 w-full rounded-xl bg-slate-100" />
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {/* Professional Information */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="border-b border-slate-100 pb-5">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900">
-            Professional Information
-          </h2>
+    <div className="space-y-6 pb-10">
+      {/* Profile Header */}
+      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div className="relative bg-slate-950 px-6 py-8 sm:px-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.25),transparent_35%)]" />
 
-          <p className="mt-1 text-xs leading-5 text-slate-500">
-            Add the basic professional information you want to
-            showcase.
-          </p>
+          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white ring-1 ring-white/15 backdrop-blur">
+              <UserRound className="h-7 w-7" />
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Professional Profile
+              </p>
+
+              <h1 className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Build your professional identity
+              </h1>
+
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+                Keep your career information in one place for
+                applications, resumes, and future AI-powered
+                features.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              Professional Title
-            </label>
+      {/* Professional Information */}
+      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <SectionHeader
+          icon={<BriefcaseBusiness className="h-5 w-5" />}
+          title="Professional Information"
+          description="Add the basic professional information you want to showcase."
+        />
 
+        <div className="grid gap-5 p-5 sm:grid-cols-2 sm:p-6">
+          <Field label="Professional Title">
             <input
               value={profile.professionalTitle}
               onChange={(e) =>
@@ -248,313 +299,397 @@ export default function ProfileForm() {
                 )
               }
               placeholder="e.g. Full Stack Developer"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              className="input"
             />
-          </div>
+          </Field>
 
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              Location
-            </label>
-
+          <Field
+            label="Location"
+            icon={<MapPin className="h-3.5 w-3.5" />}
+          >
             <input
               value={profile.location}
               onChange={(e) =>
                 updateField("location", e.target.value)
               }
               placeholder="e.g. Thrissur, Kerala"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              className="input"
             />
-          </div>
+          </Field>
 
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              Phone
-            </label>
-
+          <Field
+            label="Phone"
+            icon={<Phone className="h-3.5 w-3.5" />}
+          >
             <input
               value={profile.phone}
               onChange={(e) =>
                 updateField("phone", e.target.value)
               }
               placeholder="Phone number"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
+              className="input"
             />
+          </Field>
+
+          <div className="sm:col-span-2">
+            <Field label="Professional Bio">
+              <textarea
+                value={profile.bio}
+                onChange={(e) =>
+                  updateField("bio", e.target.value)
+                }
+                placeholder="Write a short professional bio..."
+                rows={5}
+                className="input resize-y leading-6"
+              />
+            </Field>
           </div>
-        </div>
-
-        <div className="mt-4">
-          <label className="mb-2 block text-xs font-semibold text-slate-600">
-            Professional Bio
-          </label>
-
-          <textarea
-            value={profile.bio}
-            onChange={(e) =>
-              updateField("bio", e.target.value)
-            }
-            placeholder="Write a short professional bio..."
-            rows={5}
-            className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm leading-6 text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-          />
         </div>
       </section>
 
       {/* Skills */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="border-b border-slate-100 pb-5">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900">
-            Skills
-          </h2>
+      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <SectionHeader
+          icon={<Check className="h-5 w-5" />}
+          title="Skills"
+          description="Add technologies and skills that represent your experience."
+        />
 
-          <p className="mt-1 text-xs text-slate-500">
-            Add technologies and skills that represent your
-            experience.
-          </p>
-        </div>
-
-        <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-          <input
-            value={skillInput}
-            onChange={(e) =>
-              setSkillInput(e.target.value)
-            }
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                addSkill();
+        <div className="p-5 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <input
+              value={skillInput}
+              onChange={(e) =>
+                setSkillInput(e.target.value)
               }
-            }}
-            placeholder="e.g. Next.js"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-          />
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  addSkill();
+                }
+              }}
+              placeholder="e.g. Next.js"
+              className="input flex-1"
+            />
 
-          <button
-            type="button"
-            onClick={addSkill}
-            className="rounded-xl bg-slate-900 cursor-pointer px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
-          >
-            Add Skill
-          </button>
-        </div>
-
-        <div className="mt-5 flex min-h-10 flex-wrap gap-2">
-          {profile.skills.map((skill) => (
             <button
-              key={skill}
               type="button"
-              onClick={() => removeSkill(skill)}
-              className="group inline-flex items-center cursor-pointer gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600"
+              onClick={addSkill}
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.98]"
             >
-              {skill}
-
-              <span className="text-slate-400 transition group-hover:text-rose-500">
-                ×
-              </span>
+              <Plus className="h-4 w-4" />
+              Add Skill
             </button>
-          ))}
+          </div>
+
+          {profile.skills.length > 0 ? (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {profile.skills.map((skill) => (
+                <button
+                  key={skill}
+                  type="button"
+                  onClick={() => removeSkill(skill)}
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600"
+                >
+                  {skill}
+
+                  <span className="text-slate-400 transition group-hover:text-rose-500">
+                    ×
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <EmptyState text="No skills added yet." />
+          )}
         </div>
       </section>
 
       {/* Experience */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="border-b border-slate-100 pb-5">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900">
-            Experience
-          </h2>
+      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <SectionHeader
+          icon={<BriefcaseBusiness className="h-5 w-5" />}
+          title="Experience"
+          description="Add internships, jobs, or other relevant experience."
+        />
 
-          <p className="mt-1 text-xs text-slate-500">
-            Add internships, jobs, or other relevant experience.
-          </p>
-        </div>
+        <div className="p-5 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <input
+              value={experienceInput}
+              onChange={(e) =>
+                setExperienceInput(e.target.value)
+              }
+              placeholder="e.g. Full Stack Developer Intern at ABC"
+              className="input flex-1"
+            />
 
-        <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-          <input
-            value={experienceInput}
-            onChange={(e) =>
-              setExperienceInput(e.target.value)
-            }
-            placeholder="e.g. Full Stack Developer Intern at ABC"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-          />
-
-          <button
-            type="button"
-            onClick={addExperience}
-            className="rounded-xl bg-slate-900 cursor-pointer px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
-          >
-            Add Experience
-          </button>
-        </div>
-
-        <div className="mt-5 space-y-2">
-          {profile.experience.map((item, index) => (
-            <div
-              key={`${item}-${index}`}
-              className="flex items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 text-sm transition hover:border-slate-200 hover:bg-white"
+            <button
+              type="button"
+              onClick={addExperience}
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.98]"
             >
-              <span className="min-w-0 text-sm font-medium leading-6 text-slate-700">
-                {item}
-              </span>
+              <Plus className="h-4 w-4" />
+              Add Experience
+            </button>
+          </div>
 
-              <button
-                type="button"
-                onClick={() => removeExperience(index)}
-                className="shrink-0 rounded-lg cursor-pointer px-2.5 py-1.5 text-xs font-semibold text-rose-500 transition hover:bg-rose-50 hover:text-rose-600"
-              >
-                Remove
-              </button>
+          {profile.experience.length > 0 ? (
+            <div className="mt-5 space-y-3">
+              {profile.experience.map((item, index) => (
+                <ListItem
+                  key={`${item}-${index}`}
+                  text={item}
+                  onRemove={() =>
+                    removeExperience(index)
+                  }
+                />
+              ))}
             </div>
-          ))}
+          ) : (
+            <EmptyState text="No experience added yet." />
+          )}
         </div>
       </section>
 
       {/* Education */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="border-b border-slate-100 pb-5">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900">
-            Education
-          </h2>
+      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <SectionHeader
+          icon={<GraduationCap className="h-5 w-5" />}
+          title="Education"
+          description="Add your academic qualifications."
+        />
 
-          <p className="mt-1 text-xs text-slate-500">
-            Add your academic qualifications.
-          </p>
-        </div>
+        <div className="p-5 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <input
+              value={educationInput}
+              onChange={(e) =>
+                setEducationInput(e.target.value)
+              }
+              placeholder="e.g. BSc Information Technology"
+              className="input flex-1"
+            />
 
-        <div className="mt-5 flex flex-col gap-2 sm:flex-row">
-          <input
-            value={educationInput}
-            onChange={(e) =>
-              setEducationInput(e.target.value)
-            }
-            placeholder="e.g. BSc Information Technology"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-          />
-
-          <button
-            type="button"
-            onClick={addEducation}
-            className="rounded-xl bg-slate-900 cursor-pointer px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
-          >
-            Add Education
-          </button>
-        </div>
-
-        <div className="mt-5 space-y-2">
-          {profile.education.map((item, index) => (
-            <div
-              key={`${item}-${index}`}
-              className="flex items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50/70 p-4 text-sm transition hover:border-slate-200 hover:bg-white"
+            <button
+              type="button"
+              onClick={addEducation}
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.98]"
             >
-              <span className="min-w-0 text-sm font-medium leading-6 text-slate-700">
-                {item}
-              </span>
+              <Plus className="h-4 w-4" />
+              Add Education
+            </button>
+          </div>
 
-              <button
-                type="button"
-                onClick={() => removeEducation(index)}
-                className="shrink-0 cursor-pointer rounded-lg px-2.5 py-1.5 text-xs font-semibold text-rose-500 transition hover:bg-rose-50 hover:text-rose-600"
-              >
-                Remove
-              </button>
+          {profile.education.length > 0 ? (
+            <div className="mt-5 space-y-3">
+              {profile.education.map((item, index) => (
+                <ListItem
+                  key={`${item}-${index}`}
+                  text={item}
+                  onRemove={() =>
+                    removeEducation(index)
+                  }
+                />
+              ))}
             </div>
-          ))}
+          ) : (
+            <EmptyState text="No education added yet." />
+          )}
         </div>
       </section>
 
-      {/* Links */}
-      <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="border-b border-slate-100 pb-5">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900">
-            Career Links
-          </h2>
+      {/* Career Links */}
+      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <SectionHeader
+          icon={<Link2 className="h-5 w-5" />}
+          title="Career Links"
+          description="Add links to your resume, portfolio, and professional profiles."
+        />
 
-          <p className="mt-1 text-xs text-slate-500">
-            Add links to your resume, portfolio, and professional
-            profiles.
-          </p>
-        </div>
+        <div className="grid gap-5 p-5 sm:grid-cols-2 sm:p-6">
+          <LinkField
+            icon={<FileText className="h-4 w-4" />}
+            label="Resume"
+            value={profile.resumeUrl}
+            placeholder="https://..."
+            onChange={(value) =>
+              updateField("resumeUrl", value)
+            }
+          />
 
-        <div className="mt-5 space-y-4">
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              Resume
-            </label>
+          <LinkField
+            icon={<Globe className="h-4 w-4" />}
+            label="Portfolio"
+            value={profile.portfolioUrl}
+            placeholder="https://..."
+            onChange={(value) =>
+              updateField("portfolioUrl", value)
+            }
+          />
 
-            <input
-              value={profile.resumeUrl}
-              onChange={(e) =>
-                updateField("resumeUrl", e.target.value)
-              }
-              placeholder="Resume URL"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-            />
-          </div>
+          <LinkField
+            icon={<Code2 className="h-4 w-4" />}
+            label="GitHub"
+            value={profile.githubUrl}
+            placeholder="https://github.com/..."
+            onChange={(value) =>
+              updateField("githubUrl", value)
+            }
+          />
 
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              Portfolio
-            </label>
-
-            <input
-              value={profile.portfolioUrl}
-              onChange={(e) =>
-                updateField(
-                  "portfolioUrl",
-                  e.target.value,
-                )
-              }
-              placeholder="Portfolio URL"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              GitHub
-            </label>
-
-            <input
-              value={profile.githubUrl}
-              onChange={(e) =>
-                updateField("githubUrl", e.target.value)
-              }
-              placeholder="GitHub URL"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-600">
-              LinkedIn
-            </label>
-
-            <input
-              value={profile.linkedinUrl}
-              onChange={(e) =>
-                updateField(
-                  "linkedinUrl",
-                  e.target.value,
-                )
-              }
-              placeholder="LinkedIn URL"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-500/10"
-            />
-          </div>
+          <LinkField
+            icon={<BriefcaseBusiness className="h-4 w-4" />}
+            label="LinkedIn"
+            value={profile.linkedinUrl}
+            placeholder="https://linkedin.com/in/..."
+            onChange={(value) =>
+              updateField("linkedinUrl", value)
+            }
+          />
         </div>
       </section>
 
       {/* Save */}
-      <div className="flex justify-end border-t border-slate-200 pt-5">
+      <div className="sticky bottom-4 z-10 flex justify-end">
         <button
           type="button"
           onClick={saveProfile}
           disabled={saving}
-          className="rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-md disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-50 disabled:hover:shadow-none"
+          className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-xl disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-50"
         >
+          <Save className="h-4 w-4" />
           {saving ? "Saving..." : "Save Profile"}
         </button>
       </div>
+    </div>
+  );
+}
+
+/* ----------------------------- */
+/* Reusable UI components        */
+/* ----------------------------- */
+
+interface SectionHeaderProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function SectionHeader({
+  icon,
+  title,
+  description,
+}: SectionHeaderProps) {
+  return (
+    <div className="flex items-start gap-3 border-b border-slate-100 p-5 sm:p-6">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+        {icon}
+      </div>
+
+      <div>
+        <h2 className="text-lg font-bold tracking-tight text-slate-900">
+          {title}
+        </h2>
+
+        <p className="mt-1 text-xs leading-5 text-slate-500">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+interface FieldProps {
+  label: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function Field({
+  label,
+  icon,
+  children,
+}: FieldProps) {
+  return (
+    <div>
+      <label className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+        {icon}
+        {label}
+      </label>
+
+      {children}
+    </div>
+  );
+}
+
+interface LinkFieldProps {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  placeholder: string;
+  onChange: (value: string) => void;
+}
+
+function LinkField({
+  icon,
+  label,
+  value,
+  placeholder,
+  onChange,
+}: LinkFieldProps) {
+  return (
+    <Field
+      label={label}
+      icon={icon}
+    >
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="input"
+      />
+    </Field>
+  );
+}
+
+interface ListItemProps {
+  text: string;
+  onRemove: () => void;
+}
+
+function ListItem({
+  text,
+  onRemove,
+}: ListItemProps) {
+  return (
+    <div className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-slate-300 hover:bg-white">
+      <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-slate-500 shadow-sm">
+        <Check className="h-4 w-4" />
+      </div>
+
+      <p className="min-w-0 flex-1 text-sm font-medium leading-6 text-slate-700">
+        {text}
+      </p>
+
+      <button
+        type="button"
+        onClick={onRemove}
+        className="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-400 transition hover:bg-rose-50 hover:text-rose-600"
+      >
+        <Trash2 className="h-3.5 w-3.5" />
+        Remove
+      </button>
+    </div>
+  );
+}
+
+function EmptyState({ text }: { text: string }) {
+  return (
+    <div className="mt-5 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 px-4 py-6 text-center">
+      <p className="text-xs font-medium text-slate-400">
+        {text}
+      </p>
     </div>
   );
 }
