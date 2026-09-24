@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -32,6 +33,14 @@ export default function Navbar() {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
+
+            <Link
+                href="/dashboard/ai/job-analyzer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
+              >
+                <Sparkles className="h-4 w-4 text-indigo-600" />
+                AI Tools
+              </Link>
             <Link
               href="/auth/login"
               className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-950 transition-colors"

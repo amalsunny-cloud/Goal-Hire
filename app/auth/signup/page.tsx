@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -66,6 +67,9 @@ export default function SignUpPage() {
       <div className="w-full max-w-md bg-slate-400/10 border border-slate-200/80 rounded-2xl shadow-sm p-8 space-y-6">
         {/* Header Header */}
         <div className="space-y-2 text-center">
+          <div className="flex items-center justify-center">
+            <Image src="/icon.png" alt="Logo" width={48} height={48} />
+          </div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
             Create an account
           </h1>
@@ -178,10 +182,7 @@ export default function SignUpPage() {
         {/* Footer Link */}
         <p className="text-center text-xs text-slate-500 pt-2">
           Already have an account?{" "}
-          <Link
-            href="/auth/login"
-            className="font-semibold text-slate-600"
-          >
+          <Link href="/auth/login" className="font-semibold text-slate-600">
             Sign in
           </Link>
         </p>

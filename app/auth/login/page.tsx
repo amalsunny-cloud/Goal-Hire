@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -56,8 +57,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md backdrop-blur-sm">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="inline-flex w-12 h-12 rounded-xl bg-gray-600/10 border border-gray-500/20 items-center justify-center text-gray-400 font-bold text-xl mb-2">
-            G
+          <div className="flex items-center justify-center">
+            <Image src="/icon.png" alt="Logo" width={48} height={48} />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-gray-700">
             Welcome back
@@ -122,7 +123,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-5 px-2 py-2.5 text-base font-semibold text-white bg-black hover:bg-gray-600 shadow-sm border border-slate-200 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+            className="w-full mt-5 px-2 py-2.5 text-base font-semibold cursor-pointer text-white bg-black hover:bg-gray-600 shadow-sm border border-slate-200 rounded-xl text-center disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

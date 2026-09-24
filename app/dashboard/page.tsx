@@ -236,13 +236,7 @@ export default function Dashboard() {
                 Company Insights
               </Link>
 
-              <Link
-                href="/dashboard/ai/job-analyzer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50"
-              >
-                <Sparkles className="h-4 w-4 text-indigo-600" />
-                AI Tools
-              </Link>
+              
 
               <Link href="/dashboard/profile" className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white px-4 py-2.5 text-sm font-medium text-slate-900 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-50">
                 <UserCircle className="h-4 w-4" />

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -16,19 +17,20 @@ export default function Error({ error, reset }: ErrorProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="border rounded-lg p-8 max-w-md w-full text-center shadow-sm">
+      <div className="bg-white border border-gray-200 flex flex-col justify-center items-center rounded-lg p-8 max-w-md w-full text-center shadow-sm">
+        <Image src="/warning.svg" alt="Warning Icon" width={64} height={64} className="mb-4" />
         <h1 className="text-3xl font-bold mb-4">Something went wrong!</h1>
         <p className="text-gray-500 mb-6">An unexpected error occured.</p>
 
         <div className="flex gap-3 justify-center">
           <button
             onClick={reset}
-            className="bg-black text-white px-4 py-2 rounded"
+            className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors"
           >
             Try again
           </button>
 
-          <Link href="/dashboard" className="border flex items-center p-2">
+          <Link href="/dashboard" className="bg-slate-50 border border-gray-300 flex items-center rounded-lg p-2 hover:bg-gray-200 transition-colors">
             Dashboard
           </Link>
         </div>

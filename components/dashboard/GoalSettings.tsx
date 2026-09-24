@@ -181,7 +181,7 @@ export default function GoalSettings({
         <button
           onClick={saveGoals}
           disabled={loading}
-          className="mt-2 flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-900 disabled:hover:shadow-sm"
+          className="mt-2 flex w-full items-center justify-center rounded-xl cursor-pointer bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-900 disabled:hover:shadow-sm"
         >
           {loading ? "Saving..." : "Save Goals"}
         </button>
