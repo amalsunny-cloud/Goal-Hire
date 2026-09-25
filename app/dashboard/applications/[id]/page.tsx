@@ -268,13 +268,13 @@ export default async function ApplicationDetailsPage({
           </div>
 
         </div>
-          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl mt-6 shadow-sm">
+          <div className="mt-4">
             <RecruiterSection applicationId={application._id.toString()} />
           </div>
 
         {/* Application Timeline */}
 
-        <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+        <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4 mt-4">
           <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
             Application Timeline
           </h2>
@@ -285,7 +285,7 @@ export default async function ApplicationDetailsPage({
         <div className="">
           <div className="space-y-6">
             {/* File Upload & Attachments */}
-            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+            <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4 mt-4">
               <FileUpload applicationId={application._id.toString()} />
               <AttachmentList applicationId={application._id.toString()} />
             </div>

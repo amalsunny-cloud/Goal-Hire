@@ -145,12 +145,12 @@ export default function EmailTemplates({
       </div>
 
       {/* Email Preview */}
-      <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-2">
+      <div className="rounded-2xl border border-gray-200 bg-slate-50/60 p-1">
         <textarea
           readOnly
           value={email}
           rows={14}
-          className="w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-4 text-sm leading-6 text-slate-700 outline-none"
+          className="w-full resize-y rounded-xl bg-white px-4 py-4 text-sm leading-6 text-slate-700 outline-none"
         />
       </div>
 

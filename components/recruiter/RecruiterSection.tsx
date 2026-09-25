@@ -140,7 +140,7 @@ export default function RecruiterSection({ applicationId }: Props) {
   return (
     <div className="space-y-7">
       {/* Recruiter Form + Analytics */}
-      <div className="grid grid-cols-1 gap-5 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 rounded-3xl lg:border lg:border-slate-200 bg-white p-0 lg:shadow-sm sm:p-6 lg:grid-cols-2">
         <RecruiterForm
           applicationId={applicationId}
           onSuccess={() => {

@@ -52,7 +52,7 @@ export default function FileUpload({ applicationId }: FileUploadProps) {
   };
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 ">
       {/* Header */}
       <div className="mb-6 flex items-start gap-3 border-b border-slate-100 pb-5">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">

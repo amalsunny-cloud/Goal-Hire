@@ -119,7 +119,7 @@ export default function RecruiterCard({
   };
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 sm:p-6">
+    <div className="rounded-3xl bg-white p-2 transition-all duration-200 sm:p-6">
       {/* Recruiter Header */}
       <div className="mb-5 flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 flex-1">
