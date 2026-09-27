@@ -34,13 +34,32 @@ export default function JobDescriptionAnalyzer() {
         }),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to analyze the job description.");
+        throw new Error(
+          result.error || "Failed to analyze the job description.",
+        );
       }
 
-      setAnalysis(data.data);
+      setAnalysis(result.data);
+
+      const saveResponse = await fetch("/api/ai/job-analyses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          jobDescription,
+          analysis: result.data,
+        }),
+      });
+
+      const saveResult = await saveResponse.json();
+
+      if (!saveResponse.ok) {
+        throw new Error(saveResult.error || "Failed to save job analysis");
+      }
     } catch (error) {
       setError(
         error instanceof Error

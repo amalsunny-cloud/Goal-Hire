@@ -72,6 +72,15 @@ export default function Navbar2() {
                     <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
                     Resume Analyzer
                   </Link>
+
+                  <Link
+                    href="/dashboard/ai/resume-matcher"
+                    className="flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-gray-200 hover:bg-slate-700/60 hover:text-white transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
+                    Resume Matcher
+                  </Link>
                 </div>
               )}
             </div>

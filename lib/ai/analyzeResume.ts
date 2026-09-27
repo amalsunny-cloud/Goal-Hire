@@ -20,6 +20,9 @@ function isRetryableError(error: unknown): boolean {
       status === 504
     );
   }
+  if (error instanceof Error && error.message?.toLowerCase().includes("demand")) {
+    return true;
+  }
 
   return false;
 }
@@ -118,11 +121,15 @@ Important rules:
 `;
 
   const maxRetries = 3;
+  const modelsPipeline = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"];
+  let modelIndex = 0;
+
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    const currentModel = modelsPipeline[modelIndex];
     try {
       const response = await ai.models.generateContent({
-        model: "gemini-3.8-flash",
+        model: currentModel,
 
         contents: prompt,
 
@@ -153,6 +160,13 @@ Important rules:
 
       if (!shouldRetry || attempt === maxRetries) {
         throw error;
+      }
+
+      if (modelIndex < modelsPipeline.length - 1) {
+        modelIndex++;
+        console.log(
+          `Gemini [${currentModel}] failed due to heavy demand. Falling back to [${modelsPipeline[modelIndex]}] immediately.`
+        );
       }
 
       const delay = 1000 * 2 ** attempt;

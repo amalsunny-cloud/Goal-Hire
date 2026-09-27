@@ -46,6 +46,23 @@ export default function ResumeAnalyzer() {
       }
 
       setAnalysis(result.data);
+
+      const saveResponse = await fetch("/api/ai/resume-analyses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          resumeText,
+          analysis: result.data,
+        }),
+      });
+
+      const saveResult = await saveResponse.json();
+
+      if (!saveResponse.ok) {
+        throw new Error(saveResult.error || "Failed to save resume analysis");
+      }
     } catch (error) {
       console.error("Resume analysis error:", error);
 
