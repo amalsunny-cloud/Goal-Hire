@@ -121,7 +121,7 @@ export default function JobDescriptionAnalyzer() {
               value={jobDescription}
               onChange={(event) => setJobDescription(event.target.value)}
               placeholder="Paste the complete job description here..."
-              rows={14}
+              rows={10}
               maxLength={20000}
               disabled={loading}
               className="w-full resize-y rounded-xl border-0 bg-transparent px-4 py-4 text-sm leading-6 text-slate-800 outline-none placeholder:text-slate-400 disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-5"

@@ -99,7 +99,7 @@ export default function ResumeAnalyzer() {
           value={resumeText}
           onChange={(event) => setResumeText(event.target.value)}
           placeholder="Paste your resume content here..."
-          rows={18}
+          rows={10}
           maxLength={20000}
           disabled={loading}
           className="w-full resize-y rounded-xl border border-slate-200 bg-slate-50/70 px-4 py-3 text-sm leading-6 text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-500/10 disabled:cursor-not-allowed disabled:opacity-60"

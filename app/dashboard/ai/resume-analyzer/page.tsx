@@ -14,11 +14,7 @@ export default function ResumeAnalyzerPage() {
       </Link>
       {/* Page Header */}
       <div className="mb-8">
-        <div className="mb-2 flex items-center gap-2">
-          <span className="rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-600">
-            AI Tools
-          </span>
-        </div>
+        
 
         <h1 className="text-2xl font-bold tracking-tight text-slate-900">
           AI Resume Analyzer
