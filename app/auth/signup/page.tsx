@@ -50,9 +50,9 @@ export default function SignUpPage() {
 
       toast.success("Account created successfully!");
 
-      setTimeout(() => {
-        router.push("/auth/login");
-      }, 1500);
+      
+        router.replace("/auth/login");
+      
     } catch (err) {
       const message = err instanceof Error ? err.message : "Signup failed";
       setError(message);

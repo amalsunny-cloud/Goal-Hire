@@ -4,77 +4,77 @@ import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-export async function POST(req :Request){
-    try{
-        await connectDB();
-        
-        const body = await req.json();
-        const { email, password } = body;
+export async function POST(req: Request) {
+  try {
+    await connectDB();
 
-        if(!email || !password){
-            return NextResponse.json({
-                error:"Email and passwords are required"},
-                {status:400}
-            )
-        }
+    const body = await req.json();
+    const { email, password } = body;
 
-        // Find user
-        const normalizedEmail = email.trim().toLowerCase();
-        const user = await User.findOne({email: normalizedEmail}).lean();
-        if(!user){
-            return NextResponse.json(
-                {error: "Invalid Credentials"},
-                {status: 400}
-            )
-        }
-
-        // compare password
-        const isMatch = await bcrypt.compare(password, user.password)
-
-        if(!isMatch){
-            return NextResponse.json(
-                { error: "Invalid Credentials" },
-                { status: 400 },
-            )
-        }
-
-        // create token
-
-        const token = jwt.sign(
-            {
-                userId : user._id
-            },
-            process.env.JWT_SECRET!,
-            {
-                expiresIn: "7d",
-            }
-        );
-
-
-        console.log("token is in login route.ts:", token);
-        
-        const response = NextResponse.json(
-            {success: true}
-        );
-
-
-        response.cookies.set("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-            maxAge: 60*60*24*7,
-            path:"/",
-        });
-
-        return response;
-    }catch(error){
-        console.error(error);
-        
-        return NextResponse.json({
-            error:"Internal Server Error",
-        },{
-            status: 500
-        })
+    if (!email || !password) {
+      return NextResponse.json(
+        {
+          error: "Email and passwords are required",
+        },
+        { status: 400 },
+      );
     }
 
+    // Find user
+    const normalizedEmail = email.trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail }).lean();
+    if (!user) {
+      return NextResponse.json(
+        { error: "Invalid Credentials" },
+        { status: 400 },
+      );
+    }
+
+    // compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return NextResponse.json(
+        { error: "Invalid Credentials" },
+        { status: 400 },
+      );
+    }
+
+    // create token
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+      },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: "7d",
+      },
+    );
+
+    console.log("token is in login route.ts:", token);
+
+    const response = NextResponse.json({ success: true });
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+
+    return response;
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      {
+        error: "Internal Server Error",
+      },
+      {
+        status: 500,
+      },
+    );
+  }
 }

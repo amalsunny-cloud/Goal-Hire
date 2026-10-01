@@ -14,6 +14,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -39,10 +40,8 @@ export default function LoginPage() {
       }
 
       toast.success("Login successful!");
-
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
+      router.replace("/dashboard");
+     
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
       setError(message);
