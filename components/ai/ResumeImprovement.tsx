@@ -1,9 +1,8 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import {
-    ArrowLeft,
+  ArrowLeft,
   Check,
   Copy,
   FileText,
@@ -42,6 +41,7 @@ export default function ResumeImprovement() {
   useEffect(() => {
     async function fetchResumes() {
       try {
+        console.log("Inside the useEffect fetchResumes function");
         setLoadingResumes(true);
         setError("");
 
@@ -49,23 +49,21 @@ export default function ResumeImprovement() {
         const data: ResumeAnalysesResponse = await response.json();
 
         if (!response.ok) {
-          throw new Error(
-            data.error || "Unable to load saved resumes.",
-          );
+          throw new Error(data.error || "Unable to load saved resumes.");
         }
 
         const savedResumes = data.data ?? [];
+        console.log("savedResumes in 55:", savedResumes);
 
         setResumes(savedResumes);
 
         if (savedResumes.length > 0) {
+          console.log("savedResumes[0]._id in 59:", savedResumes[0]._id);
           setSelectedResumeId(savedResumes[0]._id);
         }
       } catch (err: unknown) {
         setError(
-          err instanceof Error
-            ? err.message
-            : "Unable to load saved resumes.",
+          err instanceof Error ? err.message : "Unable to load saved resumes.",
         );
       } finally {
         setLoadingResumes(false);
@@ -111,9 +109,7 @@ export default function ResumeImprovement() {
       const data: ImprovementResponse = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.error || "Unable to improve the resume.",
-        );
+        throw new Error(data.error || "Unable to improve the resume.");
       }
 
       if (!data.improvements) {
@@ -154,7 +150,7 @@ export default function ResumeImprovement() {
 
   return (
     <div className="space-y-8">
-        <Link
+      <Link
         href="/dashboard"
         className="group inline-flex items-center mb-4 gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
       >
@@ -174,9 +170,9 @@ export default function ResumeImprovement() {
         </div>
 
         <p className="max-w-3xl text-sm leading-6 text-gray-600">
-          Improve your professional summary, project descriptions,
-          and experience statements. Review every suggestion before
-          using it in your resume.
+          Improve your professional summary, project descriptions, and
+          experience statements. Review every suggestion before using it in your
+          resume.
         </p>
       </div>
 
@@ -195,8 +191,8 @@ export default function ResumeImprovement() {
             <p className="font-medium">No saved resume analyses found</p>
 
             <p className="mt-2 text-sm text-gray-500">
-              Analyze and save a resume using the Resume Analyzer
-              before using this feature.
+              Analyze and save a resume using the Resume Analyzer before using
+              this feature.
             </p>
           </div>
         ) : (
@@ -211,20 +207,18 @@ export default function ResumeImprovement() {
             <select
               id="saved-resume"
               value={selectedResumeId}
-              onChange={(event) =>
-                handleResumeChange(event.target.value)
-              }
+              onChange={(event) => handleResumeChange(event.target.value)}
               disabled={improving}
               className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200 disabled:opacity-60"
             >
               {resumes.map((resume) => (
                 <option key={resume._id} value={resume._id}>
                   {resume.analysis.professionalSummary
-                    ? resume.analysis.professionalSummary.slice(0, 70)
-                    : `Saved resume — ${new Date(
-                        resume.createdAt,
-                      ).toLocaleDateString("en-GB")}`}
-                  {" — "}
+                    ? resume.analysis.professionalSummary
+                        .match(/^(.+?)\s+with\b/i)?.[1]
+                        ?.trim()
+                    : `Saved resume - ${new Date(resume.createdAt).toLocaleDateString("en-GB")}`}
+                  {" - "}
                   {new Date(resume.createdAt).toLocaleDateString("en-GB")}
                 </option>
               ))}
@@ -233,9 +227,7 @@ export default function ResumeImprovement() {
             {selectedResume && (
               <p className="mt-3 text-xs text-gray-500">
                 Saved on{" "}
-                {new Date(
-                  selectedResume.createdAt,
-                ).toLocaleDateString("en-GB")}
+                {new Date(selectedResume.createdAt).toLocaleDateString("en-GB")}
               </p>
             )}
 
@@ -281,14 +273,11 @@ export default function ResumeImprovement() {
         <div className="rounded-2xl border border-dashed border-gray-300 p-8 text-center">
           <Sparkles className="mx-auto mb-3 h-9 w-9 text-violet-500" />
 
-          <h2 className="font-semibold">
-            Ready to improve your resume?
-          </h2>
+          <h2 className="font-semibold">Ready to improve your resume?</h2>
 
           <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-gray-500">
-            Select a saved resume and click Improve Resume to
-            generate suggestions tailored to the information in
-            your analysis.
+            Select a saved resume and click Improve Resume to generate
+            suggestions tailored to the information in your analysis.
           </p>
         </div>
       )}
@@ -305,8 +294,7 @@ export default function ResumeImprovement() {
           <h2 className="font-semibold">Analyzing your resume</h2>
 
           <p className="mt-2 text-sm text-gray-600">
-            Gemini is preparing improvements. This may take a
-            little while.
+            Gemini is preparing improvements. This may take a little while.
           </p>
         </div>
       )}
@@ -323,17 +311,15 @@ export default function ResumeImprovement() {
               </h2>
 
               <p className="mt-1 text-sm text-green-700">
-                Review the original and improved versions carefully.
-                These suggestions do not modify your saved resume.
+                Review the original and improved versions carefully. These
+                suggestions do not modify your saved resume.
               </p>
             </div>
           </div>
 
           {/* Professional summary */}
           <section className="space-y-4">
-            <h2 className="text-xl font-bold">
-              Professional Summary
-            </h2>
+            <h2 className="text-xl font-bold">Professional Summary</h2>
 
             <div className="grid gap-4 lg:grid-cols-2">
               <TextComparisonCard
@@ -346,12 +332,8 @@ export default function ResumeImprovement() {
                 title="Improved"
                 text={improvements.professionalSummary.improved}
                 variant="improved"
-                explanation={
-                  improvements.professionalSummary.explanation
-                }
-                copied={
-                  copiedText === "professional-summary"
-                }
+                explanation={improvements.professionalSummary.explanation}
+                copied={copiedText === "professional-summary"}
                 onCopy={() =>
                   handleCopy(
                     improvements.professionalSummary.improved,
@@ -371,86 +353,70 @@ export default function ResumeImprovement() {
             {improvements.projectImprovements.length === 0 ? (
               <EmptySectionMessage message="No project descriptions were available to improve." />
             ) : (
-              improvements.projectImprovements.map(
-                (project, index) => (
-                  <div
-                    key={`project-${index}`}
-                    className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
-                  >
-                    <h3 className="mb-4 font-semibold">
-                      Project {index + 1}
-                    </h3>
+              improvements.projectImprovements.map((project, index) => (
+                <div
+                  key={`project-${index}`}
+                  className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+                >
+                  <h3 className="mb-4 font-semibold">Project {index + 1}</h3>
 
-                    <div className="grid gap-4 lg:grid-cols-2">
-                      <TextComparisonCard
-                        title="Original"
-                        text={project.original}
-                        variant="original"
-                      />
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    <TextComparisonCard
+                      title="Original"
+                      text={project.original}
+                      variant="original"
+                    />
 
-                      <TextComparisonCard
-                        title="Improved"
-                        text={project.improved}
-                        variant="improved"
-                        explanation={project.explanation}
-                        copied={copiedText === `project-${index}`}
-                        onCopy={() =>
-                          handleCopy(
-                            project.improved,
-                            `project-${index}`,
-                          )
-                        }
-                      />
-                    </div>
+                    <TextComparisonCard
+                      title="Improved"
+                      text={project.improved}
+                      variant="improved"
+                      explanation={project.explanation}
+                      copied={copiedText === `project-${index}`}
+                      onCopy={() =>
+                        handleCopy(project.improved, `project-${index}`)
+                      }
+                    />
                   </div>
-                ),
-              )
+                </div>
+              ))
             )}
           </section>
 
           {/* Experience improvements */}
           <section className="space-y-4">
-            <h2 className="text-xl font-bold">
-              Experience Improvements
-            </h2>
+            <h2 className="text-xl font-bold">Experience Improvements</h2>
 
             {improvements.experienceImprovements.length === 0 ? (
               <EmptySectionMessage message="No experience descriptions were available to improve." />
             ) : (
-              improvements.experienceImprovements.map(
-                (experience, index) => (
-                  <div
-                    key={`experience-${index}`}
-                    className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
-                  >
-                    <h3 className="mb-4 font-semibold">
-                      Experience {index + 1}
-                    </h3>
+              improvements.experienceImprovements.map((experience, index) => (
+                <div
+                  key={`experience-${index}`}
+                  className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
+                >
+                  <h3 className="mb-4 font-semibold">Experience {index + 1}</h3>
 
-                    <div className="grid gap-4 lg:grid-cols-2">
-                      <TextComparisonCard
-                        title="Original"
-                        text={experience.original}
-                        variant="original"
-                      />
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    <TextComparisonCard
+                      title="Original"
+                      text={experience.original}
+                      variant="original"
+                    />
 
-                      <TextComparisonCard
-                        title="Improved"
-                        text={experience.improved}
-                        variant="improved"
-                        explanation={experience.explanation}
-                        copied={copiedText === `experience-${index}`}
-                        onCopy={() =>
-                          handleCopy(
-                            experience.improved,
-                            `experience-${index}`,
-                          )
-                        }
-                      />
-                    </div>
+                    <TextComparisonCard
+                      title="Improved"
+                      text={experience.improved}
+                      variant="improved"
+                      explanation={experience.explanation}
+                      copied={copiedText === `experience-${index}`}
+                      onCopy={() =>
+                        handleCopy(experience.improved, `experience-${index}`)
+                      }
+                    />
                   </div>
-                ),
-              )
+                </div>
+              ))
             )}
           </section>
 
@@ -459,31 +425,27 @@ export default function ResumeImprovement() {
             <div className="mb-4 flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-violet-600" />
 
-              <h2 className="text-lg font-bold">
-                Suggested Keywords
-              </h2>
+              <h2 className="text-lg font-bold">Suggested Keywords</h2>
             </div>
 
             {improvements.keywordSuggestions.length === 0 ? (
               <EmptySectionMessage message="No keyword suggestions were generated." />
             ) : (
               <div className="flex flex-wrap gap-2">
-                {improvements.keywordSuggestions.map(
-                  (keyword, index) => (
-                    <span
-                      key={`${keyword}-${index}`}
-                      className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-sm font-medium text-violet-800"
-                    >
-                      {keyword}
-                    </span>
-                  ),
-                )}
+                {improvements.keywordSuggestions.map((keyword, index) => (
+                  <span
+                    key={`${keyword}-${index}`}
+                    className="rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-sm font-medium text-violet-800"
+                  >
+                    {keyword}
+                  </span>
+                ))}
               </div>
             )}
 
             <p className="mt-3 text-xs text-gray-500">
-              Include a suggested keyword only if it accurately
-              reflects your actual skills or experience.
+              Include a suggested keyword only if it accurately reflects your
+              actual skills or experience.
             </p>
           </section>
 
@@ -492,26 +454,22 @@ export default function ResumeImprovement() {
             <div className="mb-4 flex items-center gap-2">
               <Lightbulb className="h-5 w-5 text-amber-500" />
 
-              <h2 className="text-lg font-bold">
-                General Suggestions
-              </h2>
+              <h2 className="text-lg font-bold">General Suggestions</h2>
             </div>
 
             {improvements.generalSuggestions.length === 0 ? (
               <EmptySectionMessage message="No additional suggestions were generated." />
             ) : (
               <ul className="space-y-3">
-                {improvements.generalSuggestions.map(
-                  (suggestion, index) => (
-                    <li
-                      key={`suggestion-${index}`}
-                      className="flex items-start gap-3 text-sm leading-6 text-gray-700"
-                    >
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500" />
-                      <span>{suggestion}</span>
-                    </li>
-                  ),
-                )}
+                {improvements.generalSuggestions.map((suggestion, index) => (
+                  <li
+                    key={`suggestion-${index}`}
+                    className="flex items-start gap-3 text-sm leading-6 text-gray-700"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500" />
+                    <span>{suggestion}</span>
+                  </li>
+                ))}
               </ul>
             )}
           </section>
@@ -579,23 +537,15 @@ function TextComparisonCard({
             Why this is improved
           </p>
 
-          <p className="text-sm leading-6 text-gray-600">
-            {explanation}
-          </p>
+          <p className="text-sm leading-6 text-gray-600">{explanation}</p>
         </div>
       )}
     </div>
   );
 }
 
-function EmptySectionMessage({
-  message,
-}: {
-  message: string;
-}) {
+function EmptySectionMessage({ message }: { message: string }) {
   return (
-    <p className="rounded-lg bg-gray-50 p-4 text-sm text-gray-500">
-      {message}
-    </p>
+    <p className="rounded-lg bg-gray-50 p-4 text-sm text-gray-500">{message}</p>
   );
 }

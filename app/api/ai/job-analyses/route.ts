@@ -17,8 +17,10 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    console.log("Received job analysis request in body:", body);
 
     const jobDescription = body.jobDescription;
+    console.log("Received job description:", jobDescription);
 
     if (
       typeof jobDescription !== "string" ||
@@ -30,9 +32,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log("Before job analysis safeparse:", body.analysis);
+
     const analysisResult = jobAnalysisSchema.safeParse(
       body.analysis,
     );
+
+    console.log("After analysisResult:", analysisResult);
 
     if (!analysisResult.success) {
       console.error(
@@ -48,6 +54,7 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
+    console.log("Before job analysis to database for user:", user.userId);
     const jobAnalysis = await JobAnalysis.create({
       userId: user.userId,
       jobDescription: jobDescription.trim(),
