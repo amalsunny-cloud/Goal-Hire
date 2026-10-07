@@ -81,22 +81,19 @@ export default function JobDescriptionAnalyzer() {
         Back to Dashboard
       </Link>
       {/* Input Section */}
-      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-        <div className="border-b border-slate-100 p-5 sm:p-6 lg:p-7">
+      <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
+        <div className="border-b border-slate-100 p-2">
           <div className="flex items-start gap-4">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-blue-600">
               <span className="text-lg">✦</span>
             </div>
 
-            <div>
+            <div className="flex flex-col justify-center items-center w-full">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                <h2 className="text-2xl text-center font-bold tracking-tight text-slate-900 mb-2">
                   Job Description Analyzer
                 </h2>
 
-                <span className="rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-600">
-                  AI Powered
-                </span>
               </div>
 
               <p className="mt-1.5 max-w-2xl text-sm leading-6 text-slate-500">

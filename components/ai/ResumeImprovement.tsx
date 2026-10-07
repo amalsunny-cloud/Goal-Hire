@@ -158,8 +158,9 @@ export default function ResumeImprovement() {
         Back to Dashboard
       </Link>
       {/* Page introduction */}
-      <div>
-        <div className="mb-3 flex items-center gap-2">
+      <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+      <div className="flex flex-col items-center">
+        <div className="mb-3 flex justify-center items-center gap-2">
           <div className="rounded-xl bg-violet-100 p-2 text-violet-700">
             <Sparkles className="h-6 w-6" />
           </div>
@@ -169,7 +170,7 @@ export default function ResumeImprovement() {
           </h1>
         </div>
 
-        <p className="max-w-3xl text-sm leading-6 text-gray-600">
+        <p className="max-w-3xl text-sm leading-6 text-gray-600 text-start">
           Improve your professional summary, project descriptions, and
           experience statements. Review every suggestion before using it in your
           resume.
@@ -177,7 +178,7 @@ export default function ResumeImprovement() {
       </div>
 
       {/* Resume selector */}
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+      <section className="rounded-2xl border border-gray-200 p-5 shadow-sm mt-6">
         <div className="mb-4 flex items-center gap-2">
           <FileText className="h-5 w-5 text-violet-600" />
 
@@ -270,7 +271,7 @@ export default function ResumeImprovement() {
 
       {/* Initial state */}
       {!improvements && !improving && resumes.length > 0 && !error && (
-        <div className="rounded-2xl border border-dashed border-gray-300 p-8 text-center">
+        <div className="rounded-2xl bg-violet-50 border border-dashed border-gray-300 p-8 text-center mt-5">
           <Sparkles className="mx-auto mb-3 h-9 w-9 text-violet-500" />
 
           <h2 className="font-semibold">Ready to improve your resume?</h2>
@@ -302,7 +303,7 @@ export default function ResumeImprovement() {
       {/* Improvement results */}
       {improvements && !improving && (
         <div className="space-y-8">
-          <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+          <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 mt-4">
             <Check className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
 
             <div>
@@ -476,6 +477,7 @@ export default function ResumeImprovement() {
         </div>
       )}
     </div>
+    </div>
   );
 }
 
@@ -502,7 +504,7 @@ function TextComparisonCard({
     <div
       className={`rounded-xl border p-4 ${
         improved
-          ? "border-violet-200 bg-violet-50/60"
+          ? "border-violet-200 bg-violet-200/50"
           : "border-gray-200 bg-gray-50"
       }`}
     >

@@ -83,15 +83,21 @@ export default function ResumeAnalyzer() {
             <FileText className="h-5 w-5" />
           </div>
 
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">
-              Paste Your Resume
-            </h2>
+          <div className="flex flex-col justify-center items-center w-full">
+            <h1 className="text-2xl text-center font-bold tracking-tight text-slate-900 mb-2">
+          AI Resume Analyzer
+        </h1>
 
-            <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-500 text-start">
+          Analyze your resume with AI to identify your skills, experience,
+          strengths, weaknesses, and areas for improvement.
+        </p>
+            
+
+            <h5 className="mt-1 text-sm text-slate-500 font-semibold text-start">
               Paste your resume content below and let AI analyze your skills,
               experience, projects, and improvement areas.
-            </p>
+            </h5>
           </div>
         </div>
 

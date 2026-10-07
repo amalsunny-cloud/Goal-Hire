@@ -291,7 +291,7 @@ export default function Dashboard() {
 
         <DashboardStats applications={applications} />
 
-        <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
+        <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-3xl border border-white/20 bg-slate-900/10 p-2 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] backdrop-blur-xl">
           <div className="flex min-w-max justify-center gap-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -301,7 +301,7 @@ export default function Dashboard() {
                   onClick={() => setActiveTab(tab.id as typeof activeTab)}
                   className={`inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 sm:px-5 ${
                     activeTab === tab.id
-                      ? "bg-slate-900 text-white shadow-sm"
+                      ? "bg-white/80 text-slate-900 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md "
                       : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                   }`}
                 >

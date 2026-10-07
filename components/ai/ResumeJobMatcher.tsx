@@ -178,11 +178,10 @@ export default function ResumeJobMatcher() {
             <Target className="h-5 w-5" />
           </div>
 
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">
-              Resume ↔ Job Matcher
-            </h2>
-
+          <div className="flex flex-col justify-center items-center w-full">
+            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          Resume ↔ Job Matcher
+        </h1>
             <p className="mt-1 text-sm leading-6 text-slate-500">
               Compare your resume analysis with a job description analysis to
               identify matching skills, gaps, and improvement opportunities.

@@ -72,7 +72,7 @@ export default function ApplicationCalendar({
         {/* Header */}
         <div className="mb-7 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
               Calendar View
             </h2>
 
@@ -108,9 +108,9 @@ export default function ApplicationCalendar({
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md sm:p-6">
       {/* Header */}
-      <div className="mb-6 flex items-start justify-between gap-4">
+      <div className="mb-6 flex items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
             Calendar View
           </h2>
 
@@ -144,7 +144,7 @@ export default function ApplicationCalendar({
 
       {/* Calendar */}
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-        <div className="goal-hire-calendar" style={{ height: 600 }}>
+        <div className="goal-hire-calendar mt-4" style={{ height: 600 }}>
           <Calendar
             localizer={localizer}
             events={events}
@@ -168,11 +168,6 @@ export default function ApplicationCalendar({
 
             /* Toolbar */
             toolbar={true}
-
-            /*
-             * Show "more" popup when there are
-             * many events on one day.
-             */
             popup
 
             eventPropGetter={(event) => ({
