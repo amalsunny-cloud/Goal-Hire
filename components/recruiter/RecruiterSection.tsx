@@ -34,6 +34,31 @@ export default function RecruiterSection({ applicationId }: Props) {
     RecruiterCommunication[]
   >([]);
 
+  const [company, setCompany] = useState("");
+
+useEffect(() => {
+  const fetchApplication = async () => {
+    try {
+      const response = await fetch(
+        `/api/applications/${applicationId}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch application");
+      }
+
+      const data = await response.json();
+      setCompany(data.company);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchApplication();
+}, [applicationId]);
+
+
+
   const fetchRecruiters = async () => {
     try {
       const response = await fetch(
@@ -305,7 +330,8 @@ export default function RecruiterSection({ applicationId }: Props) {
               <RecruiterCard
                 key={recruiter._id}
                 recruiter={recruiter}
-                company={recruiter.company}
+                // company={recruiter.company}
+                company={company}
                 onDelete={async () => {
                   try {
                     const response = await fetch(

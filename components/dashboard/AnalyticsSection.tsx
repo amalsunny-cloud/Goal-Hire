@@ -23,7 +23,7 @@ export default function AnalyticsSection({
   }, [applications]);
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <AnalyticsCard
         title="This Month"
         value={monthlyApplications}
@@ -39,10 +39,10 @@ export default function AnalyticsSection({
         value={`${analytics.offerRate.toFixed(1)}%`}
       />
 
-      <AnalyticsCard
+      {/* <AnalyticsCard
         title="Rejected"
         value={analytics.rejected}
-      />
+      /> */}
     </div>
   );
 }

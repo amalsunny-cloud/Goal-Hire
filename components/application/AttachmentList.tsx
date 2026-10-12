@@ -11,10 +11,12 @@ interface Attachment {
 
 interface AttachmentListProps {
   applicationId: string;
+  refreshKey: number;
 }
 
 export default function AttachmentList({
   applicationId,
+  refreshKey,
 }: AttachmentListProps) {
   const [attachments, setAttachments] = useState<Attachment[]>([]);
 
@@ -23,7 +25,7 @@ export default function AttachmentList({
 
   useEffect(() => {
     fetchAttachments();
-  }, [applicationId]);
+  }, [applicationId, refreshKey]);
 
   const fetchAttachments = async () => {
     try {
@@ -64,18 +66,43 @@ export default function AttachmentList({
     );
   }
 
+  // const deleteAttachment = async (attachmentId: string) => {
+  //   try {
+  //     if (!confirm("Delete this attachment?")) {
+  //       return;
+  //     }
+
+  //     const response = await fetch(`/api/attachments/${attachmentId}`, {
+  //       method: "DELETE",
+  //     });
+
+  //     console.log("attachment deleted..");
+  //     toast.success("Attachment deleted.");
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to delete attachment.");
+  //     }
+
+  //     setAttachments((prev) =>
+  //       prev.filter((attachment) => attachment._id !== attachmentId),
+  //     );
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Failed to delete attachment.");
+  //   }
+  // };
+
   const deleteAttachment = async (attachmentId: string) => {
+    if (!confirm("Delete this attachment?")) {
+      return;
+    }
+
     try {
-      if (!confirm("Delete this attachment?")) {
-        return;
-      }
+      setDeletingId(attachmentId);
 
       const response = await fetch(`/api/attachments/${attachmentId}`, {
         method: "DELETE",
       });
-
-      console.log("attachment deleted..");
-      toast.success("Attachment deleted.");
 
       if (!response.ok) {
         throw new Error("Failed to delete attachment.");
@@ -84,9 +111,13 @@ export default function AttachmentList({
       setAttachments((prev) =>
         prev.filter((attachment) => attachment._id !== attachmentId),
       );
+
+      toast.success("Attachment deleted.");
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete attachment.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -111,8 +142,7 @@ export default function AttachmentList({
         </div>
 
         <div className="rounded-xl border border-blue-100 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-600">
-          {attachments.length}{" "}
-          {attachments.length === 1 ? "File" : "Files"}
+          {attachments.length} {attachments.length === 1 ? "File" : "Files"}
         </div>
       </div>
 
@@ -141,7 +171,7 @@ export default function AttachmentList({
               className="group flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50/60 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm sm:flex-row sm:items-center sm:justify-between"
             >
               {/* File Info */}
-              <a
+              {/* <a
                 href={attachment.fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -160,7 +190,19 @@ export default function AttachmentList({
                     Click to view file
                   </p>
                 </div>
-              </a>
+              </a> */}
+
+              <div className="flex min-w-0 items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
+                  📄
+                </div>
+
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-slate-800">
+                    {attachment.fileName}
+                  </p>
+                </div>
+              </div>
 
               {/* Delete */}
               <button

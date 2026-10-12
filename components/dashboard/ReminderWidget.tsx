@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 import {
   BellRing,
   CalendarClock,
-  ChevronRight,
 } from "lucide-react";
 
 interface ReminderWidgetProps {
@@ -327,18 +326,7 @@ function ReminderRow({
       </span>
 
       {/* Arrow */}
-      <ChevronRight
-        className="
-          h-4
-          w-4
-          shrink-0
-          text-slate-300
-          transition-transform
-          duration-200
-          group-hover:translate-x-0.5
-          group-hover:text-slate-500
-        "
-      />
+      
     </li>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Interview } from "@/types/interview";
-import { CalendarDays, Clock3, FileText, ChevronRight } from "lucide-react";
+import { CalendarDays, Clock3, FileText } from "lucide-react";
 
 interface UpcomingInterviewsProps {
   interviews: Interview[];
@@ -11,24 +11,48 @@ interface UpcomingInterviewsProps {
 export default function UpcomingInterviews({
   interviews,
 }: UpcomingInterviewsProps) {
+  // const upcomingInterviews = useMemo(() => {
+  //   const today = new Date();
+  //   today.setHours(0, 0, 0, 0);
+
+  //   return interviews
+  //     .filter((interview) => {
+  //       if (!interview.date) {
+  //         return false;
+  //       }
+
+  //       return new Date(interview.date) >= today;
+  //     })
+  //     .sort(
+  //       (a, b) =>
+  //         new Date(a.date as string).getTime() -
+  //         new Date(b.date as string).getTime(),
+  //     );
+  // }, [interviews]);
+
   const upcomingInterviews = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-    return interviews
-      .filter((interview) => {
-        if (!interview.date) {
-          return false;
-        }
+  return interviews
+    .filter((interview) => {
+      if (!interview.date) return false;
 
-        return new Date(interview.date) >= today;
-      })
-      .sort(
-        (a, b) =>
-          new Date(a.date as string).getTime() -
-          new Date(b.date as string).getTime(),
-      );
-  }, [interviews]);
+      const interviewDate = new Date(interview.date);
+
+      if (Number.isNaN(interviewDate.getTime())) {
+        return false;
+      }
+      interviewDate.setHours(0, 0, 0, 0);
+
+      return interviewDate.getTime() >= today.getTime();
+    })
+    .sort(
+      (a, b) =>
+        new Date(a.date!).getTime() -
+        new Date(b.date!).getTime(),
+    );
+}, [interviews]);
 
   if (upcomingInterviews.length === 0) {
     return (
@@ -138,18 +162,7 @@ export default function UpcomingInterviews({
                   </p>
                 </div>
 
-                <ChevronRight
-                  className="
-                    h-4
-                    w-4
-                    shrink-0
-                    text-slate-300
-                    transition-transform
-                    duration-200
-                    group-hover:translate-x-0.5
-                    group-hover:text-slate-500
-                  "
-                />
+                
               </div>
 
               {/* Interview details */}

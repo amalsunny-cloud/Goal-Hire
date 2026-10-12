@@ -42,6 +42,8 @@ export default function RecruiterCard({
 
   const [contacting, setContacting] = useState(false);
   const [showCommunicationForm, setShowCommunicationForm] = useState(false);
+  const [communicationRefreshKey, setCommunicationRefreshKey] =
+  useState(0);
 
   const saveChanges = async () => {
     try {
@@ -371,6 +373,7 @@ export default function RecruiterCard({
             applicationId={recruiter.applicationId}
             onSuccess={() => {
               setShowCommunicationForm(false);
+              setCommunicationRefreshKey((previous) => previous + 1);
               onUpdated();
             }}
           />
@@ -379,7 +382,7 @@ export default function RecruiterCard({
 
       {/* Communication & Templates */}
       <div className="mt-6 grid grid-cols-1 gap-5 border-t border-slate-100 pt-6 lg:grid-cols-2">
-        <CommunicationList recruiterId={recruiter._id} />
+        <CommunicationList recruiterId={recruiter._id} refreshKey={communicationRefreshKey} />
 
         <EmailTemplates
           recruiterName={recruiter.name || "Recruiter"}

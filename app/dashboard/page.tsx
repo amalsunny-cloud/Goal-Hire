@@ -334,7 +334,8 @@ export default function Dashboard() {
                 />
               </div>
               <div>
-                <UpcomingInterviews interviews={upcomingInterviews} />
+                {/* <UpcomingInterviews interviews={upcomingInterviews} /> */}
+                <UpcomingInterviews interviews={interviews} />
               </div>
               <div>
                 <RecentActivity applications={applications} />
@@ -378,9 +379,9 @@ export default function Dashboard() {
             <div className={panelClassName}>
               <InterviewAnalytics interviews={interviews} />
             </div>
-            <div className={panelClassName}>
+            {/* <div className={panelClassName}>
               <ApplicationAnalytics applications={applications} />
-            </div>
+            </div> */}
           </div>
         )}
 

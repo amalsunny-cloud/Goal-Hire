@@ -1,7 +1,5 @@
 import ApplicationNotes from "@/components/application/ApplicationNotes";
 import ApplicationTimeline from "@/components/application/ApplicationTimeline";
-import AttachmentList from "@/components/application/AttachmentList";
-import FileUpload from "@/components/application/FileUpload";
 import InterviewForm from "@/components/forms/InterviewForm";
 import InterviewList from "@/components/InterviewList";
 import RecruiterSection from "@/components/recruiter/RecruiterSection";
@@ -21,6 +19,7 @@ import {
   ExternalLink,
   Edit3,
 } from "lucide-react";
+import AttachmentSection from "@/components/application/AttachmentSection";
 
 interface ApplicationDetailsPageProps {
   params: Promise<{ id: string }>;
@@ -266,11 +265,10 @@ export default async function ApplicationDetailsPage({
               <InterviewList interviews={interviews} />
             </div>
           </div>
-
         </div>
-          <div className="mt-4">
-            <RecruiterSection applicationId={application._id.toString()} />
-          </div>
+        <div className="mt-4">
+          <RecruiterSection applicationId={application._id.toString()} />
+        </div>
 
         {/* Application Timeline */}
 
@@ -281,13 +279,12 @@ export default async function ApplicationDetailsPage({
           <ApplicationTimeline applicationId={application._id.toString()} />
         </div>
 
-        {/* Main Content Layout: 2-Column Grid */}
         <div className="">
           <div className="space-y-6">
-            {/* File Upload & Attachments */}
+            
             <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4 mt-4">
-              <FileUpload applicationId={application._id.toString()} />
-              <AttachmentList applicationId={application._id.toString()} />
+              {/* File Upload & Attachments */}
+              <AttachmentSection applicationId={application._id.toString()} />
             </div>
           </div>
         </div>

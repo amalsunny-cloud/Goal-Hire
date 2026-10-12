@@ -10,9 +10,10 @@ import toast from "react-hot-toast";
 
 interface Props {
   recruiterId: string;
+  refreshKey?: number;
 }
 
-export default function CommunicationList({ recruiterId }: Props) {
+export default function CommunicationList({ recruiterId, refreshKey = 0 }: Props) {
   const [communications, setCommunications] = useState<
     RecruiterCommunication[]
   >([]);
@@ -23,9 +24,12 @@ export default function CommunicationList({ recruiterId }: Props) {
     "All" | RecruiterCommunication["type"]
   >("All");
 
+  const [communicationRefreshKey, setCommunicationRefreshKey] =
+  useState(0);
+
   useEffect(() => {
     fetchCommunications();
-  }, [recruiterId]);
+  }, [recruiterId, refreshKey]);
 
   const fetchCommunications = async () => {
     try {

@@ -5,51 +5,102 @@ import toast from "react-hot-toast";
 
 interface FileUploadProps {
   applicationId: string;
+  onUploadSuccess: () => void;
 }
 
-export default function FileUpload({ applicationId }: FileUploadProps) {
+export default function FileUpload({ applicationId, onUploadSuccess }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
+  // const handleUpload = async () => {
+  //   if (!file) {
+  //     return;
+  //   }
+
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+
+  //     const response = await fetch("/api/attachments/upload", {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Upload failed.");
+  //     }
+
+  //     const data = await response.json();
+
+  //     const one = await fetch("/api/attachments", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         applicationId,
+  //         fileName: data.originalName,
+  //         fileUrl: data.url,
+  //       }),
+  //     });
+
+  //     toast.success("File uploaded successfully.");
+  //     setFile(null);
+  //   } catch (error) {
+  //     console.error("Upload Error", error);
+  //     toast.error("Upload failed.");
+  //   }
+  // };
+
   const handleUpload = async () => {
-    if (!file) {
-      return;
+  if (!file || uploading) return;
+
+  setUploading(true);
+
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    // Upload the actual file
+    const response = await fetch("/api/attachments/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("File upload failed.");
     }
 
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const data = await response.json();
 
-      const response = await fetch("/api/attachments/upload", {
-        method: "POST",
-        body: formData,
-      });
+    // Save the file metadata
+    const saveResponse = await fetch("/api/attachments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        applicationId,
+        fileName: data.originalName,
+        fileUrl: data.url,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error("Upload failed.");
-      }
-
-      const data = await response.json();
-
-      const one = await fetch("/api/attachments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          applicationId,
-          fileName: data.originalName,
-          fileUrl: data.url,
-        }),
-      });
-
-      toast.success("File uploaded successfully.");
-      setFile(null);
-    } catch (error) {
-      console.error("Upload Error", error);
-      toast.error("Upload failed.");
+    if (!saveResponse.ok) {
+      throw new Error("Failed to save attachment details.");
     }
-  };
+
+    setFile(null);
+    onUploadSuccess();
+
+    toast.success("File uploaded successfully.");
+  } catch (error) {
+    console.error("Upload Error:", error);
+    toast.error("Upload failed.");
+  } finally {
+    setUploading(false);
+  }
+};
 
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 ">
@@ -125,12 +176,12 @@ export default function FileUpload({ applicationId }: FileUploadProps) {
       <div className="mt-5 flex justify-end border-t border-slate-100 pt-5">
         <button
           onClick={handleUpload}
-          disabled={!file}
+          disabled={!file || uploading}
           type="button"
           className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-sm disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 sm:w-auto"
         >
-          <span>↑</span>
-          Upload File
+      
+          {uploading ? "Uploading..." : "↑ Upload File"}
         </button>
       </div>
     </div>

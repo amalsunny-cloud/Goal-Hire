@@ -52,7 +52,6 @@ export default function ResponseForm({communicationId, onSuccess}:Props) {
         className="border border-slate-300 rounded-lg p-2.5 w-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-900"
       >
         <option>Positive</option>
-        <option>Neutral</option>
         <option>Rejected</option>
         <option>No Response</option>
       </select>
