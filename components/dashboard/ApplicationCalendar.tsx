@@ -68,7 +68,7 @@ export default function ApplicationCalendar({
 
   if (events.length === 0) {
     return (
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl bg-white p-6 shadow-sm">
         {/* Header */}
         <div className="mb-7 flex items-start justify-between gap-4">
           <div>
@@ -106,7 +106,7 @@ export default function ApplicationCalendar({
   }
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md sm:p-6">
+    <div className="rounded-3xl bg-white p-5 transition-shadow duration-200  sm:p-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>

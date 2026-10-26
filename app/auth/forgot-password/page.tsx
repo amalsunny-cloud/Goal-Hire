@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -56,9 +57,9 @@ export default function ForgotPasswordPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-white px-4 py-12">
       <div className="w-full max-w-md space-y-8 bg-slate-400/10 p-8 rounded-2xl shadow-md">
-        <div className="space-y-2">
-          <div className="inline-flex w-12 h-12 rounded-xl bg-gray-600/10 border border-gray-500/20 items-center justify-center text-gray-400 font-bold text-xl">
-            G
+        <div className="text-center space-y-2">
+          <div className="flex items-center justify-center">
+          <Image src="/icon.png" alt="Logo" width={48} height={48} />
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight text-gray-700">
@@ -118,7 +119,7 @@ export default function ForgotPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-2 py-2.5 text-base font-semibold text-white bg-black hover:bg-gray-700 rounded-xl disabled:opacity-50"
+              className="w-full px-2 py-2.5 text-base font-semibold text-white cursor-pointer bg-black hover:bg-gray-700 rounded-xl disabled:opacity-50"
             >
               {loading
                 ? "Sending..."
@@ -133,7 +134,7 @@ export default function ForgotPasswordPage() {
             href="/auth/login"
             className="font-semibold"
           >
-            Sign in
+            Sign In
           </Link>
         </p>
       </div>

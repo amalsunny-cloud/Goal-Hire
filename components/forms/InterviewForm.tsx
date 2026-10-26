@@ -67,7 +67,7 @@ export default function InterviewForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-4 space-y-5 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+      className="mt-4 space-y-5 rounded-3xl p-5 sm:p-6"
     >
       {/* Interview Round */}
       <div className="space-y-2">
@@ -124,7 +124,7 @@ export default function InterviewForm({
       )}
 
       {/* Submit */}
-      <div className="border-t border-slate-100 pt-4">
+      <div className="pt-4">
         <button
           type="submit"
           disabled={loading}

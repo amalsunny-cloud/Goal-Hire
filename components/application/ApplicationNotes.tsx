@@ -49,7 +49,7 @@ export default function ApplicationNotes({
   };
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <div className="rounded-3xl p-5 sm:p-6">
       {/* Header */}
       <div className="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
         <div className="flex min-w-0 items-center gap-3">
@@ -58,7 +58,7 @@ export default function ApplicationNotes({
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">
+            <h2 className="text-md font-bold tracking-tight text-slate-900 sm:text-base">
               Notes
             </h2>
 

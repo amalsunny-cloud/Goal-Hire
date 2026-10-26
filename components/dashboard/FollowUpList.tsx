@@ -28,7 +28,7 @@ export default function FollowUpList({
 
   if (upcomingFollowUps.length === 0) {
     return (
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl bg-white p-6">
         {/* Header */}
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
@@ -65,7 +65,7 @@ export default function FollowUpList({
   }
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    <div className="rounded-3xl bg-white p-6 transition-shadow duration-200">
       {/* Header */}
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>

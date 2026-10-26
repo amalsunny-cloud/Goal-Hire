@@ -1,6 +1,61 @@
+"use client";
 import Footer from "@/components/layout/Footer";
 import Navbar2 from "@/components/layout/Navbar2";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+
+function Counter({ value }: { value: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
+
+  const numericVal = parseInt(value.replace(/[^0-9]/g, ""), 10);
+  const suffix = value.replace(/[0-9]/g, "");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let startTime: number | null = null;
+          const duration = 2000; 
+
+          const animateCount = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percentage = Math.min(progress / duration, 1);
+            
+            const easeOutProgress = 1 - Math.pow(1 - percentage, 3);
+            
+            setCount(Math.floor(easeOutProgress * numericVal));
+
+            if (progress < duration) {
+              requestAnimationFrame(animateCount);
+            } else {
+              setCount(numericVal); 
+            }
+          };
+
+          requestAnimationFrame(animateCount);
+        }
+      },
+      { threshold: 0.8 } 
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [numericVal]);
+
+  return (
+    <span ref={ref}>
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
+}
 
 export default function Home() {
   const stats = [
@@ -73,7 +128,8 @@ export default function Home() {
           <div className="max-w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {stats.map((stat, i) => (
               <div key={i}>
-                <p className="text-3xl font-extrabold text-slate-900">{stat.value}</p>
+                <p className="text-3xl font-extrabold text-slate-900">
+                  <Counter value={stat.value}/></p>
                 <p className="text-sm font-medium text-slate-500 mt-1">{stat.label}</p>
               </div>
             ))}

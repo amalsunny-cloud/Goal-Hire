@@ -15,7 +15,7 @@ export default function ApplicationFunnel({
 
   if (data.length === 0) {
     return (
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl bg-white p-6 shadow-sm">
         {/* Header */}
         <div className="mb-6">
           <h2 className="text-xl font-bold tracking-tight text-slate-900">
@@ -46,7 +46,7 @@ export default function ApplicationFunnel({
   }
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    <div className="rounded-3xl bg-white p-6 transition-shadow duration-200">
 
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">

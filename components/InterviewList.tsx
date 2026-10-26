@@ -135,7 +135,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
         {interviews.map((interview) => (
           <div
             key={interview._id}
-            className="group rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md sm:p-6"
+            className="group rounded-3xl border border-slate-200 bg-white/50 p-5 transition-all duration-200 sm:p-6"
           >
             {/* Card Header */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -169,7 +169,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
             {/* Details */}
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {/* Date */}
-              <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4">
+              <div className="rounded-2xl border border-slate-100 bg-slate-200/50 p-4">
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                   Date
                 </p>
@@ -186,7 +186,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
               </div>
 
               {/* Notes */}
-              <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4">
+              <div className="rounded-2xl border border-slate-100 bg-slate-200/50 p-4">
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
                   Notes
                 </p>

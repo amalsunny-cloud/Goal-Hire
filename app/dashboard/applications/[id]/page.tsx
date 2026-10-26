@@ -121,7 +121,7 @@ export default async function ApplicationDetailsPage({
         </div>
 
         {/* Main Header / Hero Card */}
-        <div className="bg-white border border-slate-200/80 p-6 sm:p-8 rounded-3xl shadow-sm space-y-6">
+        <div className="border border-slate-200/80 p-6 sm:p-8 rounded-3xl space-y-6 bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-6 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2.5">
@@ -129,11 +129,11 @@ export default async function ApplicationDetailsPage({
                   <Building2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                     {application.company}
                   </h1>
-                  <p className="text-sm font-medium text-slate-500 flex items-center gap-1.5 mt-0.5">
-                    <Briefcase className="w-4 h-4 text-slate-400" />
+                  <p className="text-sm font-medium text-white flex items-center gap-1.5 mt-0.5">
+                    <Briefcase className="w-4 h-4 text-white" />
                     {application.role}
                   </p>
                 </div>
@@ -152,9 +152,9 @@ export default async function ApplicationDetailsPage({
           </div>
 
           {/* Metadata Details Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 border-t border-slate-200/60 text-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 text-xs">
             {/* Location */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" />
                 Location
@@ -165,7 +165,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Salary */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <DollarSign className="w-3.5 h-3.5" />
                 Salary
@@ -176,7 +176,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Follow-up Date */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Calendar className="w-3.5 h-3.5" />
                 Follow-Up
@@ -191,7 +191,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Job URL */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <ExternalLink className="w-3.5 h-3.5" />
                 Job Post
@@ -215,7 +215,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Created At */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
                 Applied On
@@ -226,7 +226,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Last Updated */}
-            <div className="bg-slate-50/80 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
                 Updated

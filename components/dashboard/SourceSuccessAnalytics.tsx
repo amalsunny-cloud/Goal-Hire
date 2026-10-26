@@ -53,7 +53,7 @@ export default function SourceSuccessAnalytics({
   }
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    <div className="rounded-3xl bg-white p-6 transition-shadow duration-200">
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>

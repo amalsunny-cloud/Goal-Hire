@@ -102,7 +102,7 @@ export default function KanbanBoard({
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="rounded-3xl border border-slate-200 bg-slate-50/70 p-5 shadow-sm sm:p-5">
+      <div className="rounded-3xl p-5 sm:p-5">
         {/* Board Header */}
         <div className="mb-5 flex items-center justify-between gap-4">
           <div>

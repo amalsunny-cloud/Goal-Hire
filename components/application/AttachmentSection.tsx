@@ -14,7 +14,7 @@ export default function AttachmentSection({
   const [refreshKey, setRefreshKey] = useState(0);
 
   return (
-    <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4 mt-4">
+    <div className="bg-white p-6 rounded-2xl space-y-4 mt-4">
       <FileUpload
         applicationId={applicationId}
         onUploadSuccess={() =>

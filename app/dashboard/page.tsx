@@ -257,7 +257,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-7">
-        <header className="rounded-3xl border border-slate-800 bg-slate-950 p-5 text-white shadow-sm sm:p-7 lg:p-8">
+        <header className="rounded-3xl border border-slate-800 p-5  sm:p-7 lg:p-8 bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-6 text-white sm:px-10 sm:py-9">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <DashboardHeader
               applicationCount={applicationCount}
