@@ -87,7 +87,7 @@ export default function SourceSuccessAnalytics({
           return (
             <div
               key={source}
-              className="rounded-2xl border border-slate-100 bg-slate-50/70 p-5 transition-all duration-200 hover:border-slate-200 hover:bg-white hover:shadow-sm"
+              className="rounded-2xl border border-slate-100 bg-slate-200/30 p-5 transition-all duration-200 hover:border-slate-200 hover:bg-white hover:shadow-sm"
             >
               {/* Source Header */}
               <div className="mb-5 flex items-center justify-between gap-3">

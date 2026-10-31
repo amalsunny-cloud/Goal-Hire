@@ -15,9 +15,7 @@ export default function Navbar() {
               <span className="text-lg font-bold tracking-tight text-slate-900">
                 Goal-Hire
               </span>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-blue-600 font-bold -mt-1">
-                Tracker
-              </span>
+              
             </div>
           </Link>
 

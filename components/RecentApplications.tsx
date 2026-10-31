@@ -1,6 +1,7 @@
 import { Application } from "@/types/application";
 import { useMemo } from "react";
 import { BriefcaseBusiness, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 interface RecentApplicationsProps {
   applications: Application[];
@@ -86,7 +87,8 @@ export default function RecentApplications({
       {/* Applications */}
       <div className="space-y-2">
         {recent.map((app) => (
-          <div
+          <Link
+            href={`/dashboard/applications/${app._id}`}
             key={app._id}
             className="
               group
@@ -124,7 +126,7 @@ export default function RecentApplications({
             </div>
 
             
-          </div>
+          </Link>
         ))}
       </div>
     </div>

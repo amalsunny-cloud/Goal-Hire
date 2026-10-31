@@ -35,9 +35,7 @@ export default function Navbar2() {
               <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-slate-200">
                 Goal-Hire
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold -mt-1">
-                Tracker
-              </span>
+              
             </div>
           </Link>
 

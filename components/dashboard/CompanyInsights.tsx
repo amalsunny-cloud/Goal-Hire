@@ -42,28 +42,30 @@ export default function CompanyInsights({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Top Location */}
         <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-          <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-sm">
-            📍
-          </div>
-
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+          <div className="mb-3 flex  items-center justify-center text-center rounded-xl text-sm">
+            <p>
+              📍
+              </p>
+          <p className="pl-2 text-xs text-center font-semibold uppercase tracking-wide text-slate-400">
             Top Location
           </p>
-
-          <h4 className="mt-1 truncate text-lg font-bold text-slate-900">
+          </div>
+          <h4 className="mt-1 truncate text-xl font-bold text-slate-900">
             {insights.topLocation || "No data"}
           </h4>
         </div>
 
         {/* Top Role */}
         <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-          <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-50 text-sm">
+          <div className="mb-3 flex items-center justify-center text-center rounded-xl text-sm">
+            <p>
             💼
-          </div>
-
+            </p>
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
             Top Role
           </p>
+          </div>
+
 
           <h4 className="mt-1 truncate text-lg font-bold text-slate-900">
             {insights.topRole || "No data"}
@@ -72,84 +74,19 @@ export default function CompanyInsights({
 
         {/* Top Company */}
         <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-          <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-sm">
+          <div className="mb-3 flex items-center justify-center text-center rounded-xl text-sm">
+            <p>
             🏆
-          </div>
-
+            </p>
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
             Top Company
           </p>
+          </div>
+
 
           <h4 className="mt-1 truncate text-lg font-bold text-slate-900">
             {insights.topCompany || "No data"}
           </h4>
-        </div>
-      </div>
-
-      {/* Status Distribution */}
-      <div className="mt-8 border-t border-slate-100 pt-6">
-        <div className="mb-4">
-          <h3 className="text-sm font-bold text-slate-900">
-            Status Distribution
-          </h3>
-
-          <p className="mt-1 text-xs text-slate-500">
-            Current breakdown of your application pipeline
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {/* Applied */}
-          <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-            <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-              <span className="h-2.5 w-2.5 rounded-full bg-blue-500" />
-            </div>
-
-            <p className="text-xs font-medium text-slate-500">Applied</p>
-
-            <h3 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-              {status.applied}
-            </h3>
-          </div>
-
-          {/* Interview */}
-          <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-            <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50">
-              <span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />
-            </div>
-
-            <p className="text-xs font-medium text-slate-500">Interview</p>
-
-            <h3 className="mt-1 text-2xl font-bold tracking-tight text-indigo-600">
-              {status.interview}
-            </h3>
-          </div>
-
-          {/* Offer */}
-          <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-            <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-            </div>
-
-            <p className="text-xs font-medium text-slate-500">Offer</p>
-
-            <h3 className="mt-1 text-2xl font-bold tracking-tight text-emerald-600">
-              {status.offer}
-            </h3>
-          </div>
-
-          {/* Rejected */}
-          <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm">
-            <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-rose-50">
-              <span className="h-2.5 w-2.5 rounded-full bg-rose-500" />
-            </div>
-
-            <p className="text-xs font-medium text-slate-500">Rejected</p>
-
-            <h3 className="mt-1 text-2xl font-bold tracking-tight text-rose-600">
-              {status.rejected}
-            </h3>
-          </div>
         </div>
       </div>
 

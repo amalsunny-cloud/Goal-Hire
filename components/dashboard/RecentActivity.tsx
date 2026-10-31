@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface Application {
   _id: string;
   company: string;
@@ -26,7 +28,7 @@ export default function RecentActivity({
     <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-md">
 
       {/* Header */}
-      <div className="mb-5 flex items-start justify-between">
+      <div className="mb-5 flex items-start justify-between border-b border-slate-200 pb-5">
         <div>
           <h2 className="text-xl font-bold tracking-tight text-slate-900">
             Recent Activity
@@ -60,31 +62,18 @@ export default function RecentActivity({
       ) : (
         <div className="space-y-2">
           {recentApplications.map((app) => (
-            <div
+            <Link
+              href={`/dashboard/applications/${app._id}`}
               key={app._id}
-              className="
-                group
-                relative
-                rounded-2xl
-                border
-                border-slate-100
-                bg-slate-50/70
-                p-4
-                transition-all
-                duration-200
-                hover:-translate-y-0.5
-                hover:border-slate-200
-                hover:bg-white
-                hover:shadow-sm
-              "
+              className="group relative flex flex-col gap-3 border-b border-slate-200 bg-white p-4 text-sm text-slate-700 transition-shadow duration-200"
             >
               {/* Activity indicator */}
-              <div className="absolute left-0 top-4 h-10 w-1 rounded-r-full bg-indigo-500" />
+              {/* <div className="absolute left-0 top-4 h-10 w-1 rounded-r-full bg-indigo-500" /> */}
 
               {/* Company + Role */}
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="font-semibold text-slate-900 text-start">
                     {app.company}
                   </p>
 
@@ -125,33 +114,6 @@ export default function RecentActivity({
                 </div>
               </div>
 
-              {/* Activity message */}
-              <div className="mt-3">
-                {app.status === "Offer" && (
-                  <span className="text-xs font-semibold text-emerald-600">
-                    🎉 Offer received
-                  </span>
-                )}
-
-                {app.status === "Interview" && (
-                  <span className="text-xs font-semibold text-blue-600">
-                    📅 Interview stage
-                  </span>
-                )}
-
-                {app.status === "Rejected" && (
-                  <span className="text-xs font-semibold text-rose-600">
-                    ❌ Rejected
-                  </span>
-                )}
-
-                {app.status === "Applied" && (
-                  <span className="text-xs font-semibold text-amber-600">
-                    📨 Application submitted
-                  </span>
-                )}
-              </div>
-
               {/* Updated time */}
               <div className="mt-3 border-t border-slate-100 pt-3">
                 <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
@@ -162,7 +124,7 @@ export default function RecentActivity({
                   {new Date(app.updatedAt).toLocaleString("en-GB")}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
