@@ -81,7 +81,7 @@ export default function CompanyLeaderboard({ companies }: Props) {
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">
+            <h3 className="text-xl font-bold tracking-tight text-slate-900 sm:text-base">
               Response Rate Leaderboard
             </h3>
 
@@ -98,7 +98,7 @@ export default function CompanyLeaderboard({ companies }: Props) {
       </div>
 
       {/* Leaderboard */}
-      <div className="space-y-3">
+      <div className="space-y-3 grid grid-cols-2 gap-3 sm:grid-cols-2">
         {rankedCompanies.length === 0 ? (
           <div className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-5 text-center text-xs text-slate-400">
             <div>

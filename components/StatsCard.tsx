@@ -57,7 +57,7 @@ export default function StatsCard({
   const Icon = iconMap[title] || CircleDot;
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-md">
       <div className="flex items-center justify-between">
         <p className="text-sm font-medium text-slate-500">{title}</p>
 

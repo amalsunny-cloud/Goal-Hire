@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 
 import { Recruiter } from "@/types/recruiter";
 
@@ -194,6 +194,8 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
         </div>
       </div>
 
+
+    <div className="grid grid-cols-4 gap-4">
       {/* Reminder Sections */}
       <ReminderSection
         title="🔴 Overdue"
@@ -218,6 +220,7 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
         recruiters={upcoming}
         color="bg-emerald-500"
       />
+      </div>
     </div>
   );
 }

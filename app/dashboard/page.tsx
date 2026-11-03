@@ -257,7 +257,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-7">
-        <header className="rounded-3xl border border-slate-800 p-5  sm:p-7 lg:p-8 bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-6 text-white sm:px-10 sm:py-9">
+        <div className="space-y-6 bg-slate-400/10 p-3 rounded-3xl shadow-sm sm:p-6 lg:p-8">
+        <header className="rounded-3xl border border-slate-800 p-5  sm:p-7 lg:p-8 bg-blue-950/90 px-6 py-6 text-white sm:px-10 sm:py-9">
           <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <DashboardHeader
               applicationCount={applicationCount}
@@ -290,8 +291,9 @@ export default function Dashboard() {
         </header>
 
         <DashboardStats applications={applications} />
+        </div>
 
-        <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-3xl border border-white/20 bg-slate-900/10 p-2 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] backdrop-blur-xl">
+        <div className="mx-auto w-full max-w-3xl overflow-x-auto rounded-3xl border border-white/20 bg-blue-950/90 p-2 shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] backdrop-blur-xl">
           <div className="flex min-w-max justify-center gap-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -301,8 +303,8 @@ export default function Dashboard() {
                   onClick={() => setActiveTab(tab.id as typeof activeTab)}
                   className={`inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 sm:px-5 ${
                     activeTab === tab.id
-                      ? "bg-white/80 text-slate-900 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md "
-                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                      ? "bg-transparent text-slate-100 shadow-[0_4px_12px_rgba(0,0,0,0.05)] backdrop-blur-md "
+                      : "text-slate-100 hover:bg-slate-50/10 hover:text-slate-100"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -426,8 +428,8 @@ export default function Dashboard() {
 
               <ApplicationForm onAddSuccess={handleAddApplication} />
             </div>
-            <div className={panelClassName}>
-              <div className="mb-6 flex flex-col gap-3 rounded-2xl  bg-white p-3 sm:p-4 md:flex-row md:items-center md:justify-between">
+            <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md">
+              <div className="mb-2 flex flex-col gap-3 rounded-2xl  bg-white p-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                 {/* Search */}
                 <div className="relative w-full md:w-80">
                   <input

@@ -36,7 +36,7 @@ export default function ApplicationList({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-1 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {applications.map((application) => (
         <ApplicationCard
           key={application._id}

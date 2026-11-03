@@ -23,7 +23,7 @@ export default function ApplicationCard({
   onStatusChange,
 }: ApplicationCardProps) {
   return (
-    <div className="bg-slate-50/70 rounded-lg p-6">
+    <div className="bg-slate-50/70 rounded-lg p-6 border border-slate-200/70 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:border-b-1 hover:border-indigo-500 hover:shadow-md">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <div className="flex flex-col justify-center space-y-1">
           <h3 className="font-bold text-lg text-gray-800">
@@ -39,7 +39,7 @@ export default function ApplicationCard({
           </span>
         </div>
 
-        <div className="flex items-center gap-4 self-end sm:self-center">
+        <div className="flex flex-col items-center gap-4 self-end sm:self-center">
           <Link
             href={`/dashboard/applications/${application._id}`}
             className="relative text-slate-800 hover:text-slate-900 font-semibold text-sm py-1 after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-slate-900 after:transition-all after:duration-300 after:ease-out hover:after:w-full hover:after:left-0"
