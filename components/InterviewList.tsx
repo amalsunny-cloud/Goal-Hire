@@ -116,7 +116,7 @@ export default function InterviewList({ interviews }: InterviewListProps) {
       {/* Section Header */}
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
             Interviews
           </h2>
           <p className="mt-1 text-xs text-slate-500 sm:text-sm">

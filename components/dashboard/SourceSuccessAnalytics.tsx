@@ -1,5 +1,6 @@
 import { Application } from "@/types/application";
 import { getSourceSuccessAnalytics } from "@/lib/dashboard/getSourceSuccessAnalytics";
+import Image from "next/image";
 
 interface SourceSuccessAnalyticsProps {
   applications: Application[];
@@ -13,6 +14,12 @@ export default function SourceSuccessAnalytics({
   const sources = Object.entries(analytics).sort(
     (a, b) => b[1].applications - a[1].applications
   );
+
+   const imageIcons: Record<string, string> = {
+    "Indeed": "/indeedLogo.webp",
+    "Naukri": "/naukariIcon.webp",
+    "LinkedIn": "/LinkedinIcon.webp",
+  }
 
   if (sources.length === 0) {
     return (
@@ -84,6 +91,8 @@ export default function SourceSuccessAnalytics({
               ? (data.offers / data.applications) * 100
               : 0;
 
+              const logoPath = imageIcons[source];
+
           return (
             <div
               key={source}
@@ -93,7 +102,7 @@ export default function SourceSuccessAnalytics({
               <div className="mb-5 flex items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-sm">
-                    🔗
+                    <Image src={logoPath} alt={source} width={24} height={24} />
                   </div>
 
                   <div className="min-w-0">

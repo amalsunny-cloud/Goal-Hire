@@ -1,5 +1,6 @@
 import { getSourceAnalytics } from "@/lib/dashboard/getSourceAnalytics";
 import { Application } from "@/types/application";
+import Image from "next/image";
 
 interface SourceAnalyticsProps {
   applications: Application[];
@@ -11,6 +12,13 @@ export default function SourceAnalytics({
   const analytics = getSourceAnalytics(applications);
 
   const sources = Object.entries(analytics).sort((a, b) => b[1] - a[1]);
+
+  const imageIcons: Record<string, string> = {
+    "Indeed": "/indeedLogo.webp",
+    "Naukri": "/naukariIcon.webp",
+    "LinkedIn": "/LinkedinIcon.webp",
+  }
+
 
   if (sources.length === 0) {
     return (
@@ -71,15 +79,21 @@ export default function SourceAnalytics({
 
       {/* Sources */}
       <div className="space-y-3">
-        {Object.entries(analytics).map(([source, count], index) => (
+        {sources.map(([source, count], index) => {
+          const logoPath = imageIcons[source];
+          return(
           <div
             key={source}
             className="group flex items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50/70 px-4 py-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:shadow-sm"
           >
             <div className="flex min-w-0 items-center gap-3">
               {/* Rank */}
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-xs font-bold text-slate-500 shadow-sm">
-                {index + 1}
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-xs font-bold text-slate-500 shadow-sm overflow-hidden p-1">
+                {logoPath ? (
+                  <Image src={logoPath} alt={source} width={24} height={24} />
+                ) : (
+                  <span>{index + 1}</span>
+                )}
               </div>
 
               <div className="min-w-0">
@@ -100,7 +114,8 @@ export default function SourceAnalytics({
               </span>
             </div>
           </div>
-        ))}
+        );
+        })}
       </div>
 
       {/* Footer */}

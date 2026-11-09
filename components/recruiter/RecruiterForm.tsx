@@ -103,7 +103,7 @@ export default function RecruiterForm({ applicationId, onSuccess }: Props) {
         </div>
 
         <div className="min-w-0">
-          <h2 className="text-lg font-bold tracking-tight text-slate-900 sm:text-xl">
+          <h2 className="text-lg font-bold tracking-tight text-start text-slate-900 sm:text-xl">
             Recruiter Information
           </h2>
 

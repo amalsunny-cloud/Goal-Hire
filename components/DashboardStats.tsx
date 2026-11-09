@@ -45,10 +45,10 @@ export default function DashboardStats({
 
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-      <StatsCard title="Total" value={stats.total} tone="blue" />
-      <StatsCard title="Applied" value={stats.applied} tone="indigo" />
-      <StatsCard title="Interview" value={stats.interview} tone="violet" />
-      <StatsCard title="Offer" value={stats.offer} tone="emerald" />
+      <StatsCard title="Total" value={stats.total} tone="sky" />
+      <StatsCard title="Applied" value={stats.applied} tone="blue" />
+      <StatsCard title="Interview" value={stats.interview} tone="indigo" />
+      <StatsCard title="Offer" value={stats.offer} tone="cyan" />
       <StatsCard title="Rejected" value={stats.rejected} tone="slate" />
     </div>
   );

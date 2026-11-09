@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
       applicationId,
     }).sort({
       date: 1,
-    });
+    }).lean();
 
     return NextResponse.json(interviews);
   } catch (error) {

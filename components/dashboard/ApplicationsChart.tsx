@@ -147,9 +147,9 @@ export default function ApplicationsChart({
             {/* Bars */}
             <Bar
               dataKey="applications"
-              fill="#3b82f6"
-              radius={[8, 8, 2, 2]}
-              maxBarSize={42}
+              fill="rgba(22, 36, 86, 0.9)"
+              radius={[18, 18, 2, 2]}
+              maxBarSize={22}
             />
           </BarChart>
         </ResponsiveContainer>

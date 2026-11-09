@@ -367,7 +367,7 @@ export default function RecruiterCard({
 
       {/* Communication Form */}
       {showCommunicationForm && (
-        <div className="mt-6 rounded-3xl border border-indigo-100 bg-indigo-50/40 p-4 sm:p-5">
+        <div className="mt-6 rounded-3xl border border-indigo-100 bg-indigo-500 p-4 sm:p-5">
           <CommunicationForm
             recruiterId={recruiter._id}
             applicationId={recruiter.applicationId}
@@ -381,7 +381,7 @@ export default function RecruiterCard({
       )}
 
       {/* Communication & Templates */}
-      <div className="mt-6 grid grid-cols-1 gap-5 border-t border-slate-100 pt-6 lg:grid-cols-2">
+      <div className="mt-6 gap-5 border-t border-slate-100 pt-6 lg:grid-cols-2">
         <CommunicationList recruiterId={recruiter._id} refreshKey={communicationRefreshKey} />
 
         <EmailTemplates

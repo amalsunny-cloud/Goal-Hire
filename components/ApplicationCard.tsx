@@ -23,7 +23,7 @@ export default function ApplicationCard({
   onStatusChange,
 }: ApplicationCardProps) {
   return (
-    <div className="bg-slate-50/70 rounded-lg p-6 border border-slate-200/70 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white hover:border-b-1 hover:border-indigo-500 hover:shadow-md">
+    <div className="bg-slate-50/70 rounded-lg p-6 border border-slate-200/70 shadow-sm transition-all duration-200 hover:-translate-y-0.5  hover:bg-white hover:shadow-md">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
         <div className="flex flex-col justify-center space-y-1">
           <h3 className="font-bold text-lg text-gray-800">

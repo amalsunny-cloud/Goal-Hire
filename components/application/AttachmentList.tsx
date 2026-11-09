@@ -131,7 +131,7 @@ export default function AttachmentList({
           </div>
 
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
               Uploaded Files
             </h2>
 

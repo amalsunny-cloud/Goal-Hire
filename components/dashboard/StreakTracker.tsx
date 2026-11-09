@@ -32,11 +32,11 @@ export default function StreakTracker({
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-2xl font-bold text-start tracking-tight text-slate-900">
               Job Search Streak
             </h2>
 
-            <p className="mt-1 text-sm text-slate-500 sm:text-base">
+            <p className="mt-1 text-xs text-slate-500 sm:text-base">
               Consistency today. Opportunities tomorrow.
             </p>
           </div>
@@ -44,10 +44,10 @@ export default function StreakTracker({
       </div>
 
       {/* Metrics */}
-      <div className="relative z-10 mt-8 grid grid-cols-1 divide-y divide-slate-200/70 rounded-2xl border border-white/70 bg-white/45  sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div className="relative z-10 mt-8 grid grid-cols-1 rounded-2xl bg-white/45  sm:grid-cols-3 p-2 gap-4">
 
         {/* Current Streak */}
-        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6">
+        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6 bg-blue-300/50 rounded-3xl">
 
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-100/80">
             <Zap className="h-5 w-5 text-blue-600" />
@@ -69,7 +69,7 @@ export default function StreakTracker({
         </div>
 
         {/* Longest Streak */}
-        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6">
+        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6 bg-blue-300/30 rounded-3xl">
 
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-violet-100/80">
             <Crown className="h-5 w-5 text-violet-600" />
@@ -91,7 +91,7 @@ export default function StreakTracker({
         </div>
 
         {/* Applied Today */}
-        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6">
+        <div className="flex items-center gap-4 px-5 py-6 sm:flex-col sm:items-center sm:justify-center sm:px-6 bg-blue-700/30 rounded-3xl">
 
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-100/80">
             <CalendarCheck className="h-5 w-5 text-emerald-600" />

@@ -238,11 +238,11 @@ useEffect(() => {
       />
 
       {/* Recruiters */}
-      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div className="rounded-3xl border border-slate-200 bg-green-700 p-5 shadow-sm sm:p-6">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
               Recruiters
             </h2>
 

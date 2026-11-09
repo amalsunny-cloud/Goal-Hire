@@ -50,7 +50,7 @@ export default function RecruiterConversionFunnel({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
             Recruiter Conversion Funnel
           </h2>
 

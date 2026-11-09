@@ -21,7 +21,7 @@ export async function GET(){
 
         const applications = await Application.find({
             userId: user.userId,
-        })
+        }).lean();
 
         const ids = applications.map(app=>app._id);
 
@@ -29,7 +29,7 @@ export async function GET(){
             applicationId: {
                 $in: ids,
             },
-        })
+        }).lean();
 
         return NextResponse.json(interviews);
     }catch(error){

@@ -416,7 +416,7 @@ export default function Dashboard() {
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                  <p className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl text-start">
                     Add New Application
                   </p>
 

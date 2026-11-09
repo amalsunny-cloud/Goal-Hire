@@ -94,7 +94,7 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
               key={recruiter._id}
               className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
             >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex lg:flex-col md:flex-col gap-3 sm:flex-row sm:items-start sm:justify-between md:items-center lg:items-center">
                 <div className="min-w-0">
                   <h4 className="truncate text-sm font-bold text-slate-900">
                     {recruiter.name}
@@ -137,7 +137,7 @@ export default function RecruiterReminderPanel({ recruiters }: Props) {
       {/* Header */}
       <div className="mb-6 flex flex-col gap-2 border-b border-slate-100 pb-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
             Recruiter Reminder Center
           </h2>
 

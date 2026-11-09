@@ -32,7 +32,7 @@ export default function ResponseAnalytics({ communications }: Props) {
       {/* Header */}
       <div className="mb-6 flex flex-col gap-2 border-b border-slate-100 pb-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
             Recruiter Response Analytics
           </h2>
 

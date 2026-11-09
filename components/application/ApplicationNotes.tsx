@@ -58,7 +58,7 @@ export default function ApplicationNotes({
           </div>
 
           <div className="min-w-0">
-            <h2 className="text-md font-bold tracking-tight text-slate-900 sm:text-base">
+            <h2 className="text-md font-bold tracking-tight text-start text-slate-900 sm:text-base">
               Notes
             </h2>
 

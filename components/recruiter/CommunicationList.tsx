@@ -88,7 +88,7 @@ export default function CommunicationList({ recruiterId, refreshKey = 0 }: Props
           </div>
 
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            <h2 className="text-xl font-bold tracking-tight  text-slate-900 sm:text-2xl">
               Communication Timeline
             </h2>
 
@@ -148,7 +148,7 @@ export default function CommunicationList({ recruiterId, refreshKey = 0 }: Props
           </div>
 
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+            <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
               Communication Timeline
             </h2>
 

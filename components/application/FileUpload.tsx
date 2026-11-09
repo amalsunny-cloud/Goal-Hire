@@ -111,7 +111,7 @@ export default function FileUpload({ applicationId, onUploadSuccess }: FileUploa
         </div>
 
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-2xl">
             Attachments
           </h2>
 
