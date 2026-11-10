@@ -72,11 +72,11 @@ export default function GoalSettings({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
             Goal Settings
           </h2>
 
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-start text-xs text-slate-500">
             Set your monthly application, interview, and offer targets
           </p>
         </div>

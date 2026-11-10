@@ -195,7 +195,7 @@ export default function CompanyAnalytics({ companies }: Props) {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 sm:text-base">
+                  <h3 className="text-sm font-bold text-start text-slate-900 sm:text-base">
                     Highest Response Rate Champion
                   </h3>
 
@@ -297,7 +297,7 @@ export default function CompanyAnalytics({ companies }: Props) {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 sm:text-base">
+                  <h3 className="text-sm font-bold text-start text-slate-900 sm:text-base">
                     Most Active Engagement Hub
                   </h3>
 

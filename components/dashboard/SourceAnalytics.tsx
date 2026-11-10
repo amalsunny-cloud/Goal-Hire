@@ -26,7 +26,7 @@ export default function SourceAnalytics({
         {/* Header */}
         <div className="mb-7 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
               Job Sources
             </h2>
 
@@ -63,7 +63,7 @@ export default function SourceAnalytics({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
             Job Sources
           </h2>
 

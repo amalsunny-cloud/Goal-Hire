@@ -110,7 +110,7 @@ export default function RecruiterCalendar({ recruiters }: Props) {
       <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5">
         <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-base text-start font-bold text-slate-900">
               Recruiters on{" "}
               {selectedDate.toLocaleDateString("en-GB")}
             </h3>

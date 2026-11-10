@@ -18,7 +18,7 @@ export default function ApplicationFunnel({
       <div className="rounded-3xl bg-white p-6 shadow-sm">
         {/* Header */}
         <div className="mb-6">
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
             Application Funnel
           </h2>
 
@@ -51,7 +51,7 @@ export default function ApplicationFunnel({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
             Application Funnel
           </h2>
 

@@ -112,7 +112,7 @@ export default function CompanyBarChart({ companies }: Props) {
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">
+            <h3 className="text-lg font-bold tracking-tight text-start text-slate-900 sm:text-base">
               Cross-Company Activity Comparison
             </h3>
 

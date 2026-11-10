@@ -50,12 +50,10 @@ export default function KanbanBoard({
       draggableId,
     } = result;
 
-    // User dropped outside a column
     if (!destination) {
       return;
     }
 
-    // Nothing changed
     if (
       source.droppableId === destination.droppableId
     ) {
@@ -65,15 +63,12 @@ export default function KanbanBoard({
     const newStatus =
       destination.droppableId as ApplicationStatus;
 
-    // Make sure the destination is valid
     if (!statuses.includes(newStatus)) {
       console.error(
         "Invalid Kanban destination:",
         destination.droppableId,
       );
-
       toast.error("Invalid application status");
-
       return;
     }
 
@@ -93,7 +88,6 @@ export default function KanbanBoard({
         "Kanban status update failed:",
         error,
       );
-
       toast.error(
         "Failed to update application status",
       );
@@ -106,7 +100,7 @@ export default function KanbanBoard({
         {/* Board Header */}
         <div className="mb-5 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-2xl text-start font-bold tracking-tight text-slate-900">
               Application Pipeline
             </h2>
 

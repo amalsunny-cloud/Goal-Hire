@@ -54,7 +54,7 @@ export default function RecruiterConversionFunnel({
             Recruiter Conversion Funnel
           </h2>
 
-          <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+          <p className="mt-1 text-xs text-start leading-5 text-slate-500 sm:text-sm">
             Track your recruiter outreach from initial contact to positive
             responses.
           </p>
@@ -103,7 +103,7 @@ export default function RecruiterConversionFunnel({
               </div>
 
               {/* Progress */}
-              <div className="h-9 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+              <div className="h-6 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
                 <div
                   className={`${stage.color} flex h-full items-center justify-end rounded-xl pr-3 text-xs font-bold text-white transition-all duration-500`}
                   style={{

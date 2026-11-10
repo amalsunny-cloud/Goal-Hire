@@ -49,7 +49,7 @@ export default function ApplicationNotes({
   };
 
   return (
-    <div className="rounded-3xl p-5 sm:p-6">
+    <div className="rounded-3xl p-3 sm:p-5">
       {/* Header */}
       <div className="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
         <div className="flex min-w-0 items-center gap-3">

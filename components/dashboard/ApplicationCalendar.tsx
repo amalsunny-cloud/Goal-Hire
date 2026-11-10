@@ -72,7 +72,7 @@ export default function ApplicationCalendar({
         {/* Header */}
         <div className="mb-7 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-2xl font-bold tracking-tight text-start text-slate-900">
               Calendar View
             </h2>
 
@@ -110,7 +110,7 @@ export default function ApplicationCalendar({
       {/* Header */}
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-2xl font-bold tracking-tight text-start text-slate-900">
             Calendar View
           </h2>
 

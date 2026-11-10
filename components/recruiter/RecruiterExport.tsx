@@ -134,13 +134,15 @@ export default function RecruiterExport({
     <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       {/* Header */}
       <div className="mb-6 flex flex-col items-center text-center">
+        <div className="flex justify-between items-center gap-3">
         <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-600">
           <span className="text-lg">📤</span>
         </div>
 
-        <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl pb-3">
           Export Recruiter Data
         </h2>
+        </div>
 
         <p className="mt-1 max-w-md text-xs leading-5 text-slate-500 sm:text-sm">
           Download your recruiter information and communication data for

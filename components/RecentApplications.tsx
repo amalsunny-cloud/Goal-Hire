@@ -30,7 +30,7 @@ export default function RecentApplications({
               Recent Applications
             </h2>
 
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-start text-xs text-slate-500">
               Your latest job applications
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function RecentApplications({
             </span>
           </div>
 
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-start text-xs text-slate-500">
             Your latest job applications
           </p>
         </div>

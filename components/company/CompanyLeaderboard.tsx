@@ -81,7 +81,7 @@ export default function CompanyLeaderboard({ companies }: Props) {
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-xl font-bold tracking-tight text-slate-900 sm:text-base">
+            <h3 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-base">
               Response Rate Leaderboard
             </h3>
 

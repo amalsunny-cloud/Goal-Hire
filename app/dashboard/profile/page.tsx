@@ -12,14 +12,7 @@ export default function ProfilePage() {
         <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-0.5" />
         Back to Dashboard
       </Link>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">My Profile</h1>
-
-        <p className="mt-1 text-sm text-slate-500">
-          Manage your professional information, skills, experience, and career
-          links.
-        </p>
-      </div>
+      
 
       <ProfileForm />
     </main>

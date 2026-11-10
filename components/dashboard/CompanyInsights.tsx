@@ -23,7 +23,7 @@ export default function CompanyInsights({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl font-bold tracking-tight text-start text-slate-900">
             Company Insights
           </h2>
 

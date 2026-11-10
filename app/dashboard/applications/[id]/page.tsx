@@ -121,7 +121,7 @@ export default async function ApplicationDetailsPage({
         </div>
 
         {/* Main Header / Hero Card */}
-        <div className="border border-slate-200/80 p-6 sm:p-8 rounded-3xl space-y-6 bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-6 py-6 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
+        <div className="border border-slate-200/80 p-4 sm:p-8 rounded-3xl space-y-6 bg-linear-to-br from-slate-950 via-blue-950 to-indigo-900 px-5 text-white shadow-2xl shadow-blue-950/20 sm:px-10 sm:py-9">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2.5">
@@ -154,34 +154,34 @@ export default async function ApplicationDetailsPage({
           {/* Metadata Details Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pt-4 text-xs">
             {/* Location */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" />
                 Location
               </span>
-              <p className="font-semibold text-slate-700 truncate">
+              <p className="font-semibold text-lg text-slate-700 truncate">
                 {application.location || "Not specified"}
               </p>
             </div>
 
             {/* Salary */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <DollarSign className="w-3.5 h-3.5" />
                 Salary
               </span>
-              <p className="font-semibold text-slate-700 truncate">
+              <p className="font-semibold text-lg text-slate-700 truncate mt-3">
                 {application.salary || "Not specified"}
               </p>
             </div>
 
             {/* Follow-up Date */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Calendar className="w-3.5 h-3.5" />
                 Follow-Up
               </span>
-              <p className="font-semibold text-slate-700 truncate">
+              <p className="font-semibold text-slate-700 text-lg mt-3 truncate">
                 {application.followUpDate
                   ? new Date(application.followUpDate).toLocaleDateString(
                       "en-GB",
@@ -191,7 +191,7 @@ export default async function ApplicationDetailsPage({
             </div>
 
             {/* Job URL */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <ExternalLink className="w-3.5 h-3.5" />
                 Job Post
@@ -210,35 +210,35 @@ export default async function ApplicationDetailsPage({
                   View Listing ↗
                 </a>
               ) : (
-                <p className="font-semibold text-slate-400">None</p>
+                <p className="font-semibold text-slate-400 text-lg mt-3">None</p>
               )}
             </div>
 
             {/* Created At */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
                 Applied On
               </span>
-              <p className="font-semibold text-slate-700 truncate">
+              <p className="font-semibold text-slate-700 text-lg mt-3 truncate">
                 {new Date(application.createdAt).toLocaleDateString("en-GB")}
               </p>
             </div>
 
             {/* Last Updated */}
-            <div className="bg-white/90 border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
+            <div className="bg-white border border-slate-200/70 p-3 rounded-xl space-y-1 transition hover:border-slate-300">
               <span className="text-slate-400 font-medium flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />
-                Updated
+                Updated On
               </span>
-              <p className="font-semibold text-slate-700 truncate">
+              <p className="font-semibold text-slate-700 text-lg mt-3 truncate">
                 {new Date(application.updatedAt).toLocaleDateString("en-GB")}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl mt-6 shadow-sm">
+        <div className="bg-white border border-slate-200/80 p-4 rounded-2xl mt-6 shadow-sm">
           <ApplicationNotes
             applicationId={application._id.toString()}
             initialNotes={application.notes || ""}
@@ -249,7 +249,7 @@ export default async function ApplicationDetailsPage({
           {/* Notes Card */}
 
           {/* Interviews Schedule Form */}
-          <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
             <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
               Schedule Interview
             </h2>
@@ -257,7 +257,7 @@ export default async function ApplicationDetailsPage({
           </div>
 
           {/* Interviews List */}
-          <div className="bg-slate-400/10 border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
+          <div className="bg-white border border-slate-200/80 p-6 rounded-2xl shadow-sm space-y-4">
             <h2 className="text-2xl tracking-tight font-semibold text-slate-800">
               Interview Rounds
             </h2>

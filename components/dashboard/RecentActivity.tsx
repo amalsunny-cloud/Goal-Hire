@@ -30,7 +30,7 @@ export default function RecentActivity({
       {/* Header */}
       <div className="mb-5 flex items-start justify-between border-b border-slate-200 pb-5">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl font-bold text-start tracking-tight text-slate-900">
             Recent Activity
           </h2>
 

@@ -13,7 +13,6 @@ import {
   Save,
   Trash2,
   UserRound,
-  
   Globe,
   FileText,
   Code2,
@@ -48,8 +47,7 @@ const initialProfile: ProfileFormData = {
 };
 
 export default function ProfileForm() {
-  const [profile, setProfile] =
-    useState<ProfileFormData>(initialProfile);
+  const [profile, setProfile] = useState<ProfileFormData>(initialProfile);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -94,10 +92,7 @@ export default function ProfileForm() {
     fetchProfile();
   }, []);
 
-  const updateField = (
-    field: keyof ProfileFormData,
-    value: string,
-  ) => {
+  const updateField = (field: keyof ProfileFormData, value: string) => {
     setProfile((prev) => ({
       ...prev,
       [field]: value,
@@ -125,9 +120,7 @@ export default function ProfileForm() {
   const removeSkill = (skillToRemove: string) => {
     setProfile((prev) => ({
       ...prev,
-      skills: prev.skills.filter(
-        (skill) => skill !== skillToRemove,
-      ),
+      skills: prev.skills.filter((skill) => skill !== skillToRemove),
     }));
   };
 
@@ -147,9 +140,7 @@ export default function ProfileForm() {
   const removeExperience = (index: number) => {
     setProfile((prev) => ({
       ...prev,
-      experience: prev.experience.filter(
-        (_, i) => i !== index,
-      ),
+      experience: prev.experience.filter((_, i) => i !== index),
     }));
   };
 
@@ -169,9 +160,7 @@ export default function ProfileForm() {
   const removeEducation = (index: number) => {
     setProfile((prev) => ({
       ...prev,
-      education: prev.education.filter(
-        (_, i) => i !== index,
-      ),
+      education: prev.education.filter((_, i) => i !== index),
     }));
   };
 
@@ -190,16 +179,13 @@ export default function ProfileForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.error || "Failed to save profile",
-        );
+        throw new Error(data.error || "Failed to save profile");
       }
 
       setProfile({
         phone: data.phone || "",
         location: data.location || "",
-        professionalTitle:
-          data.professionalTitle || "",
+        professionalTitle: data.professionalTitle || "",
         bio: data.bio || "",
         skills: data.skills || [],
         experience: data.experience || [],
@@ -213,9 +199,7 @@ export default function ProfileForm() {
       toast.success("Profile saved successfully");
     } catch (error) {
       toast.error(
-        error instanceof Error
-          ? error.message
-          : "Failed to save profile",
+        error instanceof Error ? error.message : "Failed to save profile",
       );
     } finally {
       setSaving(false);
@@ -262,18 +246,13 @@ export default function ProfileForm() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Professional Profile
-              </p>
-
-              <h1 className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                Build your professional identity
+              <h1 className="mt-1 text-2xl text-start font-bold tracking-tight text-white sm:text-3xl">
+                My Profile
               </h1>
 
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-                Keep your career information in one place for
-                applications, resumes, and future AI-powered
-                features.
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-300">
+                Manage your professional information, skills, experience, and
+                career links.
               </p>
             </div>
           </div>
@@ -281,7 +260,7 @@ export default function ProfileForm() {
       </section>
 
       {/* Professional Information */}
-      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-3xl text-start border border-slate-200 bg-white shadow-sm">
         <SectionHeader
           icon={<BriefcaseBusiness className="h-5 w-5" />}
           title="Professional Information"
@@ -292,40 +271,25 @@ export default function ProfileForm() {
           <Field label="Professional Title">
             <input
               value={profile.professionalTitle}
-              onChange={(e) =>
-                updateField(
-                  "professionalTitle",
-                  e.target.value,
-                )
-              }
+              onChange={(e) => updateField("professionalTitle", e.target.value)}
               placeholder="e.g. Full Stack Developer"
               className="input"
             />
           </Field>
 
-          <Field
-            label="Location"
-            icon={<MapPin className="h-3.5 w-3.5" />}
-          >
+          <Field label="Location" icon={<MapPin className="h-3.5 w-3.5" />}>
             <input
               value={profile.location}
-              onChange={(e) =>
-                updateField("location", e.target.value)
-              }
+              onChange={(e) => updateField("location", e.target.value)}
               placeholder="e.g. Thrissur, Kerala"
               className="input"
             />
           </Field>
 
-          <Field
-            label="Phone"
-            icon={<Phone className="h-3.5 w-3.5" />}
-          >
+          <Field label="Phone" icon={<Phone className="h-3.5 w-3.5" />}>
             <input
               value={profile.phone}
-              onChange={(e) =>
-                updateField("phone", e.target.value)
-              }
+              onChange={(e) => updateField("phone", e.target.value)}
               placeholder="Phone number"
               className="input"
             />
@@ -335,9 +299,7 @@ export default function ProfileForm() {
             <Field label="Professional Bio">
               <textarea
                 value={profile.bio}
-                onChange={(e) =>
-                  updateField("bio", e.target.value)
-                }
+                onChange={(e) => updateField("bio", e.target.value)}
                 placeholder="Write a short professional bio..."
                 rows={5}
                 className="input resize-y leading-6"
@@ -348,7 +310,7 @@ export default function ProfileForm() {
       </section>
 
       {/* Skills */}
-      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-3xl text-start border border-slate-200 bg-white shadow-sm">
         <SectionHeader
           icon={<Check className="h-5 w-5" />}
           title="Skills"
@@ -359,9 +321,7 @@ export default function ProfileForm() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <input
               value={skillInput}
-              onChange={(e) =>
-                setSkillInput(e.target.value)
-              }
+              onChange={(e) => setSkillInput(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
@@ -406,7 +366,7 @@ export default function ProfileForm() {
       </section>
 
       {/* Experience */}
-      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-3xl text-start border border-slate-200 bg-white shadow-sm">
         <SectionHeader
           icon={<BriefcaseBusiness className="h-5 w-5" />}
           title="Experience"
@@ -417,9 +377,7 @@ export default function ProfileForm() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <input
               value={experienceInput}
-              onChange={(e) =>
-                setExperienceInput(e.target.value)
-              }
+              onChange={(e) => setExperienceInput(e.target.value)}
               placeholder="e.g. Full Stack Developer Intern at ABC"
               className="input flex-1"
             />
@@ -440,9 +398,7 @@ export default function ProfileForm() {
                 <ListItem
                   key={`${item}-${index}`}
                   text={item}
-                  onRemove={() =>
-                    removeExperience(index)
-                  }
+                  onRemove={() => removeExperience(index)}
                 />
               ))}
             </div>
@@ -453,7 +409,7 @@ export default function ProfileForm() {
       </section>
 
       {/* Education */}
-      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-3xl text-start border border-slate-200 bg-white shadow-sm">
         <SectionHeader
           icon={<GraduationCap className="h-5 w-5" />}
           title="Education"
@@ -464,9 +420,7 @@ export default function ProfileForm() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <input
               value={educationInput}
-              onChange={(e) =>
-                setEducationInput(e.target.value)
-              }
+              onChange={(e) => setEducationInput(e.target.value)}
               placeholder="e.g. BSc Information Technology"
               className="input flex-1"
             />
@@ -487,9 +441,7 @@ export default function ProfileForm() {
                 <ListItem
                   key={`${item}-${index}`}
                   text={item}
-                  onRemove={() =>
-                    removeEducation(index)
-                  }
+                  onRemove={() => removeEducation(index)}
                 />
               ))}
             </div>
@@ -500,7 +452,7 @@ export default function ProfileForm() {
       </section>
 
       {/* Career Links */}
-      <section className="rounded-3xl border border-slate-200 bg-white shadow-sm">
+      <section className="rounded-3xl text-start border border-slate-200 bg-white shadow-sm">
         <SectionHeader
           icon={<Link2 className="h-5 w-5" />}
           title="Career Links"
@@ -513,9 +465,7 @@ export default function ProfileForm() {
             label="Resume"
             value={profile.resumeUrl}
             placeholder="https://..."
-            onChange={(value) =>
-              updateField("resumeUrl", value)
-            }
+            onChange={(value) => updateField("resumeUrl", value)}
           />
 
           <LinkField
@@ -523,9 +473,7 @@ export default function ProfileForm() {
             label="Portfolio"
             value={profile.portfolioUrl}
             placeholder="https://..."
-            onChange={(value) =>
-              updateField("portfolioUrl", value)
-            }
+            onChange={(value) => updateField("portfolioUrl", value)}
           />
 
           <LinkField
@@ -533,9 +481,7 @@ export default function ProfileForm() {
             label="GitHub"
             value={profile.githubUrl}
             placeholder="https://github.com/..."
-            onChange={(value) =>
-              updateField("githubUrl", value)
-            }
+            onChange={(value) => updateField("githubUrl", value)}
           />
 
           <LinkField
@@ -543,9 +489,7 @@ export default function ProfileForm() {
             label="LinkedIn"
             value={profile.linkedinUrl}
             placeholder="https://linkedin.com/in/..."
-            onChange={(value) =>
-              updateField("linkedinUrl", value)
-            }
+            onChange={(value) => updateField("linkedinUrl", value)}
           />
         </div>
       </section>
@@ -566,9 +510,6 @@ export default function ProfileForm() {
   );
 }
 
-/* ----------------------------- */
-/* Reusable UI components        */
-/* ----------------------------- */
 
 interface SectionHeaderProps {
   icon: React.ReactNode;
@@ -576,11 +517,7 @@ interface SectionHeaderProps {
   description: string;
 }
 
-function SectionHeader({
-  icon,
-  title,
-  description,
-}: SectionHeaderProps) {
+function SectionHeader({ icon, title, description }: SectionHeaderProps) {
   return (
     <div className="flex items-start gap-3 border-b border-slate-100 p-5 sm:p-6">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
@@ -592,9 +529,7 @@ function SectionHeader({
           {title}
         </h2>
 
-        <p className="mt-1 text-xs leading-5 text-slate-500">
-          {description}
-        </p>
+        <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
       </div>
     </div>
   );
@@ -606,11 +541,7 @@ interface FieldProps {
   children: React.ReactNode;
 }
 
-function Field({
-  label,
-  icon,
-  children,
-}: FieldProps) {
+function Field({ label, icon, children }: FieldProps) {
   return (
     <div>
       <label className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-slate-600">
@@ -639,10 +570,7 @@ function LinkField({
   onChange,
 }: LinkFieldProps) {
   return (
-    <Field
-      label={label}
-      icon={icon}
-    >
+    <Field label={label} icon={icon}>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -658,10 +586,7 @@ interface ListItemProps {
   onRemove: () => void;
 }
 
-function ListItem({
-  text,
-  onRemove,
-}: ListItemProps) {
+function ListItem({ text, onRemove }: ListItemProps) {
   return (
     <div className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 transition hover:border-slate-300 hover:bg-white">
       <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-slate-500 shadow-sm">
@@ -687,9 +612,7 @@ function ListItem({
 function EmptyState({ text }: { text: string }) {
   return (
     <div className="mt-5 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 px-4 py-6 text-center">
-      <p className="text-xs font-medium text-slate-400">
-        {text}
-      </p>
+      <p className="text-xs font-medium text-slate-400">{text}</p>
     </div>
   );
 }

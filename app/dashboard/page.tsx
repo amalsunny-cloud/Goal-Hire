@@ -429,6 +429,9 @@ export default function Dashboard() {
               <ApplicationForm onAddSuccess={handleAddApplication} />
             </div>
             <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md">
+              <h2 className="mb-4 text-2xl text-start font-bold tracking-tight text-slate-900 m-4 mx-4">
+                Application List
+              </h2>
               <div className="mb-2 flex flex-col gap-3 rounded-2xl  bg-white p-3 sm:p-4 md:flex-row md:items-center md:justify-between">
                 {/* Search */}
                 <div className="relative w-full md:w-80">

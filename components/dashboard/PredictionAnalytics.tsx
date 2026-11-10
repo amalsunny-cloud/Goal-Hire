@@ -19,7 +19,7 @@ export default function PredictionAnalytics({
       {/* Header */}
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
             Prediction Dashboard
           </h2>
 
