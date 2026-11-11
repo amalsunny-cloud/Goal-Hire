@@ -1,3 +1,4 @@
+
 "use client";
 
 import { CompanyInsight } from "@/types/companyInsight";
@@ -72,16 +73,16 @@ export default function CompanyLeaderboard({ companies }: Props) {
       .toUpperCase();
 
   return (
-    <div className="space-y-6 border-b border-slate-200 bg-white p-5 sm:p-6 mb-4">
+    <div className="mb-4 min-w-0 w-full border-b border-slate-200 bg-white p-3 sm:space-y-6 sm:p-5 md:p-6">
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-5 flex min-w-0 flex-col gap-3 border-b border-slate-100 pb-5 sm:mb-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex min-w-0 items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-yellow-100 bg-yellow-50 text-yellow-600">
             <Trophy className="h-4 w-4" />
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-xl font-bold tracking-tight text-start text-slate-900 sm:text-base">
+            <h3 className="text-lg font-bold tracking-tight text-start text-slate-900 sm:text-xl">
               Response Rate Leaderboard
             </h3>
 
@@ -98,9 +99,9 @@ export default function CompanyLeaderboard({ companies }: Props) {
       </div>
 
       {/* Leaderboard */}
-      <div className="space-y-3 grid grid-cols-2 gap-3 sm:grid-cols-2">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         {rankedCompanies.length === 0 ? (
-          <div className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-5 text-center text-xs text-slate-400">
+          <div className="col-span-full flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 px-5 text-center text-xs text-slate-400">
             <div>
               <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-400">
                 <Building2 className="h-4 w-4" />
@@ -118,12 +119,12 @@ export default function CompanyLeaderboard({ companies }: Props) {
               href={`/dashboard/company/${encodeURIComponent(
                 company.company,
               )}`}
-              className="group block"
+              className="group block min-w-0"
             >
-              <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/60 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-sm sm:p-4.5">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative min-w-0 rounded-2xl border border-slate-200 bg-slate-50/60 p-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-sm sm:p-4">
+                <div className="flex min-w-0 flex-col gap-4">
                   {/* Left Side */}
-                  <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex min-w-0 items-start gap-2.5 sm:gap-3">
                     {getRankBadge(index)}
 
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-xs font-extrabold text-slate-700 transition-transform duration-200 group-hover:scale-105">
@@ -132,14 +133,14 @@ export default function CompanyLeaderboard({ companies }: Props) {
                       )}
                     </div>
 
-                    <div className="min-w-0">
-                      <h4 className="truncate text-sm font-bold text-slate-900 transition-colors duration-200 group-hover:text-blue-600">
+                    <div className="min-w-0 flex-1">
+                      <h4 className="wrap-break-word text-sm font-bold text-slate-900 transition-colors duration-200 group-hover:text-blue-600 text-start">
                         {company.company}
                       </h4>
 
                       <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-slate-500">
                         <span className="flex items-center gap-1.5">
-                          <Users className="h-3 w-3 text-slate-400" />
+                          <Users className="h-3 w-3 shrink-0 text-slate-400" />
 
                           <span>
                             {company.recruiterCount}{" "}
@@ -152,7 +153,7 @@ export default function CompanyLeaderboard({ companies }: Props) {
                         <span className="hidden h-3 w-px bg-slate-200 sm:block" />
 
                         <span className="flex items-center gap-1.5">
-                          <Mail className="h-3 w-3 text-slate-400" />
+                          <Mail className="h-3 w-3 shrink-0 text-slate-400" />
 
                           <span>
                             {company.communicationCount} outreach
@@ -163,18 +164,18 @@ export default function CompanyLeaderboard({ companies }: Props) {
                   </div>
 
                   {/* Right Side */}
-                  <div className="flex items-center justify-between gap-4 pl-13 sm:justify-end sm:pl-0">
-                    <div className="min-w-28 space-y-2">
-                      <div className="flex items-center gap-2 sm:justify-end">
+                  <div className="flex min-w-0 items-center justify-between gap-3 border-t border-slate-200/70 pt-3">
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span
-                          className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-bold ${getRateBadgeColor(
+                          className={`inline-flex shrink-0 items-center rounded-lg border px-2.5 py-1 text-xs font-bold ${getRateBadgeColor(
                             company.responseRate,
                           )}`}
                         >
                           {company.responseRate}%
                         </span>
 
-                        <span className="hidden text-[10px] font-semibold uppercase tracking-wide text-slate-400 sm:inline">
+                        <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
                           Response Rate
                         </span>
                       </div>
@@ -209,12 +210,12 @@ export default function CompanyLeaderboard({ companies }: Props) {
 
       {/* Footer */}
       {rankedCompanies.length > 0 && (
-        <div className="flex items-center gap-2 border-t border-slate-100 pt-4 text-[11px] font-medium text-slate-400">
-          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-blue-50 text-blue-500">
+        <div className="mt-5 flex items-start gap-2 border-t border-slate-100 pt-4 text-[11px] font-medium text-slate-400 sm:mt-6">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-500">
             <TrendingUp className="h-3.5 w-3.5" />
           </div>
 
-          <span>
+          <span className="min-w-0 leading-5">
             Response rate is used as the primary ranking metric.
           </span>
         </div>

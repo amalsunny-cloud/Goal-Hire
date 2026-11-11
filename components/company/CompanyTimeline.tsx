@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Recruiter } from "@/types/recruiter";
@@ -28,20 +29,22 @@ function getIcon(type: CompanyTimelineItem["type"]) {
   switch (type) {
     case "Recruiter":
       return (
-        <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center border-2 border-white shadow-xs">
-          <UserPlus className="w-4 h-4" />
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-white bg-blue-100 text-blue-600 shadow-xs">
+          <UserPlus className="h-4 w-4" />
         </div>
       );
+
     case "Communication":
       return (
-        <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center border-2 border-white shadow-xs">
-          <Mail className="w-4 h-4" />
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-white bg-emerald-100 text-emerald-600 shadow-xs">
+          <Mail className="h-4 w-4" />
         </div>
       );
+
     case "Response":
       return (
-        <div className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center border-2 border-white shadow-xs">
-          <CheckCircle className="w-4 h-4" />
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-white bg-purple-100 text-purple-600 shadow-xs">
+          <CheckCircle className="h-4 w-4" />
         </div>
       );
   }
@@ -93,12 +96,16 @@ export default function CompanyTimeline({
 
   if (events.length === 0) {
     return (
-      <div className="bg-white border border-slate-200/80 rounded-2xl p-8 text-center shadow-xs">
-        <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
-          <Clock className="w-6 h-6" />
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 text-center shadow-xs sm:p-8">
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+          <Clock className="h-6 w-6" />
         </div>
-        <h3 className="text-base font-semibold text-slate-800">No activity recorded</h3>
-        <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+
+        <h3 className="text-base font-semibold text-slate-800">
+          No activity recorded
+        </h3>
+
+        <p className="mx-auto mt-1 max-w-md text-xs leading-5 text-slate-500">
           Add recruiters or log communications to start tracking the timeline for this company.
         </p>
       </div>
@@ -106,42 +113,54 @@ export default function CompanyTimeline({
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="p-2 bg-purple-50 text-purple-600 rounded-xl border border-purple-100">
-            <Activity className="w-4 h-4" />
-          </div>
-          <div>
-            <h2 className="text-lg font-bold text-slate-900">
-              Activity Timeline
-            </h2>
-            <p className="text-xs text-slate-500">
-              Chronological log of touchpoints and recruiter events
-            </p>
-          </div>
+    <div className="w-full min-w-0 space-y-4 p-3 sm:p-4">
+      {/* Header */}
+      <div className="flex min-w-0 items-start gap-2.5">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-purple-100 bg-purple-50 text-purple-600">
+          <Activity className="h-4 w-4" />
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <h2 className="text-lg font-bold text-start text-slate-900">
+            Activity Timeline
+          </h2>
+
+          <p className="mt-0.5 text-xs leading-5 text-slate-500">
+            Chronological log of touchpoints and recruiter events
+          </p>
         </div>
       </div>
 
-      <div className="relative pl-6 space-y-6 before:absolute before:left-3.75 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200/80">
+      {/* Timeline */}
+      <div className="relative space-y-5 pl-10 sm:space-y-6 sm:pl-11">
+        {/* Vertical Timeline Line */}
+        <div className="absolute bottom-3 left-3.75 top-3 w-0.5 bg-slate-200/80 sm:left-4.25" />
+
         {events.map((event) => (
-          <div key={event.id} className="relative flex items-start gap-4">
-            <div className="absolute -left-9.25 top-1">
+          <div
+            key={event.id}
+            className="relative flex min-w-0 items-start"
+          >
+            {/* Timeline Icon */}
+            <div className="absolute -left-10 top-0 z-10 sm:-left-11">
               {getIcon(event.type)}
             </div>
 
-            <div className="flex-1 bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-xs hover:shadow-sm transition-all space-y-1.5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <h3 className="text-sm font-bold text-slate-900">
+            {/* Activity Card */}
+            <div className="min-w-0 flex-1 space-y-2 rounded-2xl border border-slate-200/80 bg-white p-3 shadow-xs transition-all hover:shadow-sm sm:p-5">
+              <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <h3 className="min-w-0 wrap-break-word text-sm font-bold text-slate-900">
                   {event.title}
                 </h3>
-                <span className="inline-flex items-center gap-1 text-xs text-slate-500 font-medium">
-                  <Calendar className="w-3.5 h-3.5 text-slate-400" />
+
+                <span className="inline-flex w-fit shrink-0 items-center gap-1 whitespace-nowrap text-xs font-medium text-slate-500">
+                  <Calendar className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+
                   {new Date(event.date).toLocaleDateString("en-GB")}
                 </span>
               </div>
 
-              <p className="text-xs text-slate-600">
+              <p className="wrap-break-word text-xs leading-5 text-slate-600">
                 {event.description}
               </p>
             </div>

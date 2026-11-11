@@ -113,7 +113,7 @@ export default function CompanyCommunicationList({
             <h2 className="text-lg font-bold text-slate-900">
               Communication History
             </h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 text-start">
               {communications.length} {communications.length === 1 ? "interaction" : "interactions"} logged
             </p>
           </div>

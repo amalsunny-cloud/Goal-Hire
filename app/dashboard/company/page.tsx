@@ -202,14 +202,16 @@ export default function CompanyDashboardPage() {
 
             <div className="mt-3 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
               <div className="max-w-2xl">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-3 py-1.5 text-xs font-semibold text-blue-100">
+                <div className="flex flex-col gap-4">
+                <div className="mb-4 inline-flex lg:w-[29%] md:w-[26%] sm:w-full text-center items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-3 py-1.5 text-xs font-semibold text-blue-100">
                   <Sparkles className="h-3.5 w-3.5" />
                   Analytics & Insights
                 </div>
 
-                <h1 className="text-3xl font-black tracking-tight sm:text-5xl">
+                <h1 className="lg:text-3xl font-bold sm:text-xl">
                   Company Intelligence
                 </h1>
+                </div>
 
                 <p className="mt-4 max-w-xl text-sm leading-6 text-blue-100/75 sm:text-base">
                   Track recruiter relationships, response rates, and

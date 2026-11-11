@@ -41,7 +41,7 @@ function StatCard({
       </div>
 
       <div className="flex items-baseline justify-between">
-        <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <p className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
           {value}
         </p>
         {subtitle && (
@@ -105,4 +105,4 @@ export default function CompanyStats({
       />
     </div>
   );
-}
+}

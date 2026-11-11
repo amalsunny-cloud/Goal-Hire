@@ -41,7 +41,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
             <Users className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-bold text-start text-slate-900">
               Recruiter Contacts
             </h2>
             <p className="text-xs text-slate-500">
@@ -71,7 +71,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
                     : <User className="w-5 h-5" />}
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-900">
+                  <h3 className="text-base font-bold text-start text-slate-900">
                     {recruiter.name}
                   </h3>
                   <span className="text-xs text-slate-500">
@@ -91,7 +91,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
                 <Mail className="w-4 h-4 text-gray-700 shrink-0" />
                 <div className="truncate">
-                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Email</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block text-start mb-1">Email :</span>
                   {recruiter.email ? (
                     <a
                       href={`mailto:${recruiter.email}`}
@@ -109,7 +109,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
               <div className="flex items-center gap-2.5 p-2.5 bg-slate-50/70 rounded-xl border border-slate-100 text-xs text-slate-700">
                 <Phone className="w-4 h-4 text-gray-700 shrink-0" />
                 <div className="truncate">
-                  <span className="text-[12px] uppercase font-semibold text-gray-700 block">Phone</span>
+                  <span className="text-[12px] uppercase font-semibold text-gray-700 block text-start">Phone</span>
                   {recruiter.phone ? (
                     <a
                       href={`tel:${recruiter.phone}`}
@@ -149,7 +149,7 @@ export default function CompanyRecruiterList({ recruiters }: Props) {
                 <Calendar className="w-4 h-4 text-gray-700 shrink-0" />
                 <div>
                   <span className="text-[12px] uppercase font-semibold text-gray-700 block">Last Contact</span>
-                  <span className="font-medium text-slate-700">
+                  <span className="font-medium text-start text-slate-700">
                     {recruiter.lastContact
                       ? new Date(recruiter.lastContact).toLocaleDateString("en-GB")
                       : "No contact yet"}

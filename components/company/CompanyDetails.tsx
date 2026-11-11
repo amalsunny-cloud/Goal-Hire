@@ -64,7 +64,7 @@ export default function CompanyDetails({
   return (
     <div className="space-y-6">
       {/* Top Header Card */}
-      <div className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
+      <div className="space-y-6 rounded-3xl border border-slate-200 bg-violet-950/95 p-5 shadow-sm sm:p-6 lg:p-7">
         {/* Back Link */}
         <div>
           <Link
@@ -85,7 +85,7 @@ export default function CompanyDetails({
 
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="truncate text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+                <h1 className="truncate text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
                   {company}
                 </h1>
 
@@ -94,7 +94,7 @@ export default function CompanyDetails({
                 </span>
               </div>
 
-              <p className="mt-1.5 max-w-2xl text-xs leading-5 text-slate-500 sm:text-sm">
+              <p className="mt-1.5 max-w-2xl text-xs leading-5 text-slate-200 sm:text-sm">
                 Centralized recruiter relationships, application history, and
                 communication touchpoints
               </p>
@@ -222,7 +222,7 @@ export default function CompanyDetails({
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900">
+                    <h3 className="text-sm font-bold text-start text-slate-900">
                       Applications ({applications.length})
                     </h3>
 
