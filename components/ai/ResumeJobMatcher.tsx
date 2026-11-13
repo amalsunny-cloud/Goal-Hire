@@ -178,25 +178,25 @@ export default function ResumeJobMatcher() {
             <Target className="h-5 w-5" />
           </div>
 
-          <div className="flex flex-col justify-center items-center w-full">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <div className="flex flex-col w-full">
+            <h1 className="text-2xl text-start font-bold tracking-tight text-slate-900">
           Resume ↔ Job Matcher
         </h1>
-            <p className="mt-1 text-sm leading-6 text-slate-500">
+            <p className="mt-1 text-sm leading-6 text-start text-slate-500">
               Compare your resume analysis with a job description analysis to
               identify matching skills, gaps, and improvement opportunities.
             </p>
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-2 px-6">
           {/* Resume Analysis */}
           <div>
             <label
               htmlFor="saved-resume"
-              className="mb-2 block text-sm font-medium text-slate-700"
+              className="mb-2 block text-start text-sm font-medium pl-5 text-slate-700"
             >
-              Resume
+              Resume :
             </label>
 
             <select
@@ -245,9 +245,9 @@ export default function ResumeJobMatcher() {
           <div>
             <label
               htmlFor="saved-job"
-              className="mb-2 block text-sm font-medium text-slate-700"
+              className="mb-2 block text-start text-sm font-medium pl-6 text-slate-700"
             >
-              Job
+              Job :
             </label>
 
             <select

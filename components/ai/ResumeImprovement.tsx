@@ -159,18 +159,18 @@ export default function ResumeImprovement() {
       </Link>
       {/* Page introduction */}
       <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-      <div className="flex flex-col items-center">
-        <div className="mb-3 flex justify-center items-center gap-2">
+      <div className="flex flex-col">
+        <div className="mb-3 flex  items-center gap-2">
           <div className="rounded-xl bg-violet-100 p-2 text-violet-700">
             <Sparkles className="h-6 w-6" />
           </div>
 
-          <h1 className="text-2xl font-bold tracking-tight">
+          <h1 className="text-2xl text-start font-bold tracking-tight">
             AI Resume Improvement
           </h1>
         </div>
 
-        <p className="max-w-3xl text-sm leading-6 text-gray-600 text-start">
+        <p className="text-sm leading-6 text-gray-600 text-start">
           Improve your professional summary, project descriptions, and
           experience statements. Review every suggestion before using it in your
           resume.
@@ -200,9 +200,9 @@ export default function ResumeImprovement() {
           <>
             <label
               htmlFor="saved-resume"
-              className="mb-2 block text-sm font-medium"
+              className="mb-2 block text-start pl-6 text-sm font-medium"
             >
-              Your resumes
+              Your resumes :
             </label>
 
             <select
@@ -226,7 +226,7 @@ export default function ResumeImprovement() {
             </select>
 
             {selectedResume && (
-              <p className="mt-3 text-xs text-gray-500">
+              <p className="mt-3 text-xs text-green-500">
                 Saved on{" "}
                 {new Date(selectedResume.createdAt).toLocaleDateString("en-GB")}
               </p>
@@ -306,7 +306,7 @@ export default function ResumeImprovement() {
           <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 mt-4">
             <Check className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
 
-            <div>
+            <div className="text-start">
               <h2 className="font-semibold text-green-800">
                 Resume improvements generated
               </h2>
@@ -505,11 +505,11 @@ function TextComparisonCard({
       className={`rounded-xl border p-4 ${
         improved
           ? "border-violet-200 bg-violet-200/50"
-          : "border-gray-200 bg-gray-50"
+          : "border-gray-200 bg-gray-100"
       }`}
     >
       <div className="mb-3 w-full flex items-center justify-between gap-3">
-        <h4 className="text-sm font-semibold">{title}</h4>
+        <h4 className="text-sm bg-white p-1 px-2 rounded-xl font-semibold">{title}</h4>
 
         {improved && onCopy && (
           <button
@@ -535,11 +535,11 @@ function TextComparisonCard({
 
       {improved && explanation && (
         <div className="mt-4 border-t border-violet-200 pt-3">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-violet-700">
-            Why this is improved
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-violet-700">
+            Why this is improved ?
           </p>
 
-          <p className="text-sm leading-6 text-gray-600">{explanation}</p>
+          <p className="text-sm leading-5 text-gray-600">{explanation}</p>
         </div>
       )}
     </div>

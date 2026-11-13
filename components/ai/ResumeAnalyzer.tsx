@@ -83,21 +83,17 @@ export default function ResumeAnalyzer() {
             <FileText className="h-5 w-5" />
           </div>
 
-          <div className="flex flex-col justify-center items-center w-full">
-            <h1 className="text-2xl text-center font-bold tracking-tight text-slate-900 mb-2">
-          AI Resume Analyzer
-        </h1>
+          <div className="flex flex-col w-full">
+            <h1 className="text-2xl text-start font-bold tracking-tight text-slate-900 mb-2">
+              AI Resume Analyzer
+            </h1>
 
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-500 text-start">
-          Analyze your resume with AI to identify your skills, experience,
-          strengths, weaknesses, and areas for improvement.
-        </p>
-            
+            <p className="text-sm text-slate-500 text-start md:mb-0 lg:mb-0 sm:mb-5">
+              Analyze your resume with AI to identify your skills, experience,
+              strengths, weaknesses, and areas for improvement.
+            </p>
 
-            <h5 className="mt-1 text-sm text-slate-500 font-semibold text-start">
-              Paste your resume content below and let AI analyze your skills,
-              experience, projects, and improvement areas.
-            </h5>
+        
           </div>
         </div>
 
@@ -167,6 +163,7 @@ export default function ResumeAnalyzer() {
           <AnalysisSection
             title="Professional Summary"
             items={[analysis.professionalSummary]}
+            variant="professionalSummary"
           />
 
           {/* Skills */}
@@ -174,25 +171,27 @@ export default function ResumeAnalyzer() {
             <AnalysisSection
               title="Technical Skills"
               items={analysis.technicalSkills}
+              variant="technicalSkills"
             />
 
-            <AnalysisSection title="Soft Skills" items={analysis.softSkills} />
+            <AnalysisSection title="Soft Skills" items={analysis.softSkills} variant="softSkills" />
           </div>
 
           {/* Experience & Education */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <AnalysisSection title="Experience" items={analysis.experience} />
+            <AnalysisSection title="Experience" items={analysis.experience} variant="experience" />
 
-            <AnalysisSection title="Education" items={analysis.education} />
+            <AnalysisSection title="Education" items={analysis.education} variant="education" />
           </div>
 
           {/* Projects & Certifications */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <AnalysisSection title="Projects" items={analysis.projects} />
+            <AnalysisSection title="Projects" items={analysis.projects} variant="projects" />
 
             <AnalysisSection
               title="Certifications"
               items={analysis.certifications}
+              variant="certifications"
             />
           </div>
 
@@ -200,43 +199,45 @@ export default function ResumeAnalyzer() {
           <AnalysisSection
             title="Important Keywords"
             items={analysis.keywords}
+            variant="keywords"
           />
 
           {/* Strengths */}
           <AnalysisSection
             title="Strengths"
             items={analysis.strengths}
-            variant="success"
+            variant="strengths"
           />
 
           {/* Weaknesses */}
           <AnalysisSection
             title="Weaknesses / Missing Areas"
             items={analysis.weaknesses}
-            variant="warning"
+            variant="weaknesses"
           />
 
           <AnalysisSection
             title="Career Positioning"
             items={analysis.careerPositioning}
+            variant="careerPositioning"
           />
 
           <AnalysisSection
             title="Technical Skill Gaps"
             items={analysis.technicalSkillGaps}
-            variant="warning"
+            variant="technicalSkillGaps"
           />
 
           <AnalysisSection
             title="Project Improvement Suggestions"
             items={analysis.projectImprovementSuggestions}
-            variant="info"
+            variant="projectImprovementSuggestions"
           />
 
           <AnalysisSection
             title="Experience Improvement Suggestions"
             items={analysis.experienceImprovementSuggestions}
-            variant="info"
+            variant="experienceImprovementSuggestions"
           />
         </section>
       )}
@@ -247,47 +248,127 @@ export default function ResumeAnalyzer() {
 interface AnalysisSectionProps {
   title: string;
   items: string[];
-  variant?: "default" | "success" | "warning" | "info";
+  variant?: "default" | "professionalSummary" | "experience" | "education" | "projects" | "certifications" | "keywords" | "strengths" | "weaknesses" | "careerPositioning" | "technicalSkillGaps" | "softSkills" | "technicalSkills" | "projectImprovementSuggestions" | "experienceImprovementSuggestions";
 }
 
-function AnalysisSection({
+function  AnalysisSection({
   title,
   items,
   variant = "default",
 }: AnalysisSectionProps) {
-  const styles = {
-    default: {
-      card: "border-slate-200",
-      icon: "text-slate-500",
-      bullet: "bg-slate-400",
-    },
-    success: {
-      card: "border-emerald-200",
-      icon: "text-emerald-600",
-      bullet: "bg-emerald-500",
-    },
-    warning: {
-      card: "border-amber-200",
-      icon: "text-amber-600",
-      bullet: "bg-amber-500",
-    },
-    info: {
-      card: "border-blue-200",
-      icon: "text-blue-600",
-      bullet: "bg-blue-500",
-    },
-  };
+ const styles = {
+  default: {
+    card: "border-blue-200",
+    icon: "text-blue-500",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100",
+  },
+  professionalSummary: {
+    card: "border-blue-200",
+    icon: "text-blue-500",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/90",
+  },
+  skills: {
+    card: "border-blue-200",
+    icon: "text-blue-500",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/80",
+  },
+  experience: {
+    card: "border-blue-200",
+    icon: "text-blue-600",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/70",
+  },
+  education: {
+    card: "border-blue-200",
+    icon: "text-blue-600",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/60",
+  },
+  projects: {
+    card: "border-blue-200",
+    icon: "text-blue-600",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/50",
+  },
+  certifications: {
+    card: "border-blue-200",
+    icon: "text-blue-600",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/40",
+  },
+  keywords: {
+    card: "border-blue-200",
+    icon: "text-blue-600",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/30",
+  },
+  strengths: {
+    card: "border-blue-200",
+    icon: "text-blue-700",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/20",
+  },
+  weaknesses: {
+    card: "border-blue-200",
+    icon: "text-blue-700",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/10",
+  },
+  technicalSkills: {
+    card: "border-blue-200",
+    icon: "text-blue-700",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/20",
+  },
+  softSkills: {
+    card: "border-blue-200",
+    icon: "text-blue-700",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/30",
+  },
+  careerPositioning: {
+    card: "border-blue-200",
+    icon: "text-blue-700",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/40",
+  },
+  technicalSkillGaps: {
+    card: "border-blue-200",
+    icon: "text-blue-800",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/50",
+  },
+  projectImprovementSuggestions: {
+    card: "border-blue-200",
+    icon: "text-blue-800",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/60",
+  },
+  experienceImprovementSuggestions: {
+    card: "border-blue-200",
+    icon: "text-blue-800",
+    bullet: "bg-blue-400",
+    container: "bg-blue-100/70",
+  },
+};
+
+
+
 
   const style = styles[variant];
+  const backGroundColor = style.container;
 
   return (
-    <div className={`rounded-2xl border bg-white p-6 shadow-sm ${style.card}`}>
+    <div className={`rounded-2xl border ${backGroundColor} p-6 shadow-sm ${style.card}`}>
       <div className="mb-4 flex items-center gap-2">
-        {variant === "success" ? (
+        {/* {variant === "success" ? (
           <CheckCircle2 className={`h-5 w-5 ${style.icon}`} />
         ) : (
           <Sparkles className={`h-5 w-5 ${style.icon}`} />
-        )}
+        )} */}
 
         <h3 className="font-semibold text-slate-900">{title}</h3>
       </div>

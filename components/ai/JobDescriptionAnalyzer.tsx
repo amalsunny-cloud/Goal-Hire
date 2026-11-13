@@ -3,7 +3,16 @@
 import { useState } from "react";
 import type { JobAnalysis } from "@/lib/ai/schemas/jobAnalysis";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { 
+  ArrowLeft, 
+  Flame, 
+  Star, 
+  Code2, 
+  Users, 
+  Briefcase, 
+  GraduationCap, 
+  CheckCircle2 
+} from "lucide-react";
 
 export default function JobDescriptionAnalyzer() {
   const [jobDescription, setJobDescription] = useState("");
@@ -88,15 +97,14 @@ export default function JobDescriptionAnalyzer() {
               <span className="text-lg">✦</span>
             </div>
 
-            <div className="flex flex-col justify-center items-center w-full">
+            <div className="flex flex-col w-full">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-2xl text-center font-bold tracking-tight text-slate-900 mb-2">
+                <h2 className="text-2xl text-start font-bold tracking-tight text-slate-900">
                   Job Description Analyzer
                 </h2>
-
               </div>
 
-              <p className="mt-1.5 max-w-2xl text-sm leading-6 text-slate-500">
+              <p className="mt-1.5 text-start text-sm leading-6 text-slate-500">
                 Paste a job description and let AI extract the important
                 requirements, skills, responsibilities, and ATS keywords.
               </p>
@@ -105,13 +113,6 @@ export default function JobDescriptionAnalyzer() {
         </div>
 
         <div className="p-5 sm:p-6 lg:p-7">
-          <label
-            htmlFor="job-description"
-            className="mb-2.5 block text-sm font-semibold text-slate-800"
-          >
-            Job Description
-          </label>
-
           <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-1 transition-colors focus-within:border-blue-300 focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-500/10">
             <textarea
               id="job-description"
@@ -169,7 +170,7 @@ export default function JobDescriptionAnalyzer() {
           <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
             <div className="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
               <div>
-                <h2 className="text-lg font-bold tracking-tight text-slate-900">
+                <h2 className="text-xl font-bold text-start tracking-tight text-slate-900">
                   Job Overview
                 </h2>
                 <p className="mt-1 text-xs text-slate-500">
@@ -224,7 +225,6 @@ export default function JobDescriptionAnalyzer() {
               <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Summary
               </p>
-
               <p className="mt-2 text-sm leading-7 text-slate-600">
                 {analysis.summary}
               </p>
@@ -284,7 +284,7 @@ export default function JobDescriptionAnalyzer() {
           <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:p-7">
             <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
               <div>
-                <h2 className="text-lg font-bold tracking-tight text-slate-900">
+                <h2 className="text-xl text-start font-bold tracking-tight text-slate-900">
                   ATS Keywords
                 </h2>
                 <p className="mt-1 text-xs text-slate-500">
@@ -329,44 +329,51 @@ interface AnalysisListProps {
 function AnalysisList({ title, items, variant = "blue" }: AnalysisListProps) {
   const styles = {
     red: {
-      container: "border-rose-100 bg-rose-50/50",
-      icon: "bg-rose-100 text-rose-600",
+      container: "border-rose-200 bg-rose-100/60",
+      iconWrapper: "bg-rose-200 text-rose-600 rounded-xl",
+      icon: Flame,
       title: "text-rose-800",
       bullet: "bg-rose-500",
     },
     yellow: {
-      container: "border-amber-100 bg-amber-50/50",
-      icon: "bg-amber-100 text-amber-600",
+      container: "border-amber-200 bg-amber-100/60",
+      iconWrapper: "bg-amber-200 text-amber-600 rounded-xl",
+      icon: Star,
       title: "text-amber-800",
       bullet: "bg-amber-500",
     },
     blue: {
-      container: "border-blue-100 bg-blue-50/50",
-      icon: "bg-blue-100 text-blue-600",
+      container: "border-blue-200 bg-blue-100/60",
+      iconWrapper: "bg-blue-200 text-blue-600 rounded-xl",
+      icon: Users,
       title: "text-blue-800",
       bullet: "bg-blue-500",
     },
     green: {
-      container: "border-emerald-100 bg-emerald-50/50",
-      icon: "bg-emerald-100 text-emerald-600",
+      container: "border-emerald-200 bg-emerald-100/60",
+      iconWrapper: "bg-emerald-200 text-emerald-600 rounded-xl",
+      icon: Code2,
       title: "text-emerald-800",
       bullet: "bg-emerald-500",
     },
     purple: {
-      container: "border-purple-100 bg-purple-50/50",
-      icon: "bg-purple-100 text-purple-600",
+      container: "border-purple-200 bg-purple-100/60",
+      iconWrapper: "bg-purple-200 text-purple-600 rounded-xl",
+      icon: Briefcase,
       title: "text-purple-800",
       bullet: "bg-purple-500",
     },
     orange: {
-      container: "border-orange-100 bg-orange-50/50",
-      icon: "bg-orange-100 text-orange-600",
+      container: "border-orange-200 bg-orange-100/60",
+      iconWrapper: "bg-orange-200 text-orange-600 rounded-xl",
+      icon: GraduationCap,
       title: "text-orange-800",
       bullet: "bg-orange-500",
     },
   };
 
   const currentStyle = styles[variant];
+  const IconComponent = currentStyle.icon;
 
   return (
     <div
@@ -374,9 +381,9 @@ function AnalysisList({ title, items, variant = "blue" }: AnalysisListProps) {
     >
       <div className="flex items-center gap-3">
         <div
-          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold ${currentStyle.icon}`}
+          className={`flex h-9 w-9 shrink-0 items-center justify-center ${currentStyle.iconWrapper}`}
         >
-          •
+          <IconComponent className="h-4 w-4" />
         </div>
 
         <h2
@@ -391,13 +398,13 @@ function AnalysisList({ title, items, variant = "blue" }: AnalysisListProps) {
           {items.map((item, index) => (
             <li
               key={`${item}-${index}`}
-              className="flex gap-3 rounded-xl border border-white/80 bg-white/70 px-3.5 py-3 text-sm leading-6 text-slate-700"
+              className="flex gap-3 rounded-xl border border-white/80 bg-white/30 px-3.5 py-3 text-sm text-start leading-6 text-slate-700"
             >
               <span
                 aria-hidden="true"
                 className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${currentStyle.bullet}`}
               />
-              <span>{item}</span>
+              <span>{item}{"."}</span>
             </li>
           ))}
         </ul>
